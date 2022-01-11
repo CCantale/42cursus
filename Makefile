@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 12:57:41 by ccantale          #+#    #+#              #
-#    Updated: 2022/01/11 14:27:09 by ccantale         ###   ########.fr        #
+#    Updated: 2022/01/11 14:37:31 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ HNAME = libft.h
 CFILES = ft_isalpha.c ft_isdigit.c
 OFILES = $(CFILES:.c=.o) libft.o
 TFILES = test.c stdfunc.c
-OT_FILES = $(TFILES:.c:=.o) stdfunc.o
+OT_FILES = $(TFILES:.c=.o) stdfunc.o
 
 all: $(ANAME)
 
