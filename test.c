@@ -164,6 +164,39 @@ void	test_strlen(void)
 	free(test2);
 }
 
+void	test_memset(void)
+{
+	char	*test1;
+
+	test1 = (char *)malloc(sizeof(char) * 6);
+	ft_strcpy(test1, "Test!");
+	putstr("_MEMSET(a, 4)\n(\"Test!\")\nmemset = ");
+	putstr(memset(test1, 'a', 4));
+	putstr(" | ft_memset = ");
+	ft_strcpy(test1, "Test!");
+	putstr(ft_memset(test1, 'a', 4));
+	free(test1);
+	putstr("\n\n");
+}
+
+void	test_bzero(void)
+{
+	char	*test1;
+
+	test1 = (char *)malloc(sizeof(char) * 6);
+	ft_strcpy(test1, "Test!");
+	putstr("_BZERO(str + 2, 3)\n(\"Test!\")\nbzero = ");
+	bzero(test1 + 2, 3);
+	putstr(test1);
+	putstr(" | ft_bzero = ");
+	ft_strcpy(test1, "Test!");
+	ft_bzero(test1 + 2, 4);
+	putstr(test1);
+	free(test1);
+	putstr("\n\n");
+}
+
+
 int	main(void)
 {
 	test_isalpha();
@@ -172,5 +205,7 @@ int	main(void)
 	test_isascii();
 	test_isprint();
 	test_strlen();
+	test_memset();
+	test_bzero();
 	return (0);
 }

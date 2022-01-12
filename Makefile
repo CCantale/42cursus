@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 12:57:41 by ccantale          #+#    #+#              #
-#    Updated: 2022/01/12 15:25:12 by ccantale         ###   ########.fr        #
+#    Updated: 2022/01/13 00:33:24 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,10 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = libft
 ANAME = libft.a
 HNAME = libft.h
-CFILES = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c
+CFILES = ft_isalpha.c ft_isdigit.c \
+		 ft_isalnum.c ft_isascii.c \
+		 ft_isprint.c ft_strlen.c \
+		 ft_memset.c ft_bzero.c
 OFILES = $(CFILES:.c=.o) libft.o
 TNAME = test
 TFILES = $(TNAME).c stdfunc.c
