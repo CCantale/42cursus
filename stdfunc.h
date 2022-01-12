@@ -1,6 +1,7 @@
 #ifndef STDFUNC_H
 
 #include <unistd.h>
+#include <string.h>
 
 void	putstr(char *str);
 char	*ft_strcpy(char *dest, char *src);
