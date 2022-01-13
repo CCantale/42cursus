@@ -226,7 +226,7 @@ void	test_strlcpy(void)
 	test2 = (char *)malloc(sizeof(char) * 6);
 	ft_strcpy(test1, "test_strlcpy()");
 	ft_strcpy(test2, "Test!");
-	putstr("_MEMCPY\n(\"test_strlcpy()\"(+ 3), \"Test!\", 6)\nstrlcpy = ");
+	putstr("_STRLCPY\n(\"test_strlcpy()\"(+ 3), \"Test!\", 6)\nstrlcpy = ");
 	strlcpy(test1 + 3, test2, 6);
 	putstr(test1);
 	ft_strcpy(test1, "test_strlcpy()");
