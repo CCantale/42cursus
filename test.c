@@ -196,6 +196,26 @@ void	test_bzero(void)
 	putstr("\n\n");
 }
 
+void	test_memcpy(void)
+{
+	char	*test1;
+	char	*test2;
+
+	test1 = (char *)malloc(sizeof(char) * 6);
+	test2 = (char *)malloc(sizeof(char) * 6);
+	ft_strcpy(test1, "Test!");
+	ft_strcpy(test2, "Bella");
+	putstr("_MEMCPY\n(\"Test!\", \"Bella\", 3)\nmemcpy = ");
+	test1 = memcpy(test1, test2, 3);
+	putstr(test1);
+	putstr(" | ft_memcpy = ");
+	ft_strcpy(test1, "Test!");
+	test1 = ft_memcpy(test1, test2, 3);
+	putstr(test1);
+	free(test1);
+	free(test2);
+	putstr("\n\n");
+}
 
 int	main(void)
 {
@@ -207,5 +227,6 @@ int	main(void)
 	test_strlen();
 	test_memset();
 	test_bzero();
+	test_memcpy();
 	return (0);
 }

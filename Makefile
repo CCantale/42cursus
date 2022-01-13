@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 12:57:41 by ccantale          #+#    #+#              #
-#    Updated: 2022/01/13 00:33:24 by ccantale         ###   ########.fr        #
+#    Updated: 2022/01/13 13:39:03 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ HNAME = libft.h
 CFILES = ft_isalpha.c ft_isdigit.c \
 		 ft_isalnum.c ft_isascii.c \
 		 ft_isprint.c ft_strlen.c \
-		 ft_memset.c ft_bzero.c
+		 ft_memset.c ft_bzero.c \
+		 ft_memcpy.c
 OFILES = $(CFILES:.c=.o) libft.o
 TNAME = test
 TFILES = $(TNAME).c stdfunc.c
