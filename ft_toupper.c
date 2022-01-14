@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stdfunc.h                                          :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/14 22:46:04 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/14 22:46:10 by ccantale         ###   ########.fr       */
+/*   Created: 2022/01/14 21:23:47 by ccantale          #+#    #+#             */
+/*   Updated: 2022/01/14 21:26:50 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STDFUNC_H
+#include "libft.h"
 
-#include <unistd.h>
-#include <string.h>
-#include <ctype.h>
-
-void	putstr(char *str);
-char	*ft_strcpy(char *dest, char *src);
-char	*ft_strncpy(char *dest, char *src, unsigned int n);
-void	ft_putchar(char c);
-void	putnbr(int nb);
-
-#endif
+int	ft_toupper(int c)
+{
+	if (c >= 'a' && c <= 'z')
+		c -= 32;
+	return (c);
+}

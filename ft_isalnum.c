@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 14:10:07 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/12 14:15:12 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/01/14 23:20:10 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_isalnum(int c)
 {
 	if (ft_isalpha(c))
-		return(1);
+		return (1);
 	if (ft_isdigit(c))
 		return (1);
 	return (0);

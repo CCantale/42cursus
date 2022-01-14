@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 12:43:39 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/13 13:46:50 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/01/14 22:48:34 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 {
 	size_t	i;
-	
+
 	if (!dst && !src)
 		return (0);
 	i = 0;

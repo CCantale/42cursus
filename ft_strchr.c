@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stdfunc.h                                          :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/14 22:46:04 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/14 22:46:10 by ccantale         ###   ########.fr       */
+/*   Created: 2022/01/14 23:31:34 by ccantale          #+#    #+#             */
+/*   Updated: 2022/01/15 00:08:24 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STDFUNC_H
+#include "libft.h"
 
-#include <unistd.h>
-#include <string.h>
-#include <ctype.h>
-
-void	putstr(char *str);
-char	*ft_strcpy(char *dest, char *src);
-char	*ft_strncpy(char *dest, char *src, unsigned int n);
-void	ft_putchar(char c);
-void	putnbr(int nb);
-
-#endif
+char	*ft_strchr(const char *s, int c)
+{
+	while (*(s++))
+		if (*(s) == (char)c)
+			return ((char *)s);
+	if (c == 0)
+		return ((char *)s);
+	return (NULL);
+}

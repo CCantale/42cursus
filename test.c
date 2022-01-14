@@ -293,6 +293,80 @@ void	test_strlcat(void)
 	putstr("\n\n");
 }
 
+void	test_toupper(void)
+{
+	int		a;
+	int		five;
+
+	a = 'a';
+	five = '5';
+	putstr("_TOUPPER\n(a)\ntoupper = ");
+	putnbr(toupper(a));
+	putstr(" ");
+	ft_putchar(toupper(a));
+	putstr(" | ft_toupper = ");
+	putnbr(ft_toupper(a));
+	putstr(" ");
+	ft_putchar(ft_toupper(a));
+	putstr("\n");
+	putstr("(5)\ntoupper = ");
+	putnbr(toupper(five));
+	putstr(" ");
+	ft_putchar(toupper(five));
+	putstr(" | ft_toupper = ");
+	putnbr(ft_toupper(five));
+	putstr(" ");
+	ft_putchar(ft_toupper(five));
+	putstr("\n\n");
+}
+
+void	test_tolower(void)
+{
+	int	a;
+	int	five;
+
+	a = 'A';
+	five = '5';
+	putstr("_TOLOWER\n(A)\ntoupper = ");
+	putnbr(tolower(a));
+	putstr(" ");
+	ft_putchar(tolower(a));
+	putstr(" | ft_tolower = ");
+	putnbr(ft_tolower(a));
+	putstr(" ");
+	ft_putchar(ft_tolower(a));
+	putstr("\n");
+	putstr("(5)\ntolower = ");
+	putnbr(tolower(five));
+	putstr(" ");
+	ft_putchar(tolower(five));
+	putstr(" | ft_tolower = ");
+	putnbr(ft_tolower(five));
+	putstr(" ");
+	ft_putchar(ft_tolower(five));
+	putstr("\n\n");
+}
+
+void	test_strchr(void)
+{
+	char	*test1;
+
+	test1 = (char *)malloc(sizeof(char) * 15);
+	ft_strcpy(test1, "test_strchr()");
+	putstr("_STRCHR\n(\"test_strchr()\", 'r')\nstrchr = ");
+	putstr(strchr(test1, 'r'));
+	putstr(" | ft_strchr = ");
+	putstr(ft_strchr(test1, 'r'));
+	putstr("\n");
+	putstr("(\"test_strchr()\", 0)\nstrchr = ");
+	putstr(strchr(test1, 0));
+	putstr(" | ft_strchr = ");
+	putstr(ft_strchr(test1, 0));
+	free(test1);
+	putstr("\n\n");
+}
+
+
 int	main(void)
 {
 	test_isalpha();
@@ -307,5 +381,8 @@ int	main(void)
 	test_memmove();
 	test_strlcpy();
 	test_strlcat();
+	test_toupper();
+	test_tolower();
+	test_strchr();
 	return (0);
 }
