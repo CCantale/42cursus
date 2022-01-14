@@ -217,6 +217,23 @@ void	test_memcpy(void)
 	putstr("\n\n");
 }
 
+void	test_memmove(void)
+{
+	char	*test1;
+
+	test1 = (char *)malloc(sizeof(char) * 15);
+	ft_strcpy(test1, "test_memmove()");
+	putstr("_MEMMOVE\n(\"test_memmove()\", test + 5, 5)\nmemmove = ");
+	memmove(test1, test1 + 5, 5);
+	putstr(test1);
+	ft_strcpy(test1, "test_memmove()");
+	putstr(" | ft_memmove = ");
+	ft_memmove(test1, test1 + 5, 5);
+	putstr(test1);
+	free(test1);
+	putstr("\n\n");
+}
+
 void	test_strlcpy(void)
 {
 	char	*test1;
@@ -238,6 +255,44 @@ void	test_strlcpy(void)
 	putstr("\n\n");
 }
 
+void	test_strlcat(void)
+{
+	char	*test1;
+	char	*test2;
+	size_t	size;
+
+	test1 = (char *)malloc(sizeof(char) * 21);
+	test2 = (char *)malloc(sizeof(char) * 6);
+	ft_strcpy(test1, "test_strlcat()");
+	ft_strcpy(test2, "Test!");
+	putstr("_STRLCAT\n(\"test_strlcpy()\", \"Test!\", 21)\nstrlcat = ");
+	size = strlcat(test1, test2, 21);
+	putstr(test1);
+	putstr(" ");
+	putnbr(size);
+	ft_strcpy(test1, "test_strlcpy()\0\0\0\0\0\0");
+	putstr(" | ft_strlcat = ");
+	size = ft_strlcat(test1, test2, 21);
+	putstr(test1);
+	putstr(" ");
+	putnbr(size);
+	putstr("\n(\"test_strlcpy()\", \"Test!\", 6)\nstrlcat = ");
+	ft_strcpy(test1, "test_strlcpy()\0\0\0\0\0\0");
+	size = strlcat(test1, test2, 6);
+	putstr(test1);
+	putstr(" ");
+	putnbr(size);
+	ft_strcpy(test1, "test_strlcpy()\0\0\0\0\0\0");
+	putstr(" | ft_strlcat = ");
+	size = ft_strlcat(test1, test2, 6);
+	putstr(test1);
+	putstr(" ");
+	putnbr(size);
+	free(test1);
+	free(test2);
+	putstr("\n\n");
+}
+
 int	main(void)
 {
 	test_isalpha();
@@ -249,6 +304,8 @@ int	main(void)
 	test_memset();
 	test_bzero();
 	test_memcpy();
+	test_memmove();
 	test_strlcpy();
+	test_strlcat();
 	return (0);
 }
