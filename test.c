@@ -366,6 +366,24 @@ void	test_strchr(void)
 	putstr("\n\n");
 }
 
+void	test_strrchr(void)
+{
+	char	*test1;
+
+	test1 = (char *)malloc(sizeof(char) * 16);
+	ft_strcpy(test1, "test_strrchr()");
+	putstr("_STRRCHR\n(\"test_strrchr()\", 's')\nstrrchr = ");
+	putstr(strrchr(test1, 's'));
+	putstr(" | ft_strrchr = ");
+	putstr(ft_strrchr(test1, 's'));
+	putstr("\n");
+	putstr("(\"test_strrchr()\", 0)\nstrrchr = ");
+	putstr(strrchr(test1, 0));
+	putstr(" | ft_strrchr = ");
+	putstr(ft_strrchr(test1, 0));
+	free(test1);
+	putstr("\n\n");
+}
 
 int	main(void)
 {
@@ -384,5 +402,6 @@ int	main(void)
 	test_toupper();
 	test_tolower();
 	test_strchr();
+	test_strrchr();
 	return (0);
 }

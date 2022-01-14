@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 12:57:41 by ccantale          #+#    #+#              #
-#    Updated: 2022/01/15 00:15:11 by ccantale         ###   ########.fr        #
+#    Updated: 2022/01/15 00:48:14 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,6 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 NAME = libft
-ANAME = libft.a
-HNAME = libft.h
 CFILES = ft_isalpha.c ft_isdigit.c \
 		 ft_isalnum.c ft_isascii.c \
 		 ft_isprint.c ft_strlen.c \
@@ -23,32 +21,35 @@ CFILES = ft_isalpha.c ft_isdigit.c \
 		 ft_memcpy.c ft_memmove.c \
 		 ft_strlcpy.c ft_strlcat.c \
 		 ft_toupper.c ft_tolower.c \
-		 ft_strchr.c
+		 ft_strchr.c ft_strrchr.c
 OFILES = $(CFILES:.c=.o) libft.o
 TNAME = test
 TFILES = $(TNAME).c stdfunc.c
 OT_FILES = $(TFILES:.c=.o)
 
-all: $(ANAME)
+all: $(NAME).a
 
-$(ANAME): $(OFILES)
-	ar rcs $(ANAME) $(OFILES)
+$(NAME).a: $(OFILES)
+	ar rcs $(NAME).a $(OFILES)
 
 $(OFILES): $(CFILES) libft.h
 	$(CC) $(CFLAGS) -c $(CFILES)
-	$(CC) $(CFLAGS) -c $(HNAME) -o $(NAME).o
+	$(CC) $(CFLAGS) -c $(NAME).h -o $(NAME).o
 
-testclean: test clean
-	rm test
-
-clean: $(OFILES)
+clean: $(NAME).a
 	rm *.o
 
-fclean: clean $(ANAME)
-	rm $(ANAME)
+fclean: clean
+	rm $(NAME).a
 
-test: $(ANAME) $(TNAME).o
-	$(CC) $(CFLAGS) $(ANAME) $(OT_FILES) -o test
+re: fclean
+	make
+
+testclean: test fclean
+	rm test
+
+test: $(NAME).a $(TNAME).o
+	$(CC) $(CFLAGS) $(NAME).a $(OT_FILES) -o test
 	./test
 
 $(TNAME).o: $(TFILES)
