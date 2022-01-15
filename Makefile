@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 12:57:41 by ccantale          #+#    #+#              #
-#    Updated: 2022/01/15 00:48:14 by ccantale         ###   ########.fr        #
+#    Updated: 2022/01/15 20:18:45 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,9 @@ CFILES = ft_isalpha.c ft_isdigit.c \
 		 ft_memcpy.c ft_memmove.c \
 		 ft_strlcpy.c ft_strlcat.c \
 		 ft_toupper.c ft_tolower.c \
-		 ft_strchr.c ft_strrchr.c
+		 ft_strchr.c ft_strrchr.c \
+		 ft_strncmp.c ft_memchr.c \
+		 ft_memcmp.c ft_strnstr.c
 OFILES = $(CFILES:.c=.o) libft.o
 TNAME = test
 TFILES = $(TNAME).c stdfunc.c

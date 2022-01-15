@@ -385,6 +385,76 @@ void	test_strrchr(void)
 	putstr("\n\n");
 }
 
+void	test_strncmp(void)
+{
+	putstr("_STRNCMP\n(\"test_strncmp()\", \"test_strncmp()\", 13)\nstrncmp = ");
+	putnbr(strncmp("test_strncmp()", "test_strncmp()", 13));
+	putstr(" | ft_strncmp = ");
+	putnbr(ft_strncmp("test_strncmp()", "test_strncmp()", 13));
+	putstr("\n(\"test_strncmp()\", \"test_st42rncmp()\", 13)\nstrncmp = ");
+	putnbr(strncmp("test_strncmp()", "test_st42rncmp()", 13));
+	putstr(" | ft_strncmp = ");
+	putnbr(ft_strncmp("test_strncmp()", "test_st42rncmp()", 13));
+	putstr("\n[Basta che siano entrambi positivi, negativi o nulli]");
+	putstr("\n\n");
+}
+
+void	test_memchr(void)
+{
+	putstr("_MEMCHR\n(\"test_memchr()\", 'm', 9)\nmemchr = ");
+	putstr(memchr("test_memchr()", 'm', 9));
+	putstr(" | ft_memchr = ");
+	putstr(ft_memchr("test_memchr()", 'm', 9));
+//	putstr("\n(\"test_memchr()\", 'm', 3)\nmemchr = ");
+//	putstr(memchr("test_memchr()", 'm', 3));
+//	putstr(" | ft_memchr = ");
+//	putstr(ft_memchr("test_memchr()", 'm', 3));
+//	putstr("\n(\"test_memchr()\", 'm', 0)\nmemchr = ");
+//	putstr(memchr("test_memchr()", 'm', 0));
+//	putstr(" | ft_memchr = ");
+//	putstr(ft_memchr("test_memchr()", 'm', 0));
+	putstr("\n\n");
+}
+
+void	test_memcmp(void)
+{
+	putstr("_MEMCMP\n(\"test_memcmp()\", \"test_memcmp()\", 13)\nmemcmp = ");
+	putnbr(memcmp("test_memcmp()", "test_memcmp()", 13));
+	putstr(" | ft_memcmp = ");
+	putnbr(ft_memcmp("test_memcmp()", "test_memcmp()", 13));
+	putstr("\n(\"test_memcmp()\", \"test_me42mcmp()\", 15)\nmemcmp = ");
+	putnbr(memcmp("test_memcmp()", "test_me42mcmp()", 15));
+	putstr(" | ft_memcmp = ");
+	putnbr(ft_memcmp("test_memcmp()", "test_me42mcmp()", 15));
+	putstr("\n[Basta che siano entrambi positivi, negativi o nulli]");
+	putstr("\n(\"test_memcmp()\", \"test_me42mcmp()\", 0)\nmemcmp = ");
+	putnbr(memcmp("test_memcmp()", "test_me42mcmp()", 0));
+	putstr(" | ft_memcmp = ");
+	putnbr(ft_memcmp("test_memcmp()", "test_me42mcmp()", 0));
+	putstr("\n\n");
+}
+
+void	test_strnstr(void)
+{
+	putstr("_STRNSTR\n(\"test_strnstr()\", \"str\", 14)\nstrnstr = ");
+	putstr(strnstr("test_strnstr()", "str", 14));
+	putstr(" | ft_strnstr = ");
+	putstr(ft_strnstr("test_strnstr()", "str", 14));
+	putstr("\n(\"test_strnstr()\", \"str\", 4)\nstrnstr = ");
+	putstr(strnstr("test_strnstr()", "str", 4));
+	putstr(" | ft_strnstr = ");
+	putstr(ft_strnstr("test_strnstr()", "str", 4));
+	putstr("\n(\"test_strnstr()\", \"0\", 4)\nstrnstr = ");
+	putstr(strnstr("test_strnstr()", "\0", 4));
+	putstr(" | ft_strnstr = ");
+	putstr(ft_strnstr("test_strnstr()", "\0", 4));
+	putstr(ft_strnstr("test_strnstr()", "str", 0));
+	putstr("\n(\"test_strnstr()\", \"str\", 0)\nstrnstr = ");
+	putstr(strnstr("test_strnstr()", "str", 0));
+	putstr(" | ft_strnstr = ");
+	putstr("\n\n");
+}
+
 int	main(void)
 {
 	test_isalpha();
@@ -403,5 +473,9 @@ int	main(void)
 	test_tolower();
 	test_strchr();
 	test_strrchr();
+	test_strncmp();
+	test_memchr();
+	test_memcmp();
+	test_strnstr();
 	return (0);
 }
