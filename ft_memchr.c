@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 18:05:55 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/15 18:20:43 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/01/16 21:00:29 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,3 @@ void	*ft_memchr(const void *s, int c, size_t n)
 			return ((void *)ptr + i);
 	return (NULL);
 }
-
-

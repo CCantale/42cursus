@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/15 18:30:50 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/16 21:00:12 by ccantale         ###   ########.fr       */
+/*   Created: 2022/01/16 20:50:25 by ccantale          #+#    #+#             */
+/*   Updated: 2022/01/16 22:02:32 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+void	*ft_calloc(size_t count, size_t size)
 {
-	unsigned char	*ptr1;
-	unsigned char	*ptr2;
+	int		i;
+	void	*map;
 
-	if (s1 == s2 || n == 0)
-		return (0);
-	ptr1 = (unsigned char *)s1;
-	ptr2 = (unsigned char *)s2;
-	while (n--)
-		if (*ptr1++ != *ptr2++)
-			return (*ptr1 - *ptr2);
-	return (0);
+	if (count == 0 || size == 0)
+		return (NULL);
+	map = (void *)malloc(sizeof(size) * count);
+	if (map == 0)
+		return (NULL);
+	i = 0;
+	while (i++ < size * count)
+		*(map + i) = 0;
+	return (map);
 }

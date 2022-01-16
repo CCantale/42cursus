@@ -472,6 +472,15 @@ void	test_atoi(void)
 	putstr("\n\n");
 }
 
+void	test_strdup(void)
+{
+	putstr("_STRDUP\n(test_strdup())\nstrdup = ");
+	putstr(strdup("test_strdup()"));
+	putstr(" | ft_strdup = ");
+	putstr(ft_strdup("test_strdup()"));
+	putstr("\n\n");
+}
+
 int	main(void)
 {
 	test_isalpha();
@@ -495,5 +504,6 @@ int	main(void)
 	test_memcmp();
 	test_strnstr();
 	test_atoi();
+	test_strdup();
 	return (0);
 }
