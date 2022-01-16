@@ -440,18 +440,35 @@ void	test_strnstr(void)
 	putstr(strnstr("test_strnstr()", "str", 14));
 	putstr(" | ft_strnstr = ");
 	putstr(ft_strnstr("test_strnstr()", "str", 14));
-	putstr("\n(\"test_strnstr()\", \"str\", 4)\nstrnstr = ");
-	putstr(strnstr("test_strnstr()", "str", 4));
-	putstr(" | ft_strnstr = ");
-	putstr(ft_strnstr("test_strnstr()", "str", 4));
-	putstr("\n(\"test_strnstr()\", \"0\", 4)\nstrnstr = ");
-	putstr(strnstr("test_strnstr()", "\0", 4));
-	putstr(" | ft_strnstr = ");
-	putstr(ft_strnstr("test_strnstr()", "\0", 4));
-	putstr(ft_strnstr("test_strnstr()", "str", 0));
-	putstr("\n(\"test_strnstr()\", \"str\", 0)\nstrnstr = ");
-	putstr(strnstr("test_strnstr()", "str", 0));
-	putstr(" | ft_strnstr = ");
+//	putstr("\n(\"test_strnstr()\", \"str\", 4)\nstrnstr = ");
+//	putstr(strnstr("test_strnstr()", "str", 4));
+//	putstr(" | ft_strnstr = ");
+//	putstr(ft_strnstr("test_strnstr()", "str", 4));
+//	putstr("\n(\"test_strnstr()\", \"0\", 4)\nstrnstr = ");
+//	putstr(strnstr("test_strnstr()", "\0", 4));
+//	putstr(" | ft_strnstr = ");
+//	putstr(ft_strnstr("test_strnstr()", "\0", 4));
+//	putstr(ft_strnstr("test_strnstr()", "str", 0));
+//	putstr("\n(\"test_strnstr()\", \"str\", 0)\nstrnstr = ");
+//	putstr(strnstr("test_strnstr()", "str", 0));
+//	putstr(" | ft_strnstr = ");
+	putstr("\n\n");
+}
+
+void	test_atoi(void)
+{
+	putstr("_ATOI\n(4862)\natoi = ");
+	putnbr(atoi("4862"));
+	putstr(" | ft_atoi = ");
+	putnbr(ft_atoi("4862"));
+	putstr("\n(2147483648)\natoi = ");
+	putnbr(atoi("2147483648"));
+	putstr(" | ft_atoi = ");
+	putnbr(ft_atoi("2147483648"));
+	putstr("\n(-2147483649)\natoi = ");
+	putnbr(atoi("-2147483649"));
+	putstr(" | ft_atoi = ");
+	putnbr(ft_atoi("-2147483649"));
 	putstr("\n\n");
 }
 
@@ -477,5 +494,6 @@ int	main(void)
 	test_memchr();
 	test_memcmp();
 	test_strnstr();
+	test_atoi();
 	return (0);
 }

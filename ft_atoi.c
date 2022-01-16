@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/15 18:53:37 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/16 19:49:17 by ccantale         ###   ########.fr       */
+/*   Created: 2022/01/16 20:00:39 by ccantale          #+#    #+#             */
+/*   Updated: 2022/01/16 20:09:21 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "stdfunc.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+int		ft_atoi(const char *str)
 {
-	size_t	i;
-	size_t	j;
+	unsigned int	num;
+	int				i;
+	int				sign;
 
-	if (*needle == 0 || needle == 0)
-		return ((char *)haystack);
+	num = 0;
+	sign = 1;
 	i = 0;
-	while (*(haystack + i) && i < len)
+	while (*(str + i) == ' ' || *(str +i) == '\t' || *(str + i) == '\f' ||
+			*(str + i) == '\r' || *(str + i) == '\n' || *(str + i) == '\v')
+		++i;
+	if (*(str + i) == '+' || *(str + i) == '-')
+		if (*(str + i++) == '-')
+			sign = -1;
+	while (*(str + i) >= '0' && *(str + i) <= '9')
 	{
-		j = 0;
-		while (*(haystack + i + j) == *(needle + j) && i + j < len)
-		{
-			if (*(needle + j + 1) == 0)
-				return ((char *)haystack + i);
-			++j;
-		}
+		num = num * 10 + (*(str + i) - '0');
 		++i;
 	}
-	return (NULL);
+	return ((int)(sign * num));
 }
