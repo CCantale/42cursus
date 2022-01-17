@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/17 16:09:35 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/17 17:12:54 by ccantale         ###   ########.fr       */
+/*   Created: 2022/01/17 17:13:04 by ccantale          #+#    #+#             */
+/*   Updated: 2022/01/17 18:06:38 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	int		i;
-	char	*substr;
+	int		j;
+	char	*join;
 
 	i = 0;
-	while (*(s + start + i) && (size_t)i < len)
+	while (*(s1 + i))
 		++i;
-	substr = (char *)malloc(sizeof(char) * i + 1);
-	if (!substr)
+	j = 0;
+	while (*(s2 + j))
+		++j;
+	join = (char *)malloc(sizeof(char) * i + j + 1);
+	if (!join)
 		return (NULL);
-	*(substr + i) = '\0';
+	*(join + i + j) = '\0';
+	while (--j >= 0)
+		*(join + i + j) = *(s2 + j);
 	while (--i >= 0)
-		*(substr + i) = *(s + start + i);
-	return (substr);
+		*(join + i) = *(s1 + i);
+	return (join);
 }
+	

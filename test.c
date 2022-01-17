@@ -494,6 +494,13 @@ void	test_substr(void)
 	putstr("\n\n");
 }
 
+void	test_strjoin(void)
+{
+	putstr("_STRJOIN\nft_strjoin(\"test_\", \"strjoin()\") = ");
+	putstr(ft_strjoin("test_", "strjoin()"));
+	putstr("\n\n");
+}
+
 int	main(void)
 {
 	test_isalpha();
@@ -519,5 +526,6 @@ int	main(void)
 	test_atoi();
 	test_strdup();
 	test_substr();
+	test_strjoin();
 	return (0);
 }
