@@ -481,6 +481,19 @@ void	test_strdup(void)
 	putstr("\n\n");
 }
 
+void	test_substr(void)
+{
+	char	*test1;
+
+	test1 = (char *)malloc(sizeof(char) * 13);
+	ft_strcpy(test1, "test_substr()");
+	putstr("_SUBSTR\nft_substr(\"test_substr()\", 3, 5) = ");
+	putstr(ft_substr(test1, 3, 5));
+	putstr("\nft_substr(\"test_substr()\", 7, 10) = ");
+	putstr(ft_substr(test1, 7, 10));
+	putstr("\n\n");
+}
+
 int	main(void)
 {
 	test_isalpha();
@@ -505,5 +518,6 @@ int	main(void)
 	test_strnstr();
 	test_atoi();
 	test_strdup();
+	test_substr();
 	return (0);
 }
