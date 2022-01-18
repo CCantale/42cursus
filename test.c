@@ -508,6 +508,20 @@ void	test_strtrim(void)
 	putstr("\n\n");
 }
 
+void	test_split(void)
+{
+	char	**split;
+
+	split = ft_split("Ciao, come stai?", ' ');
+	putstr("_SPLIT\nft_split(\"Ciao, come stai?\", \' \') =\n");
+	putstr(*split);
+	putstr("\n");
+	putstr(*(split + 1));
+	putstr("\n");
+	putstr(*(split + 2));
+	putstr("\n\n");
+}
+
 int	main(void)
 {
 	test_isalpha();
@@ -535,5 +549,6 @@ int	main(void)
 	test_substr();
 	test_strjoin();
 	test_strtrim();
+	test_split();
 	return (0);
 }
