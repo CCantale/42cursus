@@ -501,6 +501,13 @@ void	test_strjoin(void)
 	putstr("\n\n");
 }
 
+void	test_strtrim(void)
+{
+	putstr("_STRTRIM\n(ft_strtrim(\"+-ociao+-o\", \"o+-\") = ");
+	putstr(ft_strtrim("+-ociao+-o", "o+-"));
+	putstr("\n\n");
+}
+
 int	main(void)
 {
 	test_isalpha();
@@ -527,5 +534,6 @@ int	main(void)
 	test_strdup();
 	test_substr();
 	test_strjoin();
+	test_strtrim();
 	return (0);
 }
