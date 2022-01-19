@@ -512,13 +512,17 @@ void	test_split(void)
 {
 	char	**split;
 
-	split = ft_split("Ciao, come stai?", ' ');
-	putstr("_SPLIT\nft_split(\"Ciao, come stai?\", \' \') =\n");
+	split = ft_split("Ciao, come stai? Io bene.", ' ');
+	putstr("_SPLIT\nft_split(\"Ciao, come stai? Io bene.\", \' \') =\n");
 	putstr(*split);
 	putstr("\n");
 	putstr(*(split + 1));
 	putstr("\n");
 	putstr(*(split + 2));
+	putstr("\n");
+	putstr(*(split + 3));
+	putstr("\n");
+	putstr(*(split + 4));
 	putstr("\n\n");
 }
 
