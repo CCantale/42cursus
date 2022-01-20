@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:27:34 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/18 13:09:17 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/01/20 13:37:06 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@ int	check_set(char c, char const *set)
 
 	i = 0;
 	while (*(set + i))
-		if (c == *(set + i++))
+	{
+		if (c == *(set + i))
 			return (1);
+		++i;
+	}
 	return (0);
 }
 
@@ -30,16 +33,22 @@ char	*ft_strtrim(char const *s1, char const *set)
 	char	*trim;
 
 	i = 0;
-	while (check_set(*(s1 + i), set))
+	while (*(s1 + i) && check_set(*(s1 + i), set))
 		++i;
-	j = i;
-	while (!check_set(*(s1 + j), set))
+	j = 0;
+	while (*(s1 + j + 1))
 		++j;
+	while (j > i && check_set(*(s1 + j), set))
+		--j;
 	trim = (char *)malloc(sizeof(char) * j - i + 1);
 	if (!trim)
 		return (NULL);
+	++j;
 	*(trim + j - i) = 0;
-	while (i <= j--)
+	while (i < j)
+	{
+		--j;
 		*(trim + j - i) = *(s1 + j);
+	}
 	return (trim);
 }

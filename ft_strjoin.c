@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 17:13:04 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/17 18:06:38 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/01/19 13:06:26 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,4 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	while (--i >= 0)
 		*(join + i) = *(s1 + i);
 	return (join);
-}
-	
+}	
