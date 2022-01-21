@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 11:42:45 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/21 11:48:19 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/01/21 18:25:42 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	if (!lst || !*lst)
 		return ;
-	new = ft_lstlast(*lst) -> next;
+	new = ft_lstlast((*lst)-> next);
 }

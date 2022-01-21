@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:27:34 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/21 14:01:10 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/01/21 18:18:43 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	check_set(char c, char const *set)
 {
 	size_t	i;
 
+	if (!set)
+		return (0);
 	i = 0;
 	while (*(set + i))
 	{
@@ -39,11 +41,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 		++i;
 	if (!*(s1 + i))
 		return (ft_calloc(1, 1));
-	j = 0;
-	while (*(s1 + j + 1))
-		++j;
-	while (j > i && check_set(*(s1 + j - 1), set))
+	j = ft_strlen(s1) - 1;
+	while (j > i && check_set(*(s1 + j), set))
 		--j;
+	++j;
 	trim = ft_calloc(j - i + 1, sizeof(char));
 	if (!trim)
 		return (NULL);

@@ -6,12 +6,11 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 16:23:26 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/21 10:44:18 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/01/21 18:28:41 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "stdfunc.h"
 
 void	free_split(char	**split)
 {

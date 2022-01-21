@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 11:52:17 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/21 11:54:31 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/01/21 18:21:15 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	if(!del)
+	if (!del)
 		return ;
 	del(lst -> content);
 	free(lst);

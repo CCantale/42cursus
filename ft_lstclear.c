@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 12:00:22 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/21 12:25:39 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/01/21 18:24:08 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 		return ;
 	while (*lst)
 	{
-		old = (*lst) -> next;
+		old = (*lst)-> next;
 		ft_lstdelone(*lst, del);
 		*lst = old;
 	}
 	lst = NULL;
 }
-
