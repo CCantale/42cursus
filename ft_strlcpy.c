@@ -6,13 +6,13 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:29:35 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/20 12:12:05 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/01/21 02:13:14 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dest, char *src, size_t dstsize)
+size_t	ft_strlcpy(char *dest, const char *src, size_t dstsize)
 {
 	size_t	i;
 

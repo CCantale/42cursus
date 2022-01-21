@@ -6,39 +6,34 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 14:59:55 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/20 11:58:17 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/01/20 17:53:28 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dest,
-		const char *src, size_t dstsize)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
 	size_t	j;
-	size_t	dest_length;
-	size_t	src_length;
+	size_t	l_src;
+	size_t	l_dst;
 
-	j = 0;
-	while (*(src + j))
-		++j;
-	src_length = j;
-	if (dstsize == 0)
-		return (src_length);
+	l_src = ft_strlen(src);
+	l_dst = ft_strlen(dst);
 	i = 0;
-	while (*(dest + i))
-		++i;
-	dest_length = i;
-	j = 0;
-	while (*(src + j) && i + j < dstsize - 1)
+	j = l_dst;
+	if (l_dst < dstsize - 1 && dstsize > 0)
 	{
-		*(dest + i + j) = *(src + j);
-		++j;
+		while (src[i] && l_dst + i < dstsize - 1)
+		{
+			dst[j] = src[i];
+			j++;
+			i++;
+		}
+		dst[j] = 0;
 	}
-	if (dstsize < dest_length)
-		dest_length = dstsize;
-	if (dstsize != 0 && i + j != dstsize)
-		*(dest + i + j) = '\0';
-	return (dest_length + src_length);
+	if (l_dst >= dstsize)
+		l_dst = dstsize;
+	return (l_dst + l_src);
 }

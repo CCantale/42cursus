@@ -510,10 +510,11 @@ void	test_strtrim(void)
 
 void	test_split(void)
 {
+	int		i;
 	char	**split;
 
-	split = ft_split("Ciao, come stai? Io bene.", ' ');
-	putstr("_SPLIT\nft_split(\"Ciao, come stai? Io bene.\", \' \') =\n");
+	split = ft_split("--1-2--3---4----5-----42", '-');
+	putstr("_SPLIT\nft_split(\"--1-2--3---4----5-----42\", \'-\') =\n");
 	putstr(*split);
 	putstr("\n");
 	putstr(*(split + 1));
@@ -523,6 +524,15 @@ void	test_split(void)
 	putstr(*(split + 3));
 	putstr("\n");
 	putstr(*(split + 4));
+	putstr("\n");
+	putstr(*(split + 5));
+	putstr("\n");
+	i = 0;
+	while (*(split + i))
+	   ++i;
+	putnbr(i);	
+	if (!*(split + 6))
+		putstr("\nOk!");
 	putstr("\n\n");
 }
 
