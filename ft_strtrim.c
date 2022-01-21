@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:27:34 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/20 13:37:06 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/01/21 14:01:10 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,21 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t	j;
 	char	*trim;
 
+	if (!s1)
+		return (NULL);
 	i = 0;
 	while (*(s1 + i) && check_set(*(s1 + i), set))
 		++i;
+	if (!*(s1 + i))
+		return (ft_calloc(1, 1));
 	j = 0;
 	while (*(s1 + j + 1))
 		++j;
-	while (j > i && check_set(*(s1 + j), set))
+	while (j > i && check_set(*(s1 + j - 1), set))
 		--j;
-	trim = (char *)malloc(sizeof(char) * j - i + 1);
+	trim = ft_calloc(j - i + 1, sizeof(char));
 	if (!trim)
 		return (NULL);
-	++j;
-	*(trim + j - i) = 0;
 	while (i < j)
 	{
 		--j;
