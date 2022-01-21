@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 12:57:41 by ccantale          #+#    #+#              #
-#    Updated: 2022/01/20 12:17:33 by ccantale         ###   ########.fr        #
+#    Updated: 2022/01/21 08:12:02 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ CFILES = ft_isalpha.c ft_isdigit.c \
 		 ft_atoi.c ft_strdup.c \
 		 ft_substr.c ft_strjoin.c \
 		 ft_strtrim.c ft_split.c \
-		 ft_calloc.c
+		 ft_calloc.c ft_itoa.c \
+		 ft_strmapi.c ft_striteri.c
 OFILES = $(CFILES:.c=.o) libft.o
 TNAME = test
 TFILES = $(TNAME).c stdfunc.c
