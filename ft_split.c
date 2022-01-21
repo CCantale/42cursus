@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 16:23:26 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/21 06:57:06 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/01/21 10:44:18 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	**ft_split(char const *s, char c)
 	int		flag;
 	size_t	i;
 	size_t	j;
-	char 	**split;
+	char	**split;
 
 	split = ft_calloc(how_many(s, c) + 1, sizeof(char *));
 	if (!split || !s)

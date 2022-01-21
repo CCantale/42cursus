@@ -6,13 +6,13 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 05:51:00 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/21 06:55:24 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/01/21 10:51:13 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_nlen(int	n)
+int	ft_nlen(int n)
 {
 	int	len;
 
