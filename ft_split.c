@@ -6,11 +6,12 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 16:23:26 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/21 03:00:43 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/01/21 04:26:49 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "stdfunc.h"
 
 void	free_split(char	**split)
 {
@@ -43,6 +44,7 @@ size_t	how_many(const char *s, char c)
 
 char	*stringify(const char *s, size_t beg, size_t end, char **split)
 {
+	size_t	i;
 	char	*string;
 
 	string = ft_calloc(end - beg + 1, sizeof(char));
@@ -51,13 +53,20 @@ char	*stringify(const char *s, size_t beg, size_t end, char **split)
 		free_split(split);
 		return (NULL);
 	}
-	ft_strlcpy(string, s + beg, end - beg + 1);
+//	ft_strlcpy(string, s + beg, end - beg + 1);
+	i = 0;
+	while (i < end - beg)
+	{
+		*(string + i) = *(s + beg + i);
+		++i;
+	}
+	*(string + i) = 0;
 	return (string);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	size_t	flag;
+	int		flag;
 	size_t	i;
 	size_t	j;
 	char 	**split;
@@ -67,18 +76,17 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	i = 0;
 	j = 0;
-	flag = 0;
+	flag = -1;
 	while (j < how_many(s, c))
 	{
-		if (*(s + i) != c)
-		{
+		if (*(s + i) != c && flag < 0)
 			flag = i;
-		 	while (*(s + i) != c)
-				++i;
+		if (flag >= 0 && (*(s + i) == c || !*(s + i)))
+		{
 			*(split + j) = stringify(s, flag, i, split);
-			if (!*(split + j))
+			if (!*(split + j++))
 				return (NULL);
-			++j;
+			flag = -1;
 		}
 		++i;
 	}
