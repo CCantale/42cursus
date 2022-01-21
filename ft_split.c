@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 16:23:26 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/21 04:26:49 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/01/21 06:57:06 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ size_t	how_many(const char *s, char c)
 
 char	*stringify(const char *s, size_t beg, size_t end, char **split)
 {
-	size_t	i;
 	char	*string;
 
 	string = ft_calloc(end - beg + 1, sizeof(char));
@@ -53,14 +52,7 @@ char	*stringify(const char *s, size_t beg, size_t end, char **split)
 		free_split(split);
 		return (NULL);
 	}
-//	ft_strlcpy(string, s + beg, end - beg + 1);
-	i = 0;
-	while (i < end - beg)
-	{
-		*(string + i) = *(s + beg + i);
-		++i;
-	}
-	*(string + i) = 0;
+	ft_strlcpy(string, s + beg, end - beg + 1);
 	return (string);
 }
 

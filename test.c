@@ -536,6 +536,11 @@ void	test_split(void)
 	putstr("\n\n");
 }
 
+void	test_itoa(void)
+{
+	putstr(ft_itoa(2147483647));
+}
+
 int	main(void)
 {
 	test_isalpha();
@@ -564,5 +569,6 @@ int	main(void)
 	test_strjoin();
 	test_strtrim();
 	test_split();
+	test_itoa();
 	return (0);
 }
