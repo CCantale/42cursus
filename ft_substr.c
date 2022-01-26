@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 16:09:35 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/20 13:00:20 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/01/24 05:47:03 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	int		i;
 	char	*substr;
 
+	if (!s)
+		return (NULL);
 	i = 0;
 	while (*(s + i))
 		++i;

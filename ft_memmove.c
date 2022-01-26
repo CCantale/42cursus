@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 14:27:11 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/14 23:15:17 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/01/23 16:20:48 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	char	*s;
 	size_t	i;
 
+	if (!dst && !src)
+		return (NULL);
 	i = 0;
 	d = (char *)dst;
 	s = (char *)src;

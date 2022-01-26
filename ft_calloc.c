@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 20:50:25 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/20 12:23:33 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/01/22 17:39:48 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ void	*ft_calloc(size_t count, size_t size)
 	size_t	i;
 	void	*map;
 
-	if (count == 0 || size == 0)
-		return (NULL);
 	map = (void *)malloc(count * size);
-	if (map == 0)
+	if (!map)
 		return (NULL);
 	i = 0;
 	while (i < size * count)

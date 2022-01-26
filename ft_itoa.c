@@ -6,13 +6,13 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 05:51:00 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/21 10:51:13 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/01/26 17:37:33 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_nlen(int n)
+static int	ft_nlen(int n)
 {
 	int	len;
 
@@ -27,7 +27,7 @@ int	ft_nlen(int n)
 	return (len);
 }
 
-char	*str_alloc(char *str, int n, int *i)
+static char	*str_alloc(char *str, int n, int *i)
 {
 	if (n >= 0)
 	{
@@ -37,6 +37,8 @@ char	*str_alloc(char *str, int n, int *i)
 	else
 	{
 		str = ft_calloc(ft_nlen(n) + 2, sizeof(char));
+		if (!str)
+			return (NULL);
 		*str = '-';
 		*i = ft_nlen(n);
 	}
@@ -51,6 +53,8 @@ char	*ft_itoa(int n)
 
 	str = NULL;
 	str = str_alloc(str, n, &i);
+	if (!str)
+		return (NULL);
 	while (i > -1 && *(str + i) != '-')
 	{
 		temp = n;

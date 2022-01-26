@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 22:32:10 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/21 10:42:02 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/01/26 14:22:54 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ char	*ft_strdup(const char *s1)
 	int		i;
 	char	*s2;
 
-	if (!s1)
-		return (NULL);
 	i = 0;
 	while (s1[i])
 		++i;

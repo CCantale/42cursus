@@ -6,13 +6,13 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 16:23:26 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/21 18:28:41 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/01/24 06:00:32 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	free_split(char	**split)
+static void	free_split(char	**split)
 {
 	size_t	i;
 
@@ -25,7 +25,7 @@ void	free_split(char	**split)
 	free(split);
 }
 
-size_t	how_many(const char *s, char c)
+static size_t	how_many(const char *s, char c)
 {
 	size_t	i;
 	size_t	count;
@@ -41,7 +41,7 @@ size_t	how_many(const char *s, char c)
 	return (count);
 }
 
-char	*stringify(const char *s, size_t beg, size_t end, char **split)
+static char	*stringify(const char *s, size_t beg, size_t end, char **split)
 {
 	char	*string;
 
@@ -58,28 +58,28 @@ char	*stringify(const char *s, size_t beg, size_t end, char **split)
 char	**ft_split(char const *s, char c)
 {
 	int		flag;
-	size_t	i;
-	size_t	j;
+	size_t	i[2];
 	char	**split;
 
-	split = ft_calloc(how_many(s, c) + 1, sizeof(char *));
-	if (!split || !s)
+	if (!s)
 		return (NULL);
-	i = 0;
-	j = 0;
+	split = ft_calloc(how_many(s, c) + 1, sizeof(char *));
+	if (!split)
+		return (NULL);
+	ft_bzero(i, sizeof(size_t) * 2);
 	flag = -1;
-	while (j < how_many(s, c))
+	while (i[1] < how_many(s, c))
 	{
-		if (*(s + i) != c && flag < 0)
-			flag = i;
-		if (flag >= 0 && (*(s + i) == c || !*(s + i)))
+		if (*(s + i[0]) != c && flag < 0)
+			flag = i[0];
+		if (flag >= 0 && (*(s + i[0]) == c || !*(s + i[0])))
 		{
-			*(split + j) = stringify(s, flag, i, split);
-			if (!*(split + j++))
+			*(split + i[1]) = stringify(s, flag, i[0], split);
+			if (!*(split + i[1]++))
 				return (NULL);
 			flag = -1;
 		}
-		++i;
+		++i[0];
 	}
 	return (split);
 }
