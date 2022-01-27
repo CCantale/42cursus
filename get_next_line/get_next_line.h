@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 17:43:55 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/27 18:43:57 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/01/27 23:01:43 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,7 @@
 # include <stdlib.h>
 
 char	*get_next_line(int fd);
+char	*ft_strchr(const char *s, size_t *count);
+char	*ft_strjoin(char *s1, char *s2);
 
 #endif
