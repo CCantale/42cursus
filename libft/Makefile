@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 12:57:41 by ccantale          #+#    #+#              #
-#    Updated: 2022/01/26 17:26:42 by ccantale         ###   ########.fr        #
+#    Updated: 2022/01/27 17:32:50 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ B_OBJ = $(BONUS:.c=.o)
 all: $(NAME).a
 
 $(NAME).a: $(OBJ)
-	ar rcs $(NAME).a $(OBJ)
+	ar rcs ../$(NAME).a $(OBJ)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
