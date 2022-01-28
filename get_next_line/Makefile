@@ -6,22 +6,32 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/27 17:35:53 by ccantale          #+#    #+#              #
-#    Updated: 2022/01/27 23:45:02 by ccantale         ###   ########.fr        #
+#    Updated: 2022/01/28 05:13:53 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-BUFFER = 3
-CC = gcc -g -Wall -Wextra -Werror -D BUFFER_SIZE=$(BUFFER)
+BUFFER = 42
+CC = gcc -Wall -Wextra -Werror
+BSIZE = -D BUFFER_SIZE=$(BUFFER)
 
 NAME = get_next_line
-FILES = get_next_line_utils.c get_next_line.h
+FILES = get_next_line_utils.c
+OFILES = $(FILES:.c=.o) $(NAME)lib.o
 
-all:
-	$(CC) $(NAME).c $(FILES)
-	lldb ./a.out
+all: $(NAME)
+
+$(NAME): $(OFILES)
+	ar rcs $(NAME).a $(OFILES)
+
+$(OFILES):
+	$(CC) $(BSIZE) -c $(NAME).c $(FILES)
+	$(CC) -c $(NAME).h -o $(NAME)lib.o	
 
 clean:
-	rm *.gch
+	rm *.o
 
-fclean: 
-	rm *.gch a.out
+fclean: all clean 
+	rm $(NAME).a
+
+re: fclean
+	make

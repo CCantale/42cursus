@@ -5,80 +5,103 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/27 17:34:22 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/27 23:43:15 by ccantale         ###   ########.fr       */
+/*   Created: 2022/01/28 02:32:56 by ccantale          #+#    #+#             */
+/*   Updated: 2022/01/28 04:49:07 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "get_next_line.h"
 
-static char	*get_line(char *store, size_t line_size)
+static char	*get_memory(int past, char *memory)
+{
+	char	*remembrance;
+	int		moments;
+
+	remembrance = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (!remembrance)
+		return (NULL);
+	moments = 1;
+	while (!find_moment(memory) && moments != 0)
+	{
+		moments = read(past, remembrance, BUFFER_SIZE);
+		if (moments < 0)
+		{
+			free(remembrance);
+			return (NULL);
+		}
+		remembrance[moments] = 0;
+		memory = make_connections(memory, remembrance);
+	}
+	free(remembrance);
+	return (memory);
+}
+
+static char	*get_yourself_together(char *memory)
 {
 	size_t	i;
-	char	*line;
-	char	*memories;
-	char	*needle;
+	char	*yourself;
 
-	line = (char *)malloc(sizeof(char) * (line_size + 1));
-	if (!line)
+	i = 0;
+	while (memory[i] && memory[i] != '\n')
+		++i;
+	yourself = (char *)malloc(sizeof(char) * (i + 2));
+	if (!yourself)
 		return (NULL);
 	i = 0;
-	while (store[i] != '\n')
+	while (memory[i] && memory[i] != '\n')
 	{
-		line[i] = store[i];
+		yourself[i] = memory[i];
 		++i;
 	}
-	line[i] = '\n';
-	line[i + 1] = 0;
-	needle = store + i;
-	while (store[i])
-		++i;
-	memories = (char *)malloc(sizeof(char) * (i - line_size + 1));
-	if (!memories)
+	if (memory[i] == '\n')
 	{
-		free(line);
+		yourself[i] = '\n';
+		++i;
+	}
+	yourself[i] = 0;
+	return (yourself);
+}
+
+static char	*for_get_something(char *memory)
+{
+	size_t	i;
+	size_t	j;
+	char	*whats_left;
+
+	i = 0;
+	while (memory[i] && memory[i] != '\n')
+		++i;
+	if (!memory[i])
+	{
+		free(memory);
 		return (NULL);
 	}
-	while (store + i != needle)
-	{
-		memories[i - line_size] = store[i];
-	   --i;
-  	}
-	free(store);
-	store = memories;
-	return (line);
+	j = 0;
+	while (memory[j])
+		++j;
+	whats_left = (char *)malloc(sizeof(char) * (j - i + 1));
+	if (!whats_left)
+		return (NULL);
+	++i;
+	j = 0;
+	while (memory[i])
+		whats_left[j++] = memory[i++];
+	whats_left[j] = 0;
+	free(memory);
+	return (whats_left);
 }
 
 char	*get_next_line(int fd)
 {
-	size_t		i;
-	char		*needle;
-	char		*buffer;
-	char		*line;
-	static char	*store;
+	char		*yourself;
+	static char	*memory;
 
-	buffer = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
-	if (!buffer)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	needle = 0;
-	if (read(fd, buffer, BUFFER_SIZE) < 0)
+	memory = get_memory(fd, memory);
+	if (!memory)
 		return (NULL);
-	store = ft_strjoin(store, buffer);
-	needle = ft_strchr(store, &i);
-	if (!needle)
-		line = get_next_line(fd);
-	line = get_line(store, i + 1);
-	return (line);
+	yourself = get_yourself_together(memory);
+	memory = for_get_something(memory);
+	return (yourself);
 }
-
-int	main(void)
-{
-	char	*line;
-	
-	line = get_next_line(0);
-	printf("%s", line);
-	return (0);
-}
-
-

@@ -6,50 +6,49 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 18:48:11 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/27 23:42:40 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/01/28 04:19:09 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strchr(const char *s, size_t *count)
+char	*find_moment(char *memory)
 {
 	size_t	i;
 
+	if (!memory)
+		return (NULL);
 	i = 0;
-	while (*(s + i))
+	while (memory[i])
 	{
-		if (*(s + i) == '\n')
-		{
-			*count = i;
-			return ((char *)s + i);
-		}
+		if (memory[i] == '\n')
+			return (memory + i);
 		++i;
 	}
 	return (NULL);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*make_connections(char *memory, char *remembrance)
 {
 	int		i;
 	int		j;
-	char	*join;
+	char	*clear_thought;
 
 	i = 0;
-	if (s1)
-		while (*(s1 + i))
+	if (memory)
+		while (memory[i])
 			++i;
 	j = 0;
-	while (*(s2 + j))
+	while (remembrance[j])
 		++j;
-	join = (char *)malloc(sizeof(char) * i + j + 1);
-	if (!join)
+	clear_thought = (char *)malloc(sizeof(char) * i + j + 1);
+	if (!clear_thought)
 		return (NULL);
-	*(join + i + j) = '\0';
+	clear_thought[i + j] = '\0';
 	while (--j >= 0)
-		*(join + i + j) = *(s2 + j);
+		clear_thought[i + j] = remembrance[j];
 	while (--i >= 0)
-		*(join + i) = *(s1 + i);
-	free(s1);
-	return (join);
+		clear_thought[i] = memory[i];
+	free(memory);
+	return (clear_thought);
 }
