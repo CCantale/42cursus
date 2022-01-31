@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 22:43:01 by ccantale          #+#    #+#              #
-#    Updated: 2022/01/31 03:42:21 by ccantale         ###   ########.fr        #
+#    Updated: 2022/01/31 05:41:40 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,6 @@ all: $(NAME).a
 $(NAME).a: $(OBJ)
 	make -C libft
 	cp libft/libft.a ./$(NAME).a
-	make fclean -C libft
 	ar rcs $@ $^
 	ranlib $(NAME).a
 
@@ -31,7 +30,8 @@ $(OBJ): $(FILES) $(NAME).h
 	$(CC) -c $(FILES)
 	$(CC) -c $(NAME).h -o $(NAME).o
 
-clean: all
+clean: $(NAME).a
+	make fclean -C libft
 	rm $(OBJ)
 
 fclean: clean
@@ -40,14 +40,14 @@ fclean: clean
 re: fclean
 	make
 
-test: printest
+test: printest.o
 
-printest: all
+printest.o: $(NAME).a
 	$(CC) -c $(TEST).c
 	$(CC) $(NAME).a $(TEST).o -o test
 	./test
 
-testclean: printest fclean
+testclean: printest.o fclean
 	rm printest.o test
 
 .PHONY: all clean fclean re test printest
