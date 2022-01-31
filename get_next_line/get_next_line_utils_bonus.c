@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/27 18:48:11 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/28 06:00:16 by ccantale         ###   ########.fr       */
+/*   Created: 2022/01/28 06:51:38 by ccantale          #+#    #+#             */
+/*   Updated: 2022/01/29 21:45:13 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*find_moment(char *memory)
 {
@@ -53,4 +53,21 @@ char	*make_connections(char *memory, char *remembrance)
 		clear_thought[i] = memory[i];
 	free(memory);
 	return (clear_thought);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	size_t	i;
+	void	*map;
+
+	map = (void *)malloc(count * size);
+	if (!map)
+		return (NULL);
+	i = 0;
+	while (i < size * count)
+	{
+		*((char *)map + i) = 0;
+		++i;
+	}
+	return (map);
 }

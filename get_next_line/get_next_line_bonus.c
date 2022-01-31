@@ -1,16 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/28 02:32:56 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/28 06:54:11 by ccantale         ###   ########.fr       */
+/*   Created: 2022/01/28 06:35:52 by ccantale          #+#    #+#             */
+/*   Updated: 2022/01/29 22:06:38 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
+
+static void	free_your_mind(char **memory)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < 1025)
+	{
+		free(memory[i]);
+		++i;
+	}
+	free(memory);
+}
 
 static char	*get_memory(int past, char *memory)
 {
@@ -94,17 +107,24 @@ static char	*for_get_something(char *memory)
 char	*get_next_line(int fd)
 {
 	char		*yourself;
-	static char	*memory;
+	static char	**memory;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	memory = get_memory(fd, memory);
-	if (!memory || !*memory)
+	memory = ft_calloc(1025, sizeof(char *));
+	if (!memory)
+		return (NULL);
+	memory[fd] = get_memory(fd, memory[fd]);
+	if (!memory[fd])
 	{
-		free(memory);
+		free(memory[fd]);
+		free_your_mind(memory);
 		return (NULL);
 	}
-	yourself = get_yourself_together(memory);
-	memory = for_get_something(memory);
+	yourself = get_yourself_together(memory[fd]);
+	memory[fd] = for_get_something(memory[fd]);
+	if (!find_moment(yourself))
+		free(memory[fd]);
+	free_your_mind(memory);
 	return (yourself);
 }
