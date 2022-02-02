@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 22:27:45 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/31 05:51:48 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/02 16:53:23 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 
 int	main(void)
 {
-	ft_printf("ft_printf = %- 5c", 'a');
-//	printf("\nprintf = %010c\n", 'a');
+	int	i;
+
+	i = ft_printf("ft_printf = %s oh %ch ecco", "ciao", 'a');
+	printf("\n%d\n\n", i);
+	i = printf("printf = %s oh %ch ecco", "ciao", 'a');
+	printf("\n%d\n\n", i);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 22:39:52 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/31 03:32:28 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/02 15:21:09 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@
 
 int	ft_printf(const char *, ...);
 int	call_char_department(const char *str, va_list arg);
+int	text_mr_string(const char *str, va_list arg);
 
 #endif
