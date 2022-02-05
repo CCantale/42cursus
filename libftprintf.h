@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 22:39:52 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/05 07:38:42 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/06 00:32:25 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@
 # include <stdarg.h>
 # include "libft/libft.h"
 
-int	ft_printf(const char *, ...);
+int	ft_printf(const char *str, ...);
 int	call_char_department(const char *str, va_list arg);
 int	text_mr_string(const char *str, va_list arg);
 int	set_appointment(const char *str, va_list arg);
+int	be_there_in_ten(const char *str, va_list arg);
 
 #endif

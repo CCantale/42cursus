@@ -6,14 +6,14 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 22:43:01 by ccantale          #+#    #+#              #
-#    Updated: 2022/02/05 06:28:07 by ccantale         ###   ########.fr        #
+#    Updated: 2022/02/05 23:18:28 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc -Wall -Wextra -Werror
 
 NAME = libftprintf
-FILES = ft_printf.c c_s_p.c
+FILES = ft_printf.c c_s_p.c d_x_X.c
 
 TEST = printest
 OBJ = $(FILES:.c=.o) $(NAME).o

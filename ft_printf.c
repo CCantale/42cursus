@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 18:27:43 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/05 08:11:42 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/06 00:32:21 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	send_the_intern(const char*str)
 {
-	int 	ern;
+	int		ern;
 	char	*set;
 	int		i;
 
@@ -29,16 +29,15 @@ static int	send_the_intern(const char*str)
 			if (str[(int)ern] == set[i])
 			{
 				free(set);
-				return((int)ern + 1);
+				return ((int)ern + 1);
 			}
 			++i;
 		}
 		++ern;
 	}
 	free(set);
-	return((int)ern + 1);
+	return ((int)ern + 1);
 }
-
 
 static int	tell_my_assistant(const char *str, va_list arg)
 {
@@ -53,6 +52,8 @@ static int	tell_my_assistant(const char *str, va_list arg)
 		i = text_mr_string(str, arg);
 	else if (str[i] == 'p')
 		i = set_appointment(str, arg);
+	else if (str[i] == 'd')
+		i = be_there_in_ten(str, arg);
 	else
 		++i;
 	return (i);
@@ -69,7 +70,7 @@ int	ft_printf(const char *str, ...)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '%') 
+		if (str[i] == '%')
 		{
 			count += tell_my_assistant(str + i + 1, arg);
 			i += send_the_intern(str + i + 1);
@@ -82,6 +83,5 @@ int	ft_printf(const char *str, ...)
 		++i;
 	}
 	va_end(arg);
-	//free the world
 	return (count - 1);
 }

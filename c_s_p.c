@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 02:20:18 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/05 22:11:08 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/05 22:42:03 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ int	text_mr_string(const char *str, va_list arg)
 	return (i);
 }
 
-static int	set_appointment_at_16(unsigned long long int ptr, char *base, int flag)
+static int	set_appointment_at_16(unsigned long long int ptr,
+		char *base, int flag)
 {
 	int		i;
 	int		count;
@@ -106,6 +107,6 @@ int	set_appointment(const char *str, va_list arg)
 		i += write(1, " ", 1);
 	if (str[0] != '-')
 		i += set_appointment_at_16((unsigned long long int)ptr,
-			"0123456789abcdef", 1);
+				"0123456789abcdef", 1);
 	return (i);
 }
