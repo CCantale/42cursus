@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 02:20:18 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/05 09:06:05 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/05 22:11:08 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,12 @@ int	text_mr_string(const char *str, va_list arg)
 	return (i);
 }
 
-static int	set_appointment_at_16(long ptr, char *base)
+static int	set_appointment_at_16(unsigned long long int ptr, char *base, int flag)
 {
 	int		i;
 	int		count;
 	char	rebase[18];
 
-	if (!ptr)
-	{
-		write(1, "0x0", 3);
-		return (3);
-	}
 	rebase[0] = 0;
 	i = 1;
 	while (ptr)
@@ -74,13 +69,17 @@ static int	set_appointment_at_16(long ptr, char *base)
 		rebase[i++] = base[ptr % 16];
 		ptr /= 16;
 	}
-	--i;
-	count = i;
-	count += write(1, "0x", 2);
-	while (rebase[i])
+	count = --i;
+	if (!flag)
+		count += 2;
+	else
 	{
-		write(1, rebase + i, 1);
-		--i;
+		count += write(1, "0x", 2);
+		while (rebase[i])
+		{
+			write(1, rebase + i, 1);
+			--i;
+		}
 	}
 	return (count);
 }
@@ -95,20 +94,18 @@ int	set_appointment(const char *str, va_list arg)
 	ptr = va_arg(arg, void *);
 	if (str[0] == '-')
 	{
-		i += set_appointment_at_16((long)ptr, "0123456789abcdef");
-		j = ft_atoi(str + 1) - i;
-		while (j-- > 0)
-			i += write(1, " ", 1);
+		i += set_appointment_at_16((unsigned long long int)ptr,
+				"0123456789abcdef", 1);
+		j = ft_atoi(str + 1) - set_appointment_at_16((unsigned
+					long long int)ptr, "0123456789abcdef", 0);
 	}
+	else
+		j = ft_atoi(str) - set_appointment_at_16((unsigned
+					long long int)ptr, "0123456789abcdef", 0);
+	while (j-- > 0)
+		i += write(1, " ", 1);
 	if (str[0] != '-')
-	{
-		if (ptr)
-			j = ft_atoi(str) - 14;
-		else
-			j = ft_atoi(str) - 3;
-		while (j-- > 0)
-			i += write(1, " ", 1);
-		i += set_appointment_at_16((long)ptr, "0123456789abcdef");
-	}
+		i += set_appointment_at_16((unsigned long long int)ptr,
+			"0123456789abcdef", 1);
 	return (i);
 }
