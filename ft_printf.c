@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 18:27:43 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/02 16:46:39 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/05 08:11:42 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ static int	send_the_intern(const char*str)
 		while (set[i])
 		{
 			if (str[(int)ern] == set[i])
+			{
+				free(set);
 				return((int)ern + 1);
+			}
 			++i;
 		}
 		++ern;
@@ -41,22 +44,17 @@ static int	tell_my_assistant(const char *str, va_list arg)
 {
 	int	i;
 
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '%')
-			i = write(1, "%", 1);
-		else if (str[i] == 'c')
-			call_char_department(str, arg);
-		else if (str[i] == 's')
-			i = text_mr_string(str, arg);
-		else
-		{
-			++i;
-			continue ;
-		}
-		break ;
-	}
+	i = send_the_intern(str) - 1;
+	if (str[i] == '%')
+		i = write(1, "%", 1);
+	else if (str[i] == 'c')
+		i = call_char_department(str, arg);
+	else if (str[i] == 's')
+		i = text_mr_string(str, arg);
+	else if (str[i] == 'p')
+		i = set_appointment(str, arg);
+	else
+		++i;
 	return (i);
 }
 
@@ -77,8 +75,10 @@ int	ft_printf(const char *str, ...)
 			i += send_the_intern(str + i + 1);
 		}	
 		else
+		{
 			write(1, str + i, 1);
-		++count;
+			++count;
+		}
 		++i;
 	}
 	va_end(arg);
