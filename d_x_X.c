@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 22:42:27 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/06 00:32:17 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/07 00:19:13 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,18 @@ static int	videocall_mr_string(char *str)
 
 static int	here_put_this(int num)
 {
-	static int	yes_maam;
+	int	yes_maam;
 
 	yes_maam = 0;
 	if (num < 0)
 	{
-		yes_maam += write(1, "-", 1);
 		num = -num;
 		yes_maam += here_put_this(num);
-		return (yes_maam);
 	}
-	if (num > 9)
+	else if (num > 9)
 	{
 		yes_maam += here_put_this(num / 10);
 		yes_maam += here_put_this(num % 10);
-		return (yes_maam);
 	}
 	else
 	{
@@ -74,11 +71,24 @@ int	be_there_in_ten(const char *str, va_list arg)
 	int	num;
 
 	i = 0;
+	j = 0;
+	while (str[j] != 'd')
+		if (str[j++] == '.')
+//			str[0] = 'a';
 	num = va_arg(arg, int);
 	j = ft_atoi(str);
-	if (str[0] != '-')
+	if (str[0] != '-' && str[0] != '0')
 		while (--j - even_less_than_that(num) > 0)
 			i += write(1, " ", 1);
+	if (num < 0)
+		i += write(1, "-", 1);
+	if (str[0] == '0')
+		while (--j - even_less_than_that(num) > 0)
+			i += write(1, "0", 1);
+	if (str[0] == 'a')
+		j = ft_atoi(str + i);
+		while (--j - even_less_than_that(num) > 0)
+			i += write(1, "0", 1);
 	if (num == -2147483648)
 		i += videocall_mr_string("-2147483648");
 	else
