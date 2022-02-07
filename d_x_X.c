@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 22:42:27 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/07 00:19:13 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/07 16:43:38 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,6 @@ static int	even_less_than_that(int num)
 		++len;
 	}
 	return (len);
-}
-
-static int	videocall_mr_string(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		write(1, str + i, 1);
-		++i;
-	}
-	return (i);
 }
 
 static int	here_put_this(int num)
@@ -64,18 +51,12 @@ static int	here_put_this(int num)
 	return (yes_maam);
 }
 
-int	be_there_in_ten(const char *str, va_list arg)
+static int	bonus(const char *str, int num)
 {
 	int	i;
 	int	j;
-	int	num;
 
 	i = 0;
-	j = 0;
-	while (str[j] != 'd')
-		if (str[j++] == '.')
-//			str[0] = 'a';
-	num = va_arg(arg, int);
 	j = ft_atoi(str);
 	if (str[0] != '-' && str[0] != '0')
 		while (--j - even_less_than_that(num) > 0)
@@ -85,12 +66,29 @@ int	be_there_in_ten(const char *str, va_list arg)
 	if (str[0] == '0')
 		while (--j - even_less_than_that(num) > 0)
 			i += write(1, "0", 1);
-	if (str[0] == 'a')
-		j = ft_atoi(str + i);
-		while (--j - even_less_than_that(num) > 0)
-			i += write(1, "0", 1);
+	j = 0;
+	while (str[j] != 'd')
+		if (str[j++] == '.')
+		{
+			j = ft_atoi(str + j);
+			while (--j - even_less_than_that(num) > 0)
+				i += write(1, "0", 1);
+		}
+	return (i);
+}
+
+int	be_there_in_ten(const char *str, va_list arg)
+{
+	int	i;
+	int	j;
+	int	num;
+
+	i = 0;
+	j = 0;
+	num = va_arg(arg, int);
+	i += bonus(str, num);
 	if (num == -2147483648)
-		i += videocall_mr_string("-2147483648");
+		i += ft_printf("2147483648");
 	else
 		i += here_put_this(num);
 	if (str[0] == '-')
