@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 22:42:27 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/07 16:43:38 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/07 18:10:41 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,29 +51,48 @@ static int	here_put_this(int num)
 	return (yes_maam);
 }
 
+static int dotdotdot(const char *str, int num)
+{
+	int	j;
+	int	dot;
+
+	j = 0;
+	while (str[j] != 'd')
+		if (str[j++] == '.')
+		{
+			if (ft_atoi(str + j) > even_less_than_that(num))
+				dot = ft_atoi(str + j) - even_less_than_that(num);
+			else
+				dot = 0;
+		}
+		else
+			dot = -1;
+	return (dot);
+}
+
 static int	bonus(const char *str, int num)
 {
 	int	i;
 	int	j;
+	int	dot;
 
+	dot = dotdotdot(str, num);
 	i = 0;
 	j = ft_atoi(str);
-	if (str[0] != '-' && str[0] != '0')
-		while (--j - even_less_than_that(num) > 0)
+	if (str[0] != '-' && (str[0] != '0' || dot != -1))
+		while (--j - even_less_than_that(num) - dot > 0)
 			i += write(1, " ", 1);
 	if (num < 0)
 		i += write(1, "-", 1);
 	if (str[0] == '0')
 		while (--j - even_less_than_that(num) > 0)
 			i += write(1, "0", 1);
-	j = 0;
-	while (str[j] != 'd')
-		if (str[j++] == '.')
-		{
-			j = ft_atoi(str + j);
-			while (--j - even_less_than_that(num) > 0)
-				i += write(1, "0", 1);
-		}
+	if (dot)
+	{
+		j = ft_atoi(str + j);
+		while (--j - even_less_than_that(num) > 0)
+			i += write(1, "0", 1);
+	}
 	return (i);
 }
 
