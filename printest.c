@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 22:27:45 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/09 12:37:20 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/09 18:28:33 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ int	main(void)
 	int	*ptr;
 
 	ptr = &i;
-	i = ft_printf("\nft_printf\n%s oh %ch ecco %p: numeri! %d alé", "ciao", 'a', ptr, -357895);
+	printf("\n");
+	i = ft_printf("ft_printf\nchar %c\nstring %s\npointer %p\ninteger %05.10d\ndecimal %012i", 'a', "prova", ptr, 42, -42003);
 	printf("\n%d\n\n", i);
-	i = printf("printf\n%s oh %ch ecco %p: numeri! %d alé", "ciao", 'a', ptr, -357895) + 3;
+	i = printf("printf\nchar %c\nstring %s\npointer %p\ninteger %05.10d\ndecimal %012i", 'a', "prova", ptr, 42, -42003) + 3;
 	printf("\n%d\n\n", i);
 	return (0);
 }

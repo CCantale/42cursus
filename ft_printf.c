@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 18:27:43 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/06 00:32:21 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/09 16:29:38 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ static int	tell_my_assistant(const char *str, va_list arg)
 		i = set_appointment(str, arg);
 	else if (str[i] == 'd')
 		i = be_there_in_ten(str, arg);
+	else if (str[i] == 'i')
+		i = because_i_said_so(str - 1, arg, "0123456789");
 	else
 		++i;
 	return (i);
@@ -83,5 +85,5 @@ int	ft_printf(const char *str, ...)
 		++i;
 	}
 	va_end(arg);
-	return (count - 1);
+	return (count);
 }

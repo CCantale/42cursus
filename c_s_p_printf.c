@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 02:20:18 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/05 22:42:03 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/09 14:20:28 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static int	set_appointment_at_16(unsigned long long int ptr,
 {
 	int		i;
 	int		count;
-	char	rebase[18];
+	char	rebase[21];
 
 	rebase[0] = 0;
 	i = 1;
