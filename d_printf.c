@@ -6,12 +6,11 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 22:42:27 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/07 18:10:41 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/09 12:57:31 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include <stdio.h>
 
 static int	even_less_than_that(int num)
 {
@@ -51,32 +50,36 @@ static int	here_put_this(int num)
 	return (yes_maam);
 }
 
-static int dotdotdot(const char *str, int num)
+static int now_go_get_us_coffee(const char *str, int num)
 {
 	int	j;
-	int	dot;
+	int	coffee;
 
 	j = 0;
 	while (str[j] != 'd')
-		if (str[j++] == '.')
+	{
+		if (str[j] == '.')
 		{
-			if (ft_atoi(str + j) > even_less_than_that(num))
-				dot = ft_atoi(str + j) - even_less_than_that(num);
+			if (ft_atoi(str + j + 1) > even_less_than_that(num))
+				coffee = ft_atoi(str + j + 1) - even_less_than_that(num);
 			else
-				dot = 0;
+				coffee = 0;
+			return (coffee);
 		}
 		else
-			dot = -1;
-	return (dot);
+			coffee = -1;
+		++j;
+	}
+	return (coffee);
 }
 
-static int	bonus(const char *str, int num)
+static int	ya_we_call_you_zero(const char *str, int num)
 {
 	int	i;
 	int	j;
 	int	dot;
 
-	dot = dotdotdot(str, num);
+	dot = now_go_get_us_coffee(str, num);
 	i = 0;
 	j = ft_atoi(str);
 	if (str[0] != '-' && (str[0] != '0' || dot != -1))
@@ -84,15 +87,11 @@ static int	bonus(const char *str, int num)
 			i += write(1, " ", 1);
 	if (num < 0)
 		i += write(1, "-", 1);
-	if (str[0] == '0')
+	if (str[0] == '0' && dot == -1)
 		while (--j - even_less_than_that(num) > 0)
 			i += write(1, "0", 1);
-	if (dot)
-	{
-		j = ft_atoi(str + j);
-		while (--j - even_less_than_that(num) > 0)
+	while (dot && dot-- != -1)
 			i += write(1, "0", 1);
-	}
 	return (i);
 }
 
@@ -105,7 +104,7 @@ int	be_there_in_ten(const char *str, va_list arg)
 	i = 0;
 	j = 0;
 	num = va_arg(arg, int);
-	i += bonus(str, num);
+	i += ya_we_call_you_zero(str, num);
 	if (num == -2147483648)
 		i += ft_printf("2147483648");
 	else
