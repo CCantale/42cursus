@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:03:36 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/09 18:28:30 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/10 17:04:36 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,37 @@ int	because_i_said_so(const char *str, va_list arg, char *base)
 		reprint[i] = str[i];
 	reprint[0] = '%';
 	i = ft_printf(reprint, ft_atoi(rebase));
+	free(reprint);
+	return (i);
+}
+
+int	sign_here_and_here_please(const char *str, va_list arg)
+{
+	int					i;
+	unsigned int		num;
+	char				*reprint;
+	char				uns_num[11];
+
+	i = 0;
+	while (str[i] != 'u')
+		++i;
+	reprint = ft_calloc(i + 2, sizeof(char));
+	reprint[i] = 's';
+	while (str[--i] != '%')
+		reprint[i] = str[i];
+	reprint[0] = '%';
+	num = va_arg(arg, unsigned int);
+	i = 0;
+	while (num)
+	{
+		uns_num[i++] = (num % 10) + '0';
+		num /= 10;
+	}
+	uns_num[i] = 0;
+	ft_printf("%s\n", uns_num);
+	you_re_holding_it_upside_down(uns_num, 0);
+	ft_printf("%s\n", uns_num);
+	i = ft_printf(reprint, uns_num);
 	free(reprint);
 	return (i);
 }
