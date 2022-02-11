@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:03:36 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/10 17:04:36 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/11 17:46:27 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,18 @@ static void	you_re_holding_it_upside_down(char *str, int num)
 	}
 } 
 
+static void	gotta_know_your_market_base(int uns_num, char *base, char *rebase)
+{
+	int	i;
+
+	i = 0;
+	while (uns_num)
+	{
+		rebase[i++] = base[uns_num % 10];
+		uns_num /= 10;
+	}
+	rebase[i] = 0;
+}
 int	because_i_said_so(const char *str, va_list arg, char *base)
 {
 	int		i;
@@ -51,13 +63,7 @@ int	because_i_said_so(const char *str, va_list arg, char *base)
 	uns_num = num;
 	if (uns_num < 0)
 		uns_num *= -1;
-	i = 0;
-	while (uns_num)
-	{
-		rebase[i++] = base[uns_num % 10];
-		uns_num /= 10;
-	}
-	rebase[i] = 0;
+	gotta_know_your_market_base(uns_num, base, rebase);
 	you_re_holding_it_upside_down(rebase, num);
 	i = 0;
 	while (str[i] != 'i')
@@ -68,37 +74,6 @@ int	because_i_said_so(const char *str, va_list arg, char *base)
 		reprint[i] = str[i];
 	reprint[0] = '%';
 	i = ft_printf(reprint, ft_atoi(rebase));
-	free(reprint);
-	return (i);
-}
-
-int	sign_here_and_here_please(const char *str, va_list arg)
-{
-	int					i;
-	unsigned int		num;
-	char				*reprint;
-	char				uns_num[11];
-
-	i = 0;
-	while (str[i] != 'u')
-		++i;
-	reprint = ft_calloc(i + 2, sizeof(char));
-	reprint[i] = 's';
-	while (str[--i] != '%')
-		reprint[i] = str[i];
-	reprint[0] = '%';
-	num = va_arg(arg, unsigned int);
-	i = 0;
-	while (num)
-	{
-		uns_num[i++] = (num % 10) + '0';
-		num /= 10;
-	}
-	uns_num[i] = 0;
-	ft_printf("%s\n", uns_num);
-	you_re_holding_it_upside_down(uns_num, 0);
-	ft_printf("%s\n", uns_num);
-	i = ft_printf(reprint, uns_num);
 	free(reprint);
 	return (i);
 }

@@ -6,13 +6,14 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 22:42:27 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/10 17:04:33 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/11 17:52:39 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#include <stdio.h>
 
-static int	even_less_than_that(int num)
+static int	even_less_than_that(unsigned int num)
 {
 	int	len;
 
@@ -27,7 +28,7 @@ static int	even_less_than_that(int num)
 	return (len);
 }
 
-static int	here_put_this(int num)
+static int	here_put_this(unsigned int num)
 {
 	int	yes_maam;
 
@@ -50,7 +51,7 @@ static int	here_put_this(int num)
 	return (yes_maam);
 }
 
-static int now_go_get_us_coffee(const char *str, int num)
+static int now_go_get_us_coffee(const char *str, unsigned int num)
 {
 	int	j;
 	int	coffee;
@@ -73,7 +74,7 @@ static int now_go_get_us_coffee(const char *str, int num)
 	return (coffee);
 }
 
-static int	ya_we_call_you_zero(const char *str, int num)
+static int	ya_we_call_you_zero(const char *str, unsigned int num, int minus)
 {
 	int	i;
 	int	j;
@@ -85,7 +86,7 @@ static int	ya_we_call_you_zero(const char *str, int num)
 	if (str[0] != '-' && (str[0] != '0' || dot != -1))
 		while (--j - even_less_than_that(num) - dot > 0)
 			i += write(1, " ", 1);
-	if (num < 0)
+	if (minus)
 		i += write(1, "-", 1);
 	if (str[0] == '0' && dot == -1)
 		while (--j - even_less_than_that(num) > 0)
@@ -95,22 +96,38 @@ static int	ya_we_call_you_zero(const char *str, int num)
 	return (i);
 }
 
-int	be_there_in_ten(const char *str, va_list arg)
+static unsigned int	did_they_sign(va_list arg, int *minus)
 {
-	int	i;
-	int	j;
 	int	num;
 
+	num = va_arg(arg, int);
+	if (num < 0)
+	{
+		*minus = 1;
+		num *= -1;
+	}
+	return ((unsigned int)num);
+}
+
+int	can_u_handle_dees(const char *str, va_list arg, char flag)
+{
+	int				i;
+	int				j;
+	int				minus;
+	unsigned int	uns_num;
+
+	minus = 0;
+	uns_num = 0;
 	i = 0;
 	j = 0;
-	num = va_arg(arg, int);
-	i += ya_we_call_you_zero(str, num);
-	if (num == -2147483648)
-		i += ft_printf("2147483648");
-	else
-		i += here_put_this(num);
+	if (flag == 'd')
+		uns_num = did_they_sign(arg, &minus);
+	else if (flag == 'u')
+		uns_num = va_arg(arg, unsigned int);
+	i += ya_we_call_you_zero(str, uns_num, minus);
+	i += here_put_this(uns_num);
 	if (str[0] == '-')
-		while (++j * -1 - even_less_than_that(num) > 0)
+		while (++j * -1 - even_less_than_that(uns_num) > 0)
 			i += write(1, " ", 1);
 	return (i);
 }
