@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 02:20:18 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/10 17:04:26 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/11 18:18:37 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	text_mr_string(const char *str, va_list arg)
 	return (i);
 }
 
-static int	set_appointment_at_16(unsigned long long int ptr,
+int	set_appointment_at_16(unsigned long long int ptr,
 		char *base, int flag)
 {
 	int		i;
