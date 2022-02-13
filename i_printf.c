@@ -6,13 +6,28 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:03:36 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/11 17:46:27 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/13 03:56:11 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static void	you_re_holding_it_upside_down(char *str, int num)
+int	even_less_than_that(unsigned int num)
+{
+	int	len;
+
+	if (num == 0)
+		return (1);
+	len = 0;
+	while (num != 0)
+	{
+		num /= 10;
+		++len;
+	}
+	return (len);
+}
+
+void	you_re_holding_it_upside_down(char *str, int num)
 {
 	int		start;
 	int		end;
@@ -51,6 +66,23 @@ static void	gotta_know_your_market_base(int uns_num, char *base, char *rebase)
 	}
 	rebase[i] = 0;
 }
+
+char	*i_dont_like_it_change_it(const char *str, char before, char after)
+{
+	int		i;
+	char	*reprint;
+
+	i = 0;
+	while (str[i] != before)
+		++i;
+	reprint = ft_calloc(i + 2, sizeof(char));
+	reprint[i] = after;
+	while (str[--i] != '%')
+		reprint[i] = str[i];
+	reprint[0] = '%';
+	return (reprint);
+}
+
 int	because_i_said_so(const char *str, va_list arg, char *base)
 {
 	int		i;
@@ -65,14 +97,7 @@ int	because_i_said_so(const char *str, va_list arg, char *base)
 		uns_num *= -1;
 	gotta_know_your_market_base(uns_num, base, rebase);
 	you_re_holding_it_upside_down(rebase, num);
-	i = 0;
-	while (str[i] != 'i')
-		++i;
-	reprint = ft_calloc(i + 2, sizeof(char));
-	reprint[i] = 'd';
-	while (str[--i] != '%')
-		reprint[i] = str[i];
-	reprint[0] = '%';
+	reprint = i_dont_like_it_change_it(str, 'i', 'd');
 	i = ft_printf(reprint, ft_atoi(rebase));
 	free(reprint);
 	return (i);

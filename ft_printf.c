@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 18:27:43 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/11 17:53:30 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/13 04:25:17 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static int	send_the_intern(const char*str)
 	char	*set;
 	int		i;
 
-	set = malloc(sizeof(char) * 10);
-	ft_strlcpy(set, "cspdiuxX%", 10);
+	set = malloc(sizeof(char) * 11);
+	ft_strlcpy(set, "caspdiuxX%", 11);
 	ern = 0;
 	while (str[(int)ern])
 	{
@@ -58,6 +58,12 @@ static int	tell_my_assistant(const char *str, va_list arg)
 		i = because_i_said_so(str - 1, arg, "0123456789");
 	else if (str[i] == 'u')
 		i = can_u_handle_dees(str, arg, 'u');
+	else if (str[i] == 'a')
+		i = can_u_handle_dees(str, arg, 'a');
+	else if (str[i] == 'x')
+		i = what_do_you_mean_ex_assistant(str, arg, "0123456789abcdef");
+	else if (str[i] == 'X')
+		i = what_do_you_mean_ex_assistant(str, arg, "0123456789ABCDEF");
 	else
 		++i;
 	return (i);
