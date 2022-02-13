@@ -6,11 +6,11 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 02:20:18 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/13 02:38:16 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/13 05:12:51 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	call_char_department(const char *str, va_list arg)
 {
@@ -38,20 +38,29 @@ int	text_mr_string(const char *str, va_list arg)
 {
 	int		i;
 	int		precision;
+	int		count;
 	char	*s;
 
 	s = va_arg(arg, char *);
 	i = 0;
-	precision = 0;
-	if (str[0] == '.')
-		precision += ft_atoi(str + i + 1);
+	if (s)
+		precision = ft_strlen((const char *)s);
 	else
-		precision += ft_strlen((const char *)s);
-	while (s[i] && i < precision)
-	{
-		write(1, s + i, 1);
-		++i;
-	}
+		precision = 6;
+	if (str[0] == '.')
+		precision += ft_atoi(str + 1);
+	if (!s)
+		i += write(1, "(null)", 6);
+	else
+		while (s[i] && i < precision)
+		{
+			write(1, s + i, 1);
+			++i;
+		}
+	count = i;
+	if (str[0] == '-')
+		while (count++ < ft_atoi(str + 1))
+			i += write(1, " ", 1);
 	return (i);
 }
 
@@ -84,6 +93,18 @@ int	set_appointment_at_16(unsigned long long int ptr,
 	return (count);
 }
 
+static int	hes_not_availeable_at_the_moment(void *ptr)
+{
+	int	i;
+	i = 0;
+	if (!ptr)
+	{
+		i += write(1, "0x0", 3);
+		return (i);
+	}
+	return (i);
+}
+
 int	set_appointment(const char *str, va_list arg)
 {
 	int		i;
@@ -92,6 +113,8 @@ int	set_appointment(const char *str, va_list arg)
 
 	i = 0;
 	ptr = va_arg(arg, void *);
+	if (hes_not_availeable_at_the_moment(ptr))
+		return (3);
 	if (str[0] == '-')
 	{
 		i += set_appointment_at_16((unsigned long long int)ptr,

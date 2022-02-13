@@ -6,11 +6,11 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 22:42:27 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/13 04:25:21 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/13 05:45:24 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 static int	here_put_this(unsigned int num)
 {
@@ -41,7 +41,7 @@ static int now_go_get_us_coffee(const char *str, unsigned int num)
 	int	coffee;
 
 	j = 0;
-	while (str[j] != 'd' && str[j] != 'u' && str [j] != 'a')
+	while (str[j] != 'd' && str[j] != 'u' && str[j] != 'a')
 	{
 		if (str[j] == '.')
 		{
@@ -51,10 +51,9 @@ static int now_go_get_us_coffee(const char *str, unsigned int num)
 				coffee = 0;
 			return (coffee);
 		}
-		else
-			coffee = -1;
 		++j;
 	}
+	coffee = -1;
 	return (coffee);
 }
 

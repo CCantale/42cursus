@@ -26,9 +26,9 @@ $(NAME).a: $(OBJ)
 	ar rcs $@ $^
 	ranlib $(NAME).a
 
-$(OBJ): $(FILES) $(NAME).h
+$(OBJ): $(FILES) ft_printf.h
 	$(CC) -c $(FILES)
-	$(CC) -c $(NAME).h -o $(NAME).o
+	$(CC) -c ft_printf.h -o $(NAME).o
 
 clean: $(NAME).a
 	make fclean -C libft
