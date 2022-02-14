@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 22:42:27 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/13 05:45:24 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/14 17:46:57 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ int	can_u_handle_dees(const char *str, va_list arg, char flag)
 	unsigned int	uns_num;
 
 	count = 1;
-	uns_num = 0;
 	minus = 0;
 	i = 0;
 	uns_num = did_they_sign(arg, &str, &minus, flag);

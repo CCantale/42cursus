@@ -6,32 +6,15 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 02:20:18 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/13 05:12:51 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/14 18:17:51 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	call_char_department(const char *str, va_list arg)
+int	bonus(int precision)
 {
-	int		i;
-	int		j;
-	char	c;
-
-	c = va_arg(arg, int);
-	i = 0;
-	if (str[i] == '-')
-		i = write(1, &c, 1);
-	if ((str[i] == '0' && str[i - 1] != '-') || str[i] == ' ')
-	{	
-		j = ft_atoi(str + i + 1) - 1;
-		while (j-- > 0)
-			write(1, str + i, 1);
-		i += ft_atoi(str + i + 1);
-	}
-	if (str[0] != '-')
-		i += write(1, &c, 1);
-	return (i);
+	//stampa gli spazi e restituisce la precision
 }
 
 int	text_mr_string(const char *str, va_list arg)
@@ -40,31 +23,34 @@ int	text_mr_string(const char *str, va_list arg)
 	int		precision;
 	int		count;
 	char	*s;
+	char	*check;
 
 	s = va_arg(arg, char *);
 	i = 0;
-	if (s)
-		precision = ft_strlen((const char *)s);
-	else
-		precision = 6;
-	if (str[0] == '.')
-		precision += ft_atoi(str + 1);
 	if (!s)
-		i += write(1, "(null)", 6);
+	{
+		check = s;
+		s = calloc(7, sizeof(char));
+		if (!s)
+			return (0);
+		ft_strlcpy(s, "(null)", 7);
+	}
+	if (str[0] == '.')
+		precision = ft_atoi(str + 1);
 	else
-		while (s[i] && i < precision)
-		{
-			write(1, s + i, 1);
-			++i;
-		}
+		precision = ft_strlen((const char *)s);
+	while (s[i] && i < precision)
+		write(1, s + i++, 1);
 	count = i;
 	if (str[0] == '-')
 		while (count++ < ft_atoi(str + 1))
 			i += write(1, " ", 1);
+	if (!check)
+		free(s);
 	return (i);
 }
 
-int	set_appointment_at_16(unsigned long long int ptr,
+static int	set_appointment_at_16(unsigned long long int ptr,
 		char *base, int flag)
 {
 	int		i;

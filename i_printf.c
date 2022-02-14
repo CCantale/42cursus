@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:03:36 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/13 03:56:11 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/14 18:07:56 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ char	*i_dont_like_it_change_it(const char *str, char before, char after)
 	while (str[i] != before)
 		++i;
 	reprint = ft_calloc(i + 2, sizeof(char));
+	if (!reprint)
+		return (NULL);
 	reprint[i] = after;
 	while (str[--i] != '%')
 		reprint[i] = str[i];
@@ -93,6 +95,11 @@ int	because_i_said_so(const char *str, va_list arg, char *base)
 
 	num = va_arg(arg, int);
 	uns_num = num;
+	if (uns_num == -2147483648)
+	{
+		i = ft_printf("-2147483648");
+		return (i);
+	}
 	if (uns_num < 0)
 		uns_num *= -1;
 	gotta_know_your_market_base(uns_num, base, rebase);
