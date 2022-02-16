@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:56:02 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/14 17:15:11 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/16 18:24:35 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static void	he_told_you_what(char *rebase, char *base, unsigned int num)
 	i = 0;
 	if (!num)
 		rebase[i++] = '0';
+	else if (num > (unsigned int)4294967295)
+		ft_strlcpy(rebase, "0000000000000008", 17);
 	else
 		while (num)
 		{
@@ -89,7 +91,8 @@ int	what_do_you_mean_ex_assistant(const char *str, va_list arg, char *base)
 		++i;
 	assistant = i_dont_like_it_change_it(str - 1, str[i], 'a');
 	i = ft_printf(assistant, fake);
-	i += you_dont_shash_me_ok(&str, base);
+	if (rebase[0] != '0')
+		i += you_dont_shash_me_ok(&str, base);
 	i += ft_printf("%s", rebase);
 	i += this_isnt_over(str, i);
 	free(assistant);

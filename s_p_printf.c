@@ -6,15 +6,35 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 02:20:18 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/14 18:17:51 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/16 16:53:46 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	bonus(int precision)
+static int	bonus(const char *str, char *s, char *check, int *i)
 {
-	//stampa gli spazi e restituisce la precision
+	int	precision;
+	
+	if (!s)
+	{
+		check = s;
+		s = calloc(7, sizeof(char));
+		if (!s)
+			ft_printf("\nMalloc error for null string\n");
+		ft_strlcpy(s, "(null)", 7);
+	}
+	if (str[0] != '-')
+	{
+		precision = ft_atoi(str);
+		while (precision-- > 0)
+			*i += write(1, " ", 1);
+	}
+	if (str[0] == '.')
+		precision = ft_atoi(str + 1);
+	else
+		precision = ft_strlen((const char *)s);
+	return (precision);
 }
 
 int	text_mr_string(const char *str, va_list arg)
@@ -26,19 +46,9 @@ int	text_mr_string(const char *str, va_list arg)
 	char	*check;
 
 	s = va_arg(arg, char *);
+	check = (char *)str;
 	i = 0;
-	if (!s)
-	{
-		check = s;
-		s = calloc(7, sizeof(char));
-		if (!s)
-			return (0);
-		ft_strlcpy(s, "(null)", 7);
-	}
-	if (str[0] == '.')
-		precision = ft_atoi(str + 1);
-	else
-		precision = ft_strlen((const char *)s);
+	precision = bonus(str, s, check, &i);
 	while (s[i] && i < precision)
 		write(1, s + i++, 1);
 	count = i;
