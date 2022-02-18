@@ -6,11 +6,12 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 22:42:27 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/14 17:46:57 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/18 12:56:27 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 static int	here_put_this(unsigned int num)
 {
@@ -53,7 +54,7 @@ static int now_go_get_us_coffee(const char *str, unsigned int num)
 		}
 		++j;
 	}
-	coffee = -1;
+	coffee = 0;
 	return (coffee);
 }
 
@@ -68,17 +69,19 @@ static int	ya_we_call_you_zero(const char *str, unsigned int num, int minus)
 	j = ft_atoi(str) + 1;
 	if (minus)
 		--j;
-	if (str[0] != '-' && (str[0] != '0' || dot != -1))
+	if (str[0] == ' ' && ft_atoi(str) == 0 && !minus)
+		i += write(1, " ", 1);
+	if (str[0] != '-' && str[0] != '0')
 		while (--j - even_less_than_that(num) - dot > 0)
 			i += write(1, " ", 1);
 	if (minus)
 		i += write(1, "-", 1);
 	if (str[0] == '+' && !minus)
 		i += write(1, "+", 1);
-	if (str[0] == '0' && dot == -1)
+	if (str[0] == '0' && !dot)
 		while (--j - even_less_than_that(num) > 0)
 			i += write(1, "0", 1);
-	while (dot && dot-- != -1)
+	while (dot--)
 		i += write(1, "0", 1);
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 22:27:45 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/16 18:14:18 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/18 12:44:04 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	main(void)
 	i = printf("printf\nchar %c\nstring %-10s\npointer %p\ninteger %-20.8d\ndecimal %020.10i\nunsigned %08u\nhexa %-12.8X", 'a', "prova", ptr, 42, -42003, 478, 42) + 3;
 	printf("\n%d\n\n", i);   */
 
-	i = ft_printf("\n\n%#x\n\n", LONG_MIN);
+	i = ft_printf("\n\n% d\n\n", -101);
 	printf("|%d|", i);
-	i = printf("\n\n%#lx\n\n", LONG_MIN);
+	i = printf("\n\n% d\n\n", -101);
 	printf("|%d|\n", i);
 
 	return (0);
