@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:03:36 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/14 18:07:56 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/18 15:51:37 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	you_re_holding_it_upside_down(char *str, int num)
 
 	end = 0;
 	while (str[end])
-		++end;	
+		++end;
 	if (num < 0)
 	{
 		str[end] = '-';
@@ -52,7 +52,7 @@ void	you_re_holding_it_upside_down(char *str, int num)
 		++start;
 		--end;
 	}
-} 
+}
 
 static void	gotta_know_your_market_base(int uns_num, char *base, char *rebase)
 {

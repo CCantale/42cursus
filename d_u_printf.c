@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 22:42:27 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/18 12:56:27 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/18 15:58:31 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	here_put_this(unsigned int num)
 	return (yes_maam);
 }
 
-static int now_go_get_us_coffee(const char *str, unsigned int num)
+static int	now_go_get_us_coffee(const char *str, unsigned int num)
 {
 	int	j;
 	int	coffee;
@@ -86,7 +86,8 @@ static int	ya_we_call_you_zero(const char *str, unsigned int num, int minus)
 	return (i);
 }
 
-static unsigned int	did_they_sign(va_list arg, const char **str, int *minus, int flag)
+static unsigned int	did_they_sign(va_list arg,
+		const char **str, int *minus, int flag)
 {
 	int	num;
 
@@ -128,7 +129,7 @@ int	can_u_handle_dees(const char *str, va_list arg, char flag)
 	j = ft_atoi(str);
 	count = i;
 	if (str[0] == '-' && flag != 'a')
-		while (j++ * -1 - count > 0)
+		while (j++ *-1 - count > 0)
 			i += write(1, " ", 1);
 	return (i);
 }

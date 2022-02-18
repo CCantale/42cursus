@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 02:20:18 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/17 15:59:36 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/18 15:58:08 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	dont_let_that_nulls_terminate_you_boy(const char *str,
 		char **s, char **check, int *i)
 {
 	int	precision;
-	
+
 	if (!*s)
 	{
 		*check = *s;
@@ -24,7 +24,7 @@ static int	dont_let_that_nulls_terminate_you_boy(const char *str,
 		if (!*s)
 		{
 			ft_printf("\nMrString says: "
-					"careful with that calloc, boy! You need be precise.\n");
+				"careful with that calloc, boy! You need be precise.\n");
 			return (0);
 		}
 		ft_strlcpy(*s, "(null)", 7);
@@ -97,6 +97,7 @@ static int	set_appointment_at_16(unsigned long long int ptr,
 static int	hes_not_availeable_at_the_moment(void *ptr)
 {
 	int	i;
+
 	i = 0;
 	if (!ptr)
 	{

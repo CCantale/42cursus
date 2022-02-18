@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 18:27:43 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/16 16:31:48 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/18 15:50:48 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,7 @@ static int	tell_my_assistant(const char *str, va_list arg)
 	int	i;
 
 	i = send_the_intern(str) - 1;
-	if (str[i] == '%')
-		i = write(1, "%", 1);
-	else if (str[i] == 'c')
+	if (str[i] == 'c')
 		i = call_char_department(str, arg);
 	else if (str[i] == 's')
 		i = text_mr_string(str, arg);
@@ -65,7 +63,7 @@ static int	tell_my_assistant(const char *str, va_list arg)
 	else if (str[i] == 'X')
 		i = what_do_you_mean_ex_assistant(str, arg, "0123456789ABCDEF");
 	else
-		++i;
+		i = write(1, "%", 1);
 	return (i);
 }
 

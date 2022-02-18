@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:56:02 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/16 18:24:35 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/18 15:56:19 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,13 @@ static void	he_told_you_what(char *rebase, char *base, unsigned int num)
 	else if (num > (unsigned int)4294967295)
 		ft_strlcpy(rebase, "0000000000000008", 17);
 	else
+	{
 		while (num)
 		{
 			rebase[i++] = base[num % 16];
 			num /= 16;
 		}
+	}
 	rebase[i] = 0;
 }
 
@@ -80,7 +82,6 @@ int	what_do_you_mean_ex_assistant(const char *str, va_list arg, char *base)
 	unsigned int	num;
 	char			rebase[21];
 	char			*assistant;
-
 
 	num = va_arg(arg, unsigned int);
 	he_told_you_what(rebase, base, num);
