@@ -6,11 +6,11 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 18:27:43 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/06 00:32:21 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/18 15:50:48 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 static int	send_the_intern(const char*str)
 {
@@ -18,8 +18,8 @@ static int	send_the_intern(const char*str)
 	char	*set;
 	int		i;
 
-	set = malloc(sizeof(char) * 10);
-	ft_strlcpy(set, "cspdiuxX%", 10);
+	set = malloc(sizeof(char) * 11);
+	ft_strlcpy(set, "caspdiuxX%", 11);
 	ern = 0;
 	while (str[(int)ern])
 	{
@@ -44,18 +44,26 @@ static int	tell_my_assistant(const char *str, va_list arg)
 	int	i;
 
 	i = send_the_intern(str) - 1;
-	if (str[i] == '%')
-		i = write(1, "%", 1);
-	else if (str[i] == 'c')
+	if (str[i] == 'c')
 		i = call_char_department(str, arg);
 	else if (str[i] == 's')
 		i = text_mr_string(str, arg);
 	else if (str[i] == 'p')
 		i = set_appointment(str, arg);
 	else if (str[i] == 'd')
-		i = be_there_in_ten(str, arg);
+		i = can_u_handle_dees(str, arg, 'd');
+	else if (str[i] == 'i')
+		i = because_i_said_so(str - 1, arg, "0123456789");
+	else if (str[i] == 'u')
+		i = can_u_handle_dees(str, arg, 'u');
+	else if (str[i] == 'a')
+		i = can_u_handle_dees(str, arg, 'a');
+	else if (str[i] == 'x')
+		i = what_do_you_mean_ex_assistant(str, arg, "0123456789abcdef");
+	else if (str[i] == 'X')
+		i = what_do_you_mean_ex_assistant(str, arg, "0123456789ABCDEF");
 	else
-		++i;
+		i = write(1, "%", 1);
 	return (i);
 }
 
@@ -83,5 +91,5 @@ int	ft_printf(const char *str, ...)
 		++i;
 	}
 	va_end(arg);
-	return (count - 1);
+	return (count);
 }

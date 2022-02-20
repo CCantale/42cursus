@@ -6,14 +6,14 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 22:43:01 by ccantale          #+#    #+#              #
-#    Updated: 2022/02/05 23:18:28 by ccantale         ###   ########.fr        #
+#    Updated: 2022/02/18 16:35:18 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc -Wall -Wextra -Werror
 
-NAME = libftprintf
-FILES = ft_printf.c c_s_p.c d_x_X.c
+NAME = ft_printf
+FILES = ft_printf.c c_printf.c s_p_printf.c d_u_printf.c i_printf.c x_X_printf.c
 
 TEST = printest
 OBJ = $(FILES:.c=.o) $(NAME).o
@@ -26,9 +26,9 @@ $(NAME).a: $(OBJ)
 	ar rcs $@ $^
 	ranlib $(NAME).a
 
-$(OBJ): $(FILES) $(NAME).h
+$(OBJ): $(FILES) ft_printf.h
 	$(CC) -c $(FILES)
-	$(CC) -c $(NAME).h -o $(NAME).o
+	$(CC) -c ft_printf.h -o $(NAME).o
 
 clean: $(NAME).a
 	make fclean -C libft
@@ -39,6 +39,8 @@ fclean: clean
 
 re: fclean
 	make
+
+bonus: all
 
 test: printest.o
 

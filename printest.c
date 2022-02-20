@@ -6,12 +6,13 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 22:27:45 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/06 20:43:41 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/18 12:44:04 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 #include <stdio.h>
+#include <limits.h>
 
 int	main(void)
 {
@@ -19,9 +20,16 @@ int	main(void)
 	int	*ptr;
 
 	ptr = &i;
-	i = ft_printf("\nft_printf\n%s oh %ch ecco %p: numeri! %020.10d alé", "ciao", 'a', ptr, -357895);
+/*	printf("\n");
+	i = ft_printf("ft_printf\nchar %c\nstring %-10s\npointer %p\ninteger %#-20.8d\ndecimal %020.10i\nunsigned %08u\nhexa %#-12.8X", 'a', "prova", ptr, 42, -42003, 478, 42);
 	printf("\n%d\n\n", i);
-	i = printf("printf\n%s oh %ch ecco %p: numeri! %020.10d alé", "ciao", 'a', ptr, -357895) + 3;
-	printf("\n%d\n\n", i);
+	i = printf("printf\nchar %c\nstring %-10s\npointer %p\ninteger %-20.8d\ndecimal %020.10i\nunsigned %08u\nhexa %-12.8X", 'a', "prova", ptr, 42, -42003, 478, 42) + 3;
+	printf("\n%d\n\n", i);   */
+
+	i = ft_printf("\n\n% d\n\n", -101);
+	printf("|%d|", i);
+	i = printf("\n\n% d\n\n", -101);
+	printf("|%d|\n", i);
+
 	return (0);
 }
