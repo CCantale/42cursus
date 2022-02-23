@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_check_map.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/23 16:42:17 by ccantale          #+#    #+#             */
+/*   Updated: 2022/02/23 16:42:20 by ccantale         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-static int	ft_check_walls(char **map)
+static char **ft_check_walls(char **map)
 {
 	int	i;
 	int	j;
@@ -10,23 +22,23 @@ static int	ft_check_walls(char **map)
 	while (map[0][len])
 	{
 		if (map[0][len] != '1')
-			return (0);
+			return (NULL);
 		++len;
 	}
 	i = 1;
 	while (map[i])
 	{
 		if (map[i][0] != '1')
-			return (0);
+			return (NULL);
 		if (map[i][len - 1] != '1')
-			return (0);
+			return (NULL);
 		++i;
 	}
 	j = 0;
 	while (map[i - 1][j])
 		if (map[i - 1][j++] != '1')
-			return (0);
-	return (1);
+			return (NULL);
+	return (map);
 }
 
 
@@ -73,7 +85,7 @@ static char	*ft_read_map(int fd)
 	return (map);
 }
 
-static int	ft_check_ber(char *filename)
+static char	*ft_check_ber(char *filename)
 {
 	size_t	len;
 
@@ -81,29 +93,29 @@ static int	ft_check_ber(char *filename)
 	return (ft_strnstr(filename, ".ber", len));
 }
 
-int	ft_check_map(char *path)
+char	**ft_check_map(char *path)
 {
-	char	*map;
+	char	**map;
 	char	*str;
 	int		fd;
 
 	if (!ft_check_ber(path))
-		return(0);
-	fd = open (path, O_RDONLY);
+		return(NULL);
+	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		return (0);
+		return (NULL);
 	str = ft_read_map(fd);
 	if (!ft_strchr(str, 'C') || !ft_strchr(str, 'E') || !ft_strchr(str, 'P'))
 	{
 		free(map);
-		return (0);
+		return (NULL);
 	}
 	map = ft_split(str, '\n');
 	free(str);
 	if (!map)
 	{
 		ft_printf("Map error");
-		return (0);
+		return (NULL);
 	}
 	return (ft_check_walls(map));
 }
