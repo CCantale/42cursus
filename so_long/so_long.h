@@ -5,7 +5,7 @@
 # define KEY_W		13
 
 # include <fcntl.h>
-# include "printf/ft_printf.h"
+# include "libft/libft.h"
 # include "minilibX/mlx.h"
 
 typedef struct game

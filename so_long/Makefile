@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 15:39:12 by ccantale          #+#    #+#              #
-#    Updated: 2022/02/23 16:40:28 by ccantale         ###   ########.fr        #
+#    Updated: 2022/02/23 18:00:57 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,20 +15,22 @@ FLAGS		= -Wall -Wextra -Werror
 
 NAME		= so_long
 FILES		= so_long.c ft_check_map.c
+LIBFT		= libft/libft.a
+MINI		= minilibX/libmlx.dylib
 
 OBJ			= $(patsubst .%, obj%, $(FILES:.c=.o))
 
 
-all: libmlx.dylib libftprintf.a obj $(NAME)
+all: obj/ $(LIBFT) $(MINI) $(NAME)
 
-libmlx.dylib:
+$(MINI): minilibX/
 	make -C minilibX
 
-libftprintf.a: printf/
-	make -C printf
+$(LIBFT): libft/
+	make -C libft
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -o so_long
+	$(CC) $(FLAGS) $(OBJ) $(LIBFT) $(MINI) -o so_long
 
 obj:
 	mkdir obj
@@ -38,11 +40,12 @@ obj/%.o: %.c
 
 clean: all
 	make clean -C minilibX
-	make clean -C printf
+	make clean -C libft
 	rm -r obj
+	rm so_long.o
 
 fclean: clean
-	make fclean -C printf
+	make fclean -C libft
 	rm so_long
 
 .PHONY: all clean fclean  
