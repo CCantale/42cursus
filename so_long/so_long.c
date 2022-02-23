@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 16:42:38 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/23 16:43:03 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/23 18:14:44 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	ft_map_init(t_game game, char **map)
 
 int	ft_get_key(int key, void *game)
 {
+	if (!game)
+		return (0);
 	if (key == KEY_W)
 		write(1, "ok!\n", 4);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 16:42:17 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/23 16:42:20 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/23 18:14:02 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ char	**ft_check_map(char *path)
 	str = ft_read_map(fd);
 	if (!ft_strchr(str, 'C') || !ft_strchr(str, 'E') || !ft_strchr(str, 'P'))
 	{
-		free(map);
+		free(str);
 		return (NULL);
 	}
 	map = ft_split(str, '\n');
