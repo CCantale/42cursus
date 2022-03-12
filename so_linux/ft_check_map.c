@@ -85,14 +85,14 @@ static void	get_map_info(t_game *game, char **map)
 {
 	int	i;
 
-	game->map_x = (int)ft_strlen(map[0]) * 64;
+	game->map_x = (int)ft_strlen(map[0]);
 	i = 0;
-	while (map[i][ft_strlen(map[0]) - 1] == '1')
+	while (map[i][game->map_x - 1] == '1')
 		++i;
-	game->map_y = (i * 64) + 8;
+	game->map_y = i;
 	game->map = map;
-	game->def_map = map;
-	game->prev_map = 0;
+	game->start = 0;
+	game->changes = 0;
 }
 
 char	**ft_check_map(t_game *game, char *path)
@@ -124,7 +124,7 @@ char	**ft_check_map(t_game *game, char *path)
 	if (!map)
 		return (error_msg("ft_split failed to create the map"));
 	get_map_info(game, map);
-	map[(game->map_y - 8) / 64] = 0;
+	map[game->map_y] = 0;
 	close(fd);
 	return (ft_check_walls(map));
 }

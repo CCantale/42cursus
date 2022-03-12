@@ -42,21 +42,22 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	if (argc != 2)
-		return ((int)error_int("Insert one map\n"));
+		return (error_int("Insert one map\n"));
 	game.init = mlx_init();
 	if(!game.init)
-		return ((int)error_int("Game doesn't init\n"));
+		return (error_int("Game doesn't init\n"));
 	if (ft_check_map(&game, argv[1]))
-		game.win = mlx_new_window(game.init, game.map_x,
-			game.map_y, GAME_NAME);
+		game.win = mlx_new_window(game.init, game.map_x * 64,
+			game.map_y * 64 + 8, GAME_NAME);
 	else
 		return (0);
 	if (!game.win)
 	{
 		quit(&game);
-		return ((int)error_int("Window doesn't init\n"));
+		return (error_int("Window doesn't init\n"));
 	}
-	get_xml(&game);
+	if (get_xml(&game))
+		return (error_int("images not correctly loaded"));
 	mlx_key_hook(game.win, ft_get_key, &game);
 	mlx_loop_hook(game.init, update, &game);
 	mlx_loop(game.init);

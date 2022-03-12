@@ -1,36 +1,72 @@
 #include "so_long.h"
 
-int	map_check_up(t_game *game)
-{
-	int	i;
-
-	if (!game->prev_map)
-		return (0);
-	i = 0;
-	while (game->map[i])
-	{
-		if (ft_strncmp(game->map[i], game->prev_map[i], game->map_x / 64))
-			return (0);
-		++i;
-	}
-	return (1);
-}
-
-void	put_walls(t_game *game)
+void	put_background(t_game *game)
 {
 	int	i;
 	int	j;
 
-	i = (game->map_y - 8) / 64;
-	--i;
-	while (i > -1)
+	i = 0;
+	while (game->map[i])
 	{
 		j = 0;
 		while (game->map[i][j])
 		{
-			if (game->map[i][j] == '1')
+			if (game->map[i][j] == ' ')
 				mlx_put_image_to_window(game->init, game->win,
-					game->out_block, j * 64, i * 64);
+					game->background, j * 64, i * 64);
+			++j;
+		}
+		++i;
+	}
+}
+
+void	put_sprites(t_game *game, int i, int j)
+{
+	if (game->map[i][j] == 'P')
+		mlx_put_image_to_window(game->init, game->win,
+			game->player, j * 64, i * 64 + 8);
+	if (game->map[i][j] == 'E')
+		mlx_put_image_to_window(game->init, game->win,
+			game->o_door, j * 64, i * 64 + 8);
+	if (game->map[i][j] == 'C')
+		mlx_put_image_to_window(game->init, game->win,
+			game->turner, j * 64, i * 64 + 8);
+}
+
+void	put_whatever(t_game *game, int i, int j)
+{
+	if (game->map[i][j] == '1' && i)
+	{
+		if (game->map[i - 1][j] == 'P')
+			mlx_put_image_to_window(game->init, game->win,
+				game->s_block, j * 64, i * 64);
+		else if (game->map[i - 1][j] == 'C')
+			mlx_put_image_to_window(game->init, game->win,
+				game->t_block, j * 64, i * 64);
+		else
+			mlx_put_image_to_window(game->init, game->win,
+				game->out_block, j * 64, i * 64);
+	}
+	else if (game->map[i][j] == '1')
+		mlx_put_image_to_window(game->init, game->win,
+			game->out_block, j * 64, i * 64);
+	else
+		put_sprites(game, i, j);
+}
+
+void	put_start(t_game *game)
+{
+	int	i;
+	int	j;
+
+	put_background(game);
+	i = game->map_y - 1;
+	while (i >= 0)
+	{
+		j = 0;
+		while (game->map[i][j])
+		{
+			put_whatever(game, i, j);
 			++j;
 		}
 		--i;
@@ -39,10 +75,14 @@ void	put_walls(t_game *game)
 
 int	update(t_game *game)
 {
-	if (!map_check_up(game))
+	if (game->start == 0)
 	{
-		put_walls(game);
-		game->prev_map = game->map;
+		put_start(game);
+		game->start = 1;
+	}
+	if (game->changes)
+	{
+		game->changes = 0;
 	}
 	return (1);
 }

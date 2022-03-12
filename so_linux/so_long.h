@@ -15,11 +15,17 @@ typedef struct game
 	void	*init;
 	void	*win;
 	char	**map;
-	char	**prev_map;
-	char	**def_map;
 	int		map_x;
 	int		map_y;
+	int		start;
+	int		changes;
+	void	*player;
 	void	*out_block;
+	void	*s_block;
+	void	*t_block;
+	void	*o_door;
+	void	*turner;
+	void	*background;
 }	t_game;
 
 typedef struct player
@@ -34,6 +40,6 @@ void	quit(t_game *game);
 void	*error_msg(char *msg);
 int		error_int(char *msg);
 int		update(t_game *game);
-void	get_xml(t_game *game);
+int	get_xml(t_game *game);
 
 #endif
