@@ -92,7 +92,6 @@ static void	get_map_info(t_game *game, char **map)
 	game->map_y = i;
 	game->map = map;
 	game->start = 0;
-	game->changes = 0;
 }
 
 char	**ft_check_map(t_game *game, char *path)

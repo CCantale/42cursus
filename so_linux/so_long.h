@@ -2,7 +2,10 @@
 # define SO_LONG_H
 
 # define GAME_NAME	"Matter of Time"
-# define KEY_W		119
+# define UP		119
+# define DOWN		115
+# define LEFT		97
+# define RIGHT		100
 # define KEY_ESC	65307
 
 # include <fcntl.h>
@@ -18,8 +21,9 @@ typedef struct game
 	int		map_x;
 	int		map_y;
 	int		start;
-	int		changes;
 	void	*player;
+	int		player_x;
+	int		player_y;
 	void	*out_block;
 	void	*s_block;
 	void	*t_block;
@@ -40,6 +44,8 @@ void	quit(t_game *game);
 void	*error_msg(char *msg);
 int		error_int(char *msg);
 int		update(t_game *game);
-int	get_xml(t_game *game);
+int		get_xml(t_game *game);
+void	put_whatever(t_game *game, int i, int j);
+void	move(t_game *game, int key);
 
 #endif

@@ -23,14 +23,29 @@ void	put_background(t_game *game)
 void	put_sprites(t_game *game, int i, int j)
 {
 	if (game->map[i][j] == 'P')
+	{
 		mlx_put_image_to_window(game->init, game->win,
 			game->player, j * 64, i * 64 + 8);
+		game->player_x = j;
+		game->player_y = i;
+		if (game->map[i + 1][j] == '1')
+			put_whatever(game, i + 1, j);
+	}
 	if (game->map[i][j] == 'E')
 		mlx_put_image_to_window(game->init, game->win,
 			game->o_door, j * 64, i * 64 + 8);
 	if (game->map[i][j] == 'C')
 		mlx_put_image_to_window(game->init, game->win,
 			game->turner, j * 64, i * 64 + 8);
+	if (game->map[i][j] == ' ' && game->start != 0)
+	{
+		mlx_put_image_to_window(game->init, game->win,
+			game->background, j * 64, i * 64);
+		if (game->map[i - 1][j] == '1' || game->map[i - 1][j] == 'E')
+			put_whatever(game, i - 1, j);
+		if (game->map[i + 1][j] == '1')
+			put_whatever(game, i + 1, j);
+	}
 }
 
 void	put_whatever(t_game *game, int i, int j)
@@ -52,6 +67,9 @@ void	put_whatever(t_game *game, int i, int j)
 			game->out_block, j * 64, i * 64);
 	else
 		put_sprites(game, i, j);
+	if (i && game->start != 0 && game->map[i][j] == '1'
+		&& (game->map[i - 1][j] == '1' || game->map[i - 1][j] == 'E'))
+		put_whatever(game, i - 1, j);
 }
 
 void	put_start(t_game *game)
@@ -79,10 +97,6 @@ int	update(t_game *game)
 	{
 		put_start(game);
 		game->start = 1;
-	}
-	if (game->changes)
-	{
-		game->changes = 0;
 	}
 	return (1);
 }

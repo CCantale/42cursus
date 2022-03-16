@@ -17,7 +17,8 @@ NAME		= so_long
 
 FILES		= so_long.c ft_check_map.c \
 		  quit.c error.c \
-		  loop.c get_xml.c
+		  loop.c get_xml.c \
+		  move.c
 
 LIBFT		= libft/libft.a
 MINI		= minilinuX/libmlx.a

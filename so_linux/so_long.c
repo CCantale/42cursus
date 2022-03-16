@@ -30,8 +30,8 @@ int	ft_get_key(int key, t_game *game)
 	if (!game)
 		return (0);
 	ft_printf("key %d\n", key);
-	if (key == KEY_W)
-		write(1, "ok!\n", 4);
+	if (key == UP || key == DOWN || key == LEFT || key == RIGHT)
+		move(game, key);
 	if (key == KEY_ESC)
 		quit(game);
 	return (0);
