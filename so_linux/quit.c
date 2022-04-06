@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-void	quit(t_game *game)
+int	quit(t_game *game)
 {
 	int		i;
 	char	**map;
@@ -14,4 +14,5 @@ void	quit(t_game *game)
 	}
 	free(map);
 	exit(0);
+	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 16:42:17 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/23 18:14:02 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/04/06 18:17:01 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static char **ft_check_walls(char **map)
+static char **ft_check_walls(char **map, int map_y)
 {
 	int	i;
 	int	j;
@@ -23,8 +23,9 @@ static char **ft_check_walls(char **map)
 		if (map[0][len++] != '1')
 			return (error_msg("Map's outline need be all walls"));
 	i = 1;
-	while (map[i] != NULL)
+	while (i < map_y)
 	{
+		ft_printf("i = %d, %d\n", i, map_y);
 		if (ft_strlen(map[i]) != ft_strlen(map[0]))
 			return (error_msg("Map need be rectangular"));
 		if (map[i][0] != '1')
@@ -87,7 +88,7 @@ static void	get_map_info(t_game *game, char **map)
 
 	game->map_x = (int)ft_strlen(map[0]);
 	i = 0;
-	while (map[i][game->map_x - 1] == '1')
+	while (map[i])
 		++i;
 	game->map_y = i;
 	game->map = map;
@@ -96,7 +97,7 @@ static void	get_map_info(t_game *game, char **map)
 
 char	**ft_check_map(t_game *game, char *path)
 {
-							int	i;
+																									int	i;
 	char	**map;
 	char	*str;
 	int		fd;
@@ -112,19 +113,18 @@ char	**ft_check_map(t_game *game, char *path)
 		free(str);
 		return (error_msg("Map need be properly filled in"));
 	}
-	map = ft_split(str, '\n');
-							i = 0;
-							while (map[i])
-							{
-								ft_printf("%s\n", map[i]);
-								++i;
-							}
+	map = split_nl(str);
+																									i = 0;
+																									while (map[i])
+																									{
+																										ft_printf("%s\n", map[i]);
+																										++i;
+																									}
 	free(str);
+	close(fd);
 	if (!map)
 		return (error_msg("ft_split failed to create the map"));
 	get_map_info(game, map);
-	map[game->map_y] = 0;
-	close(fd);
-	return (ft_check_walls(map));
+	return (ft_check_walls(map, game->map_y));
 }
 	

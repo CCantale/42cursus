@@ -6,45 +6,51 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 15:39:12 by ccantale          #+#    #+#              #
-#    Updated: 2022/02/23 18:16:22 by ccantale         ###   ########.fr        #
+#    Updated: 2022/04/06 18:18:55 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC		= gcc
-FLAGS		= -Wall -Wextra -Werror
+CC			=	gcc
+FLAGS		=	-Wall -Wextra -Werror
 
-NAME		= so_long
+NAME		=	so_long
 
-FILES		= so_long.c ft_check_map.c \
-		  quit.c error.c \
-		  loop.c get_xml.c \
-		  move.c
+FILES		=	so_long.c \
+				split_nl.c \
+			 	ft_check_map.c \
+		 		quit.c \
+		  		error.c \
+		  		loop.c \
+		  		get_xml.c \
+		  		move.c \
+				check_for_coll.c
 
-LIBFT		= libft/libft.a
-MINI		= minilinuX/libmlx.a
+LIBFT		= 	libft/libft.a
+MINI		= 	minilibX/libmlx.a
 
-OBJ		= $(FILES:.c=.o)
+OBJ			= 	$(FILES:.c=.o)
 
 
 all: $(LIBFT) $(MINI) $(NAME)
 
-$(MINI): minilinuX/
-	make -C minilinuX
+$(MINI): minilibX/
+	make -C minilibX
 
 $(LIBFT): libft/
 	make -C libft
+	make clean -C minilibX
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -Llibft -lft -LminilinuX -lmlx -L/usr/lib -IminilinuX -lXext -lX11 -lm -lz -o $(NAME)
+	$(CC) -g $(OBJ) -o $(NAME) -lmlx -framework openGL -framework AppKit $(LIBFT)
 
 %.o: %.c
-	$(CC) $(FLAGS) -g -I/usr/include -IminilinuX -O3 -c $(FILES)
+	$(CC) $(FLAGS) -c $(FILES)
 
 clean: 
-	make clean -C minilinuX
+	make clean -C minilibX
 	rm $(OBJ)
 
-fclean: clean
+fclean:
 	rm so_long
 
 re: fclean

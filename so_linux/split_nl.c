@@ -6,11 +6,11 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 16:23:26 by ccantale          #+#    #+#             */
-/*   Updated: 2022/04/06 18:09:36 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/04/06 18:33:10 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
 
 static char	**free_split(char **split)
 {
@@ -31,7 +31,7 @@ static char	**ft_realloc_split(char **split, int len)
 	int		i;
 	char	**new_split;
 
-	new_split = ft_calloc(len + 1, sizeof(char **));
+	new_split = malloc(sizeof(char **) * (len + 1));
 	if (!new_split)
 	{
 		free_split(split);
@@ -53,6 +53,8 @@ static char	**allocate_and_copy(char **split, char const *start, int length, int
 {
 	int	row;
 	
+	if (*start == '\n')
+		return (split);
 	row = *r;
 	split = ft_realloc_split(split, row);
 	if(!split)
@@ -65,7 +67,7 @@ static char	**allocate_and_copy(char **split, char const *start, int length, int
 	return (split);
 }
 
-char	**ft_split(char const *s, char c)
+char	**split_nl(const char *s)
 {
 	int		beg;
 	int		end;
@@ -78,7 +80,7 @@ char	**ft_split(char const *s, char c)
 	end = 0;
 	while (s[end])
 	{
-		if (s[end] == c)
+		if (s[end] == '\n')
 		{
 			split = allocate_and_copy(split, s + beg, end - beg + 1, &row);
 			if (!split)
@@ -87,7 +89,7 @@ char	**ft_split(char const *s, char c)
 		}
 		++end;
 	}
-	if (s[end - 1] != c)
+	if (s[end - 1] != '\n')
 		split = allocate_and_copy(split, s + beg, end - beg + 1, &row);
 	if (!split)
 		return (NULL);

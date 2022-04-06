@@ -14,6 +14,11 @@ void	move_u(t_game *game)
 		put_whatever(game, y, x);
 		put_whatever(game, y - 1, x);
 	}
+	if (game->map[y - 1][x] == 'E')
+	{
+		if (check_for_coll(game->map, game->map_y) == 0)
+			quit(game);
+	}
 }
 
 void	move_d(t_game *game)
@@ -29,6 +34,11 @@ void	move_d(t_game *game)
 		game->map[y + 1][x] = 'P';
 		put_whatever(game, y, x);
 		put_whatever(game, y + 1, x);
+	}
+	if (game->map[y + 1][x] == 'E')
+	{
+		if (check_for_coll(game->map, game->map_y) == 0)
+			quit(game);
 	}
 }
 
@@ -46,6 +56,11 @@ void	move_l(t_game *game)
 		put_whatever(game, y, x);
 		put_whatever(game, y, x - 1);
 	}
+	if (game->map[y][x - 1] == 'E')
+	{
+		if (check_for_coll(game->map, game->map_y) == 0)
+			quit(game);
+	}
 }
 
 void	move_r(t_game *game)
@@ -61,6 +76,11 @@ void	move_r(t_game *game)
 		game->map[y][x + 1] = 'P';
 		put_whatever(game, y, x);
 		put_whatever(game, y, x + 1);
+	}
+	if (game->map[y][x + 1] == 'E')
+	{
+		if (check_for_coll(game->map, game->map_y) == 0)
+			quit(game);
 	}
 }
 

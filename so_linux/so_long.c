@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 16:42:38 by ccantale          #+#    #+#             */
-/*   Updated: 2022/02/23 18:14:44 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/04/03 13:30:18 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	ft_get_key(int key, t_game *game)
 {
 	if (!game)
 		return (0);
-	ft_printf("key %d\n", key);
 	if (key == UP || key == DOWN || key == LEFT || key == RIGHT)
 		move(game, key);
 	if (key == KEY_ESC)
@@ -60,6 +59,7 @@ int	main(int argc, char **argv)
 		return (error_int("images not correctly loaded"));
 	mlx_key_hook(game.win, ft_get_key, &game);
 	mlx_loop_hook(game.init, update, &game);
+	mlx_hook(game.win, 17, 1L << 17, quit, &game);
 	mlx_loop(game.init);
 	return (0);
 }
