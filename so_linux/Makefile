@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 15:39:12 by ccantale          #+#    #+#              #
-#    Updated: 2022/04/06 18:18:55 by ccantale         ###   ########.fr        #
+#    Updated: 2022/04/08 18:31:00 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ FILES		=	so_long.c \
 		  		loop.c \
 		  		get_xml.c \
 		  		move.c \
-				check_for_coll.c
+				check_for_coll.c \
+				animation.c
 
 LIBFT		= 	libft/libft.a
 MINI		= 	minilibX/libmlx.a
@@ -38,7 +39,6 @@ $(MINI): minilibX/
 
 $(LIBFT): libft/
 	make -C libft
-	make clean -C minilibX
 
 $(NAME): $(OBJ)
 	$(CC) -g $(OBJ) -o $(NAME) -lmlx -framework openGL -framework AppKit $(LIBFT)
@@ -48,6 +48,7 @@ $(NAME): $(OBJ)
 
 clean: 
 	make clean -C minilibX
+	make fclean -C libft
 	rm $(OBJ)
 
 fclean:

@@ -6,18 +6,18 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 16:23:26 by ccantale          #+#    #+#             */
-/*   Updated: 2022/04/06 18:33:10 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/04/08 17:38:04 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static char	**free_split(char **split)
+static char	**free_split(char **split, int row)
 {
 	int	i;
 
 	i = 0;
-	while (split[i])
+	while (i < row)
 	{
 		free(split[i]);
 		++i;
@@ -31,10 +31,11 @@ static char	**ft_realloc_split(char **split, int len)
 	int		i;
 	char	**new_split;
 
-	new_split = malloc(sizeof(char **) * (len + 1));
+	new_split = ft_calloc(len + 1, sizeof(char *));
 	if (!new_split)
 	{
-		free_split(split);
+		if (split)
+			free_split(split, len);
 		return (NULL);
 	}
 	i = 0;
@@ -43,9 +44,7 @@ static char	**ft_realloc_split(char **split, int len)
 		new_split[i] = split[i];
 		++i;
 	}
-	if (split)
-		free(split);
-	new_split[i] = NULL;
+	free(split);
 	return (new_split);
 }
 
@@ -58,10 +57,10 @@ static char	**allocate_and_copy(char **split, char const *start, int length, int
 	row = *r;
 	split = ft_realloc_split(split, row);
 	if(!split)
-		return (free_split(split));
+		return (NULL);
 	split[row] = malloc(sizeof(char) * (length));
 	if(!split[row])
-		return (free_split(split));
+		return (free_split(split, row));
 	ft_strlcpy(split[row], start, length);
 	*r += 1;
 	return (split);
@@ -74,7 +73,7 @@ char	**split_nl(const char *s)
 	int		row;
 	char	**split;
 
-	split = 0;
+	split = NULL;
 	row = 0;
 	beg = 0;
 	end = 0;

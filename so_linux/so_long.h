@@ -23,20 +23,15 @@ typedef struct game
 	void	*player;
 	int		player_x;
 	int		player_y;
+	void	*flip[6];
 	void	*out_block;
 	void	*s_block;
 	void	*t_block;
 	void	*o_door;
 	void	*turner;
+	void	*enemy;
 	void	*background;
 }	t_game;
-
-typedef struct player
-{
-	int	pos_x;
-	int	pos_y;
-	int	sand;
-}	t_sandy;
 
 char	**ft_check_map(t_game *game, char *path);
 int		quit(t_game *game);
@@ -48,5 +43,6 @@ void	put_whatever(t_game *game, int i, int j);
 void	move(t_game *game, int key);
 int		check_for_coll(char **map, int map_y);
 char	**split_nl(const char *s);
+void	play_animation(t_game *game);
 
 #endif

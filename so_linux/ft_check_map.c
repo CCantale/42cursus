@@ -6,11 +6,12 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 16:42:17 by ccantale          #+#    #+#             */
-/*   Updated: 2022/04/06 18:17:01 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/04/07 16:31:47 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <stdio.h>
 
 static char **ft_check_walls(char **map, int map_y)
 {
@@ -25,7 +26,7 @@ static char **ft_check_walls(char **map, int map_y)
 	i = 1;
 	while (i < map_y)
 	{
-		ft_printf("i = %d, %d\n", i, map_y);
+//		ft_printf("i = %d, %d\n", i, map_y);
 		if (ft_strlen(map[i]) != ft_strlen(map[0]))
 			return (error_msg("Map need be rectangular"));
 		if (map[i][0] != '1')
@@ -42,15 +43,11 @@ static char **ft_check_walls(char **map, int map_y)
 }
 
 
-static char	*ft_join(char *s1, char *s2)
+static char	*ft_join(char *s1, char *s2, int len2)
 {
 	int		len1;
-	int		len2;
 	char	*join;
 
-	len2 = 0;
-	while (s2[len2] && len2 < 2048)
-		++len2;
 	if (!s1)
 	{
 		join = malloc(sizeof(char) * (len2 + 1));
@@ -76,7 +73,7 @@ static char	*ft_read_map(int fd)
 	len = read(fd, buffer, 2048);
 	while (len)
 	{
-		map = ft_join(map, buffer);
+		map = ft_join(map, buffer, len);
 		len = read(fd, buffer, 2048);
 	}
 	return (map);
@@ -113,11 +110,12 @@ char	**ft_check_map(t_game *game, char *path)
 		free(str);
 		return (error_msg("Map need be properly filled in"));
 	}
+	ft_printf("%s\n\n\n", str);
 	map = split_nl(str);
 																									i = 0;
 																									while (map[i])
 																									{
-																										ft_printf("%s\n", map[i]);
+																										printf("%s\n", map[i]);
 																										++i;
 																									}
 	free(str);
