@@ -9,10 +9,14 @@ void	move_u(t_game *game)
 	y = game->player_y;
 	if (game->map[y - 1][x] != '1' && game->map[y - 1][x] != 'E')
 	{
+		if (game->map[y - 1][x] == 'C')
+			game->animation = 1;
 		game->map[y][x] = ' ';
 		game->map[y - 1][x] = 'P';
 		put_whatever(game, y, x);
 		put_whatever(game, y - 1, x);
+		if (game->animation == 1)
+			play_animation(game);
 	}
 	if (game->map[y - 1][x] == 'E')
 	{
@@ -30,10 +34,14 @@ void	move_d(t_game *game)
 	y = game->player_y;
 	if (game->map[y + 1][x] != '1' && game->map[y + 1][x] != 'E')
 	{
+		if (game->map[y + 1][x] == 'C')
+			game->animation = 1;
 		game->map[y][x] = ' ';
 		game->map[y + 1][x] = 'P';
 		put_whatever(game, y, x);
 		put_whatever(game, y + 1, x);
+		if (game->animation == 1)
+			play_animation(game);
 	}
 	if (game->map[y + 1][x] == 'E')
 	{
@@ -51,10 +59,14 @@ void	move_l(t_game *game)
 	y = game->player_y;
 	if (game->map[y][x - 1] != '1' && game->map[y][x - 1] != 'E')
 	{
+		if (game->map[y][x - 1] == 'C')
+			game->animation = 1;
 		game->map[y][x] = ' ';
 		game->map[y][x - 1] = 'P';
 		put_whatever(game, y, x);
 		put_whatever(game, y, x - 1);
+		if (game->animation == 1)
+			play_animation(game);
 	}
 	if (game->map[y][x - 1] == 'E')
 	{
@@ -72,10 +84,14 @@ void	move_r(t_game *game)
 	y = game->player_y;
 	if (game->map[y][x + 1] != '1' && game->map[y][x + 1] != 'E')
 	{
+		if (game->map[y][x + 1] == 'C')
+			game->animation = 1;
 		game->map[y][x] = ' ';
 		game->map[y][x + 1] = 'P';
 		put_whatever(game, y, x);
 		put_whatever(game, y, x + 1);
+		if (game->animation == 1)
+			play_animation(game);
 	}
 	if (game->map[y][x + 1] == 'E')
 	{

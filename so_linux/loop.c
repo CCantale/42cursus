@@ -98,5 +98,7 @@ int	update(t_game *game)
 		put_start(game);
 		game->start = 1;
 	}
+	if (game->animation > 0 || game->animation == -1)
+		play_animation(game);
 	return (1);
 }

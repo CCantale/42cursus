@@ -31,7 +31,7 @@ int	get_player(t_game *game)
 		return (1);
 	game->enemy = mlx_xpm_file_to_image(game->init,
 		"sprites/enemy.xpm", &x, &y);
-	if (!game->l)
+	if (!game->enemy)
 		return (1);
 	return (0);
 }

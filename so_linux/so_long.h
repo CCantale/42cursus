@@ -23,6 +23,8 @@ typedef struct game
 	void	*player;
 	int		player_x;
 	int		player_y;
+	int		animation;
+	int		time;
 	void	*flip[6];
 	void	*out_block;
 	void	*s_block;

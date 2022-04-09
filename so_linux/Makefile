@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 15:39:12 by ccantale          #+#    #+#              #
-#    Updated: 2022/04/08 18:31:00 by ccantale         ###   ########.fr        #
+#    Updated: 2022/04/09 15:59:43 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,9 @@ $(NAME): $(OBJ)
 
 %.o: %.c
 	$(CC) $(FLAGS) -c $(FILES)
+
+go: $(NAME)
+	./$(NAME) test_map.ber
 
 clean: 
 	make clean -C minilibX
