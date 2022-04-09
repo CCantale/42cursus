@@ -93,6 +93,10 @@ void	put_start(t_game *game)
 		}
 		--i;
 	}
+	mlx_put_image_to_window(game->init, game->win, game->black,
+			0, game->map_y * 64 + 8);
+	mlx_string_put(game->init, game->win, 10, game->map_y *64 + 8,
+			0xFFFFFF, ft_itoa(game->steps));
 }
 
 int	update(t_game *game)
@@ -102,7 +106,7 @@ int	update(t_game *game)
 		put_start(game);
 		game->start = 1;
 	}
-	if (game->animation > 0 || game->animation == -1)
+	if (game->animation != 0)
 		play_animation(game);
 	return (1);
 }

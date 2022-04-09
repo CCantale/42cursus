@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 16:42:38 by ccantale          #+#    #+#             */
-/*   Updated: 2022/04/09 16:33:06 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/04/09 18:59:41 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int argc, char **argv)
 		return (error_int("Game doesn't init\n"));
 	if (ft_check_map(&game, argv[1]))
 		game.win = mlx_new_window(game.init, game.map_x * 64,
-			game.map_y * 64 + 8, GAME_NAME);
+			game.map_y * 64 + 8 + 30, GAME_NAME);
 	else
 		return (0);
 	if (!game.win)

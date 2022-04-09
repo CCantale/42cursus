@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 16:42:17 by ccantale          #+#    #+#             */
-/*   Updated: 2022/04/09 16:35:02 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/04/09 18:51:32 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ static void	get_map_info(t_game *game, char **map)
 	game->map = map;
 	game->start = 0;
 	game->animation = 0;
+	game->time = 0;
+	game->steps = 0;
 }
 
 char	**ft_check_map(t_game *game, char *path)

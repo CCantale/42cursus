@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 15:39:12 by ccantale          #+#    #+#              #
-#    Updated: 2022/04/09 15:59:43 by ccantale         ###   ########.fr        #
+#    Updated: 2022/04/09 19:19:49 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,11 @@ FILES		=	so_long.c \
 		 		quit.c \
 		  		error.c \
 		  		loop.c \
-		  		get_xml.c \
+		  		get_xpm.c \
 		  		move.c \
 				check_for_coll.c \
-				animation.c
+				animation.c \
+				step.c
 
 LIBFT		= 	libft/libft.a
 MINI		= 	minilibX/libmlx.a
@@ -46,7 +47,7 @@ $(NAME): $(OBJ)
 %.o: %.c
 	$(CC) $(FLAGS) -c $(FILES)
 
-go: $(NAME)
+go: $(LIBFT) $(MINI) $(NAME)
 	./$(NAME) test_map.ber
 
 clean: 

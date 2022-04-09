@@ -1,7 +1,7 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# define GAME_NAME	"Matter of Time"
+# define GAME_NAME	"so_long"
 # define UP			13
 # define DOWN		1
 # define LEFT		0
@@ -23,6 +23,7 @@ typedef struct game
 	void	*player;
 	int		player_x;
 	int		player_y;
+	int		steps;
 	int		animation;
 	int		time;
 	void	*flip[6];
@@ -32,6 +33,7 @@ typedef struct game
 	void	*o_door;
 	void	*turner;
 	void	*enemy;
+	void	*black;
 	void	*background;
 }	t_game;
 
@@ -46,5 +48,6 @@ void	move(t_game *game, int key);
 int		check_for_coll(char **map, int map_y);
 char	**split_nl(const char *s);
 void	play_animation(t_game *game);
+void	step(t_game *game);
 
 #endif

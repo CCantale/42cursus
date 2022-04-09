@@ -4,12 +4,18 @@ int	get_door(t_game *game)
 {
 	int	x;
 	int	y;
+	int	by;
 
 	x = 64;
 	y = 60;
+	by = 30;
 	game->o_door = mlx_xpm_file_to_image(game->init,
 		"sprites/o_door.xpm", &x, &y);
 	if (!game->o_door)
+		return (1);
+	game->black = mlx_xpm_file_to_image(game->init,
+		"sprites/black.xpm", &y, &by);
+	if (!game->black)
 		return (1);
 	return (0);
 }

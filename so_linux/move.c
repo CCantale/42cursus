@@ -17,6 +17,8 @@ void	move_u(t_game *game)
 		game->map[y - 1][x] = 'P';
 		put_whatever(game, y, x);
 		put_whatever(game, y - 1, x);
+		game->steps++;
+		step(game);
 		if (game->animation == 1)
 			play_animation(game);
 	}
@@ -44,6 +46,8 @@ void	move_d(t_game *game)
 		game->map[y + 1][x] = 'P';
 		put_whatever(game, y, x);
 		put_whatever(game, y + 1, x);
+		game->steps++;
+		step(game);
 		if (game->animation == 1)
 			play_animation(game);
 	}
@@ -71,6 +75,8 @@ void	move_l(t_game *game)
 		game->map[y][x - 1] = 'P';
 		put_whatever(game, y, x);
 		put_whatever(game, y, x - 1);
+		game->steps++;
+		step(game);
 		if (game->animation == 1)
 			play_animation(game);
 	}
@@ -98,6 +104,8 @@ void	move_r(t_game *game)
 		game->map[y][x + 1] = 'P';
 		put_whatever(game, y, x);
 		put_whatever(game, y, x + 1);
+		game->steps++;
+		step(game);
 		if (game->animation == 1)
 			play_animation(game);
 	}
