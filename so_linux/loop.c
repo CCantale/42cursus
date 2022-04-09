@@ -14,6 +14,10 @@ void	put_background(t_game *game)
 			if (game->map[i][j] == ' ')
 				mlx_put_image_to_window(game->init, game->win,
 					game->background, j * 64, i * 64);
+			if (game->map[i][j] == 'N')
+				mlx_put_image_to_window(game->init, game->win,
+					game->enemy, j * 64, i * 64);
+
 			++j;
 		}
 		++i;

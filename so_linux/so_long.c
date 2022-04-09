@@ -6,24 +6,11 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 16:42:38 by ccantale          #+#    #+#             */
-/*   Updated: 2022/04/03 13:30:18 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/04/09 16:33:06 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	ft_map_init(t_game *game, char **map)
-{
-	if (!map)
-	{
-		ft_printf("Error\nMap check failed\n");
-		return (0);
-	}
-	game->map = map;
-	if (!game->init)
-		return (0);
-	return(1);
-}
 
 int	ft_get_key(int key, t_game *game)
 {
