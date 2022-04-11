@@ -78,8 +78,9 @@ void	put_whatever(t_game *game, int i, int j)
 
 void	put_start(t_game *game)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	char	*s;
 
 	put_background(game);
 	i = game->map_y - 1;
@@ -93,10 +94,12 @@ void	put_start(t_game *game)
 		}
 		--i;
 	}
+	s = ft_itoa(game->steps);
 	mlx_put_image_to_window(game->init, game->win, game->black,
 			0, game->map_y * 64 + 8);
 	mlx_string_put(game->init, game->win, 10, game->map_y *64 + 8,
-			0xFFFFFF, ft_itoa(game->steps));
+			0xFFFFFF, s);
+	free(s);
 }
 
 int	update(t_game *game)
