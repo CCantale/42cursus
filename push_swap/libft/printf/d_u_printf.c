@@ -6,23 +6,19 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 22:42:27 by ccantale          #+#    #+#             */
-/*   Updated: 2022/04/03 20:10:49 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/18 15:58:31 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 static int	here_put_this(unsigned int num)
 {
 	int	yes_maam;
 
 	yes_maam = 0;
-	if (num < 0)
-	{
-		num = -num;
-		yes_maam += here_put_this(num);
-	}
-	else if (num > 9)
+	if (num > 9)
 	{
 		yes_maam += here_put_this(num / 10);
 		yes_maam += here_put_this(num % 10);

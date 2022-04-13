@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/11 16:24:46 by ccantale          #+#    #+#              #
-#    Updated: 2022/04/11 18:35:03 by ccantale         ###   ########.fr        #
+#    Updated: 2022/04/13 16:15:34 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,16 +17,22 @@ NAME	=		push_swap
 
 FILES	=		main.c \
 				get_swap.c \
-				ft_atoi.c
+				stack_atoi.c \
 
 OBJ		=		$(FILES:.c=.o)
 
+LIBFT	=		libft/libft.a
 
 
-all: $(NAME)
+
+all: $(LIBFT) $(NAME)
+
+$(LIBFT):
+	make -C libft
+	make clean -C libft
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -o $@
+	$(CC) $(FLAGS) $(OBJ) -o $@ $(LIBFT) 
 
 %.o: %.c
 	$(CC) $(FLAGS) -c $(FILES)

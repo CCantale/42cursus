@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 17:54:01 by ccantale          #+#    #+#             */
-/*   Updated: 2022/04/11 18:46:33 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/04/13 16:04:37 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	check_limits(unsigned int num, int sign, int *stack_a, int slots)
 	}
 }
 
-int	ft_atoi(const char *str, int *stack_a, int slots)
+int	stack_atoi(char *str, int *stack_a, int slots)
 {
 	unsigned int	num;
 	int				i;

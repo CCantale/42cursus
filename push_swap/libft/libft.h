@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 13:25:50 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/21 12:53:06 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/02/23 17:48:40 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
+# include "printf/ft_printf.h"
 
 typedef struct s_list
 {

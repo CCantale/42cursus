@@ -6,15 +6,16 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:45:50 by ccantale          #+#    #+#             */
-/*   Updated: 2022/04/11 18:30:29 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/04/13 17:16:51 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
 
-int	*swap_swap(int*swap_a, int *new_swap, int *slots)
+int	*swap_swap(int *stack_a, char *str, int *slots)
 {
 	int	j;
+	int	*new_stack;
 
 	new_stack = malloc(sizeof(int) * (*slots + 1));
 	if (!new_stack)
@@ -27,30 +28,30 @@ int	*swap_swap(int*swap_a, int *new_swap, int *slots)
 	j = 0;
 	while (j < *slots)
 	{
-		nex_stack[j] = stack_a[j];
+		new_stack[j] = stack_a[j];
 		++j;
 	}
-	new_stack[*slots] = ft_atoi(*str[i], stack_a, *slots);	
+	new_stack[*slots] = stack_atoi(str, stack_a, *slots);	
 	if (*slots > 0)
 		free(stack_a);
-	*slots++;
+	*slots += 1;
 	return (new_stack);
 }
 
-int	rep_swap(char *str)
+int	rep_swap(int *stack_a, int slots)
 {
 	int	i;
 	int	rep;
 	int	count;
 
 	i = 0;
-	while (str[i])
+	while (i < slots)
 	{
 		rep = 0;
 		count = 0;
-		while (str[rep])
+		while (rep < slots)
 		{
-			if (str[rep] == str[i])
+			if (stack_a[rep] == stack_a[i])
 				++count;
 			if (count > 1)
 			{
@@ -67,8 +68,6 @@ int	rep_swap(char *str)
 int	check_swap(char *str)
 {
 	int	i;
-	int	rep;
-	int	count;
 
 	i = 0;
 	while (str[i])
@@ -86,28 +85,25 @@ int	check_swap(char *str)
 int	*put_swap(int *stack_a, char *str, int *slots)
 {
 	int	i;
-	int	*new_stack;
-	int	j;
 
 	if (check_swap(str) == 1)
-		return (NULL);
-	if (rep_swap(str) == 1)
 		return (NULL);
 	i = 0;
 	while (str[i])
 	{
 		if (str[i] >= '0' && str[i] <= '9')
 		{
-			new_stack = swap_swap(stack_a, new_stack, slots);
-			if (!new_stack)
+			stack_a = swap_swap(stack_a, &str[i], slots);
+			if (!stack_a)
 				return (NULL);
+
 			while (str[i] >= '0' && str[i] <= '9')
 				++i;
 			continue;
 		}
 		++i;
 	}
-	return (new_stack);
+	return (stack_a);
 }
 
 int	*get_swap(int argc, char **argv)
@@ -117,12 +113,20 @@ int	*get_swap(int argc, char **argv)
 	int	*stack_a;
 
 	slots = 0;
-	i = 0;
-	while (i < argc - 1)
+	i = 1;
+	while (i < argc)
 	{
 		stack_a = put_swap(stack_a, argv[i], &slots);
 		if (!stack_a)
 			return (NULL);
+		++i;
+	}
+	if (rep_swap(stack_a, slots) == 1)
+		return (NULL);
+	i = 0;
+	while (i < slots)
+	{
+		ft_printf("%d ", stack_a[i]);
 		++i;
 	}
 	return (stack_a);
