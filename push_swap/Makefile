@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/11 16:24:46 by ccantale          #+#    #+#              #
-#    Updated: 2022/04/13 16:15:34 by ccantale         ###   ########.fr        #
+#    Updated: 2022/04/14 19:14:30 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ NAME	=		push_swap
 FILES	=		main.c \
 				get_swap.c \
 				stack_atoi.c \
+				lis_swap.c \
+				start_swap.c
 
 OBJ		=		$(FILES:.c=.o)
 

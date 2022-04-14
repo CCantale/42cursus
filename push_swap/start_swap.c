@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps.h                                               :+:      :+:    :+:   */
+/*   start_swap.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/11 16:43:43 by ccantale          #+#    #+#             */
-/*   Updated: 2022/04/14 19:13:58 by ccantale         ###   ########.fr       */
+/*   Created: 2022/04/14 18:17:36 by ccantale          #+#    #+#             */
+/*   Updated: 2022/04/14 19:13:06 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PS_H
-# define PS_H
+#include "ps.h"
 
-#include "libft/libft.h"
+void dnif_swap(int *stack_a, int *stack_b, int start, int slots)
+{
+}
 
-int		*get_swap(int argc, char **argv, int *slots);
-int		stack_atoi(char *str, int *stack_a, int slots);
-void	lis_swap(int *stack_a, int *stack_b, int slots);
-void	start_swap(int *stack_a, int *stack_b, int start, int slots);
+void find_swap(int *stack_a, int *stack_b, int start, int slots)
+{
+}
 
-#endif
+void	start_swap(int *stack_a, int *stack_b, int start, int slots)
+{
+	if (start < 0)
+	{
+		start *= -1;
+		dnif_swap(stack_a, stack_b, start, slots);
+	}
+	else
+		find_swap(stack_a, stack_b, start, slots);
+}	

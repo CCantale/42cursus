@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:45:50 by ccantale          #+#    #+#             */
-/*   Updated: 2022/04/13 17:16:51 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/04/14 17:30:10 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,22 +106,20 @@ int	*put_swap(int *stack_a, char *str, int *slots)
 	return (stack_a);
 }
 
-int	*get_swap(int argc, char **argv)
+int	*get_swap(int argc, char **argv, int *slots)
 {
 	int	i;
-	int	slots;
 	int	*stack_a;
 
-	slots = 0;
 	i = 1;
 	while (i < argc)
 	{
-		stack_a = put_swap(stack_a, argv[i], &slots);
+		stack_a = put_swap(stack_a, argv[i], slots);
 		if (!stack_a)
 			return (NULL);
 		++i;
 	}
-	if (rep_swap(stack_a, slots) == 1)
+	if (rep_swap(stack_a, *slots) == 1)
 		return (NULL);
 	i = 0;
 	while (i < slots)
