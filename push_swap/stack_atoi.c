@@ -16,7 +16,7 @@ void	check_limits(unsigned int num, int sign, int *stack_a, int slots)
 {
 	if (num > 2147483647 && sign == 0)
 	{
-	   ft_printf("Error\nNumber bigger than INT_MAXi\n");	
+	   ft_printf("Error\nNumber bigger than INT_MAX\n");	
 	   if (slots > 0)
 		   free(stack_a);
 	   exit(1);

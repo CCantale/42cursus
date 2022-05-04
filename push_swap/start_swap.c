@@ -22,11 +22,13 @@ void find_swap(int *stack_a, int *stack_b, int start, int slots)
 
 void	start_swap(int *stack_a, int *stack_b, int start, int slots)
 {
-	if (start < 0)
+	if (start > 0)
+		find_swap(stack_a, stack_b, start, slots);
+	else
 	{
 		start *= -1;
 		dnif_swap(stack_a, stack_b, start, slots);
 	}
-	else
-		find_swap(stack_a, stack_b, start, slots);
 }	
+
+/* I need the i value from the seq_swap()! */

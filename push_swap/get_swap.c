@@ -12,7 +12,7 @@
 
 #include "ps.h"
 
-int	*swap_swap(int *stack_a, char *str, int *slots)
+int	*make_swap(int *stack_a, char *new_nbr, int *slots)
 {
 	int	j;
 	int	*new_stack;
@@ -31,12 +31,14 @@ int	*swap_swap(int *stack_a, char *str, int *slots)
 		new_stack[j] = stack_a[j];
 		++j;
 	}
-	new_stack[*slots] = stack_atoi(str, stack_a, *slots);	
+	new_stack[*slots] = stack_atoi(new_nbr, stack_a, *slots);	
 	if (*slots > 0)
 		free(stack_a);
 	*slots += 1;
 	return (new_stack);
 }
+
+/* reallocates stack_a and adds atoi(new number) */
 
 int	rep_swap(int *stack_a, int slots)
 {
@@ -65,6 +67,8 @@ int	rep_swap(int *stack_a, int slots)
 	return (0);
 }
 
+/* aborts if numbers repeat */
+
 int	check_swap(char *str)
 {
 	int	i;
@@ -82,6 +86,8 @@ int	check_swap(char *str)
 	return (0);
 }
 
+/* checks the argv string. aborts if detects other than numbers and spaces */
+
 int	*put_swap(int *stack_a, char *str, int *slots)
 {
 	int	i;
@@ -93,18 +99,20 @@ int	*put_swap(int *stack_a, char *str, int *slots)
 	{
 		if (str[i] >= '0' && str[i] <= '9')
 		{
-			stack_a = swap_swap(stack_a, &str[i], slots);
+			stack_a = make_swap(stack_a, &str[i], slots);
 			if (!stack_a)
 				return (NULL);
 
 			while (str[i] >= '0' && str[i] <= '9')
 				++i;
-			continue;
+			continue ;
 		}
 		++i;
 	}
 	return (stack_a);
 }
+
+/* puts all the numbers in the given string in stack_a */
 
 int	*get_swap(int argc, char **argv, int *slots)
 {
