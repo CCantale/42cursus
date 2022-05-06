@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:45:50 by ccantale          #+#    #+#             */
-/*   Updated: 2022/04/14 17:30:10 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/05/06 17:37:41 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	*make_swap(int *stack_a, char *new_nbr, int *slots)
 		new_stack[j] = stack_a[j];
 		++j;
 	}
-	new_stack[*slots] = stack_atoi(new_nbr, stack_a, *slots);	
+	new_stack[*slots] = stack_atoi(new_nbr, stack_a, *slots);
 	if (*slots > 0)
 		free(stack_a);
 	*slots += 1;
@@ -102,7 +102,6 @@ int	*put_swap(int *stack_a, char *str, int *slots)
 			stack_a = make_swap(stack_a, &str[i], slots);
 			if (!stack_a)
 				return (NULL);
-
 			while (str[i] >= '0' && str[i] <= '9')
 				++i;
 			continue ;
@@ -129,11 +128,11 @@ int	*get_swap(int argc, char **argv, int *slots)
 	}
 	if (rep_swap(stack_a, *slots) == 1)
 		return (NULL);
-	i = 0;
-	while (i < slots)
-	{
-		ft_printf("%d ", stack_a[i]);
-		++i;
-	}
+																	i = 0;
+																	while (i < *slots)
+																	{
+																		ft_printf("%d ", stack_a[i]);
+																		++i;
+																	}
 	return (stack_a);
 }

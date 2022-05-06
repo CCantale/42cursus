@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 17:54:01 by ccantale          #+#    #+#             */
-/*   Updated: 2022/04/13 16:04:37 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/05/06 16:25:43 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ void	check_limits(unsigned int num, int sign, int *stack_a, int slots)
 {
 	if (num > 2147483647 && sign == 0)
 	{
-	   ft_printf("Error\nNumber bigger than INT_MAX\n");	
-	   if (slots > 0)
-		   free(stack_a);
-	   exit(1);
+		ft_printf("Error\nNumber bigger than INT_MAX\n");
+		if (slots > 0)
+			free(stack_a);
+		exit(1);
 	}
 	else if (num > 2147483648)
 	{
-	   ft_printf("Error\nNumber smaller than INT_MIN\n");	
-	   if (slots > 0)
-		   free(stack_a);
-	   exit(1);
+		ft_printf("Error\nNumber smaller than INT_MIN\n");
+		if (slots > 0)
+			free(stack_a);
+		exit(1);
 	}
 }
 
