@@ -6,11 +6,38 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 18:17:36 by ccantale          #+#    #+#             */
-/*   Updated: 2022/05/06 17:59:21 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/05/07 14:18:18 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
+
+void	print_swap(t_struct *s, int start)
+{
+	int	i;
+
+													ft_printf("start = %d\n slots = %d\n", start, s->slots);
+	if (start < s->slots / 2)
+	{
+		i = 0;
+		while (i < start)
+		{
+			ft_printf("ra\n");
+			++i;
+		}
+	}
+	else
+	{
+		i = start;
+		while (i < s->slots)
+		{
+			ft_printf("rra\n");
+			++i;
+		}
+	}
+}
+
+/* prints ra or rra depending on the starting point */
 
 int	*find_swap(t_struct *s, int start)
 {
@@ -32,64 +59,22 @@ int	*find_swap(t_struct *s, int start)
 		++j;
 	}
 	free(s->stack_a);
-	i = 0;
-	while (i < start + 1)
-	{
-		ft_printf("ra\n");
-		++i;
-	}
+	print_swap(s, start);
 	return (new_stack);
 }
 
-/* scrolls stack_a to the right, up to the starting point */
-
-int	*dnif_swap(t_struct *s, int start)
-{
-	int	i;
-	int	j;
-	int	*new_stack;
-
-	new_stack = malloc(sizeof(int) * s->slots);
-/*	i = start;
-	while (i < s->slots)
-	{
-		new_stack[i] = s->stack_a[start + i];
-		++i;
-	}
-	j = 0;
-	while (j < start)
-	{
-		new_stack[start + i] = s->stack_a[j];
-		++j;
-	}												*/
-	free(s->stack_a);
-	i = 0;
-	while (i < start + 1)
-	{
-		ft_printf("rra\n");
-		++i;
-	}
-	return (new_stack);
-}
-
-/* scrolls stack_a to the left, up to the starting point */
+/* scrolls stack_a up to the starting point */
 
 void	shift_swap(t_struct *s, int start)
 {
-	if (start > s->slots / 2)
-		s->stack_a = find_swap(s, start);
-	else
-		dnif_swap(s, start);
+	s->stack_a = find_swap(s, start);
 }
 
 /* puts longest increasing sequence in stack_b, right to left */
 
 void	tfihs_swap(t_struct *s, int start)
 {
-	if (start > s->slots / 2)
-		find_swap(s, start);
-	else
-		dnif_swap(s, start);
+	s->stack_a = find_swap(s, start);
 }
 
 /* puts longest increasing sequence in stack_b, left to right */
