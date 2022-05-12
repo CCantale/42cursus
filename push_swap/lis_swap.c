@@ -6,34 +6,34 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:20:40 by ccantale          #+#    #+#             */
-/*   Updated: 2022/05/07 20:59:52 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/05/12 19:21:52 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
 
-int	pmet_swap(int curr_num, int seq->temp, int *j, int *sequence)
+int	pmet_swap(int curr_num, int prev, int *j, int *sequence)
 {
-	if (curr_num > seq->temp)
+	if (curr_num > prev)
 	{
-		seq->temp = curr_num;
+		prev = curr_num;
 		*sequence += 1;
 	}
 	*j -= 1;
-	return (seq->temp);
+	return (prev);
 }
 
-/* it's seq->temp_swap(), but... you got it, right? */
+/* it's prev_swap(), but... you got it, right? */
 
 int	rev_swap(int *stack_a, int slots)
 {
 	int	i;
 	int	j;
-	int	seq->temp;
+	int	prev;
 	int	sequence;
 	int	max_seq[2];
 
-	seq->temp = stack_a[slots - 1];
+	prev = stack_a[slots - 1];
 	max_seq[0] = 0;
 	max_seq[1] = 0;
 	i = slots - 1;
@@ -42,7 +42,7 @@ int	rev_swap(int *stack_a, int slots)
 		sequence = 0;
 		j = slots - 1;
 		while (j >= 0)
-			seq->temp = pmet_swap(stack_a[j], seq->temp, &j, &sequence);
+			prev = pmet_swap(stack_a[j], prev, &j, &sequence);
 		if (sequence > max_seq[0])
 		{
 			max_seq[0] = sequence;
@@ -55,29 +55,29 @@ int	rev_swap(int *stack_a, int slots)
 
 /* it finds reverse longest sequence */
 
-int	seq->temp_swap(int curr_num, int seq->temp, int *j, int *sequence)
+int	prev_swap(int curr_num, int prev, int *j, int *sequence)
 {
-	if (curr_num > seq->temp)
+	if (curr_num > prev)
 	{
-		seq->temp = curr_num;
+		prev = curr_num;
 		*sequence += 1;
 	}
 	*j += 1;
-	return (seq->temp);
+	return (prev);
 }
 
-/* makes seq->temp (highest number so far) equal to the current
+/* makes prev (highest number so far) equal to the current
 ** number, if it's bigger. then increments j */
 
 int	seq_swap(int *stack_a, int slots)
 {
 	int	i;
 	int	j;
-	int	seq->temp;
+	int	prev;
 	int	sequence;
 	int	max_seq[2];
 
-	seq->temp = stack_a[0];
+	prev = stack_a[0];
 	max_seq[0] = 0;
 	max_seq[1] = 0;
 	i = 0;
@@ -86,7 +86,7 @@ int	seq_swap(int *stack_a, int slots)
 		sequence = 0;
 		j = 0;
 		while (j < slots)
-			seq->temp = seq->temp_swap(stack_a[j], seq->temp, &j, &sequence);
+			prev = prev_swap(stack_a[j], prev, &j, &sequence);
 		if (sequence > max_seq[0])
 		{
 			max_seq[0] = sequence;
@@ -109,7 +109,7 @@ void	lis_swap(t_struct *s)
 	ft_memset(s, 0, sizeof(*s));
 	seq->max = s->stack_a[0];
 	seq->burned = ft_calloc(slots, sizeof(int));
-	lis = seq_swap(s->stack_a, s->slots, &seq);
+	lis = seq_swap(s->stack_a, s->slots, &seq, 0);
 	lis_rev = rev_swap(s->stack_a, s->slots, &seq);
 	free(seq->burned);
 	if (lis_rev > lis)
@@ -124,32 +124,53 @@ void	lis_swap(t_struct *s)
 /* applies the LIS sorting algorithm */
 
 
-void	seq_swap(int *stack_a, int slots, t_lis *seq)
+/* void	seq_swap(int *stack_a, int slots, t_lis *seq, int prev)
 {
-	if (seq->pos < slots)
+
+	if (now == slots)
+		now = 0;
+	if  (stack_a[now] < stack_a[prev])
 	{
-		seq->temp = seq->cur_pos;
-		seq->cur_pos++;
-		if (seq->cur_pos == slots)
-			seq->cur_pos = 0;
-		while (stack_a[seq->cur_pos] < stack_a[seq->temp])
-		{
-			seq->cur_pos++;
-			if (seq->cur_pos == slots)
-				seq->cur_pos = 0;
-		}
-		while (seq->cur_pos != seq->temp)
-		{
-			seq->cur_seq++;
-			seq_swap(stack_a, slots, seq);
-			seq->cur_pos = 
-		}
-		if (seq->cur_seq > seq->max_seq)
-		{
-			seq->max->seq = seq->cur_seq;
-			seq->lis = seq->pos;
-		}
-		seq->pos++;
-		seq_swap(stack_a, slots, seq);
+		now++;
+		if (now == slots)
+			now = 0;
+		seq_swap(stack_a, slots, seq, now);
 	}
-}
+	else if (stack_a[now] > stack_a[prev])
+	{
+		seq->cur_seq++;
+		seq_swap(stack_a, slots, seq, now);
+	}
+	if (seq->cur_seq > seq->max_seq)
+	{
+		seq->max_seq = seq->cur_seq;
+		seq->lis = seq->pos;
+	}
+	while (prev == 0 && seq->pos < slots)
+	{	
+		seq->pos++;
+		seq_swap(stack_a, slots, seq, seq->pos);
+	}
+} */
+
+void	seq_swap(int stack_a, int slots, t_lis lis)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < lis->stack_nbr)
+	{
+		j = 0;
+		while (j < lis->stack
+		if (strack_a[lis->cur_pos] > lis->stack[i][lis->stack[i][slots]])
+			add_swap();
+		else if (
+
+/* Ogni nuovo numero viene comparato con l'ultimo numero di ogni array.
+ * se è più grande, si aggiunge il numero all'array, altrimenti si controlla
+ * il numero precedente e così via. Se si trova un numero più piccolo,
+ * si fa un nuovo array che è la copia di quello in questione fino a 
+ * quel punto e poi si aggiunge il numero corrente. Alla fine di tutto, si
+ * controlla se ci sono array che sono interamente contenuti in altri array
+ * e si eliminano gli array in eccesso */

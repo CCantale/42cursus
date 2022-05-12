@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:43:43 by ccantale          #+#    #+#             */
-/*   Updated: 2022/05/07 21:00:00 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/05/12 19:21:59 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct lis
 	int	temp;
 	int	cur_seq;
 	int	max_seq;
+	int	stack_nbr;
+	int	*stack;
 	int	lis;
 }	t_lis;
 
