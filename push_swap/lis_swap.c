@@ -153,19 +153,48 @@ void	lis_swap(t_struct *s)
 	}
 } */
 
+void	add_swap(int *stack, int nbr)
+{
+	++stack[0];
+	stack[stack[0]] = nbr;
+}	
+
+/* puts current nbr at the end of this specific LIS, since it's bigger
+** than its last nbr */
+
+void	back_swap(int *stack, int nbr)
+{
+}
+
+/* scrolls this LIS backwards and, if a nbr smaller than the current one is
+** found, creates a new LIS from there, adding current nbr at the end */
+
 void	seq_swap(int stack_a, int slots, t_lis lis)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < lis->stack_nbr)
+	while (i < slots)
 	{
-		j = 0;
-		while (j < lis->stack
-		if (strack_a[lis->cur_pos] > lis->stack[i][lis->stack[i][slots]])
-			add_swap();
-		else if (
+		j = i + 1;
+		while (j != i)
+		{
+			if (j == slots)
+			{
+				j = 0;
+				continue ;
+			}
+			if (stack_a[i] > lis->listack[j][listack[j][0]])
+				add_swap(lis->listack[j], stack_a[i]);
+			else if (stack_a[i] < lis->listack[j][listack[j][0]])
+				back_swap();
+			dredge_swap();
+			++j;
+		}
+		++i;
+	}
+}
 
 /* Ogni nuovo numero viene comparato con l'ultimo numero di ogni array.
  * se è più grande, si aggiunge il numero all'array, altrimenti si controlla
