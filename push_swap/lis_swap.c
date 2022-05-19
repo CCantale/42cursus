@@ -162,8 +162,31 @@ void	add_swap(int *stack, int nbr)
 /* puts current nbr at the end of this specific LIS, since it's bigger
 ** than its last nbr */
 
-void	back_swap(int *stack, int nbr)
+void	back_swap(int *stack, int nbr, t_lis lis)
 {
+	int	i;
+	int	j;
+
+	i = stack[0];
+	while (i > 0)
+	{
+		if (stack[i] < nbr)
+		{
+			lis->listack[lis->lis_nbr] = malloc(sizeof(int) * (i + 2));
+			lis->listack[lis->lis_nbr][0] = i;
+			lis->listack[lis->lis_nbr][i + 1] = nbr;
+			j = i;
+			while (j > 0)
+			{
+				lis->listack[lis->lis_nbr][j] = stack[j];
+				--j;
+			}
+			lis->lis_nbr++;
+			break ;
+		}
+		++i;
+	}
+			
 }
 
 /* scrolls this LIS backwards and, if a nbr smaller than the current one is
@@ -188,7 +211,7 @@ void	seq_swap(int stack_a, int slots, t_lis lis)
 			if (stack_a[i] > lis->listack[j][listack[j][0]])
 				add_swap(lis->listack[j], stack_a[i]);
 			else if (stack_a[i] < lis->listack[j][listack[j][0]])
-				back_swap();
+				back_swap(lis->listack[j], stack_a[i], lis);
 			dredge_swap();
 			++j;
 		}
