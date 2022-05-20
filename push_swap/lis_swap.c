@@ -107,8 +107,8 @@ void	lis_swap(t_struct *s)
 	int	lis_rev;
 
 	ft_memset(s, 0, sizeof(*s));
-	seq->max = s->stack_a[0];
-	seq->burned = ft_calloc(slots, sizeof(int));
+	//seq->max = s->stack_a[0];
+	//seq->burned = ft_calloc(slots, sizeof(int));
 	lis = seq_swap(s->stack_a, s->slots, &seq, 0);
 	lis_rev = rev_swap(s->stack_a, s->slots, &seq);
 	free(seq->burned);
@@ -162,7 +162,7 @@ void	add_swap(int *stack, int nbr)
 /* puts current nbr at the end of this specific LIS, since it's bigger
 ** than its last nbr */
 
-void	back_swap(int *stack, int nbr, t_lis lis)
+void	back_swap(int *stack, int nbr, int slots, t_lis *lis)
 {
 	int	i;
 	int	j;
@@ -172,7 +172,7 @@ void	back_swap(int *stack, int nbr, t_lis lis)
 	{
 		if (stack[i] < nbr)
 		{
-			lis->listack[lis->lis_nbr] = malloc(sizeof(int) * (i + 2));
+			lis->listack[lis->lis_nbr] = malloc(sizeof(int) * slots + 1);
 			lis->listack[lis->lis_nbr][0] = i;
 			lis->listack[lis->lis_nbr][i + 1] = nbr;
 			j = i;
@@ -184,7 +184,7 @@ void	back_swap(int *stack, int nbr, t_lis lis)
 			lis->lis_nbr++;
 			break ;
 		}
-		++i;
+		--i;
 	}
 			
 }
@@ -192,7 +192,60 @@ void	back_swap(int *stack, int nbr, t_lis lis)
 /* scrolls this LIS backwards and, if a nbr smaller than the current one is
 ** found, creates a new LIS from there, adding current nbr at the end */
 
-void	seq_swap(int stack_a, int slots, t_lis lis)
+void	kill_swap(int *useliss)
+{
+	free(useliss);
+	return (ft_calloc(1, sizeof(int))
+}
+
+/* kills the useless lis */
+
+void	dredge_swap(t_lis *lis)
+{
+	int	i;
+	int	j;
+	int	one;
+	int	two;
+	int	killed;
+
+	killed = 0;
+	i = 0;
+	while (i < lis->lis_nbr)
+	{
+		j = 0;
+		while (j < lis->lis_nbr)
+		{
+			one = 1;
+			two = 1;
+			while (one > lis->listack[i][0] && two > lis->listack[j][0])
+			{
+				if (lis->listack[i][one] == lis->listack[j][two])
+				{
+					++one;
+					if (one > lis->listack[i][0])
+					{
+						lis->listack[i] = kill_swap(lis->listack[i]);
+						killed = 1;
+						break ;
+					}
+				}
+				++two;
+			}
+			if (killed)
+			{
+				killed = 0;
+				break ;
+			}
+			++j;
+		}
+		++i;
+	}	
+}
+
+/* for each lis, checks if it's completely contained in one of the other
+ * lises. if so, replaces it with an array[1] whith just a 0 in it */
+
+void	seq_swap(int stack_a, int slots, t_lis *lis)
 {
 	int	i;
 	int	j;
@@ -208,11 +261,11 @@ void	seq_swap(int stack_a, int slots, t_lis lis)
 				j = 0;
 				continue ;
 			}
-			if (stack_a[i] > lis->listack[j][listack[j][0]])
+			if (stack_a[i] > lis->listack[j][lis->listack[j][0]])
 				add_swap(lis->listack[j], stack_a[i]);
-			else if (stack_a[i] < lis->listack[j][listack[j][0]])
-				back_swap(lis->listack[j], stack_a[i], lis);
-			dredge_swap();
+			else if (stack_a[i] < lis->listack[j][lis->listack[j][0]])
+				back_swap(lis->listack[j], stack_a[i], slots, lis);
+			dredge_swap(lis);
 			++j;
 		}
 		++i;
