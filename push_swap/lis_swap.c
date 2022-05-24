@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:20:40 by ccantale          #+#    #+#             */
-/*   Updated: 2022/05/12 19:21:52 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/05/24 13:12:16 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,50 +200,56 @@ void	kill_swap(int *useliss)
 
 /* kills the useless lis */
 
+int	same_swap(int *lis_one, int *lis_two)
+{
+	int	a;
+	int	b;
+
+	a = 1;
+	b = 1;
+	while (a <= lis_one[0] && b <= lis_two[0])
+	{
+		if (lis_one[a] == lis_two[b])
+			++a;
+		if (a > lis_one[0])
+			return (1);
+		++b;
+	}
+	return (0);
+}
+
+/* returns 1 if all the nbrs in the first LIS are conteined in the second one */
+
 void	dredge_swap(t_lis *lis)
 {
 	int	i;
 	int	j;
-	int	one;
-	int	two;
-	int	killed;
 
 	killed = 0;
 	i = 0;
 	while (i < lis->lis_nbr)
 	{
-		j = 0;
-		while (j < lis->lis_nbr)
+		if (lis->listack[i][0] > 0)
 		{
-			one = 1;
-			two = 1;
-			while (one > lis->listack[i][0] && two > lis->listack[j][0])
+			j = i + 1;
+			while (j != i)
 			{
-				if (lis->listack[i][one] == lis->listack[j][two])
+				if (j >= lis->lis_nbr)
+					j = 0;
+				if (same_swap(lis->listack[i], lis->listack[j]) > 0)
 				{
-					++one;
-					if (one > lis->listack[i][0])
-					{
-						lis->listack[i] = kill_swap(lis->listack[i]);
-						killed = 1;
-						break ;
-					}
+					kill_swap(lis->listack[i];
+					break ;
 				}
-				++two;
+				++j;
 			}
-			if (killed)
-			{
-				killed = 0;
-				break ;
-			}
-			++j;
 		}
 		++i;
 	}	
 }
 
 /* for each lis, checks if it's completely contained in one of the other
- * lises. if so, replaces it with an array[1] whith just a 0 in it */
+** LISes. if so, replaces it with an array[1] whith just a 0 in it */
 
 void	seq_swap(int stack_a, int slots, t_lis *lis)
 {

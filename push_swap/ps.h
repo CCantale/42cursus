@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/11 16:43:43 by ccantale          #+#    #+#             */
-/*   Updated: 2022/05/12 19:21:59 by ccantale         ###   ########.fr       */
+/*   Created: 2022/05/24 11:36:20 by ccantale          #+#    #+#             */
+/*   Updated: 2022/05/24 13:12:19 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct lis
 	int	max_seq;
 	int	stack_nbr;
 	int	**listack;
+	int	lis_nbr;
 	int	lis;
 }	t_lis;
 
