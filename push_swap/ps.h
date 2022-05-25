@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 11:36:20 by ccantale          #+#    #+#             */
-/*   Updated: 2022/05/24 13:12:19 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/05/25 17:00:41 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,9 @@ typedef struct base
 typedef struct lis
 {
 	int	max;
-	int	pos;
-	int	cur_pos;
-	int	temp;
-	int	cur_seq;
-	int	max_seq;
 	int	stack_nbr;
-	int	**listack;
+	int	*listack[4000000];
 	int	lis_nbr;
-	int	lis;
 }	t_lis;
 
 int		*get_swap(int argc, char **argv, int *slots);
