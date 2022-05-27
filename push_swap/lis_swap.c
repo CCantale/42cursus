@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:20:40 by ccantale          #+#    #+#             */
-/*   Updated: 2022/05/27 17:02:05 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/05/27 17:50:45 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,19 +187,45 @@ void	seq_swap(int *stack_a, int slots, t_lis *lis)
  * controlla se ci sono array che sono interamente contenuti in altri array
  * e si eliminano gli array in eccesso */
 
+void	free_swap(int slots, t_lis *lis)
+{
+	int	i;
+
+	i = 0;
+	while (i < lis->lis_nbr)
+	{
+		if (lis->listack[i][0] > lis->max[0])
+		{
+			if (lis->max[0] == 0)
+				free(lis->max);
+			lis->max = lis->listack[i];
+		}
+		++i;
+	}
+	i = 0;
+	while (i < slots * 2)
+	{
+		if (lis->listack[i] != lis->max)
+			free(lis->listack[i]);
+		++i;
+	}
+	free(lis->listack);
+}
+
+/* saves the longest LIS in lis->max and free()s the rest */
+
 void	struct_swap(int slots, t_lis *lis)
 {
-	lis->max = 0;
+	lis->max = ft_calloc(1, sizeof(int));
 	lis->lis_nbr = 0;
-	lis->listack = malloc(sizeof(int *) * (slots * 10));
+	lis->listack = malloc(sizeof(int *) * (slots * 2));
 }
 
 /* initializes the lis struct */ 
 
-void	lis_swap(t_struct *s)
+int	*lis_swap(t_struct *s)
 {
 	t_lis	*lis;
-	//int	lis_rev;
 																int	i;
 																int	j;
 
@@ -220,16 +246,16 @@ void	lis_swap(t_struct *s)
 																	}
 																	++i;
 																}
-	/*lis_rev = rev_swap(s->stack_a, s->slots, &seq);
-	if (lis_rev > lis)
-	{
-		lis_rev *= -1;
-		start_swap(s, lis_rev);
-	}
-	else*/
-	//		start_swap(s, lis);
-	free(lis->listack);
+	free_swap(s->slots, lis);
+																ft_printf("\n\nMAX: \n");
+																i = 0;
+																while (i <= lis->max[0])
+																{
+																	ft_printf("%d-", lis->max[i]);
+																	++i;
+																}
 	free(lis);
+	return(lis->max);
 }
 
 /* applies the LIS sorting algorithm */
