@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:20:40 by ccantale          #+#    #+#             */
-/*   Updated: 2022/05/26 18:10:11 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/05/27 17:02:05 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,31 +21,49 @@ void	add_swap(int *stack, int nbr)
 /* puts current nbr at the end of this specific LIS, since it's bigger
 ** than its last nbr */
 
+int	seek_swap(t_lis *lis)
+{
+	int	i;
+
+	i = 0;
+	while (i < lis->lis_nbr)
+	{
+		if (lis->listack[i][0] == 0)
+			return (i);
+		++i;
+	}
+	return (lis->lis_nbr);
+}
+
+/* seeks for an empty slot to put the new LIS. if there's none returns lis_nbr */
+
 void	back_swap(int *curr_lis, int nbr, int slots, t_lis *lis)
 {
 	int	i;
 	int	j;
+	int	pos;
 
 	i = curr_lis[0] - 1;
 	while (i > 0)
 	{
 		if (curr_lis[i] < nbr)
 		{
-			lis->listack[lis->lis_nbr] = malloc(sizeof(int) * slots + 1);
-			lis->listack[lis->lis_nbr][0] = i;
-			lis->listack[lis->lis_nbr][i] = nbr;
-			j = i - 1;
+			pos = seek_swap(lis);
+			lis->listack[pos] = malloc(sizeof(int) * slots + 1);
+			lis->listack[pos][0] = i;
+			lis->listack[pos][i + 1] = nbr;
+			j = i;
 			while (j > 0)
 			{
-				lis->listack[lis->lis_nbr][j] = curr_lis[j];
+				lis->listack[pos][j] = curr_lis[j];
 				--j;
 			}
-			lis->lis_nbr += 1;
+			if (pos == lis->lis_nbr)
+				lis->lis_nbr += 1;
 			break ;
 		}
 		--i;
 	}
-			
 }
 
 /* scrolls this LIS backwards and, if a nbr smaller than the current one is
@@ -109,10 +127,14 @@ void	dredge_swap(t_lis *lis)
 
 void	make_swap(int nbr, int slots, t_lis *lis)
 {
-	lis->listack[lis->lis_nbr] = malloc(sizeof(int) * slots + 1);
-	lis->listack[lis->lis_nbr][0] = 1;	
-	lis->listack[lis->lis_nbr][1] = nbr;
-	lis->lis_nbr += 1;	
+	int	pos;
+
+	pos = seek_swap(lis);
+	lis->listack[pos] = malloc(sizeof(int) * slots + 1);
+	lis->listack[pos][0] = 1;	
+	lis->listack[pos][1] = nbr;
+	if (pos == lis->lis_nbr)
+		lis->lis_nbr += 1;	
 }
 
 /* starts a new LIS that only contains the current nbr */
@@ -121,6 +143,8 @@ void	seq_swap(int *stack_a, int slots, t_lis *lis)
 {
 	int	i;
 	int	j;
+																int	k;
+																int	l;
 
 	i = 0;
 	while (i < slots)
@@ -129,16 +153,14 @@ void	seq_swap(int *stack_a, int slots, t_lis *lis)
 		j = 0;
 		while (j < lis->lis_nbr)
 		{
-			if (stack_a[i] > lis->listack[j][lis->listack[j][0]])
+			if (lis->listack[j][lis->listack[j][0]] > 0 && stack_a[i] > lis->listack[j][lis->listack[j][0]])
 				add_swap(lis->listack[j], stack_a[i]);
-			else if (stack_a[i] < lis->listack[j][lis->listack[j][0]])
+			else if (lis->listack[j][lis->listack[j][0]] > 0 && stack_a[i] < lis->listack[j][lis->listack[j][0]])
 				back_swap(lis->listack[j], stack_a[i], slots, lis);
 			++j;
 		}
 		dredge_swap(lis);
 		++i;
-																int	k;
-																int	l;
 																k = 0;
 																ft_printf("\n\nlap #%d\n", i);
 																while (k < lis->lis_nbr)
@@ -148,7 +170,7 @@ void	seq_swap(int *stack_a, int slots, t_lis *lis)
 																	ft_printf("lis #%d  ", k);
 																	while (l <= lis->listack[k][0])
 																	{
-																		ft_printf("%d", lis->listack[k][l]);
+																		ft_printf("%d-", lis->listack[k][l]);
 																		++l;
 																	}
 																	++k;
@@ -169,7 +191,7 @@ void	struct_swap(int slots, t_lis *lis)
 {
 	lis->max = 0;
 	lis->lis_nbr = 0;
-	lis->listack = malloc(sizeof(int *) * (slots * 5));
+	lis->listack = malloc(sizeof(int *) * (slots * 10));
 }
 
 /* initializes the lis struct */ 
@@ -184,6 +206,7 @@ void	lis_swap(t_struct *s)
 	lis = malloc(sizeof(t_lis));
 	struct_swap(s->slots, lis);
 	seq_swap(s->stack_a, s->slots, lis);
+																ft_printf("\n\nFinale:\n");
 																i = 0;
 																while (i < lis->lis_nbr)
 																{
@@ -192,7 +215,7 @@ void	lis_swap(t_struct *s)
 																	ft_printf("lis #%d  ", i);
 																	while (j <= lis->listack[i][0])
 																	{
-																		ft_printf("%d", lis->listack[i][j]);
+																		ft_printf("%d-", lis->listack[i][j]);
 																		++j;
 																	}
 																	++i;
