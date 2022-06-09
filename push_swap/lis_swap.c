@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:20:40 by ccantale          #+#    #+#             */
-/*   Updated: 2022/05/27 17:50:45 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/06/09 17:51:07 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ int	seek_swap(t_lis *lis)
 	while (i < lis->lis_nbr)
 	{
 		if (lis->listack[i][0] == 0)
+		{
+			free(lis->listack[i]);
 			return (i);
+		}
 		++i;
 	}
 	return (lis->lis_nbr);
@@ -60,7 +63,6 @@ void	back_swap(int *curr_lis, int nbr, int slots, t_lis *lis)
 			}
 			if (pos == lis->lis_nbr)
 				lis->lis_nbr += 1;
-			break ;
 		}
 		--i;
 	}
@@ -122,7 +124,7 @@ void	dredge_swap(t_lis *lis)
 	}	
 }
 
-/* for each lis, checks if it's completely contained in one of the other
+/* for each LIS, checks if it's completely contained in one of the other
 ** LISes. if so, replaces it with an array[1] whith just a 0 in it */
 
 void	make_swap(int nbr, int slots, t_lis *lis)
@@ -153,16 +155,16 @@ void	seq_swap(int *stack_a, int slots, t_lis *lis)
 		j = 0;
 		while (j < lis->lis_nbr)
 		{
-			if (lis->listack[j][lis->listack[j][0]] > 0 && stack_a[i] > lis->listack[j][lis->listack[j][0]])
+			if (stack_a[i] > lis->listack[j][lis->listack[j][0]])
 				add_swap(lis->listack[j], stack_a[i]);
-			else if (lis->listack[j][lis->listack[j][0]] > 0 && stack_a[i] < lis->listack[j][lis->listack[j][0]])
+			else
 				back_swap(lis->listack[j], stack_a[i], slots, lis);
 			++j;
 		}
 		dredge_swap(lis);
 		++i;
 																k = 0;
-																ft_printf("\n\nlap #%d\n", i);
+																ft_printf("\n\nLAP #%d\n", i);
 																while (k < lis->lis_nbr)
 																{
 																	ft_printf("\n");
@@ -218,7 +220,7 @@ void	struct_swap(int slots, t_lis *lis)
 {
 	lis->max = ft_calloc(1, sizeof(int));
 	lis->lis_nbr = 0;
-	lis->listack = malloc(sizeof(int *) * (slots * 2));
+	lis->listack = malloc(sizeof(int *) * (slots * 5));
 }
 
 /* initializes the lis struct */ 
