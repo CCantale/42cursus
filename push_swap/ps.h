@@ -32,6 +32,7 @@ typedef struct lis
 	int	max_seq;
 	int	stack_nbr;
 	int	**listack;
+	int	lis_nbr;
 	int	lis;
 }	t_lis;
 
