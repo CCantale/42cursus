@@ -6,17 +6,49 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 18:17:36 by ccantale          #+#    #+#             */
-/*   Updated: 2022/05/07 14:18:18 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/06/09 19:20:31 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
 
+int	*rem_swap(int *stack_a, int *lis, int slots, int slots_b)
+{
+	int	i;
+	int	j;
+	int	k;
+	int *new_a;
+
+	new_a = malloc(sizeof(int) * slots - slots_b);
+	k = 0;
+	j = 0;
+	i = 0;
+	while (i < slots)
+	{
+		if (stack_a[i] == lis[j])
+		{
+			ft_printf("pb\n");
+			++j;
+		}
+		else
+		{
+			new_a[k] = stack_a[i];
+			++k;
+			ft_printf("ra\n");
+		}
+		++i;
+	}
+	free(stack_a);
+	return (new_a);
+}
+
+/* pushes the LIS to stack_b (actually just removes the LIS from stack_a) 
+** and prints out the required operations */
+
 void	print_swap(t_struct *s, int start)
 {
 	int	i;
 
-													ft_printf("start = %d\n slots = %d\n", start, s->slots);
 	if (start < s->slots / 2)
 	{
 		i = 0;
@@ -39,55 +71,58 @@ void	print_swap(t_struct *s, int start)
 
 /* prints ra or rra depending on the starting point */
 
-int	*find_swap(t_struct *s, int start)
+int	*shift_swap(int *stack_a, int start, int slots)
 {
 	int	i;
 	int	j;
-	int	*new_stack;
+	int	*scrolled_stack;
 
-	new_stack = malloc(sizeof(int) * s->slots);
+	scrolled_stack = malloc(sizeof(int) * slots + 1);
 	i = start;
-	while (i < s->slots)
-	{
-		new_stack[i] = s->stack_a[start + i];
-		++i;
-	}
 	j = 0;
-	while (j < start)
+	while (j < slots)
 	{
-		new_stack[start + i] = s->stack_a[j];
+		scrolled_stack[j] = stack_a[i];
+		++i;
 		++j;
+		if (i >= slots)
+			i = 0;
 	}
-	free(s->stack_a);
-	print_swap(s, start);
-	return (new_stack);
+	free(stack_a);
+	return (scrolled_stack);	
 }
 
 /* scrolls stack_a up to the starting point */
 
-void	shift_swap(t_struct *s, int start)
+int	where_swap(int *stack_a, int start, int slots)
 {
-	s->stack_a = find_swap(s, start);
-}
+	int	i;
 
-/* puts longest increasing sequence in stack_b, right to left */
-
-void	tfihs_swap(t_struct *s, int start)
-{
-	s->stack_a = find_swap(s, start);
-}
-
-/* puts longest increasing sequence in stack_b, left to right */
-
-void	start_swap(t_struct *s, int start)
-{
-	if (start > 0)
-		shift_swap(s, start);
-	else
+	i = 0;
+	while (i < slots)
 	{
-		start *= -1;
-		tfihs_swap(s, start);
+		if (stack_a[i] == start)
+			return (i);
+		++i;
 	}
+	return (-1);
+}
+
+/* finds the first nbr of the LIS in stack_a */
+
+void	start_swap(t_struct *s, int	*lis)
+{
+	int	start;
+
+	start = where_swap(s->stack_a, lis[1], s->slots);
+	if (start < 0)
+		ft_printf("Wait... WHAT?!?!");
+	print_swap(s, start);
+	s->stack_a = shift_swap(s->stack_a, lis[1], s->slots);
+	free(s->stack_b);
+	s->stack_b = lis + 1;
+	s->slots_b = lis[0];
+	s->stack_a = rem_swap(s->stack_a, lis + 1, s->slots, s->slots_b);
 }	
 
-/* Write comment here... */
+/* scrolls stack_a to the fist nbr of the LIS, then pushes the LIS in stack_b */

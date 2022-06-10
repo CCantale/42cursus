@@ -6,152 +6,11 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:20:40 by ccantale          #+#    #+#             */
-/*   Updated: 2022/05/12 19:21:52 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/06/09 17:51:07 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
-
-int	pmet_swap(int curr_num, int prev, int *j, int *sequence)
-{
-	if (curr_num > prev)
-	{
-		prev = curr_num;
-		*sequence += 1;
-	}
-	*j -= 1;
-	return (prev);
-}
-
-/* it's prev_swap(), but... you got it, right? */
-
-int	rev_swap(int *stack_a, int slots)
-{
-	int	i;
-	int	j;
-	int	prev;
-	int	sequence;
-	int	max_seq[2];
-
-	prev = stack_a[slots - 1];
-	max_seq[0] = 0;
-	max_seq[1] = 0;
-	i = slots - 1;
-	while (i >= 0)
-	{
-		sequence = 0;
-		j = slots - 1;
-		while (j >= 0)
-			prev = pmet_swap(stack_a[j], prev, &j, &sequence);
-		if (sequence > max_seq[0])
-		{
-			max_seq[0] = sequence;
-			max_seq[1] = i;
-		}
-		--i;
-	}
-	return (max_seq[1]);
-}
-
-/* it finds reverse longest sequence */
-
-int	prev_swap(int curr_num, int prev, int *j, int *sequence)
-{
-	if (curr_num > prev)
-	{
-		prev = curr_num;
-		*sequence += 1;
-	}
-	*j += 1;
-	return (prev);
-}
-
-/* makes prev (highest number so far) equal to the current
-** number, if it's bigger. then increments j */
-
-int	seq_swap(int *stack_a, int slots)
-{
-	int	i;
-	int	j;
-	int	prev;
-	int	sequence;
-	int	max_seq[2];
-
-	prev = stack_a[0];
-	max_seq[0] = 0;
-	max_seq[1] = 0;
-	i = 0;
-	while (i < slots)
-	{
-		sequence = 0;
-		j = 0;
-		while (j < slots)
-			prev = prev_swap(stack_a[j], prev, &j, &sequence);
-		if (sequence > max_seq[0])
-		{
-			max_seq[0] = sequence;
-			max_seq[1] = i;
-		}
-		++i;
-	}
-	return (max_seq[1]);
-}
-
-/* finds longest sequence of crescent numbers
-** and returns seq->position of the first element */
-
-void	lis_swap(t_struct *s)
-{
-	t_lis	seq;
-	int	lis;
-	int	lis_rev;
-
-	ft_memset(s, 0, sizeof(*s));
-	//seq->max = s->stack_a[0];
-	//seq->burned = ft_calloc(slots, sizeof(int));
-	lis = seq_swap(s->stack_a, s->slots, &seq, 0);
-	lis_rev = rev_swap(s->stack_a, s->slots, &seq);
-	free(seq->burned);
-	if (lis_rev > lis)
-	{
-		lis_rev *= -1;
-		start_swap(s, lis_rev);
-	}
-	else
-		start_swap(s, lis);
-}
-
-/* applies the LIS sorting algorithm */
-
-
-/* void	seq_swap(int *stack_a, int slots, t_lis *seq, int prev)
-{
-
-	if (now == slots)
-		now = 0;
-	if  (stack_a[now] < stack_a[prev])
-	{
-		now++;
-		if (now == slots)
-			now = 0;
-		seq_swap(stack_a, slots, seq, now);
-	}
-	else if (stack_a[now] > stack_a[prev])
-	{
-		seq->cur_seq++;
-		seq_swap(stack_a, slots, seq, now);
-	}
-	if (seq->cur_seq > seq->max_seq)
-	{
-		seq->max_seq = seq->cur_seq;
-		seq->lis = seq->pos;
-	}
-	while (prev == 0 && seq->pos < slots)
-	{	
-		seq->pos++;
-		seq_swap(stack_a, slots, seq, seq->pos);
-	}
-} */
 
 void	add_swap(int *stack, int nbr)
 {
@@ -162,120 +21,243 @@ void	add_swap(int *stack, int nbr)
 /* puts current nbr at the end of this specific LIS, since it's bigger
 ** than its last nbr */
 
-void	back_swap(int *stack, int nbr, int slots, t_lis *lis)
+int	seek_swap(t_lis *lis)
+{
+	int	i;
+
+	i = 0;
+	while (i < lis->lis_nbr)
+	{
+		if (lis->listack[i][0] == 0)
+		{
+			free(lis->listack[i]);
+			return (i);
+		}
+		++i;
+	}
+	return (lis->lis_nbr);
+}
+
+/* seeks for an empty slot to put the new LIS. if there's none returns lis_nbr */
+
+void	back_swap(int *curr_lis, int nbr, int slots, t_lis *lis)
 {
 	int	i;
 	int	j;
+	int	pos;
 
-	i = stack[0];
+	i = curr_lis[0] - 1;
 	while (i > 0)
 	{
-		if (stack[i] < nbr)
+		if (curr_lis[i] < nbr)
 		{
-			lis->listack[lis->lis_nbr] = malloc(sizeof(int) * slots + 1);
-			lis->listack[lis->lis_nbr][0] = i;
-			lis->listack[lis->lis_nbr][i + 1] = nbr;
+			pos = seek_swap(lis);
+			lis->listack[pos] = malloc(sizeof(int) * slots + 1);
+			lis->listack[pos][0] = i;
+			lis->listack[pos][i + 1] = nbr;
 			j = i;
 			while (j > 0)
 			{
-				lis->listack[lis->lis_nbr][j] = stack[j];
+				lis->listack[pos][j] = curr_lis[j];
 				--j;
 			}
-			lis->lis_nbr++;
-			break ;
+			if (pos == lis->lis_nbr)
+				lis->lis_nbr += 1;
 		}
 		--i;
 	}
-			
 }
 
 /* scrolls this LIS backwards and, if a nbr smaller than the current one is
 ** found, creates a new LIS from there, adding current nbr at the end */
 
-void	kill_swap(int *useliss)
+int	*kill_swap(int *useliss)
 {
 	free(useliss);
-	return (ft_calloc(1, sizeof(int))
+	return (ft_calloc(1, sizeof(int)));
 }
 
 /* kills the useless lis */
+
+int	same_swap(int *lis_one, int *lis_two)
+{
+	int	a;
+	int	b;
+
+	a = 1;
+	b = 1;
+	while (a <= lis_one[0] && b <= lis_two[0])
+	{
+		if (lis_one[a] == lis_two[b])
+			++a;
+		if (a > lis_one[0])
+			return (1);
+		++b;
+	}
+	return (0);
+}
+
+/* returns 1 if all the nbrs in the first LIS are conteined in the second one */
 
 void	dredge_swap(t_lis *lis)
 {
 	int	i;
 	int	j;
-	int	one;
-	int	two;
-	int	killed;
 
-	killed = 0;
 	i = 0;
 	while (i < lis->lis_nbr)
 	{
-		j = 0;
-		while (j < lis->lis_nbr)
+		if (lis->listack[i][0] > 0)
 		{
-			one = 1;
-			two = 1;
-			while (one > lis->listack[i][0] && two > lis->listack[j][0])
+			j = 0;
+			while (j < lis->lis_nbr)
 			{
-				if (lis->listack[i][one] == lis->listack[j][two])
+				if (lis->listack[j][0] > 0 && j != i
+						&& same_swap(lis->listack[i], lis->listack[j]) > 0)
 				{
-					++one;
-					if (one > lis->listack[i][0])
-					{
-						lis->listack[i] = kill_swap(lis->listack[i]);
-						killed = 1;
-						break ;
-					}
+					lis->listack[i] = kill_swap(lis->listack[i]);
 				}
-				++two;
+				++j;
 			}
-			if (killed)
-			{
-				killed = 0;
-				break ;
-			}
-			++j;
 		}
 		++i;
 	}	
 }
 
-/* for each lis, checks if it's completely contained in one of the other
- * lises. if so, replaces it with an array[1] whith just a 0 in it */
+/* for each LIS, checks if it's completely contained in one of the other
+** LISes. if so, replaces it with an array[1] whith just a 0 in it */
 
-void	seq_swap(int stack_a, int slots, t_lis *lis)
+void	make_swap(int nbr, int slots, t_lis *lis)
+{
+	int	pos;
+
+	pos = seek_swap(lis);
+	lis->listack[pos] = malloc(sizeof(int) * slots + 1);
+	lis->listack[pos][0] = 1;	
+	lis->listack[pos][1] = nbr;
+	if (pos == lis->lis_nbr)
+		lis->lis_nbr += 1;	
+}
+
+/* starts a new LIS that only contains the current nbr */
+
+void	seq_swap(int *stack_a, int slots, t_lis *lis)
 {
 	int	i;
 	int	j;
+																int	k;
+																int	l;
 
 	i = 0;
 	while (i < slots)
 	{
-		j = i + 1;
-		while (j != i)
+		make_swap(stack_a[i], slots, lis);
+		j = 0;
+		while (j < lis->lis_nbr)
 		{
-			if (j == slots)
-			{
-				j = 0;
-				continue ;
-			}
 			if (stack_a[i] > lis->listack[j][lis->listack[j][0]])
 				add_swap(lis->listack[j], stack_a[i]);
-			else if (stack_a[i] < lis->listack[j][lis->listack[j][0]])
+			else
 				back_swap(lis->listack[j], stack_a[i], slots, lis);
-			dredge_swap(lis);
 			++j;
 		}
+		dredge_swap(lis);
 		++i;
+																k = 0;
+																ft_printf("\n\nLAP #%d\n", i);
+																while (k < lis->lis_nbr)
+																{
+																	ft_printf("\n");
+																	l = 0;
+																	ft_printf("lis #%d  ", k);
+																	while (l <= lis->listack[k][0])
+																	{
+																		ft_printf("%d-", lis->listack[k][l]);
+																		++l;
+																	}
+																	++k;
+																}
+
 	}
 }
 
-/* Ogni nuovo numero viene comparato con l'ultimo numero di ogni array.
- * se è più grande, si aggiunge il numero all'array, altrimenti si controlla
- * il numero precedente e così via. Se si trova un numero più piccolo,
+/* Ogni nuovo numero viene comparato con l'ultimo numero di ogni LIS.
+ * se è più grande, si aggiunge il numero alla LIS, altrimenti controlla
+ * il resto della LIS a ritroso. Se si trova un numero più piccolo,
  * si fa un nuovo array che è la copia di quello in questione fino a 
  * quel punto e poi si aggiunge il numero corrente. Alla fine di tutto, si
  * controlla se ci sono array che sono interamente contenuti in altri array
  * e si eliminano gli array in eccesso */
+
+void	free_swap(int slots, t_lis *lis)
+{
+	int	i;
+
+	i = 0;
+	while (i < lis->lis_nbr)
+	{
+		if (lis->listack[i][0] > lis->max[0])
+		{
+			if (lis->max[0] == 0)
+				free(lis->max);
+			lis->max = lis->listack[i];
+		}
+		++i;
+	}
+	i = 0;
+	while (i < slots * 2)
+	{
+		if (lis->listack[i] != lis->max)
+			free(lis->listack[i]);
+		++i;
+	}
+	free(lis->listack);
+}
+
+/* saves the longest LIS in lis->max and free()s the rest */
+
+void	struct_swap(int slots, t_lis *lis)
+{
+	lis->max = ft_calloc(1, sizeof(int));
+	lis->lis_nbr = 0;
+	lis->listack = malloc(sizeof(int *) * (slots * 5));
+}
+
+/* initializes the lis struct */ 
+
+int	*lis_swap(t_struct *s)
+{
+	t_lis	*lis;
+																int	i;
+																int	j;
+
+	lis = malloc(sizeof(t_lis));
+	struct_swap(s->slots, lis);
+	seq_swap(s->stack_a, s->slots, lis);
+																ft_printf("\n\nFinale:\n");
+																i = 0;
+																while (i < lis->lis_nbr)
+																{
+																	ft_printf("\n");
+																	j = 0;
+																	ft_printf("lis #%d  ", i);
+																	while (j <= lis->listack[i][0])
+																	{
+																		ft_printf("%d-", lis->listack[i][j]);
+																		++j;
+																	}
+																	++i;
+																}
+	free_swap(s->slots, lis);
+																ft_printf("\n\nMAX: \n");
+																i = 0;
+																while (i <= lis->max[0])
+																{
+																	ft_printf("%d-", lis->max[i]);
+																	++i;
+																}
+	free(lis);
+	return(lis->max);
+}
+
+/* applies the LIS sorting algorithm */

@@ -6,13 +6,13 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:45:50 by ccantale          #+#    #+#             */
-/*   Updated: 2022/05/06 17:37:41 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/05/26 15:00:25 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
 
-int	*make_swap(int *stack_a, char *new_nbr, int *slots)
+int	*grow_swap(int *stack_a, char *new_nbr, int *slots)
 {
 	int	j;
 	int	*new_stack;
@@ -99,7 +99,7 @@ int	*put_swap(int *stack_a, char *str, int *slots)
 	{
 		if (str[i] >= '0' && str[i] <= '9')
 		{
-			stack_a = make_swap(stack_a, &str[i], slots);
+			stack_a = grow_swap(stack_a, &str[i], slots);
 			if (!stack_a)
 				return (NULL);
 			while (str[i] >= '0' && str[i] <= '9')

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/11 16:43:43 by ccantale          #+#    #+#             */
-/*   Updated: 2022/05/12 19:21:59 by ccantale         ###   ########.fr       */
+/*   Created: 2022/05/24 11:36:20 by ccantale          #+#    #+#             */
+/*   Updated: 2022/05/27 17:50:30 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,14 @@ typedef struct base
 
 typedef struct lis
 {
-	int	max;
-	int	pos;
-	int	cur_pos;
-	int	temp;
-	int	cur_seq;
-	int	max_seq;
-	int	stack_nbr;
-	int	**listack;
+	int	*max;
 	int	lis_nbr;
-	int	lis;
+	int	**listack;
 }	t_lis;
 
 int		*get_swap(int argc, char **argv, int *slots);
 int		stack_atoi(char *str, int *stack_a, int slots);
-void	lis_swap(t_struct *s);
-void	start_swap(t_struct *s, int start);
+int		*lis_swap(t_struct *s);
+void	start_swap(t_struct *s, int *lis);
 
 #endif
