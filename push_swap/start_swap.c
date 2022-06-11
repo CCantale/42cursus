@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 18:17:36 by ccantale          #+#    #+#             */
-/*   Updated: 2022/06/09 19:20:31 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/06/11 15:15:49 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	print_swap(t_struct *s, int start)
 {
 	int	i;
 
-	if (start < s->slots / 2)
+	if (start <= s->slots / 2)
 	{
 		i = 0;
 		while (i < start)
@@ -118,7 +118,7 @@ void	start_swap(t_struct *s, int	*lis)
 	if (start < 0)
 		ft_printf("Wait... WHAT?!?!");
 	print_swap(s, start);
-	s->stack_a = shift_swap(s->stack_a, lis[1], s->slots);
+	s->stack_a = shift_swap(s->stack_a, start, s->slots);
 	free(s->stack_b);
 	s->stack_b = lis + 1;
 	s->slots_b = lis[0];
