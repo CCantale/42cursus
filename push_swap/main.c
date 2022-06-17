@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:30:00 by ccantale          #+#    #+#             */
-/*   Updated: 2022/05/27 17:47:39 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/06/17 00:29:54 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 	if (!s.stack_a)
 		return (0);
 	start_swap(&s, lis_swap(&s));
-	free(s.stack_a);
+	free(s.stack_a - 1);
 	free(s.stack_b);
 	return (0);
 }

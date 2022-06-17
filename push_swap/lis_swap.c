@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:20:40 by ccantale          #+#    #+#             */
-/*   Updated: 2022/06/09 17:51:07 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/06/17 02:44:29 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,13 @@ int	seek_swap(t_lis *lis)
 		}
 		++i;
 	}
-	return (lis->lis_nbr);
+	lis->lis_nbr += 1;
+	return (lis->lis_nbr - 1);
 }
 
 /* seeks for an empty slot to put the new LIS. if there's none returns lis_nbr */
 
-void	back_swap(int *curr_lis, int nbr, int slots, t_lis *lis)
+int	back_swap(int *curr_lis, int nbr, int slots, t_lis *lis)
 {
 	int	i;
 	int	j;
@@ -61,11 +62,11 @@ void	back_swap(int *curr_lis, int nbr, int slots, t_lis *lis)
 				lis->listack[pos][j] = curr_lis[j];
 				--j;
 			}
-			if (pos == lis->lis_nbr)
-				lis->lis_nbr += 1;
+			return (1);
 		}
 		--i;
 	}
+	return (0);
 }
 
 /* scrolls this LIS backwards and, if a nbr smaller than the current one is
@@ -97,7 +98,7 @@ int	same_swap(int *lis_one, int *lis_two)
 	return (0);
 }
 
-/* returns 1 if all the nbrs in the first LIS are conteined in the second one */
+/* returns 1 if all the nbrs in the first LIS are contained in the second one */
 
 void	dredge_swap(t_lis *lis)
 {
@@ -116,6 +117,7 @@ void	dredge_swap(t_lis *lis)
 						&& same_swap(lis->listack[i], lis->listack[j]) > 0)
 				{
 					lis->listack[i] = kill_swap(lis->listack[i]);
+					break ;
 				}
 				++j;
 			}
@@ -135,8 +137,6 @@ void	make_swap(int nbr, int slots, t_lis *lis)
 	lis->listack[pos] = malloc(sizeof(int) * slots + 1);
 	lis->listack[pos][0] = 1;	
 	lis->listack[pos][1] = nbr;
-	if (pos == lis->lis_nbr)
-		lis->lis_nbr += 1;	
 }
 
 /* starts a new LIS that only contains the current nbr */
@@ -145,24 +145,32 @@ void	seq_swap(int *stack_a, int slots, t_lis *lis)
 {
 	int	i;
 	int	j;
-																int	k;
-																int	l;
+	int	back;
 
+	back = 0;
 	i = 0;
 	while (i < slots)
 	{
-		make_swap(stack_a[i], slots, lis);
 		j = 0;
 		while (j < lis->lis_nbr)
 		{
 			if (stack_a[i] > lis->listack[j][lis->listack[j][0]])
+			{
 				add_swap(lis->listack[j], stack_a[i]);
+				back = 1;
+			}
 			else
-				back_swap(lis->listack[j], stack_a[i], slots, lis);
+				back += back_swap(lis->listack[j], stack_a[i], slots, lis);
 			++j;
 		}
+		if (back == 0)
+			make_swap(stack_a[i], slots, lis);
+		back = 0;
 		dredge_swap(lis);
 		++i;
+																int	k;
+																int	l;
+
 																k = 0;
 																ft_printf("\n\nLAP #%d\n", i);
 																while (k < lis->lis_nbr)
@@ -189,7 +197,7 @@ void	seq_swap(int *stack_a, int slots, t_lis *lis)
  * controlla se ci sono array che sono interamente contenuti in altri array
  * e si eliminano gli array in eccesso */
 
-void	free_swap(int slots, t_lis *lis)
+void	free_swap(t_lis *lis)
 {
 	int	i;
 
@@ -205,7 +213,7 @@ void	free_swap(int slots, t_lis *lis)
 		++i;
 	}
 	i = 0;
-	while (i < slots * 2)
+	while (i < lis->lis_nbr)
 	{
 		if (lis->listack[i] != lis->max)
 			free(lis->listack[i]);
@@ -220,7 +228,8 @@ void	struct_swap(int slots, t_lis *lis)
 {
 	lis->max = ft_calloc(1, sizeof(int));
 	lis->lis_nbr = 0;
-	lis->listack = malloc(sizeof(int *) * (slots * 5));
+	lis->listack = malloc(sizeof(int *) * slots * 1000000);
+	lis->listack[0] = ft_calloc(1, sizeof(int));
 }
 
 /* initializes the lis struct */ 
@@ -248,7 +257,7 @@ int	*lis_swap(t_struct *s)
 																	}
 																	++i;
 																}
-	free_swap(s->slots, lis);
+	free_swap(lis);
 																ft_printf("\n\nMAX: \n");
 																i = 0;
 																while (i <= lis->max[0])

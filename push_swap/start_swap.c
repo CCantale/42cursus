@@ -6,43 +6,74 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 18:17:36 by ccantale          #+#    #+#             */
-/*   Updated: 2022/06/11 15:15:49 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/06/16 20:21:03 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
 
-int	*rem_swap(int *stack_a, int *lis, int slots, int slots_b)
+int	*noob_swap(t_struct *s, int *lis, int new_slots)
 {
 	int	i;
 	int	j;
 	int	k;
-	int *new_a;
+	int	*noob;
+																						int	p;
 
-	new_a = malloc(sizeof(int) * slots - slots_b);
+																						ft_printf("\n\nSTACK_A = ");
+																						p = 0;
+																						while (p < s->slots)
+																						{
+																							ft_printf("%d ", s->stack_a[p]);
+																							++p;
+																						}
+
+	noob = malloc(sizeof(int) * new_slots);
+	j = lis[-1] - 1;
 	k = 0;
+	i = s->slots - 1;
+	while (i >= 0)
+	{
+		if (j >= 0 && s->stack_a[i] == lis[j])
+			--j;
+		else
+		{
+			noob[k] = s->stack_a[i];
+			++k;
+		}
+		--i;
+	}
+	s->slots_b = new_slots;
+	return (noob);
+}
+
+/* pushes nonLISers in stack_b 
+** (new_b -> newbe -> noob) */
+
+int	*rem_swap(t_struct *s, int *lis)
+{
+	int	i;
+	int	j;
+
 	j = 0;
 	i = 0;
-	while (i < slots)
+	while (i < s->slots)
 	{
-		if (stack_a[i] == lis[j])
+		if (s->stack_a[i] == lis[j])
 		{
-			ft_printf("pb\n");
+			ft_printf("ra\n");
 			++j;
 		}
 		else
 		{
-			new_a[k] = stack_a[i];
-			++k;
-			ft_printf("ra\n");
+			ft_printf("pb\n");
 		}
 		++i;
 	}
-	free(stack_a);
-	return (new_a);
+	return (noob_swap(s, lis, s->slots - lis[-1]));
 }
 
-/* pushes the LIS to stack_b (actually just removes the LIS from stack_a) 
+/* pushes whats not in the LIS to stack_b 
 ** and prints out the required operations */
 
 void	print_swap(t_struct *s, int start)
@@ -69,60 +100,48 @@ void	print_swap(t_struct *s, int start)
 	}
 }
 
-/* prints ra or rra depending on the starting point */
-
-int	*shift_swap(int *stack_a, int start, int slots)
-{
-	int	i;
-	int	j;
-	int	*scrolled_stack;
-
-	scrolled_stack = malloc(sizeof(int) * slots + 1);
-	i = start;
-	j = 0;
-	while (j < slots)
-	{
-		scrolled_stack[j] = stack_a[i];
-		++i;
-		++j;
-		if (i >= slots)
-			i = 0;
-	}
-	free(stack_a);
-	return (scrolled_stack);	
-}
-
-/* scrolls stack_a up to the starting point */
-
-int	where_swap(int *stack_a, int start, int slots)
-{
-	int	i;
-
-	i = 0;
-	while (i < slots)
-	{
-		if (stack_a[i] == start)
-			return (i);
-		++i;
-	}
-	return (-1);
-}
-
-/* finds the first nbr of the LIS in stack_a */
+/* prints ra or rra depending on the starting point 
+** this way we fake the scrolling of stack_a, while
+** we're not actually doing it */
 
 void	start_swap(t_struct *s, int	*lis)
 {
+	int	i;
 	int	start;
 
-	start = where_swap(s->stack_a, lis[1], s->slots);
-	if (start < 0)
-		ft_printf("Wait... WHAT?!?!");
+	i = 1;
+	start = 0;
+	while (start < s->slots)
+	{
+		if (s->stack_a[start] == lis[i])
+			++i;
+		else
+			break ;
+		++start;
+	}
 	print_swap(s, start);
-	s->stack_a = shift_swap(s->stack_a, start, s->slots);
-	free(s->stack_b);
-	s->stack_b = lis + 1;
-	s->slots_b = lis[0];
-	s->stack_a = rem_swap(s->stack_a, lis + 1, s->slots, s->slots_b);
+	s->stack_b = rem_swap(s, lis + 1);
+	free(s->stack_a);
+	s->stack_a = lis + 1;
+	s->slots = lis[0];
+																						ft_printf("\n\nslots  a - b = %d - %d\n\n", s->slots, s->slots_b);
+																						int	p;
+
+																						ft_printf("\n\nSTACK_A = ");
+																						p = 0;
+																						while (p < s->slots)
+																						{
+																							ft_printf("%d ", s->stack_a[p]);
+																							++p;
+																						}
+																						ft_printf("\n\nSTACK_B = ");
+																						p = 0;
+																						while (p < s->slots_b)
+																						{
+																							ft_printf("%d ", s->stack_b[p]);
+																							++p;
+																						}
 }	
 
-/* scrolls stack_a to the fist nbr of the LIS, then pushes the LIS in stack_b */
+/* scrolls stack_a to the fist nonLIs nbr,
+** then pushes all nonLIS nbrs in stack_b */
