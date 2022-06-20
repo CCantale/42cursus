@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 18:17:36 by ccantale          #+#    #+#             */
-/*   Updated: 2022/06/16 20:21:03 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/06/20 17:18:40 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,5 +143,5 @@ void	start_swap(t_struct *s, int	*lis)
 																						}
 }	
 
-/* scrolls stack_a to the fist nonLIs nbr,
+/* scrolls stack_a to the fist nonLIS nbr,
 ** then pushes all nonLIS nbrs in stack_b */

@@ -6,16 +6,16 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:20:40 by ccantale          #+#    #+#             */
-/*   Updated: 2022/06/17 02:44:29 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/06/20 18:05:55 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
 
-void	add_swap(int *stack, int nbr)
+void	add_swap(int *curr_lis, int nbr)
 {
-	++stack[0];
-	stack[stack[0]] = nbr;
+	++curr_lis[0];
+	curr_lis[curr_lis[0]] = nbr;
 }	
 
 /* puts current nbr at the end of this specific LIS, since it's bigger
@@ -54,7 +54,7 @@ int	back_swap(int *curr_lis, int nbr, int slots, t_lis *lis)
 		{
 			pos = seek_swap(lis);
 			lis->listack[pos] = malloc(sizeof(int) * slots + 1);
-			lis->listack[pos][0] = i;
+			lis->listack[pos][0] = i + 1;
 			lis->listack[pos][i + 1] = nbr;
 			j = i;
 			while (j > 0)
@@ -75,7 +75,9 @@ int	back_swap(int *curr_lis, int nbr, int slots, t_lis *lis)
 int	*kill_swap(int *useliss)
 {
 	free(useliss);
-	return (ft_calloc(1, sizeof(int)));
+	useliss = malloc(sizeof(int));
+	useliss[0] = 0;
+	return (useliss);
 }
 
 /* kills the useless lis */
@@ -100,8 +102,23 @@ int	same_swap(int *lis_one, int *lis_two)
 
 /* returns 1 if all the nbrs in the first LIS are contained in the second one */
 
+//void	dredge_swap(t_lis *lis, int *curr_lis, int pos, int lis_nbr_now)
 void	dredge_swap(t_lis *lis)
 {
+	/*int	i;
+
+	i = 0;
+	while (i < lis_nbr_now)
+	{
+		if (lis->listack[i][0] != 0 && i != pos
+				&& same_swap(curr_lis, lis->listack[i]) > 0)
+		{
+			curr_lis = kill_swap(curr_lis);
+			break ;
+		}
+		++i;
+	}*/
+
 	int	i;
 	int	j;
 
@@ -123,7 +140,7 @@ void	dredge_swap(t_lis *lis)
 			}
 		}
 		++i;
-	}	
+	}
 }
 
 /* for each LIS, checks if it's completely contained in one of the other
@@ -141,6 +158,23 @@ void	make_swap(int nbr, int slots, t_lis *lis)
 
 /* starts a new LIS that only contains the current nbr */
 
+int	place_swap(t_lis *lis, int curr_nbr, int j, int slots)
+{
+	int	back;
+
+	back = 0;
+	if (curr_nbr > lis->listack[j][lis->listack[j][0]])
+	{
+		add_swap(lis->listack[j], curr_nbr);
+		back = 1;
+	}
+	else if (curr_nbr < lis->listack[j][lis->listack[j][0]])
+	{
+		back += back_swap(lis->listack[j], curr_nbr, slots, lis);
+	}
+	return (back);
+}
+
 void	seq_swap(int *stack_a, int slots, t_lis *lis)
 {
 	int	i;
@@ -154,19 +188,16 @@ void	seq_swap(int *stack_a, int slots, t_lis *lis)
 		j = 0;
 		while (j < lis->lis_nbr)
 		{
-			if (stack_a[i] > lis->listack[j][lis->listack[j][0]])
-			{
-				add_swap(lis->listack[j], stack_a[i]);
-				back = 1;
-			}
-			else
-				back += back_swap(lis->listack[j], stack_a[i], slots, lis);
+			if (lis->listack[j][0] > lis->max_nbr)
+				lis->max_nbr = lis->listack[j][0];
+			if (lis->listack[j][0] != 0 && lis->listack[j][0] + slots - i > lis->max_nbr)
+				back = place_swap(lis, stack_a[i], j, slots);
 			++j;
 		}
+		dredge_swap(lis);
 		if (back == 0)
 			make_swap(stack_a[i], slots, lis);
 		back = 0;
-		dredge_swap(lis);
 		++i;
 																int	k;
 																int	l;
@@ -176,8 +207,8 @@ void	seq_swap(int *stack_a, int slots, t_lis *lis)
 																while (k < lis->lis_nbr)
 																{
 																	ft_printf("\n");
-																	l = 0;
 																	ft_printf("lis #%d  ", k);
+																	l = 0;
 																	while (l <= lis->listack[k][0])
 																	{
 																		ft_printf("%d-", lis->listack[k][l]);
@@ -185,7 +216,6 @@ void	seq_swap(int *stack_a, int slots, t_lis *lis)
 																	}
 																	++k;
 																}
-
 	}
 }
 
@@ -200,22 +230,22 @@ void	seq_swap(int *stack_a, int slots, t_lis *lis)
 void	free_swap(t_lis *lis)
 {
 	int	i;
+	int	found;
 
+								ft_printf("\n\nmax = %d e nbr = %d\n\n", lis->max_nbr, lis->lis_nbr);
+	found = 0;
 	i = 0;
 	while (i < lis->lis_nbr)
 	{
-		if (lis->listack[i][0] > lis->max[0])
+		if (lis->listack[i][0] > lis->max_nbr)
+			lis->max_nbr = lis->listack[i][0];
+		if (found == 0 && lis->listack[i][0] == lis->max_nbr)
 		{
-			if (lis->max[0] == 0)
-				free(lis->max);
 			lis->max = lis->listack[i];
+								ft_printf("\n\nmax = %d e lis->listack[i][0] = %d\n\n", lis->max_nbr, lis->listack[i][0]);
+			found = 1;
 		}
-		++i;
-	}
-	i = 0;
-	while (i < lis->lis_nbr)
-	{
-		if (lis->listack[i] != lis->max)
+		else
 			free(lis->listack[i]);
 		++i;
 	}
@@ -226,9 +256,9 @@ void	free_swap(t_lis *lis)
 
 void	struct_swap(int slots, t_lis *lis)
 {
-	lis->max = ft_calloc(1, sizeof(int));
-	lis->lis_nbr = 0;
-	lis->listack = malloc(sizeof(int *) * slots * 1000000);
+	lis->max_nbr = 0;
+	lis->lis_nbr = 1;
+	lis->listack = malloc(sizeof(int *) * slots * 1000);
 	lis->listack[0] = ft_calloc(1, sizeof(int));
 }
 
@@ -236,37 +266,35 @@ void	struct_swap(int slots, t_lis *lis)
 
 int	*lis_swap(t_struct *s)
 {
-	t_lis	*lis;
+	t_lis	lis;
 																int	i;
 																int	j;
 
-	lis = malloc(sizeof(t_lis));
-	struct_swap(s->slots, lis);
-	seq_swap(s->stack_a, s->slots, lis);
+	struct_swap(s->slots, &lis);
+	seq_swap(s->stack_a, s->slots, &lis);
 																ft_printf("\n\nFinale:\n");
 																i = 0;
-																while (i < lis->lis_nbr)
+																while (i < lis.lis_nbr)
 																{
 																	ft_printf("\n");
 																	j = 0;
 																	ft_printf("lis #%d  ", i);
-																	while (j <= lis->listack[i][0])
+																	while (j <= lis.listack[i][0])
 																	{
-																		ft_printf("%d-", lis->listack[i][j]);
+																		ft_printf("%d-", lis.listack[i][j]);
 																		++j;
 																	}
 																	++i;
 																}
-	free_swap(lis);
+	free_swap(&lis);
 																ft_printf("\n\nMAX: \n");
 																i = 0;
-																while (i <= lis->max[0])
+																while (i <= lis.max[0])
 																{
-																	ft_printf("%d-", lis->max[i]);
+																	ft_printf("%d-", lis.max[i]);
 																	++i;
 																}
-	free(lis);
-	return(lis->max);
+	return(lis.max);
 }
 
 /* applies the LIS sorting algorithm */
