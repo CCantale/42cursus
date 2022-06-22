@@ -6,20 +6,58 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:20:40 by ccantale          #+#    #+#             */
-/*   Updated: 2022/06/20 18:05:55 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/06/22 18:01:42 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
 
-void	add_swap(int *curr_lis, int nbr)
+int	add_swap(t_lis *lis)
 {
-	++curr_lis[0];
-	curr_lis[curr_lis[0]] = nbr;
+	int	done;
+
+	done = 0;
+	i = 0;
+	while (i < lis->lis_nbr && done == 0)
+	{
+		if (lis->listack[i][0] == max
+				&& nbr > lis->listack[i][lis->listack[i][0]])
+		{
+			++lis->listack[i][0];
+			lis->listack[i][lis->listack[i][0]] = nbr;
+			done = 1;
+		}
+		++i;
+	}
+	return (done);
 }	
 
-/* puts current nbr at the end of this specific LIS, since it's bigger
-** than its last nbr */
+/* checks and adds */
+
+int	first_swap(t_lis *lis, int nbr)
+{
+	int	i;
+	int	max;
+	int	done;
+
+	done = 0;
+	max = lis->max_nbr;
+	while (max > 0)
+	{
+		done = add_swap;
+		if (done > 0)
+			break ;
+		--max;
+	}
+	if (done > 0)
+		return (1)
+	return (0);
+}	
+
+/*checks the longest LISes first. only the last nbrs. If it finds a smalller
+** nbr than the current one, it adds it to the back of the LIS and returns 1.
+** otherwise it checks LISes smaller by 1 and does the same. If it finds
+** nothing, it returns 0 */
 
 int	seek_swap(t_lis *lis)
 {
@@ -40,6 +78,14 @@ int	seek_swap(t_lis *lis)
 }
 
 /* seeks for an empty slot to put the new LIS. if there's none returns lis_nbr */
+
+int	back_swap(int *curr_lis, int nbr, int slots, t_lis *lis)
+{
+}
+
+/* makes a nex listack made of subLISes you could add the current
+** nbr to, then selecte the longest one and adds the nbr to it.
+** returns 0 if it finds no suitable LIS for the current nbr */
 
 int	back_swap(int *curr_lis, int nbr, int slots, t_lis *lis)
 {
@@ -178,26 +224,28 @@ int	place_swap(t_lis *lis, int curr_nbr, int j, int slots)
 void	seq_swap(int *stack_a, int slots, t_lis *lis)
 {
 	int	i;
-	int	j;
+	/*int	j;
 	int	back;
 
-	back = 0;
+	back = 0;*/
 	i = 0;
 	while (i < slots)
 	{
-		j = 0;
+		if (first_swap == 0 && back_swap == 0)
+			make_swap;
+		/*j = 0;
 		while (j < lis->lis_nbr)
 		{
-			if (lis->listack[j][0] > lis->max_nbr)
-				lis->max_nbr = lis->listack[j][0];
 			if (lis->listack[j][0] != 0 && lis->listack[j][0] + slots - i > lis->max_nbr)
 				back = place_swap(lis, stack_a[i], j, slots);
+			if (lis->listack[j][0] > lis->max_nbr)
+				lis->max_nbr = lis->listack[j][0];
 			++j;
 		}
 		dredge_swap(lis);
 		if (back == 0)
 			make_swap(stack_a[i], slots, lis);
-		back = 0;
+		back = 0;*/
 		++i;
 																int	k;
 																int	l;
