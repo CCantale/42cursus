@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:20:40 by ccantale          #+#    #+#             */
-/*   Updated: 2022/06/22 18:01:42 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/06/23 15:22:13 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,44 +79,74 @@ int	seek_swap(t_lis *lis)
 
 /* seeks for an empty slot to put the new LIS. if there's none returns lis_nbr */
 
-int	back_swap(int *curr_lis, int nbr, int slots, t_lis *lis)
-{
-}
-
-/* makes a nex listack made of subLISes you could add the current
-** nbr to, then selecte the longest one and adds the nbr to it.
-** returns 0 if it finds no suitable LIS for the current nbr */
-
-int	back_swap(int *curr_lis, int nbr, int slots, t_lis *lis)
+int	back_swap(int *curr_lis, int nbr)
 {
 	int	i;
 	int	j;
-	int	pos;
 
 	i = curr_lis[0] - 1;
 	while (i > 0)
 	{
 		if (curr_lis[i] < nbr)
-		{
-			pos = seek_swap(lis);
-			lis->listack[pos] = malloc(sizeof(int) * slots + 1);
-			lis->listack[pos][0] = i + 1;
-			lis->listack[pos][i + 1] = nbr;
-			j = i;
-			while (j > 0)
-			{
-				lis->listack[pos][j] = curr_lis[j];
-				--j;
-			}
-			return (1);
-		}
+			return (i);
 		--i;
 	}
 	return (0);
 }
 
-/* scrolls this LIS backwards and, if a nbr smaller than the current one is
-** found, creates a new LIS from there, adding current nbr at the end */
+/* scrolls this LIS backwards and returns 1 if finds
+** a nbr smaller than the current one  */
+
+void	take_swap(int *lis, int lislots, int *copy, int nbr)
+{
+	int	i;
+
+	i = 0;
+	while (i < lislots)
+	{
+		copy[i] = lis[i];
+		++i;
+	}
+	copy[i] = nbr;
+	++copy[0];
+}
+
+/* copies the suitable LIS in the right slot of sub_lis */
+
+
+int	*then_swap(int nbr, int slots, t_lis *lis)
+{
+	int	i;
+	int	sub_nbr;
+	int	**sub_lis;
+	int	max;
+	int	back;
+
+	max = 0;
+	sub_nbr = 0;
+	sub_lis = malloc(sizeof(int *) * lis->lis_nbr);
+	i = 0;
+	while (i < lis->lis_nbr)
+	{
+		back = back_swap(lis->listack[i], nbr);
+		if (back != 0 && back > max)
+		{
+			sub_lis[sub_nbr] = malloc(sizeof(int) * slots);
+			take_swap(lis->listack[i],
+					lis->listack[0] + 1, sub_lis[sub_nbr++], nbr);
+			max = back;
+		}
+		++i;
+	}
+	if (max > 0)
+		return (sub_lis);
+	return (0);
+}
+
+/* makes a new listack made of subLISes you could add the current
+** nbr to, then selects the longest one, adds the nbr to it and
+** creates a new official LIS. returns 0 if it finds no suitable 
+** LIS for the current nbr */
 
 int	*kill_swap(int *useliss)
 {
