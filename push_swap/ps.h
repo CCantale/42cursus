@@ -26,7 +26,7 @@ typedef struct lis
 {
 	int	*max;
 	int	lis_nbr;
-	int	**listack;
+	int	listack[500][500];
 }	t_lis;
 
 int		*get_swap(int argc, char **argv, int *slots);

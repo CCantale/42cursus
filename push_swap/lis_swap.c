@@ -84,6 +84,8 @@ int	back_swap(int *curr_lis, int nbr)
 	int	i;
 	int	j;
 
+	if (lis[0] == 0)
+		return (0);
 	i = curr_lis[0] - 1;
 	while (i > 0)
 	{
@@ -113,34 +115,41 @@ void	take_swap(int *lis, int lislots, int *copy, int nbr)
 
 /* copies the suitable LIS in the right slot of sub_lis */
 
+int	choose_swap(t_lis *lis, int** sub_lis, int max)
+{
+
+}
+
+/* finds the first subLIS with max numbers in it and copies it
+** in the first slot availeable in **listack. If max is 0, does
+** nothing and returns 0, otherwise returns 1 */
 
 int	*then_swap(int nbr, int slots, t_lis *lis)
 {
 	int	i;
 	int	sub_nbr;
-	int	**sub_lis;
+	int	**sub_lis[500][500];
 	int	max;
 	int	back;
 
 	max = 0;
 	sub_nbr = 0;
-	sub_lis = malloc(sizeof(int *) * lis->lis_nbr);
+	//sub_lis = malloc(sizeof(int *) * lis->lis_nbr);
 	i = 0;
 	while (i < lis->lis_nbr)
 	{
 		back = back_swap(lis->listack[i], nbr);
 		if (back != 0 && back > max)
 		{
-			sub_lis[sub_nbr] = malloc(sizeof(int) * slots);
+			//sub_lis[sub_nbr] = malloc(sizeof(int) * slots);
 			take_swap(lis->listack[i],
-					lis->listack[0] + 1, sub_lis[sub_nbr++], nbr);
+					lis->listack[0] + 1, sub_lis[sub_nbr], nbr);
+			++sub_nbr;
 			max = back;
 		}
 		++i;
 	}
-	if (max > 0)
-		return (sub_lis);
-	return (0);
+	return (choose_swap(lis, sublis, max));
 }
 
 /* makes a new listack made of subLISes you could add the current
@@ -261,8 +270,8 @@ void	seq_swap(int *stack_a, int slots, t_lis *lis)
 	i = 0;
 	while (i < slots)
 	{
-		if (first_swap == 0 && back_swap == 0)
-			make_swap;
+		if (first_swap(lis, stack_a[i]) == 0 && then_swap(stack_a[i], slots, lis) == 0)
+			make_swap(stack_a[i], slots, lis);
 		/*j = 0;
 		while (j < lis->lis_nbr)
 		{
@@ -336,8 +345,8 @@ void	struct_swap(int slots, t_lis *lis)
 {
 	lis->max_nbr = 0;
 	lis->lis_nbr = 1;
-	lis->listack = malloc(sizeof(int *) * slots * 1000);
-	lis->listack[0] = ft_calloc(1, sizeof(int));
+	//lis->listack = malloc(sizeof(int *) * slots * 1000);
+	//lis->listack[0] = ft_calloc(1, sizeof(int));
 }
 
 /* initializes the lis struct */ 
