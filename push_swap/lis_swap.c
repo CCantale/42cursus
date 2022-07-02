@@ -6,14 +6,15 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:20:40 by ccantale          #+#    #+#             */
-/*   Updated: 2022/06/23 15:22:13 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/07/02 13:15:34 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
 
-int	add_swap(t_lis *lis)
+int	add_swap(t_lis *lis, int nbr, int max)
 {
+	int	i;
 	int	done;
 
 	done = 0;
@@ -29,6 +30,8 @@ int	add_swap(t_lis *lis)
 		}
 		++i;
 	}
+	if (lis->listack[i][0] > lis->max_nbr)
+		lis->max_nbr = lis->listack[i][0];
 	return (done);
 }	
 
@@ -36,7 +39,6 @@ int	add_swap(t_lis *lis)
 
 int	first_swap(t_lis *lis, int nbr)
 {
-	int	i;
 	int	max;
 	int	done;
 
@@ -44,17 +46,17 @@ int	first_swap(t_lis *lis, int nbr)
 	max = lis->max_nbr;
 	while (max > 0)
 	{
-		done = add_swap;
+		done = add_swap(lis, nbr, max);
 		if (done > 0)
 			break ;
 		--max;
 	}
 	if (done > 0)
-		return (1)
+		return (1);
 	return (0);
 }	
 
-/*checks the longest LISes first. only the last nbrs. If it finds a smalller
+/* checks the longest LISes first. only the last nbrs. If it finds a smalller
 ** nbr than the current one, it adds it to the back of the LIS and returns 1.
 ** otherwise it checks LISes smaller by 1 and does the same. If it finds
 ** nothing, it returns 0 */
@@ -82,9 +84,8 @@ int	seek_swap(t_lis *lis)
 int	back_swap(int *curr_lis, int nbr)
 {
 	int	i;
-	int	j;
 
-	if (lis[0] == 0)
+	if (curr_lis[0] == 0)
 		return (0);
 	i = curr_lis[0] - 1;
 	while (i > 0)
@@ -115,20 +116,42 @@ void	take_swap(int *lis, int lislots, int *copy, int nbr)
 
 /* copies the suitable LIS in the right slot of sub_lis */
 
-int	choose_swap(t_lis *lis, int** sub_lis, int max)
+int	choose_swap(t_lis *lis, int sub_lis[500][500], int sub_nbr, int max)
 {
+	int	i;
+	int	j;
 
+	if (max == 0)
+		return (0);
+	i = 0;
+	while (i < sub_nbr)
+	{
+		if (sub_lis[i][0] == max)
+			break ;
+		++i;
+	}
+	j = 1;
+	while (j <= max)
+	{
+		lis->listack[lis->lis_nbr][j] = sub_lis[i][j];
+		++j;
+	}
+	lis->listack[lis->lis_nbr][0] = max;
+	++lis->lis_nbr;
+	if (max > lis->max_nbr)
+		lis->max_nbr = max;
+	return (1);
 }
 
 /* finds the first subLIS with max numbers in it and copies it
 ** in the first slot availeable in **listack. If max is 0, does
 ** nothing and returns 0, otherwise returns 1 */
 
-int	*then_swap(int nbr, int slots, t_lis *lis)
+int	then_swap(int nbr, t_lis *lis)
 {
 	int	i;
 	int	sub_nbr;
-	int	**sub_lis[500][500];
+	int	sub_lis[500][500];
 	int	max;
 	int	back;
 
@@ -143,13 +166,13 @@ int	*then_swap(int nbr, int slots, t_lis *lis)
 		{
 			//sub_lis[sub_nbr] = malloc(sizeof(int) * slots);
 			take_swap(lis->listack[i],
-					lis->listack[0] + 1, sub_lis[sub_nbr], nbr);
+					lis->listack[i][0] + 1, sub_lis[sub_nbr], nbr);
 			++sub_nbr;
 			max = back;
 		}
 		++i;
 	}
-	return (choose_swap(lis, sublis, max));
+	return (choose_swap(lis, sub_lis, sub_nbr, max + 1));
 }
 
 /* makes a new listack made of subLISes you could add the current
@@ -188,8 +211,8 @@ int	same_swap(int *lis_one, int *lis_two)
 /* returns 1 if all the nbrs in the first LIS are contained in the second one */
 
 //void	dredge_swap(t_lis *lis, int *curr_lis, int pos, int lis_nbr_now)
-void	dredge_swap(t_lis *lis)
-{
+//void	dredge_swap(t_lis *lis)
+//{
 	/*int	i;
 
 	i = 0;
@@ -204,7 +227,7 @@ void	dredge_swap(t_lis *lis)
 		++i;
 	}*/
 
-	int	i;
+/*	int	i;
 	int	j;
 
 	i = 0;
@@ -226,24 +249,23 @@ void	dredge_swap(t_lis *lis)
 		}
 		++i;
 	}
-}
+}*/
 
 /* for each LIS, checks if it's completely contained in one of the other
 ** LISes. if so, replaces it with an array[1] whith just a 0 in it */
 
-void	make_swap(int nbr, int slots, t_lis *lis)
+void	make_swap(int nbr, t_lis *lis)
 {
-	int	pos;
-
-	pos = seek_swap(lis);
-	lis->listack[pos] = malloc(sizeof(int) * slots + 1);
-	lis->listack[pos][0] = 1;	
-	lis->listack[pos][1] = nbr;
+	lis->listack[lis->lis_nbr][0] = 1;
+	lis->listack[lis->lis_nbr][1] = nbr;
+	if (lis->listack[lis->lis_nbr][0] > lis->max_nbr)
+		lis->max_nbr = lis->listack[lis->lis_nbr][0];
+	lis->lis_nbr++;
 }
 
 /* starts a new LIS that only contains the current nbr */
 
-int	place_swap(t_lis *lis, int curr_nbr, int j, int slots)
+/*int	place_swap(t_lis *lis, int curr_nbr, int j, int slots)
 {
 	int	back;
 
@@ -258,7 +280,7 @@ int	place_swap(t_lis *lis, int curr_nbr, int j, int slots)
 		back += back_swap(lis->listack[j], curr_nbr, slots, lis);
 	}
 	return (back);
-}
+}*/
 
 void	seq_swap(int *stack_a, int slots, t_lis *lis)
 {
@@ -270,8 +292,8 @@ void	seq_swap(int *stack_a, int slots, t_lis *lis)
 	i = 0;
 	while (i < slots)
 	{
-		if (first_swap(lis, stack_a[i]) == 0 && then_swap(stack_a[i], slots, lis) == 0)
-			make_swap(stack_a[i], slots, lis);
+		if (first_swap(lis, stack_a[i]) == 0 && then_swap(stack_a[i], lis) == 0)
+			make_swap(stack_a[i], lis);
 		/*j = 0;
 		while (j < lis->lis_nbr)
 		{
@@ -341,10 +363,10 @@ void	free_swap(t_lis *lis)
 
 /* saves the longest LIS in lis->max and free()s the rest */
 
-void	struct_swap(int slots, t_lis *lis)
+void	struct_swap(t_lis *lis)
 {
 	lis->max_nbr = 0;
-	lis->lis_nbr = 1;
+	lis->lis_nbr = 0;
 	//lis->listack = malloc(sizeof(int *) * slots * 1000);
 	//lis->listack[0] = ft_calloc(1, sizeof(int));
 }
@@ -357,7 +379,7 @@ int	*lis_swap(t_struct *s)
 																int	i;
 																int	j;
 
-	struct_swap(s->slots, &lis);
+	struct_swap(&lis);
 	seq_swap(s->stack_a, s->slots, &lis);
 																ft_printf("\n\nFinale:\n");
 																i = 0;
@@ -373,7 +395,22 @@ int	*lis_swap(t_struct *s)
 																	}
 																	++i;
 																}
-	free_swap(&lis);
+	//free_swap(&lis);
+	i = 0;
+	while (i < lis.lis_nbr)
+	{
+		if (lis.listack[i][0] == lis.max_nbr)
+		{
+			lis.max = malloc(sizeof(int) * lis.max_nbr + 1);
+			j = 0;
+			while (j <= lis.max_nbr)
+			{
+				lis.max[j] = lis.listack[i][j];
+				++j;
+			}
+			break ;
+		}
+	}
 																ft_printf("\n\nMAX: \n");
 																i = 0;
 																while (i <= lis.max[0])
