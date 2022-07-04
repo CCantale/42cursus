@@ -6,48 +6,78 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 00:25:29 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/04 14:33:17 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/07/04 15:50:43 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
 
-int	b_swap(int slots_b, int pos_r)
+int	alt_swap(t_struct *s, int score_a, int score_b, int flag)
 {
-	int	pos_rr;
+	int	alt_a;
+	int	alt_b;
 
-	pos_rr = slots_b - pos_r;
-	if (pos_r < pos_rr)
-		return (pos_r);
+	if (flag > 0)
+		score_b *= -1;
 	else
-		return (-pos_rr);
+		score_a *= -1;
+	alt_a = s->slots - score_a;
+	if (alt_a > score_a)
+		alt_a = alt_a - score_a;
+	else
+		alt_a = score_a - alt_a;
+	alt_b = s->slots_b - score_b;
+	if (alt_b > score_b)
+		alt_b = alt_b - score_b;
+	else
+		alt_b = score_b - alt_b;
+	if (flag == 0 && alt_a < alt_b)
+		return (1);
+	else if (flag == 0 && alt_b < alt_a)
+		return (-1);
+	else if (alt_a < alt_b)
+		return (s->slots - score_a);
+	else
+		return (-1 * (s->slots_b - score_b));
+}
+
+/* compare the differences between both paths, ra and rra, rb and rrb and
+** returns the smallest one. if the smaller is score_a, the returned nbr is
+** positive, otherwise it's negative */
+
+int	b_swap(int slots_b, int pos_r, int sub_scores[4])
+{
+	sub_scores[2] = pos_r;
+	sub_scores[3] = slots_b - sub_scores[2];
+	if (sub_scores[0] < sub_scores[1])
+		return (sub_scores[0]);
+	else
+		return (sub_scores[1] * -1);
 }
 
 /* returns the smallest nbr of moves to get the nbr in the right position
 ** in stack_b. if the moves are intended in reverse, the nbr is returned
 ** as a negative */
 
-int	ska_swap(t_struct *s, int nbr)
+int	ska_swap(t_struct *s, int nbr, int sub_scores[4])
 {
 	int	i;
-	int	pos_r;
-	int	pos_rr;
 
 	i = 0;
 	while (i < s->slots)
 	{
 		if (s->stack_a[i] > nbr)
 		{
-			pos_r = i;
+			sub_scores[0] = i;
 			break ;
 		}
 		++i;
 	}
-	pos_rr = s->slots - pos_r;
-	if (pos_r < pos_rr)
-		return (pos_r);
+	sub_scores[1] = s->slots - sub_scores[0];
+	if (sub_scores[0] < sub_scores[1])
+		return (sub_scores[0]);
 	else
-		return (-pos_rr);
+		return (sub_scores[1] * -1);
 }
 
 /* returns the smallest nbr of moves to get stack_a in the right position
@@ -58,17 +88,16 @@ void	score_swap(t_struct *s, int *scores, int pos_b)
 {
 	int	score_a;
 	int	score_b;
+	int	sub_scores[4];
 
-	score_a = ska_swap(s, s->tack_b[pos_b]);
-	score_b = b_swap(s->slots_b, pos_b);
+	alt_score = 0;
+	score_a = ska_swap(s, s->tack_b[pos_b], sub_scores);
+	score_b = b_swap(s->slots_b, pos_b, sub_scores);
 	if (score_a > 0 && score_b > 0)
 		scores[pos_b] = score_a + score_b;
 	else if (score_a < 0 && score_b < 0)
-		scorese[pos_b] = -1 * (score_a - score_b);
-	else if (score_a > 0)
-		alt_swap(s, pos_b, 1);
-	else
-		alt_swap(s, pos_b, -1);
+		scores[pos_b] = -1 * (score_a - score_b);
+	................
 }
 
 /*finds the score for the current nbr and puts the score in the scores array */
