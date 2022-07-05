@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 18:17:36 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/02 20:00:20 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:46:26 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ void	noob_swap(t_struct *s, int *lis, int start)
 
 	s->stack_b = malloc(sizeof(int) * s->slots);
 	i = start + 1;
+	if (i == s->slots)
+		i = 0;
 	j = 1;
 	k = 0;
 	while (i != start)
 	{
-		if (i == s->slots)
-			i = 0;
-		if (j <= lis[-1] && comp_swap(lis, lis[-1], s->stack_a[i]) == 1)
+		if (j <= lis[-1] && s->stack_a[i] == lis[j])
 		{
 			++j;
 		}
@@ -62,6 +62,8 @@ void	noob_swap(t_struct *s, int *lis, int start)
 			++k;
 		}
 		++i;
+		if (i == s->slots)
+			i = 0;
 	}
 }
 
@@ -74,24 +76,29 @@ void	rem_swap(t_struct *s, int *lis, int start)
 	int	j;
 
 	j = 1;
-	ft_printf("pb\n");
+	ft_printf("ra\n");
 	i = start + 1;
+	if (i == s->slots)
+		i = 0;
 	while (i != start)
 	{
-		if (i == s->slots)
-			i = 0;
-		if (s->stack_a[i] == lis[j])
+		if (j <= lis[-1] && s->stack_a[i] == lis[j])
 		{
-			ft_printf("pb\n");
+			ft_printf("ra\n");
+																						++s->moves;
 			++j;
 		}
 		else
 		{
-			ft_printf("ra\n");
+			ft_printf("pb\n");
+																						++s->moves;
 		}
 		++i;
+		if (i == s->slots)
+			i = 0;
 	}
 	noob_swap(s, lis, start);
+	rev_swap(s->stack_b, s->slots_b);
 }
 
 /* pushes whats not in the LIS to stack_b 
@@ -109,6 +116,7 @@ void	print_swap(t_struct *s, int start)
 		while (i < start)
 		{
 			ft_printf("ra\n");
+																						++s->moves;
 			++i;
 		}
 	}
@@ -118,6 +126,7 @@ void	print_swap(t_struct *s, int start)
 		while (i < s->slots)
 		{
 			ft_printf("rra\n");
+																						++s->moves;
 			++i;
 		}
 	}
@@ -133,6 +142,7 @@ void	start_swap(t_struct *s, int	*lis)
 	int	j;
 	int	start;
 
+																						s->moves = 0;
 	i = 1;
 	start = 0;
 	while (start < s->slots)
@@ -177,6 +187,7 @@ void	start_swap(t_struct *s, int	*lis)
 																							ft_printf("%d ", s->stack_b[p]);
 																							++p;
 																						}
+																						ft_printf("\n\nMOVES = %d", s->moves);
 }	
 
 /* scrolls stack_a to the fist nonLIS nbr,

@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:20:40 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/03 00:06:09 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:22:36 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,14 +168,14 @@ void	make_swap(int nbr, t_lis *lis)
 
 /* starts a new LIS that only contains the current nbr */
 
-void	seq_swap(int *stack_a, int slots, t_lis *lis)
+void	seq_swap(int *stack_a, int slots, t_lis *lis, int end)
 {
 	int	i;
-	int	lap;
 
-	lap = 0;
-	i = 0;
-	while (i < slots)
+	i = end + 1;
+	if (i == slots)
+		i = 0;
+	while (i != end)
 	{
 		if (first_swap(stack_a[i], lis) == 0 && then_swap(stack_a[i], lis) == 0)
 		{
@@ -200,15 +200,43 @@ void	seq_swap(int *stack_a, int slots, t_lis *lis)
 																	++k;
 																}
 		++i;
-		if (i == slots && lap == 0)
-		{
+		if (i == slots)
 			i = 0;
-			lap = 1;
-		}
 	}
 }
 
 /* Type comment here... */
+
+int	min_swap(int *stack_a, int slots)
+{
+	int	i;
+	int	min;
+
+	min = stack_a[0];
+	i = 0;
+	while (i < slots)
+	{
+		if (stack_a[i] < min)
+			min = stack_a[i];
+		++i;
+	}
+	i = 0;
+	while (i < slots)
+	{
+		if (stack_a[i] == min)
+		{
+			if (i != 0)
+				return (i - 1);
+			else
+				return (slots - 1);
+		}
+		++i;
+	}
+	return (0);
+}
+
+/* finds position of the nbr that comes
+** right before the smallest one in stack_a*/ 
 
 int	*lis_swap(t_struct *s)
 {
@@ -218,7 +246,7 @@ int	*lis_swap(t_struct *s)
 
 	lis.max_nbr = 0;
 	lis.lis_nbr = 0;
-	seq_swap(s->stack_a, s->slots, &lis);
+	seq_swap(s->stack_a, s->slots, &lis, min_swap(s->stack_a, s->slots));
 																ft_printf("\n\nFinale:\n");
 																i = 0;
 																while (i < lis.lis_nbr)
