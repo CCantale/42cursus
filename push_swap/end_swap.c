@@ -6,11 +6,49 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:58:14 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/06 00:24:11 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/07/06 15:04:36 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
+
+void	swap_swap(int *stack, int slots, int steps, int dir)
+{
+	int	*temp;
+
+	temp = malloc(sizeof(int) * (s->slots + s->slots_b));
+	if (!temp)
+	{
+		free(s->stack_b);
+		free(s->stack_a);
+		exit(1);
+	}
+}
+
+void	push_swap(t_struct *s, int a, int b, int flag)
+{
+	if (flag == 0 && a > 0)
+	{
+		swap_swap(s->stack_a, s->slots, a, 0);
+		swap_swap(s->stack_b, s->slots_b, b, 0);
+	}
+	if (flag == 0 && a < 0)
+	{
+		swap_swap(s->stack_a, s->slots, a, 1);
+		swap_swap(s->stack_b, s->slots_b, b, 1);
+	}
+	if (flag == 1 && a > 0)
+	{
+		swap_swap(s->stack_a, s->slots, a, 0);
+		swap_swap(s->stack_b, s->slots_b, b, 1);
+	}
+	if (flag == 1 && a < 0)
+	{
+		swap_swap(s->stack_a, s->slots, a, 1);
+		swap_swap(s->stack_b, s->slots_b, b, 0);
+	}
+}
+
 
 void	mid_swap(t_struct *s, int *sub_scores, int info, int dir)
 {
@@ -42,7 +80,7 @@ void	mid_swap(t_struct *s, int *sub_scores, int info, int dir)
 }
 
 /* uses the sub_scores[4] and the hint about the direction to get
-*** all the info required by push_swap() */
+** all the info required by push_swap() */
 
 void	next_swap(t_structure *s, int *scores)
 {
@@ -68,8 +106,23 @@ void	next_swap(t_structure *s, int *scores)
 
 void	end_swap(t_structure *s)
 {
+	int	*new_a;
 	int	i;
 
+	free(s->stack_a - 1);
+	new_a = malloc(sizeof(int) * (s->slots + s->slots_b));
+	if (!new_a)
+	{
+		free(s->stack_b);
+		exit(1);
+	}
+	i = 0;
+	while (i < s->slots)
+	{
+		new_a[i] = s->stack_a[i];
+		++i;
+	}
+	s->stack_a = new_a;
 	i = 0;
 	while (s->slots_b > 0)
 	{

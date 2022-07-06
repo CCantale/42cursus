@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:20:40 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/05 19:22:36 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:44:55 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,7 +236,7 @@ int	min_swap(int *stack_a, int slots)
 }
 
 /* finds position of the nbr that comes
-** right before the smallest one in stack_a*/ 
+** right before the smallest one in stack_a */ 
 
 int	*lis_swap(t_struct *s)
 {
