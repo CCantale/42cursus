@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   help_swap.c                                        :+:      :+:    :+:   */
+/*   prof_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 14:41:49 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/05 21:01:26 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/07/07 16:48:40 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	score_swap(t_struct *s, int *scores, int pos_b)
 
 /*finds the score for the current nbr and puts the score in the scores array */
 
-int	*help_swap(t_struct *s)
+int	*prof_swap(t_struct *s)
 {
 	int	i;
 	int	*scores;

@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/11 16:24:46 by ccantale          #+#    #+#              #
-#    Updated: 2022/07/05 23:04:44 by ccantale         ###   ########.fr        #
+#    Updated: 2022/07/07 16:49:04 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ FILES	=		main.c \
 				lis_swap.c \
 				start_swap.c \
 				rev_swap.c \
-				help_swap.c \
+				prof_swap.c \
 				end_swap.c
 
 OBJ		=		$(FILES:.c=.o)

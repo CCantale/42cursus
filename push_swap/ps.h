@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 11:36:20 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/05 23:04:04 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/07/07 16:49:28 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		stack_atoi(char *str, int *stack_a, int slots);
 int		*lis_swap(t_struct *s);
 void	start_swap(t_struct *s, int *lis);
 void	rev_swap(int *array, int slots);
-int		*help_swap(t_struct *s);
+int		*prof_swap(t_struct *s);
 void	end_swap(t_struct *s);
 
 #endif
