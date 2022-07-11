@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:58:14 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/07 18:03:42 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/07/11 15:47:15 by evento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,7 @@ void	dir_swap(t_struct *s, int steps_a, int steps_b, int flag)
 	push_swap(s);
 }
 
-/* uses scroll_swap() to scoll the stacks and then activates push_swap() */
+/*uses scroll_swap() to scoll the stacks and then activates push_swap() */
 
 void	mid_swap(t_struct *s, int *sub_scores, int dir)
 {
@@ -230,7 +230,7 @@ void	mid_swap(t_struct *s, int *sub_scores, int dir)
 /* uses the sub_scores[4] and the hint about the direction to get
 ** all the info required by dir_swap() */
 
-int	min_swap(int *scores, int slots)
+int	lil_swap(int *scores, int slots)
 {
 	int	i;
 	int min;
@@ -262,16 +262,16 @@ void	next_swap(t_struct *s, int *scores)
 	int	same_dir;
 	int	opp_dir;
 
-	next = min_swap(scores, s->slots_b) + 1;
+	next = lil_swap(scores, s->slots_b) + 1;
 	if (next == s->slots_b)
 		next = 0;
 	sub_swap(s, s->stack_b[next], sub_scores, next);
 	same_dir = same_swap(sub_scores);
 	opp_dir = opp_swap(sub_scores);
 	if (same_dir < opp_dir)
-		mid_swap(s, sub_scores, same_dir, 0);
+		mid_swap(s, sub_scores, 0);
 	else
-		mid_swap(s, sub_scores, opp_dir, 1);
+		mid_swap(s, sub_scores, 1);
 }
 
 /* makes sub_scores again and gets how to scroll the stacks,
@@ -279,23 +279,8 @@ void	next_swap(t_struct *s, int *scores)
 
 void	end_swap(t_struct *s)
 {
-	int	*new_a;
 	int	i;
 
-	free(s->stack_a - 1);
-	new_a = malloc(sizeof(int) * (s->slots + s->slots_b));
-	if (!new_a)
-	{
-		free(s->stack_b);
-		exit(1);
-	}
-	i = 0;
-	while (i < s->slots)
-	{
-		new_a[i] = s->stack_a[i];
-		++i;
-	}
-	s->stack_a = new_a;
 	i = 0;
 	while (s->slots_b > 0)
 	{

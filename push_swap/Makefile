@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/11 16:24:46 by ccantale          #+#    #+#              #
-#    Updated: 2022/07/07 16:49:04 by ccantale         ###   ########.fr        #
+#    Updated: 2022/07/11 15:46:42 by evento           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ $(NAME): $(OBJ)
 	$(CC) $(FLAGS) $(OBJ) -o $@ $(LIBFT) 
 
 %.o: %.c
-	$(CC) $(FLAGS) -c $(FILES)
+	$(CC) $(FLAGS) -g -c $(FILES)
 
 clean:
 	rm *.o
