@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:58:14 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/11 15:47:15 by evento           ###   ########.fr       */
+/*   Updated: 2022/07/14 13:07:38 by evento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	push_swap(t_struct *s)
 
 	new_a = malloc(sizeof(int) * s->slots + 1);
 	new_b = malloc(sizeof(int) * s->slots_b - 1);
-	++s->slots;
-	++s->slots_b;
 	new_a[0] = s->stack_b[0];
 	i = 0;
 	while (i < s->slots)
@@ -32,9 +30,11 @@ void	push_swap(t_struct *s)
 	i = 0;
 	while (i < s->slots_b)
 	{
-		new_b[i] = s->stack_b[i];
+		new_b[i] = s->stack_b[i + 1];
 		++i;
 	}
+	++s->slots;
+	--s->slots_b;
 	free(s->stack_a);
 	free(s->stack_b);
 	s->stack_a = new_a;
@@ -86,6 +86,7 @@ void	r_swap(int steps_a, int steps_b, int dir)
 			ft_printf("rrb\n");
 		++i;
 	}
+																					ft_printf("rrrrrrrrrrr!\n\n");
 }
 
 /* prints ra, rra, rb and rrb accordingly to the case.
@@ -100,9 +101,9 @@ void arrr_swap(int steps_a, int steps_b, int dir)
 	int	i;
 	int	up_to;
 
+																					ft_printf("Arrrrrrrrr! a = %d & b = %d, dir = %d\n\n", steps_a, steps_b, dir);
 	i = 0;
-	up_to = big_swap(steps_a, steps_b) - small_swap(steps_a, steps_b);
-	while (i < up_to)
+	while (i < small_swap(steps_a, steps_b))
 	{
 		if (dir == 0)
 			ft_printf("rr\n");
@@ -110,7 +111,8 @@ void arrr_swap(int steps_a, int steps_b, int dir)
 			ft_printf("rrr\n");
 		++i;
 	}
-	while (i < big_swap(steps_a, steps_b))
+	up_to = big_swap(steps_a, steps_b) - small_swap(steps_a, steps_b);
+	while (i < up_to)
 	{
 		if (dir == 0 && steps_a > steps_b)
 			ft_printf("ra\n");
@@ -133,22 +135,24 @@ void arrr_swap(int steps_a, int steps_b, int dir)
 ** 1 = we're scrolling LEFT to RIGHT
 */
 
-void	scroll_swap(int *stack, int slots, int steps, char dir)
+int	*scroll_swap(int *stack, int slots, int steps, char dir)
 {
 	int	i;
 	int	j;
 	int	up_to;
 	int	*temp;
 
+	if (steps == 0)
+		return (stack);
 	i = 0;
 	j = 0;
 	temp = malloc(sizeof(int) * slots);
-	if (dir == 0 && steps > 0)
+	if (dir == 0)
 		i = steps;
-	else if (steps > 0)
+	else if (dir == 1)
 		i = slots - steps;
 	up_to = i;
-	temp[j] = stack[i++];
+	temp[j++] = stack[i++];
 	while (i != up_to)
 	{
 		if (i == slots)
@@ -158,7 +162,8 @@ void	scroll_swap(int *stack, int slots, int steps, char dir)
 		++j;
 	}
 	free(stack);
-	stack = temp;
+																					ft_printf("scroll_swap, dir %d, steps %d\n\n", dir, steps);
+	return (temp);
 }
 
 /* scrolls the given stack according to steps and dir 
@@ -169,28 +174,149 @@ void	scroll_swap(int *stack, int slots, int steps, char dir)
 
 void	dir_swap(t_struct *s, int steps_a, int steps_b, int flag)
 {
+																					int	i;
 	if (flag == 0 && steps_a > 0)
 	{
-		scroll_swap(s->stack_a, s->slots, steps_a, 0);
-		scroll_swap(s->stack_b, s->slots_b, steps_b, 0);
+																					ft_printf("slots_a = %d || slots_b %d\nstack_a = ", s->slots, s->slots_b);
+																					i = 0;
+																					while (i < s->slots)
+																					{
+																						ft_printf("%d ", s->stack_a[i]);
+																						++i;
+																					}
+																					ft_printf("\n\nstack_b = ");
+																					i = 0;
+																					while (i < s->slots_b)
+																					{
+																						ft_printf("%d ", s->stack_b[i]);
+																						++i;
+																					}
+																					ft_printf("\n\n");
+		s->stack_a = scroll_swap(s->stack_a, s->slots, steps_a, 0);
+		s->stack_b = scroll_swap(s->stack_b, s->slots_b, steps_b, 0);
+																					ft_printf("slots_a = %d || slots_b %d\nstack_a = ", s->slots, s->slots_b);
+																					i = 0;
+																					while (i < s->slots)
+																					{
+																						ft_printf("%d ", s->stack_a[i]);
+																						++i;
+																					}
+																					ft_printf("\n\nstack_b = ");
+																					i = 0;
+																					while (i < s->slots_b)
+																					{
+																						ft_printf("%d ", s->stack_b[i]);
+																						++i;
+																					}
+																					ft_printf("\n\n");
 		arrr_swap(steps_a, steps_b, 0);
 	}
 	if (flag == 0 && steps_a < 0)
 	{
-		scroll_swap(s->stack_a, s->slots, steps_a * -1, 1);
-		scroll_swap(s->stack_b, s->slots_b, steps_b * -1, 1);
-		arrr_swap(steps_a * -1, steps_b * -1, 0);
+																					ft_printf("slots_a = %d || slots_b %d\nstack_a = ", s->slots, s->slots_b);
+																					i = 0;
+																					while (i < s->slots)
+																					{
+																						ft_printf("%d ", s->stack_a[i]);
+																						++i;
+																					}
+																					ft_printf("\n\nstack_b = ");
+																					i = 0;
+																					while (i < s->slots_b)
+																					{
+																						ft_printf("%d ", s->stack_b[i]);
+																						++i;
+																					}
+																					ft_printf("\n\n");
+		s->stack_a = scroll_swap(s->stack_a, s->slots, steps_a * -1, 1);
+		s->stack_b = scroll_swap(s->stack_b, s->slots_b, steps_b * -1, 1);
+																					ft_printf("slots_a = %d || slots_b %d\nstack_a = ", s->slots, s->slots_b);
+																					i = 0;
+																					while (i < s->slots)
+																					{
+																						ft_printf("%d ", s->stack_a[i]);
+																						++i;
+																					}
+																					ft_printf("\n\nstack_b = ");
+																					i = 0;
+																					while (i < s->slots_b)
+																					{
+																						ft_printf("%d ", s->stack_b[i]);
+																						++i;
+																					}
+																					ft_printf("\n\n");
+		arrr_swap(steps_a * -1, steps_b * -1, 1);
 	}
 	if (flag == 1 && steps_a > 0)
 	{
-		scroll_swap(s->stack_a, s->slots, steps_a, 0);
-		scroll_swap(s->stack_b, s->slots_b, steps_b * -1, 1);
+																					ft_printf("slots_a = %d || slots_b %d\nstack_a = ", s->slots, s->slots_b);
+																					i = 0;
+																					while (i < s->slots)
+																					{
+																						ft_printf("%d ", s->stack_a[i]);
+																						++i;
+																					}
+																					ft_printf("\n\nstack_b = ");
+																					i = 0;
+																					while (i < s->slots_b)
+																					{
+																						ft_printf("%d ", s->stack_b[i]);
+																						++i;
+																					}
+																					ft_printf("\n\n");
+		s->stack_a = scroll_swap(s->stack_a, s->slots, steps_a, 0);
+		s->stack_b = scroll_swap(s->stack_b, s->slots_b, steps_b * -1, 1);
+																					ft_printf("slots_a = %d || slots_b %d\nstack_a = ", s->slots, s->slots_b);
+																					i = 0;
+																					while (i < s->slots)
+																					{
+																						ft_printf("%d ", s->stack_a[i]);
+																						++i;
+																					}
+																					ft_printf("\n\nstack_b = ");
+																					i = 0;
+																					while (i < s->slots_b)
+																					{
+																						ft_printf("%d ", s->stack_b[i]);
+																						++i;
+																					}
+																					ft_printf("\n\n");
 		r_swap(steps_a, steps_b, 0);
 	}
 	if (flag == 1 && steps_a < 0)
 	{
-		scroll_swap(s->stack_a, s->slots, steps_a * -1, 1);
-		scroll_swap(s->stack_b, s->slots_b, steps_b, 0);
+																					ft_printf("slots_a = %d || slots_b %d\nstack_a = ", s->slots, s->slots_b);
+																					i = 0;
+																					while (i < s->slots)
+																					{
+																						ft_printf("%d ", s->stack_a[i]);
+																						++i;
+																					}
+																					ft_printf("\n\nstack_b = ");
+																					i = 0;
+																					while (i < s->slots_b)
+																					{
+																						ft_printf("%d ", s->stack_b[i]);
+																						++i;
+																					}
+																					ft_printf("\n\n");
+		s->stack_a = scroll_swap(s->stack_a, s->slots, steps_a * -1, 1);
+		s->stack_b = scroll_swap(s->stack_b, s->slots_b, steps_b, 0);
+																					ft_printf("slots_a = %d || slots_b %d\nstack_a = ", s->slots, s->slots_b);
+																					i = 0;
+																					while (i < s->slots)
+																					{
+																						ft_printf("%d ", s->stack_a[i]);
+																						++i;
+																					}
+																					ft_printf("\n\nstack_b = ");
+																					i = 0;
+																					while (i < s->slots_b)
+																					{
+																						ft_printf("%d ", s->stack_b[i]);
+																						++i;
+																					}
+																					ft_printf("\n\n");
 		r_swap(steps_a, steps_b, 1);
 	}
 	push_swap(s);
@@ -262,9 +388,9 @@ void	next_swap(t_struct *s, int *scores)
 	int	same_dir;
 	int	opp_dir;
 
-	next = lil_swap(scores, s->slots_b) + 1;
-	if (next == s->slots_b)
-		next = 0;
+	next = lil_swap(scores, s->slots_b);
+	//if (next == s->slots_b)
+	//	next = 0;
 	sub_swap(s, s->stack_b[next], sub_scores, next);
 	same_dir = same_swap(sub_scores);
 	opp_dir = opp_swap(sub_scores);
@@ -275,18 +401,22 @@ void	next_swap(t_struct *s, int *scores)
 }
 
 /* makes sub_scores again and gets how to scroll the stacks,
-** mid_swap() and then push_swap() will do the rest */
+** mid_swap(), dir_swap() and push_swap() will do the rest */
 
 void	end_swap(t_struct *s)
 {
 	int	i;
+																					//int	firstime;
+																					//firstime = 0;
 
 	i = 0;
 	while (s->slots_b > 0)
 	{
 		next_swap(s, prof_swap(s));
+																					//if (firstime == 0)
+																					//	firstime = 1;
 	}
-																					ft_printf("\n\n\n\nSEASON FINALE!\n\nslots_a = %d\n\n", s->slots);
+																					ft_printf("\n\n\n\nSEASON FINALE!\n\nslots_a = %d\n\nstack_a = ", s->slots);
 																					i = 0;
 																					while (i < s->slots)
 																					{

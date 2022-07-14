@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 14:41:49 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/07 16:48:40 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/07/14 11:27:39 by evento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ int	*prof_swap(t_struct *s)
 		score_swap(s, scores, i);
 		++i;
 	}
+																	//if (firstime == 0)
+																	//{
 																		ft_printf("\n\n\nSCORES = ");
 																		i = 0;
 																		while (i < s->slots_b)
@@ -117,6 +119,7 @@ int	*prof_swap(t_struct *s)
 																			++i;
 																		}
 																		ft_printf("\n\n\n");
+																	//}
 	return (scores);
 }
 
