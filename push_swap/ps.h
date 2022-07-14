@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 11:36:20 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/14 11:26:52 by evento           ###   ########.fr       */
+/*   Updated: 2022/07/14 17:47:17 by evento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct lis
 	int	*max;
 	int	max_nbr;
 	int	lis_nbr;
-	int	listack[500][500];
+	int	listack[1000][1000];
 }	t_lis;
 
 int		*get_swap(int argc, char **argv, int *slots);

@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:58:14 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/14 17:32:35 by evento           ###   ########.fr       */
+/*   Updated: 2022/07/14 17:45:12 by evento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,7 +265,6 @@ void	next_swap(t_struct *s, int *scores)
 	int	opp_dir;
 
 	next = lil_swap(scores, s->slots_b);
-																		ft_printf("+move = %d", scores[next]);
 																		s->moves += scores[next];
 	sub_swap(s, s->stack_b[next], sub_scores, next);
 	same_dir = same_swap(sub_scores);
