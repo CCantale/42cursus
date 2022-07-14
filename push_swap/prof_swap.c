@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 14:41:49 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/14 11:27:39 by evento           ###   ########.fr       */
+/*   Updated: 2022/07/14 17:23:07 by evento           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,24 +49,23 @@ int	same_swap(int sub_scores[4])
 void sub_swap(t_struct *s, int nbr, int sub_scores[4], int pos_b)
 {
 	int	i;
-	int flag;
+	int next;
 
-	flag = 0;
+	sub_scores[0] = 0;
+	next = 1;
 	i = 0;
-	while (i < s->slots - 1)
+	while (i < s->slots)
 	{
-		if (s->stack_a[i] < nbr && s->stack_a[i + 1] > nbr)
+		if (s->stack_a[i] < nbr && s->stack_a[next] > nbr)
 		{
-			sub_scores[0] = i + 1;
-			flag = 1;
+			sub_scores[0] = next;
 			break ;
 		}
 		++i;
+		++next;
+		if (next == s->slots)
+			next = 0;
 	}
-	if (flag == 0 && i > 0 && s->stack_a[i - 1] < nbr && s->stack_a[i] > nbr)
-		sub_scores[0] = i;
-	else if (flag == 0)
-		sub_scores[0] = 0;
 	sub_scores[1] = s->slots - sub_scores[0];
 	sub_scores[2] = pos_b;
 	sub_scores[3] = s->slots_b - sub_scores[2];
