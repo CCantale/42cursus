@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:58:14 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/14 17:45:12 by evento           ###   ########.fr       */
+/*   Updated: 2022/07/21 15:12:42 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -281,13 +281,22 @@ void	next_swap(t_struct *s, int *scores)
 void	end_swap(t_struct *s)
 {
 	int	i;
+	int	last_scroll;
 
 	i = 0;
 	while (s->slots_b > 0)
 	{
 		next_swap(s, prof_swap(s));
 	}
-																					ft_printf("\n\n\n\nSEASON FINALE!\n\nslots_a = %d\n\nMOVES = %d\n\nstack_a = ", s->slots, s->moves);
+	last_scroll = min_swap(s->stack_a, s->slots) + 1;
+	if (last_scroll == s->slots)
+		last_scroll = 0;
+	print_swap(s, last_scroll);
+	if (last_scroll <= s->slots / 2) 
+		s->stack_a = scroll_swap(s->stack_a, s->slots, last_scroll, 0);
+	else
+		s->stack_a = scroll_swap(s->stack_a, s->slots, s->slots - last_scroll, 1);
+																					ft_printf("\n\n\n\nlast scroll = %d\n\n\nSEASON FINALE!\n\nslots_a = %d\n\nMOVES = %d\n\nstack_a = ", last_scroll, s->slots, s->moves);
 																					i = 0;
 																					while (i < s->slots)
 																					{

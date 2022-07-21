@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 14:41:49 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/14 17:23:07 by evento           ###   ########.fr       */
+/*   Updated: 2022/07/21 15:06:14 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,44 @@ int	same_swap(int sub_scores[4])
 ** (ra and rb, rra and rrb), chooses the biggest in both pairs
 ** and then returns the smaller one */ 
 
+int	fix_swap(int *stack_a, int slots)
+{
+	int	i;
+	int max;
+
+	max = stack_a[0];
+	i = 0;
+	while (i < slots)
+	{
+		if (stack_a[i] > max)
+			max = stack_a[i];
+		++i;
+	}
+	i = 0;
+	while (i < slots)
+	{
+		if (stack_a[i] == max)
+		{
+			if (i + 1 == slots)
+				return (0);
+			else
+				return (i + 1);
+		}
+		++i;
+	}
+	return (0);
+}
+
+/* returns the position right next to the highest nbr in the stack.
+** in case the number we're analysing is bigger or smaller than all
+** the others, that will be the right slot to put it. */
+
 void sub_swap(t_struct *s, int nbr, int sub_scores[4], int pos_b)
 {
 	int	i;
 	int next;
 
-	sub_scores[0] = 0;
+	sub_scores[0] = -1;
 	next = 1;
 	i = 0;
 	while (i < s->slots)
@@ -66,6 +98,8 @@ void sub_swap(t_struct *s, int nbr, int sub_scores[4], int pos_b)
 		if (next == s->slots)
 			next = 0;
 	}
+	if (sub_scores[0] == -1)
+		sub_scores[0] = fix_swap(s->stack_a, s->slots);
 	sub_scores[1] = s->slots - sub_scores[0];
 	sub_scores[2] = pos_b;
 	sub_scores[3] = s->slots_b - sub_scores[2];
