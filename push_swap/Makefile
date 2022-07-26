@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/11 16:24:46 by ccantale          #+#    #+#              #
-#    Updated: 2022/07/11 15:46:42 by evento           ###   ########.fr        #
+#    Updated: 2022/07/26 16:36:55 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ NAME	=		push_swap
 
 FILES	=		main.c \
 				get_swap.c \
+				two_three_five_swap.c \
 				stack_atoi.c \
 				lis_swap.c \
 				start_swap.c \

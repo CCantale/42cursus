@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:30:00 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/21 15:04:32 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/07/26 17:19:26 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,21 @@ int	main(int argc, char **argv)
 	if (argc == 1)
 		return (0);
 	s.slots = 0;
+	s.slots_b = 0;
 	s.stack_a = get_swap(argc, argv, &s.slots);
 	if (!s.stack_a)
 		return (0);
-	start_swap(&s, lis_swap(&s));
-	end_swap(&s);
+	if (s.slots == 2)
+		two_swap(&s);
+	else if (s.slots == 3)
+		three_swap(&s);
+	else if (s.slots <= 5)
+		five_swap(&s);
+	else
+	{
+		start_swap(&s, lis_swap(&s));
+		end_swap(&s);
+	}
 	free(s.stack_a);
 	free(s.stack_b);
 	return (0);

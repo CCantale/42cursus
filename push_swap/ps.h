@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 11:36:20 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/21 14:43:52 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/07/26 16:39:12 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ typedef struct lis
 }	t_lis;
 
 int		*get_swap(int argc, char **argv, int *slots);
+void	two_swap(t_struct *s);
+void	three_swap(t_struct *s);
+void	five_swap(t_struct *s);
 int		stack_atoi(char *str, int *stack_a, int slots);
 int		*lis_swap(t_struct *s);
 void	start_swap(t_struct *s, int *lis);
