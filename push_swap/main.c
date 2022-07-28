@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:30:00 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/26 17:19:26 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/07/28 17:27:00 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	main(int argc, char **argv)
 		two_swap(&s);
 	else if (s.slots == 3)
 		three_swap(&s);
-	else if (s.slots <= 5)
+	else if (s.slots == 4 || s.slots == 5)
 		five_swap(&s);
-	else
+	else if (s.slots > 5)
 	{
 		start_swap(&s, lis_swap(&s));
 		end_swap(&s);

@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:20:40 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/21 14:42:15 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/07/28 17:35:43 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ int	choose_swap(t_lis *lis, int sub_lis[500][500], int sub_nbr, int max)
 	++lis->lis_nbr;
 	if (max > lis->max_nbr)
 		lis->max_nbr = max;
-													ft_printf("\n\nthen_swap()\n\nnew_lis = ");
 	return (1);
 }
 
@@ -136,7 +135,6 @@ int	then_swap(int nbr, t_lis *lis)
 
 	max = 0;
 	sub_nbr = 0;
-																ft_printf("\n\nlis_nbr = %d\n\n", lis->lis_nbr);
 	i = 0;
 	while (i < lis->lis_nbr)
 	{
@@ -179,26 +177,8 @@ void	seq_swap(int *stack_a, int slots, t_lis *lis, int end)
 	{
 		if (first_swap(stack_a[i], lis) == 0 && then_swap(stack_a[i], lis) == 0)
 		{
-																ft_printf("\n\nmake_swap()\n\n");
 			make_swap(stack_a[i], lis);
 		}
-																int	k;
-																int	l;
-
-																k = 0;
-																ft_printf("\n\nLAP #%d\n", i);
-																while (k < lis->lis_nbr)
-																{
-																	ft_printf("\n");
-																	ft_printf("lis #%d  ", k);
-																	l = 0;
-																	while (l <= lis->listack[k][0])
-																	{
-																		ft_printf("%d-", lis->listack[k][l]);
-																		++l;
-																	}
-																	++k;
-																}
 		++i;
 		if (i == slots)
 			i = 0;
@@ -247,20 +227,6 @@ int	*lis_swap(t_struct *s)
 	lis.max_nbr = 0;
 	lis.lis_nbr = 0;
 	seq_swap(s->stack_a, s->slots, &lis, min_swap(s->stack_a, s->slots));
-																ft_printf("\n\nFinale:\n");
-																i = 0;
-																while (i < lis.lis_nbr)
-																{
-																	ft_printf("\n");
-																	j = 0;
-																	ft_printf("lis #%d  ", i);
-																	while (j <= lis.listack[i][0])
-																	{
-																		ft_printf("%d-", lis.listack[i][j]);
-																		++j;
-																	}
-																	++i;
-																}
 	i = 0;
 	while (i < lis.lis_nbr)
 	{
@@ -277,14 +243,6 @@ int	*lis_swap(t_struct *s)
 		}
 		++i;
 	}
-																ft_printf("\n\nMAX: \n");
-																i = 0;
-																while (i <= lis.max[0])
-																{
-																	ft_printf("%d-", lis.max[i]);
-																	++i;
-																}
-																ft_printf("\n\n");
 	return(lis.max);
 }
 

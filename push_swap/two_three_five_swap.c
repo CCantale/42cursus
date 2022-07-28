@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 16:35:57 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/26 17:38:40 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/07/28 16:43:33 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,62 @@ void	two_swap(t_struct *s)
 
 void	sa_swap(int *stack_a)
 {
+	int	temp;
 
+	temp = stack_a[0];
+	stack_a[0] = stack_a[1];
+	stack_a[1] = temp;
 }
 
-/* type comment here... */
+/* performs the well-known stunt named 'sa' */
+
+void ra_swap(int *stack_a)
+{
+	int	temp;
+
+	temp = stack_a[0];
+	stack_a[0] = stack_a[1];
+	stack_a[1] = stack_a[2];
+	stack_a[2] = temp;
+}
+
+/* demonstrates the signature move in the fine art of 'ra'*/
+
+void rra_swap(int *stack_a)
+{
+	int	temp;
+
+	temp = stack_a[2];
+	stack_a[2] = stack_a[1];
+	stack_a[1] = stack_a[0];
+	stack_a[0] = temp;
+}
+
+/* provides its astonished spectators with a display of
+** the ancient and mysterious ritual called 'rra' */
 
 void	three_swap(t_struct *s)
 {
 	if (s->stack_a[0] < s->stack_a[1] && s->stack_a[1] > s->stack_a[2]
 			&& s->stack_a[0] < s->stack_a[2])
+	{
+		ra_swap(s->stack_a);
+		sa_swap(s->stack_a);
 		ft_printf("ra\nsa\n");
+	}
 	else if (s->stack_a[0] > s->stack_a[1] && s->stack_a[1] < s->stack_a[2]
 			&& s->stack_a[0] < s->stack_a[2])
+	{
+		rra_swap(s->stack_a);
+		sa_swap(s->stack_a);
 		ft_printf("rra\nsa\n");
-	else if (s->stack_a[0] > s->stack_a[1] && s->stack_a[1] < s->stack_a[2]
+	}
+	else if (s->stack_a[0] > s->stack_a[1] && s->stack_a[1] > s->stack_a[2]
 			&& s->stack_a[0] > s->stack_a[2])
+	{
+		sa_swap(s->stack_a);
 		ft_printf("sa\n");
-	// devo metttere sa_swap(s->stack_a) in giro
+	}
 	end_swap(s);
 }
 

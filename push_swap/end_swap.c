@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:58:14 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/21 15:12:42 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/07/28 17:44:04 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,9 @@ void	push_swap(t_struct *s)
 		new_a[i + 1] = s->stack_a[i];
 		++i;
 	}
-	i = 0;
-	while (i < s->slots_b)
-	{
+	i = -1;
+	while (++i < s->slots_b)
 		new_b[i] = s->stack_b[i + 1];
-		++i;
-	}
 	++s->slots;
 	--s->slots_b;
 	free(s->stack_a);
@@ -265,7 +262,6 @@ void	next_swap(t_struct *s, int *scores)
 	int	opp_dir;
 
 	next = lil_swap(scores, s->slots_b);
-																		s->moves += scores[next];
 	sub_swap(s, s->stack_b[next], sub_scores, next);
 	same_dir = same_swap(sub_scores);
 	opp_dir = opp_swap(sub_scores);
@@ -296,14 +292,6 @@ void	end_swap(t_struct *s)
 		s->stack_a = scroll_swap(s->stack_a, s->slots, last_scroll, 0);
 	else
 		s->stack_a = scroll_swap(s->stack_a, s->slots, s->slots - last_scroll, 1);
-																					ft_printf("\n\n\n\nlast scroll = %d\n\n\nSEASON FINALE!\n\nslots_a = %d\n\nMOVES = %d\n\nstack_a = ", last_scroll, s->slots, s->moves);
-																					i = 0;
-																					while (i < s->slots)
-																					{
-																						ft_printf("%d ", s->stack_a[i]);
-																						++i;
-																					}
-																					ft_printf("\n\n");
 }
 
 /* season finale! reallocates s->stack_a, then pushes nbrs back in stack_a, 

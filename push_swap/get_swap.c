@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:45:50 by ccantale          #+#    #+#             */
-/*   Updated: 2022/06/11 14:53:11 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/07/28 17:29:49 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	check_swap(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if ((str[i] < '0' || str[i] > '9') && str[i] != ' ')
+		if ((str[i] < '0' || str[i] > '9') && str[i] != ' ' && str[i] != '-')
 		{
 			ft_printf("Error\nThis program only works with numbers\n");
 			return (1);
@@ -101,12 +101,12 @@ int	*put_swap(int *stack_a, char *str, int *slots)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] >= '0' && str[i] <= '9')
+		if ((str[i] >= '0' && str[i] <= '9') || str[i] == '-')
 		{
 			stack_a = grow_swap(stack_a, &str[i], slots);
 			if (!stack_a)
 				return (NULL);
-			while (str[i] >= '0' && str[i] <= '9')
+			while ((str[i] >= '0' && str[i] <= '9') || str[i] == '-')
 				++i;
 			continue ;
 		}
