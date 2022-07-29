@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 16:20:40 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/28 17:35:43 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/07/29 17:10:37 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,7 @@ int	first_swap(int nbr, t_lis *lis)
 		--max;
 	}
 	if (done > 0)
-	{
-		ft_printf("\n\nfirst_swap()\n\n");
 		return (1);
-	}
 	return (0);
 }	
 

@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:45:50 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/28 17:29:49 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/07/29 17:14:38 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,11 +135,5 @@ int	*get_swap(int argc, char **argv, int *slots)
 		free(stack_a);
 		return (NULL);
 	}
-																	i = 0;
-																	while (i < *slots)
-																	{
-																		ft_printf("%d ", stack_a[i]);
-																		++i;
-																	}
 	return (stack_a);
 }
