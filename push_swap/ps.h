@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 11:36:20 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/29 17:55:30 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/01 13:56:36 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int		*lis_swap(t_struct *s);
 void	start_swap(t_struct *s, int *lis);
 void	print_swap(t_struct *s, int start);
 int		min_swap(int *stack_a, int slots);
+int		lil_swap(int* array, int slots);
 void	rev_swap(int *array, int slots);
 int		*prof_swap(t_struct *s);
 void 	sub_swap(t_struct *s, int nbr, int sub_scores[4], int pos_b);

@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 16:35:57 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/28 16:43:33 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/01 14:14:51 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ void	five_swap(t_struct *s)
 	int	i;
 	int	j;
 
-																						ft_printf("slotseeee = %d\n", s->slots);
 	s->stack_b = malloc(sizeof(int) * s->slots - 3);
 	s->slots_b = s->slots - 3;
 	i = s->slots - 3;

@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:58:14 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/28 17:44:04 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/01 14:38:44 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,30 +229,30 @@ void	mid_swap(t_struct *s, int *sub_scores, int dir)
 /* uses the sub_scores[4] and the hint about the direction to get
 ** all the info required by dir_swap() */
 
-int	lil_swap(int *scores, int slots)
+int	lil_swap(int *array, int slots)
 {
 	int	i;
 	int min;
 
-	min = 1000;
+	min = 2147483647;
 	i = 0;
 	while (i < slots)
 	{
-		if (scores[i] < min)
-			min = scores[i];
+		if (array[i] < min)
+			min = array[i];
 		++i;
 	}
 	i = 0;
 	while (i < slots)
 	{
-		if (scores[i] == min)
+		if (array[i] == min)
 			return (i);
 		++i;
 	}
 	return (0);
 }
 
-/* returns the position of the smallest score in scores[] */
+/* returns the position of the smallest nbr in the arrray */
 
 void	next_swap(t_struct *s, int *scores)
 {
@@ -282,11 +282,10 @@ void	end_swap(t_struct *s)
 	i = 0;
 	while (s->slots_b > 0)
 	{
+		ft_printf("\n\nO\n\n");
 		next_swap(s, prof_swap(s));
 	}
-	last_scroll = min_swap(s->stack_a, s->slots) + 1;
-	if (last_scroll == s->slots)
-		last_scroll = 0;
+	last_scroll = lil_swap(s->stack_a, s->slots);
 	print_swap(s, last_scroll);
 	if (last_scroll <= s->slots / 2) 
 		s->stack_a = scroll_swap(s->stack_a, s->slots, last_scroll, 0);
@@ -295,4 +294,5 @@ void	end_swap(t_struct *s)
 }
 
 /* season finale! reallocates s->stack_a, then pushes nbrs back in stack_a, 
-** one by one, using prof_swap() every time to get the best nbr to push */
+** one by one, using prof_swap() every time to get the best nbr to push.
+** then, the stack is properly scrolled to find its final form */
