@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 18:17:36 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/28 17:37:51 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/02 21:58:33 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,7 @@ void	noob_swap(t_struct *s, int *lis, int start)
 	while (i != start)
 	{
 		if (j <= lis[-1] && s->stack_a[i] == lis[j])
-		{
 			++j;
-		}
 		else
 		{
 			s->stack_b[k] = s->stack_a[i];

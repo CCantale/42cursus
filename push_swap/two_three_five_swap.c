@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 16:35:57 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/01 14:14:51 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/02 22:03:14 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,60 +22,24 @@ void	two_swap(t_struct *s)
 
 /* only two nbrs to sort. Easy peasy lemon_swap */
 
-void	sa_swap(int *stack_a)
-{
-	int	temp;
-
-	temp = stack_a[0];
-	stack_a[0] = stack_a[1];
-	stack_a[1] = temp;
-}
-
-/* performs the well-known stunt named 'sa' */
-
-void ra_swap(int *stack_a)
-{
-	int	temp;
-
-	temp = stack_a[0];
-	stack_a[0] = stack_a[1];
-	stack_a[1] = stack_a[2];
-	stack_a[2] = temp;
-}
-
-/* demonstrates the signature move in the fine art of 'ra'*/
-
-void rra_swap(int *stack_a)
-{
-	int	temp;
-
-	temp = stack_a[2];
-	stack_a[2] = stack_a[1];
-	stack_a[1] = stack_a[0];
-	stack_a[0] = temp;
-}
-
-/* provides its astonished spectators with a display of
-** the ancient and mysterious ritual called 'rra' */
-
 void	three_swap(t_struct *s)
 {
 	if (s->stack_a[0] < s->stack_a[1] && s->stack_a[1] > s->stack_a[2]
-			&& s->stack_a[0] < s->stack_a[2])
+		&& s->stack_a[0] < s->stack_a[2])
 	{
 		ra_swap(s->stack_a);
 		sa_swap(s->stack_a);
 		ft_printf("ra\nsa\n");
 	}
 	else if (s->stack_a[0] > s->stack_a[1] && s->stack_a[1] < s->stack_a[2]
-			&& s->stack_a[0] < s->stack_a[2])
+		&& s->stack_a[0] < s->stack_a[2])
 	{
 		rra_swap(s->stack_a);
 		sa_swap(s->stack_a);
 		ft_printf("rra\nsa\n");
 	}
 	else if (s->stack_a[0] > s->stack_a[1] && s->stack_a[1] > s->stack_a[2]
-			&& s->stack_a[0] > s->stack_a[2])
+		&& s->stack_a[0] > s->stack_a[2])
 	{
 		sa_swap(s->stack_a);
 		ft_printf("sa\n");
@@ -91,7 +55,7 @@ void	three_swap(t_struct *s)
 **
 ** then end_swap is used to scroll stack_a 
 ** and to push nbrs back in it, if needed
-*/ 
+*/
 
 void	five_swap(t_struct *s)
 {

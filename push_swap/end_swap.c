@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:58:14 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/02 19:33:16 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/02 21:23:55 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	push_swap(t_struct *s)
 {
 	int	i;
-	int *new_a;
+	int	*new_a;
 	int	*new_b;
 
 	new_a = malloc(sizeof(int) * s->slots + 1);
@@ -40,129 +40,6 @@ void	push_swap(t_struct *s)
 }
 
 /* performs the notorious pushing technique known as 'pa' */
-
-int small_swap(int a, int b)
-{
-	if (a < b)
-		return (a);
-	else
-		return (b);
-}
-
-/* returns the smaller nbr */
-
-int big_swap(int a, int b)
-{
-	if (a > b)
-		return (a);
-	else
-		return (b);
-}
-
-/* returns the bigger nbr */
-
-void	r_swap(int steps_a, int steps_b, int dir)
-{
-	int	i;
-
-	i = 0;
-	while (i < steps_a)
-	{
-		if (dir == 0)
-			ft_printf("ra\n");
-		if (dir == 1)
-			ft_printf("rra\n");
-		++i;
-	}
-	i = 0;
-	while (i < steps_b)
-	{
-		if (dir == 0)
-			ft_printf("rrb\n");
-		if (dir == 1)
-			ft_printf("rb\n");
-		++i;
-	}
-}
-
-/* prints ra, rra, rb and rrb accordingly to the case.
-** 
-** dir:
-** 0 = ra and rrb
-** 1 = rra and rb
-*/
-
-void arrr_swap(int steps_a, int steps_b, int dir)
-{
-	int	i;
-
-	i = 0;
-	while (i < small_swap(steps_a, steps_b))
-	{
-		if (dir == 0)
-			ft_printf("rr\n");
-		if (dir == 1)
-			ft_printf("rrr\n");
-		++i;
-	}
-	while (i < big_swap(steps_a, steps_b))
-	{
-		if (dir == 0 && steps_a > steps_b)
-			ft_printf("ra\n");
-		if (dir == 0 && steps_a < steps_b)
-			ft_printf("rb\n");
-		if (dir == 1 && steps_a > steps_b)
-			ft_printf("rra\n");
-		if (dir == 1 && steps_a < steps_b)
-			ft_printf("rrb\n");
-		++i;
-	}
-}
-
-/* prints rr, rrr, ra, rra, rb and rrb accordingly to the case.
-** it only treats the case in which the two stacks are to be
-** scrolled in the same direction 
-**
-** dir:
-** 0 = we're scrolling RIGHT to LEFT
-** 1 = we're scrolling LEFT to RIGHT
-*/
-
-int	*scroll_swap(int *stack, int slots, int steps, int dir)
-{
-	int	i;
-	int	j;
-	int	up_to;
-	int	*temp;
-
-	if (steps == 0)
-		return (stack);
-	i = 0;
-	j = 0;
-	temp = malloc(sizeof(int) * slots);
-	if (dir == 0)
-		i = steps;
-	else if (dir == 1)
-		i = slots - steps;
-	up_to = i;
-	temp[j++] = stack[i++];
-	while (i != up_to)
-	{
-		if (i == slots)
-			i = 0;
-		temp[j] = stack[i];
-		++i;
-		++j;
-	}
-	free(stack);
-	return (temp);
-}
-
-/* scrolls the given stack according to steps and dir 
-** 
-** 0 = scroll RIGHT to LEFT
-** 1 = scroll LEFT to RIGHT
-*/
 
 void	dir_swap(t_struct *s, int steps_a, int steps_b, int flag)
 {
@@ -193,7 +70,8 @@ void	dir_swap(t_struct *s, int steps_a, int steps_b, int flag)
 	push_swap(s);
 }
 
-/*uses scroll_swap() to scoll the stacks and then activates push_swap() */
+/* uses scroll_swap() to scoll the stacks and then activates push_swap(),
+** then ar_swap() and arrr_swap() print the moves. They're both in arrr.c */
 
 void	mid_swap(t_struct *s, int *sub_scores, int dir)
 {
@@ -226,31 +104,6 @@ void	mid_swap(t_struct *s, int *sub_scores, int dir)
 
 /* uses the sub_scores[4] and the hint about the direction to get
 ** all the info required by dir_swap() */
-
-int	lil_swap(int *array, int slots)
-{
-	int	i;
-	int min;
-
-	min = 2147483647;
-	i = 0;
-	while (i < slots)
-	{
-		if (array[i] < min)
-			min = array[i];
-		++i;
-	}
-	i = 0;
-	while (i < slots)
-	{
-		if (array[i] == min)
-			return (i);
-		++i;
-	}
-	return (0);
-}
-
-/* returns the position of the smallest nbr in the arrray */
 
 void	next_swap(t_struct *s, int *scores)
 {
@@ -285,10 +138,11 @@ void	end_swap(t_struct *s)
 	}
 	last_scroll = lil_swap(s->stack_a, s->slots);
 	print_swap(s, last_scroll);
-	if (last_scroll <= s->slots / 2) 
+	if (last_scroll <= s->slots / 2)
 		s->stack_a = scroll_swap(s->stack_a, s->slots, last_scroll, 0);
 	else
-		s->stack_a = scroll_swap(s->stack_a, s->slots, s->slots - last_scroll, 1);
+		s->stack_a = scroll_swap(s->stack_a,
+				s->slots, s->slots - last_scroll, 1);
 }
 
 /* season finale! reallocates s->stack_a, then pushes nbrs back in stack_a, 

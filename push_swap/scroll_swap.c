@@ -1,36 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   right_swap.c                                       :+:      :+:    :+:   */
+/*   scroll_swap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/29 17:51:34 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/02 21:57:42 by ccantale         ###   ########.fr       */
+/*   Created: 2022/08/02 21:21:46 by ccantale          #+#    #+#             */
+/*   Updated: 2022/08/02 21:23:44 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ps.h"
 
-int	right_swap(int *stack_a, int slots)
+int	*scroll_swap(int *stack, int slots, int steps, int dir)
 {
 	int	i;
 	int	j;
-	int	stop;
+	int	up_to;
+	int	*temp;
 
-	j = lil_swap(stack_a, slots);
-	i = j + 1;
-	if (i == slots)
-		i = 0;
-	stop = j;
-	while (i != stop)
+	if (steps == 0)
+		return (stack);
+	i = 0;
+	j = 0;
+	temp = malloc(sizeof(int) * slots);
+	if (dir == 0)
+		i = steps;
+	else if (dir == 1)
+		i = slots - steps;
+	up_to = i;
+	temp[j++] = stack[i++];
+	while (i != up_to)
 	{
-		if (stack_a[i] < stack_a[j])
-			return (1);
-		j = i;
-		++i;
 		if (i == slots)
 			i = 0;
+		temp[j++] = stack[i++];
 	}
-	return (0);
+	free(stack);
+	return (temp);
 }
+
+/* scrolls the given stack according to steps and dir 
+** 
+** 0 = scroll RIGHT to LEFT
+** 1 = scroll LEFT to RIGHT
+*/

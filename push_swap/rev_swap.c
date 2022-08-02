@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:25:54 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/05 19:47:41 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/02 21:57:05 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	rev_swap(int *array, int slots)
 	while (beg < end)
 	{
 		temp = array[beg];
-		array[beg] = array[end];   
+		array[beg] = array[end];
 		array[end] = temp;
 		++beg;
 		--end;

@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 14:41:49 by ccantale          #+#    #+#             */
-/*   Updated: 2022/07/28 17:34:32 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/02 21:55:17 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	opp_swap(int sub_scores[4])
 	if (sub_scores[0] + sub_scores[3] < sub_scores[1] + sub_scores[2])
 		return (sub_scores[0] + sub_scores[3]);
 	else
-		return(sub_scores[1] + sub_scores[2]);
+		return (sub_scores[1] + sub_scores[2]);
 }
 
 /* considers the two options that move in opposite directions
@@ -44,44 +44,12 @@ int	same_swap(int sub_scores[4])
 
 /* considers the two options that move in the same direction
 ** (ra and rb, rra and rrb), chooses the biggest in both pairs
-** and then returns the smaller one */ 
+** and then returns the smaller one */
 
-int	fix_swap(int *stack_a, int slots)
+void	sub_swap(t_struct *s, int nbr, int sub_scores[4], int pos_b)
 {
 	int	i;
-	int max;
-
-	max = stack_a[0];
-	i = 0;
-	while (i < slots)
-	{
-		if (stack_a[i] > max)
-			max = stack_a[i];
-		++i;
-	}
-	i = 0;
-	while (i < slots)
-	{
-		if (stack_a[i] == max)
-		{
-			if (i + 1 == slots)
-				return (0);
-			else
-				return (i + 1);
-		}
-		++i;
-	}
-	return (0);
-}
-
-/* returns the position right next to the highest nbr in the stack.
-** in case the number we're analysing is bigger or smaller than all
-** the others, that will be the right slot to put it. */
-
-void sub_swap(t_struct *s, int nbr, int sub_scores[4], int pos_b)
-{
-	int	i;
-	int next;
+	int	next;
 
 	sub_scores[0] = -1;
 	next = 1;
@@ -116,8 +84,8 @@ void sub_swap(t_struct *s, int nbr, int sub_scores[4], int pos_b)
 void	score_swap(t_struct *s, int *scores, int pos_b)
 {
 	int	same_score;
-	int opp_score;
-	int sub_scores[4];
+	int	opp_score;
+	int	sub_scores[4];
 
 	sub_swap(s, s->stack_b[pos_b], sub_scores, pos_b);
 	same_score = same_swap(sub_scores);
@@ -145,35 +113,36 @@ int	*prof_swap(t_struct *s)
 	return (scores);
 }
 
-/* returns an array that contains a score for each and every nbr in s->stack_b.
-** the vote is obtained by calculating the number of moves necessary to get
-** that nbr to the top of the stack AND to scroll s->stack_a up to the correct
-** slot. if the two directions are opposite to one another, the algorithm sums the
-** two nbrs, otherwise it only takes the bigger one and counts that as the total
-** score. finally, returns the winner nbr, i.e. the one with the lowest score.
-
-	es. stack_a 00000058000
-
-	    stack_b 006000
-
-	to bring 5 to the top it needs +5 or -6 moves
-	to get 6 it needs +4 or -2
-
-	+5 and -2 are the lowest. They get a score of 7
-
-	try and change one of the two directions. 
-	5 to 6 is the best.
-
-	we thus have -6 and -2 
-	They get a score of 6
-
-	6 is smaller than 7, therfore this one strategy is the winner
-
-	rrr
-	rrr
-	rrr
-	rrr
-	rra
-	rra
-	pa
+/* returns an array that contains a score for each and every nbr in
+** s->stack_b. the vote is obtained by calculating the number of moves
+** necessary to get that nbr to the top of the stack AND to scroll
+** s->stack_a up to the correct slot. if the two directions are opposite
+** to one another, the algorithm sums the two nbrs, otherwise it only takes
+** the bigger one and counts that as the total score. finally, returns the
+** winner nbr, i.e. the one with the lowest score.
+**
+**	es. stack_a 00000058000
+**
+**	    stack_b 006000
+**
+**	to bring 5 to the top it needs +5 or -6 moves
+**	to get 6 it needs +4 or -2
+**
+**	+5 and -2 are the lowest. They get a score of 7
+**
+**	try and change one of the two directions. 
+**	5 to 6 is the best.
+**
+**	we thus have -6 and -2 
+**	They get a score of 6
+**
+**	6 is smaller than 7, therfore this one strategy is the winner
+**
+**	rrr
+**	rrr
+**	rrr
+**	rrr
+**	rra
+**	rra
+**	pa
 */
