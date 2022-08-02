@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:58:14 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/01 14:38:44 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/02 19:33:16 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ void	r_swap(int steps_a, int steps_b, int dir)
 void arrr_swap(int steps_a, int steps_b, int dir)
 {
 	int	i;
-	int	up_to;
 
 	i = 0;
 	while (i < small_swap(steps_a, steps_b))
@@ -106,8 +105,7 @@ void arrr_swap(int steps_a, int steps_b, int dir)
 			ft_printf("rrr\n");
 		++i;
 	}
-	up_to = big_swap(steps_a, steps_b) - small_swap(steps_a, steps_b);
-	while (i < up_to)
+	while (i < big_swap(steps_a, steps_b))
 	{
 		if (dir == 0 && steps_a > steps_b)
 			ft_printf("ra\n");
@@ -265,6 +263,7 @@ void	next_swap(t_struct *s, int *scores)
 	sub_swap(s, s->stack_b[next], sub_scores, next);
 	same_dir = same_swap(sub_scores);
 	opp_dir = opp_swap(sub_scores);
+	free(scores);
 	if (same_dir < opp_dir)
 		mid_swap(s, sub_scores, 0);
 	else
@@ -282,7 +281,6 @@ void	end_swap(t_struct *s)
 	i = 0;
 	while (s->slots_b > 0)
 	{
-		ft_printf("\n\nO\n\n");
 		next_swap(s, prof_swap(s));
 	}
 	last_scroll = lil_swap(s->stack_a, s->slots);

@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:30:00 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/01 14:30:33 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/02 19:24:46 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,6 @@ int	main(int argc, char **argv)
 		return (0);
 	if (right_swap(s.stack_a, s.slots) == 0)
 	{
-														int	i;
-														i = 0;
-														ft_printf("\n\n");
-														while (i < s.slots)
-														{
-															ft_printf("%d ", s.stack_a[i]);
-															++i;
-														}
-														ft_printf("\n\n");
 		end_swap(&s);
 		free(s.stack_a);
 		return(0);
