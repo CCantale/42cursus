@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:30:00 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/02 21:45:40 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/04 19:06:44 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int argc, char **argv)
 	s.slots_b = 0;
 	s.stack_a = get_swap(argc, argv, &s.slots);
 	if (!s.stack_a)
-		return (0);
+		return (-1);
 	if (right_swap(s.stack_a, s.slots) == 0)
 	{
 		end_swap(&s);

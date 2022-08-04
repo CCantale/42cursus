@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:45:50 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/04 18:59:45 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/04 19:06:26 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	*grow_swap(int *stack_a, char *new_nbr, int *slots)
 	new_stack = malloc(sizeof(int) * (*slots + 1));
 	if (!new_stack)
 	{
-		write(1, "Error\nProgram couldn't malloc. Seriously, dude?\n", 48);
+		write(2, "Error\nProgram couldn't malloc. Seriously, dude?\n", 48);
 		if (*slots > 0)
 			free(stack_a);
 		return (NULL);
@@ -57,7 +57,7 @@ int	rep_swap(int *stack_a, int slots)
 				++count;
 			if (count > 1)
 			{
-				write(1, "Error\nNumbers must not repeat\n", 30);
+				write(2, "Error\nNumbers must not repeat\n", 30);
 				return (1);
 			}
 			++rep;
@@ -78,7 +78,7 @@ int	check_swap(char *str)
 	{
 		if ((str[i] < '0' || str[i] > '9') && str[i] != ' ' && str[i] != '-')
 		{
-			write(1, "Error\nThis program only works with numbers\n", 43);
+			write(2, "Error\nThis program only works with numbers\n", 43);
 			return (1);
 		}
 		++i;
