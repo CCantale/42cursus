@@ -6,14 +6,13 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 16:42:17 by ccantale          #+#    #+#             */
-/*   Updated: 2022/04/09 18:51:32 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/08 14:37:47 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdio.h>
 
-static char **ft_check_walls(char **map, int map_y)
+static char	**ft_check_walls(char **map, int map_y)
 {
 	int	i;
 	int	j;
@@ -26,7 +25,6 @@ static char **ft_check_walls(char **map, int map_y)
 	i = 1;
 	while (i < map_y)
 	{
-//		ft_printf("i = %d, %d\n", i, map_y);
 		if (ft_strlen(map[i]) != ft_strlen(map[0]))
 			return (error_msg("Map need be rectangular"));
 		if (map[i][0] != '1')
@@ -41,7 +39,6 @@ static char **ft_check_walls(char **map, int map_y)
 			return (error_msg("Map's outline need be all walls"));
 	return (map);
 }
-
 
 static char	*ft_join(char *s1, char *s2, int len2)
 {
@@ -61,7 +58,6 @@ static char	*ft_join(char *s1, char *s2, int len2)
 	free(s1);
 	return (join);
 }
-
 
 static char	*ft_read_map(int fd)
 {
@@ -120,4 +116,3 @@ char	**ft_check_map(t_game *game, char *path)
 	get_map_info(game, map);
 	return (ft_check_walls(map, game->map_y));
 }
-	

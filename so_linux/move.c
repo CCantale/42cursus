@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/08 14:42:54 by ccantale          #+#    #+#             */
+/*   Updated: 2022/08/08 14:42:59 by ccantale         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	move_u(t_game *game)
@@ -13,7 +25,7 @@ void	move_u(t_game *game)
 	{
 		if (game->map[y - 1][x] == 'C')
 			game->animation = 1;
-		game->map[y][x] = ' ';
+		game->map[y][x] = '0';
 		game->map[y - 1][x] = 'P';
 		put_whatever(game, y, x);
 		put_whatever(game, y - 1, x);
@@ -42,7 +54,7 @@ void	move_d(t_game *game)
 	{
 		if (game->map[y + 1][x] == 'C')
 			game->animation = 1;
-		game->map[y][x] = ' ';
+		game->map[y][x] = '0';
 		game->map[y + 1][x] = 'P';
 		put_whatever(game, y, x);
 		put_whatever(game, y + 1, x);
@@ -71,7 +83,7 @@ void	move_l(t_game *game)
 	{
 		if (game->map[y][x - 1] == 'C')
 			game->animation = 1;
-		game->map[y][x] = ' ';
+		game->map[y][x] = '0';
 		game->map[y][x - 1] = 'P';
 		put_whatever(game, y, x);
 		put_whatever(game, y, x - 1);
@@ -100,7 +112,7 @@ void	move_r(t_game *game)
 	{
 		if (game->map[y][x + 1] == 'C')
 			game->animation = 1;
-		game->map[y][x] = ' ';
+		game->map[y][x] = '0';
 		game->map[y][x + 1] = 'P';
 		put_whatever(game, y, x);
 		put_whatever(game, y, x + 1);

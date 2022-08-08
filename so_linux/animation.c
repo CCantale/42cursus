@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 18:08:55 by ccantale          #+#    #+#             */
-/*   Updated: 2022/04/09 19:19:03 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/08 14:33:04 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	play_animation(t_game *game)
 	}
 	else if (game->animation > 0 && game->time > 700)
 	{
-		mlx_put_image_to_window(game->init, game->win, game->flip[game->animation - 1],
+		mlx_put_image_to_window(game->init, game->win,
+			game->flip[game->animation - 1],
 			game->player_x * 64, game->player_y * 64 + 8);
 		game->animation++;
 		if (game->animation > 6)
@@ -33,4 +34,3 @@ void	play_animation(t_game *game)
 		game->animation = 0;
 	}
 }
-

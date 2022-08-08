@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 16:23:26 by ccantale          #+#    #+#             */
-/*   Updated: 2022/04/08 17:38:04 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/08 14:47:11 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,19 @@ static char	**ft_realloc_split(char **split, int len)
 	return (new_split);
 }
 
-static char	**allocate_and_copy(char **split, char const *start, int length, int *r)
+static char	**allocate_and_copy(char **split,
+		char const *start, int length, int *r)
 {
 	int	row;
-	
+
 	if (*start == '\n')
 		return (split);
 	row = *r;
 	split = ft_realloc_split(split, row);
-	if(!split)
+	if (!split)
 		return (NULL);
 	split[row] = malloc(sizeof(char) * (length));
-	if(!split[row])
+	if (!split[row])
 		return (free_split(split, row));
 	ft_strlcpy(split[row], start, length);
 	*r += 1;
@@ -94,4 +95,3 @@ char	**split_nl(const char *s)
 		return (NULL);
 	return (ft_realloc_split(split, row));
 }
-
