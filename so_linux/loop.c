@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   loop.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/08 14:42:16 by ccantale          #+#    #+#             */
+/*   Updated: 2022/08/08 14:42:17 by ccantale         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	put_background(t_game *game)
@@ -11,13 +23,12 @@ void	put_background(t_game *game)
 		j = 0;
 		while (game->map[i][j])
 		{
-			if (game->map[i][j] == ' ')
+			if (game->map[i][j] == '0')
 				mlx_put_image_to_window(game->init, game->win,
 					game->background, j * 64, i * 64);
 			if (game->map[i][j] == 'N')
 				mlx_put_image_to_window(game->init, game->win,
 					game->enemy, j * 64, i * 64);
-
 			++j;
 		}
 		++i;
@@ -41,7 +52,7 @@ void	put_sprites(t_game *game, int i, int j)
 	if (game->map[i][j] == 'C')
 		mlx_put_image_to_window(game->init, game->win,
 			game->turner, j * 64, i * 64 + 8);
-	if (game->map[i][j] == ' ' && game->start != 0)
+	if (game->map[i][j] == '0' && game->start != 0)
 	{
 		mlx_put_image_to_window(game->init, game->win,
 			game->background, j * 64, i * 64);
@@ -96,9 +107,9 @@ void	put_start(t_game *game)
 	}
 	s = ft_itoa(game->steps);
 	mlx_put_image_to_window(game->init, game->win, game->black,
-			0, game->map_y * 64 + 8);
-	mlx_string_put(game->init, game->win, 10, game->map_y *64 + 8,
-			0xFFFFFF, s);
+		0, game->map_y * 64 + 8);
+	mlx_string_put(game->init, game->win, 10, game->map_y * 64 + 8,
+		0xFFFFFF, s);
 	free(s);
 }
 

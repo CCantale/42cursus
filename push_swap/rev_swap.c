@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   step.c                                             :+:      :+:    :+:   */
+/*   rev_swap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/09 18:53:38 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/08 14:48:04 by ccantale         ###   ########.fr       */
+/*   Created: 2022/07/05 16:25:54 by ccantale          #+#    #+#             */
+/*   Updated: 2022/08/02 21:57:05 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "ps.h"
 
-void	step(t_game *game)
+void	rev_swap(int *array, int slots)
 {
-	char	*s;
+	int	beg;
+	int	end;
+	int	temp;
 
-	s = ft_itoa(game->steps);
-	mlx_put_image_to_window(game->init, game->win, game->black,
-		0, game->map_y * 64 + 8);
-	mlx_string_put(game->init, game->win, 10, game->map_y * 64 + 8,
-		0xFFFFFF, s);
-	free(s);
+	beg = 0;
+	end = slots - 1;
+	while (beg < end)
+	{
+		temp = array[beg];
+		array[beg] = array[end];
+		array[end] = temp;
+		++beg;
+		--end;
+	}
 }
+
+/* reverses an array */

@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:45:50 by ccantale          #+#    #+#             */
-/*   Updated: 2022/05/26 15:00:25 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/04 19:06:26 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	*grow_swap(int *stack_a, char *new_nbr, int *slots)
 	new_stack = malloc(sizeof(int) * (*slots + 1));
 	if (!new_stack)
 	{
-		ft_printf("Error\nProgram couldn't malloc. Seriously, dude?\n");
+		write(2, "Error\nProgram couldn't malloc. Seriously, dude?\n", 48);
 		if (*slots > 0)
 			free(stack_a);
 		return (NULL);
@@ -57,7 +57,7 @@ int	rep_swap(int *stack_a, int slots)
 				++count;
 			if (count > 1)
 			{
-				ft_printf("Error\nNumbers must not repeat\n");
+				write(2, "Error\nNumbers must not repeat\n", 30);
 				return (1);
 			}
 			++rep;
@@ -76,9 +76,9 @@ int	check_swap(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if ((str[i] < '0' || str[i] > '9') && str[i] != ' ')
+		if ((str[i] < '0' || str[i] > '9') && str[i] != ' ' && str[i] != '-')
 		{
-			ft_printf("Error\nThis program only works with numbers\n");
+			write(2, "Error\nThis program only works with numbers\n", 43);
 			return (1);
 		}
 		++i;
@@ -93,16 +93,20 @@ int	*put_swap(int *stack_a, char *str, int *slots)
 	int	i;
 
 	if (check_swap(str) == 1)
+	{
+		if (*slots > 0)
+			free(stack_a);
 		return (NULL);
+	}
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] >= '0' && str[i] <= '9')
+		if ((str[i] >= '0' && str[i] <= '9') || str[i] == '-')
 		{
 			stack_a = grow_swap(stack_a, &str[i], slots);
 			if (!stack_a)
 				return (NULL);
-			while (str[i] >= '0' && str[i] <= '9')
+			while ((str[i] >= '0' && str[i] <= '9') || str[i] == '-')
 				++i;
 			continue ;
 		}
@@ -127,12 +131,9 @@ int	*get_swap(int argc, char **argv, int *slots)
 		++i;
 	}
 	if (rep_swap(stack_a, *slots) == 1)
+	{
+		free(stack_a);
 		return (NULL);
-																	i = 0;
-																	while (i < *slots)
-																	{
-																		ft_printf("%d ", stack_a[i]);
-																		++i;
-																	}
+	}
 	return (stack_a);
 }

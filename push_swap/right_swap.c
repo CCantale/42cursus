@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   step.c                                             :+:      :+:    :+:   */
+/*   right_swap.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/09 18:53:38 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/08 14:48:04 by ccantale         ###   ########.fr       */
+/*   Created: 2022/07/29 17:51:34 by ccantale          #+#    #+#             */
+/*   Updated: 2022/08/02 21:57:42 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "ps.h"
 
-void	step(t_game *game)
+int	right_swap(int *stack_a, int slots)
 {
-	char	*s;
+	int	i;
+	int	j;
+	int	stop;
 
-	s = ft_itoa(game->steps);
-	mlx_put_image_to_window(game->init, game->win, game->black,
-		0, game->map_y * 64 + 8);
-	mlx_string_put(game->init, game->win, 10, game->map_y * 64 + 8,
-		0xFFFFFF, s);
-	free(s);
+	j = lil_swap(stack_a, slots);
+	i = j + 1;
+	if (i == slots)
+		i = 0;
+	stop = j;
+	while (i != stop)
+	{
+		if (stack_a[i] < stack_a[j])
+			return (1);
+		j = i;
+		++i;
+		if (i == slots)
+			i = 0;
+	}
+	return (0);
 }
