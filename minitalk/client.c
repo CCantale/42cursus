@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 23:00:49 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/12 00:45:57 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/12 01:01:46 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ void	recieved_sig(int signum)
 	}	
 }
 
-/* prints the success msg */
+/* if (signum == SIGUSR1), prints the success msg 
+** if (signum == SIGUSR2), prints the quit msg 
+*/
 
 void	send_bits(int pid, char* msg)
 {
@@ -50,16 +52,17 @@ void	send_bits(int pid, char* msg)
 }
 
 /* scrolls msg[] and starts a loop for each and
- * every byte(char): first, shifts msg[i]'s bits
- * to the right by 7 steps, in order to get to its 
- * first bit. if it's a 1, SIGUSR1 is sent to the
- * server, by kill(), using its pid. if the bit is
- * a 0, SIGUSR2 is sent. then, msg[i]'s bits are
- * shifted by 6 steps and the same happens, until
- * 8 bits have been sent. since sigaction() doesn't
- * organise the recieved signals in a queue, usleep()
- * is called after every signal sent, to give the
- * server enough to process it */
+** every byte(char): first, shifts msg[i]'s bits
+** to the right by 7 steps, in order to get to its 
+** first bit. if it's a 1, SIGUSR1 is sent to the
+** server, by kill(), using its pid. if the bit is
+** a 0, SIGUSR2 is sent. then, msg[i]'s bits are
+** shifted by 6 steps and the same happens, until
+** 8 bits have been sent. since sigaction() doesn't
+** organise the recieved signals in a queue, usleep()
+** is called after every signal sent, to give the
+** server enough to process it
+*/
 
 int	main(int argc, char **argv)
 {
@@ -76,7 +79,8 @@ int	main(int argc, char **argv)
 }
 
 /* only 2 arguments are allowed: the server's pid
- * and the msg to send. signal() catches the
- * answer of the server and ridirects it to 
- * recieved_sig(), usleep() is called in order for
- * the program to wait for the signal */
+** and the msg to send. signal() catches the
+** answer of the server and ridirects it to 
+** recieved_sig(), usleep() is called in order for
+** the program to wait for the signal
+*/
