@@ -6,13 +6,13 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 16:54:45 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/12 00:58:27 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/12 01:09:43 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/server.h"
 
-void quit(int client_pid)
+void	quit(int client_pid)
 {
 	ft_printf("Good night!\n\n");
 	kill(client_pid, SIGUSR2);
@@ -65,9 +65,9 @@ void	handler(int signum, siginfo_t *info, void *ptr)
 
 int	main(void)
 {
-	struct sigaction sa;
+	struct sigaction	sa;
 
-	sa.sa_flags	= SA_SIGINFO;
+	sa.sa_flags = SA_SIGINFO;
 	sa.sa_sigaction = handler;
 	ft_putnbr_fd((int)getpid(), 1);
 	write(1, "\n\n", 2);

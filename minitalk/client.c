@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 23:00:49 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/12 01:01:46 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/12 01:08:18 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	recieved_sig(int signum)
 ** if (signum == SIGUSR2), prints the quit msg 
 */
 
-void	send_bits(int pid, char* msg)
+void	send_bits(int pid, char *msg)
 {
 	int	i;
 	int	b;
@@ -41,7 +41,7 @@ void	send_bits(int pid, char* msg)
 		while (b >= 0)
 		{
 			if ((msg[i] >> b) & 1)
-			   kill(pid, SIGUSR1);
+				kill(pid, SIGUSR1);
 			else
 				kill(pid, SIGUSR2);
 			--b;
