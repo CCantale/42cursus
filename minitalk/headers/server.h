@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.c                                         :+:      :+:    :+:   */
+/*   server.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/10 16:54:45 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/10 17:56:36 by ccantale         ###   ########.fr       */
+/*   Created: 2022/08/10 17:24:30 by ccantale          #+#    #+#             */
+/*   Updated: 2022/08/12 00:00:03 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/minitalk.h"
+#ifndef SERVER_H
+# define SERVER_H
 
-int	main(void)
-{
-	struct sigaction sa;
+# include <signal.h>
+# include "../libft/libft.h"
 
-	sa.sa_flags	= SA_SIGINFO;
-	sa.sa_sigaction = handler;
-	ft_putnbr((int)getpid());
-	ft_printf("\n");
-	sigaction(SIGUSR1, &sa, NULL);
-	sigaction(SIGUSR2, &sa, NULL);
-	while (1)
-		pause();
-	return (0);
-}
-	
+#endif

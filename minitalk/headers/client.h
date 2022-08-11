@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   client.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/10 17:24:30 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/10 17:49:40 by ccantale         ###   ########.fr       */
+/*   Created: 2022/08/11 23:40:49 by ccantale          #+#    #+#             */
+/*   Updated: 2022/08/12 00:00:16 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#ifndef CLIENT_H
+# define CLIENT_H
 
+# include <unistd.h>
 # include <signal.h>
-# include "../libft"
+# include "../libft/libft.h"
 
 #endif
