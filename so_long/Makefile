@@ -6,47 +6,62 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 15:39:12 by ccantale          #+#    #+#              #
-#    Updated: 2022/02/23 18:16:22 by ccantale         ###   ########.fr        #
+#    Updated: 2022/08/15 02:00:51 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC			= gcc
-FLAGS		= -Wall -Wextra -Werror
+CC			=	gcc
+FLAGS		=	-Wall -Wextra -Werror
 
-NAME		= so_long
-FILES		= so_long.c ft_check_map.c
-LIBFT		= libft/libft.a
-MINI		= minilibX/libmlx.dylib
+NAME		=	so_long
 
-OBJ			= $(FILES:.c=.o)
+FILES		=	so_long.c \
+				split_nl.c \
+			 	ft_check_map.c \
+		 		quit.c \
+		  		error.c \
+		  		loop.c \
+		  		get_xpm.c \
+		  		move.c \
+				check_for_coll.c \
+				animation.c \
+				step.c
+
+LIBFT		= 	libft/libft.a
+MINI		= 	minilibX/libmlx.dylib
+
+OBJ			= 	$(FILES:.c=.o)
 
 
 all: $(LIBFT) $(MINI) $(NAME)
 
-$(MINI): minilibX/
+$(MINI): 
 	make -C minilibX
 
-$(LIBFT): libft/
+$(LIBFT):
 	make -C libft
+	make clean -C libft 
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) $(LIBFT) $(MINI) -o so_long
+	$(CC) -g $(OBJ) -o $(NAME) -lmlx -framework openGL -framework AppKit $(LIBFT)
 
 %.o: %.c
 	$(CC) $(FLAGS) -c $(FILES)
 
-clean: all
-	make clean -C minilibX
-	make clean -C libft
-	rm -r obj
-	rm so_long.o
+go: $(LIBFT) $(MINI) $(NAME)
+	./$(NAME) test_map.ber
 
-fclean: clean
-	make fclean -C libft
+clean: 
+	rm $(OBJ)
+
+fclean:
 	rm so_long
 
 re: fclean
 	make
 
-.PHONY: all clean fclean re
+norminette:
+	norminette $(FILES) so_long.h
+
+.PHONY: all clean fclean re norminette
 

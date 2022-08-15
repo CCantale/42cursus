@@ -6,13 +6,13 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 16:42:17 by ccantale          #+#    #+#             */
-/*   Updated: 2022/03/18 18:43:46 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/08 14:37:47 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static char **ft_check_walls(char **map)
+static char	**ft_check_walls(char **map, int map_y)
 {
 	int	i;
 	int	j;
@@ -23,7 +23,7 @@ static char **ft_check_walls(char **map)
 		if (map[0][len++] != '1')
 			return (error_msg("Map's outline need be all walls"));
 	i = 1;
-	while (map[i] != NULL)
+	while (i < map_y)
 	{
 		if (ft_strlen(map[i]) != ft_strlen(map[0]))
 			return (error_msg("Map need be rectangular"));
@@ -40,16 +40,11 @@ static char **ft_check_walls(char **map)
 	return (map);
 }
 
-
-static char	*ft_join(char *s1, char *s2)
+static char	*ft_join(char *s1, char *s2, int len2)
 {
 	int		len1;
-	int		len2;
 	char	*join;
 
-	len2 = 0;
-	while (s2[len2] && len2 < 2048)
-		++len2;
 	if (!s1)
 	{
 		join = malloc(sizeof(char) * (len2 + 1));
@@ -64,8 +59,7 @@ static char	*ft_join(char *s1, char *s2)
 	return (join);
 }
 
-
-static char	*ft_read_map(int fd, int *lines)
+static char	*ft_read_map(int fd)
 {
 	char	buffer[2048];
 	char	*map;
@@ -75,16 +69,8 @@ static char	*ft_read_map(int fd, int *lines)
 	len = read(fd, buffer, 2048);
 	while (len)
 	{
-		map = ft_join(map, buffer);
+		map = ft_join(map, buffer, len);
 		len = read(fd, buffer, 2048);
-	}
-	len = 0;
-	while (map[len])
-	{
-		if (len && map[len] == '\n' 
-				&& map[len + 1] != 0 && map[len + 1] != '\n')
-			*lines += 1;
-		++len;
 	}
 	return (map);
 }
@@ -95,47 +81,38 @@ static void	get_map_info(t_game *game, char **map)
 
 	game->map_x = (int)ft_strlen(map[0]);
 	i = 0;
-	while (map[i][game->map_x - 1] == '1')
+	while (map[i])
 		++i;
 	game->map_y = i;
 	game->map = map;
 	game->start = 0;
-	game->player_sand = 0;
+	game->animation = 0;
+	game->time = 0;
+	game->steps = 0;
 }
 
 char	**ft_check_map(t_game *game, char *path)
 {
-							int	i;
 	char	**map;
 	char	*str;
 	int		fd;
-	int		lines;
 
 	if (!ft_strnstr(path, ".ber", ft_strlen(path)))
 		return (error_msg("File extention need be .ber"));
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		return (error_msg("Couldn't open file"));
-	str = ft_read_map(fd, &lines);
+	str = ft_read_map(fd);
 	if (!ft_strchr(str, 'C') || !ft_strchr(str, 'E') || !ft_strchr(str, 'P'))
 	{
 		free(str);
 		return (error_msg("Map need be properly filled in"));
 	}
-	map = ft_split(str, '\n');
-	map[lines + 1] = 0;
-							i = 0;
-							while (map[i])
-							{
-								ft_printf("%s\n", map[i]);
-								++i;
-							}
+	map = split_nl(str);
 	free(str);
+	close(fd);
 	if (!map)
 		return (error_msg("ft_split failed to create the map"));
 	get_map_info(game, map);
-	map[game->map_y] = 0;
-	close(fd);
-	return (ft_check_walls(map));
+	return (ft_check_walls(map, game->map_y));
 }
-	

@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 
 NAME = libft
 FILES = ft_isalpha.c ft_isdigit.c \
@@ -38,7 +38,7 @@ FILES = ft_isalpha.c ft_isdigit.c \
 		ft_lstmap.c \
 		printf/ft_printf.c printf/c_printf.c \
 		printf/d_u_printf.c printf/i_printf.c \
-		printf/s_p_printf.c printf/x_X_printf.c
+		printf/s_p_printf.c printf/x_X_printf.c 
 
 OBJ = $(FILES:.c=.o)
 
@@ -48,8 +48,7 @@ $(NAME).a: $(OBJ)
 	ar rcs $(NAME).a $(OBJ)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-	$(CC) $(CFLAGS) -c $(NAME).h -o $(NAME).o
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean: $(NAME).a
 	rm *.o
@@ -60,3 +59,5 @@ fclean: clean
 
 re: fclean
 	make
+
+.PHONY: all clean fclean re

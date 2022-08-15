@@ -18,12 +18,7 @@ static int	here_put_this(unsigned int num)
 	int	yes_maam;
 
 	yes_maam = 0;
-	if (num < 0)
-	{
-		num = -num;
-		yes_maam += here_put_this(num);
-	}
-	else if (num > 9)
+	if (num > 9)
 	{
 		yes_maam += here_put_this(num / 10);
 		yes_maam += here_put_this(num % 10);

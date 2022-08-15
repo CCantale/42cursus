@@ -6,80 +6,91 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 16:23:26 by ccantale          #+#    #+#             */
-/*   Updated: 2022/01/24 06:00:32 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/02 22:07:20 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	free_split(char	**split)
+static char	**free_split(char **split)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (*(split + i))
+	while (split[i])
 	{
-		free(*(split + i));
+		free(split[i]);
 		++i;
 	}
 	free(split);
+	return (NULL);
 }
 
-static size_t	how_many(const char *s, char c)
+static char	**ft_realloc_split(char **split, int len)
 {
-	size_t	i;
-	size_t	count;
+	int		i;
+	char	**new_split;
 
-	count = 0;
-	i = 0;
-	while (*(s + i))
-	{
-		if (*(s + i) != c && (*(s + i + 1) == c || !*(s + i + 1)))
-			++count;
-		++i;
-	}
-	return (count);
-}
-
-static char	*stringify(const char *s, size_t beg, size_t end, char **split)
-{
-	char	*string;
-
-	string = ft_calloc(end - beg + 1, sizeof(char));
-	if (!string)
+	new_split = ft_calloc(len + 1, sizeof(char **));
+	if (!new_split)
 	{
 		free_split(split);
 		return (NULL);
 	}
-	ft_strlcpy(string, s + beg, end - beg + 1);
-	return (string);
+	i = 0;
+	while (i < len)
+	{
+		new_split[i] = split[i];
+		++i;
+	}
+	if (split)
+		free(split);
+	new_split[i] = NULL;
+	return (new_split);
+}
+
+static char	**allocate_and_copy(char **split,
+		char const *start, int length, int *r)
+{
+	int	row;
+
+	row = *r;
+	split = ft_realloc_split(split, row);
+	if (!split)
+		return (free_split(split));
+	split[row] = malloc(sizeof(char) * (length));
+	if (!split[row])
+		return (free_split(split));
+	ft_strlcpy(split[row], start, length);
+	*r += 1;
+	return (split);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	int		flag;
-	size_t	i[2];
+	int		beg;
+	int		end;
+	int		row;
 	char	**split;
 
-	if (!s)
-		return (NULL);
-	split = ft_calloc(how_many(s, c) + 1, sizeof(char *));
+	split = 0;
+	row = 0;
+	beg = 0;
+	end = 0;
+	while (s[end])
+	{
+		if (s[end] == c)
+		{
+			split = allocate_and_copy(split, s + beg, end - beg + 1, &row);
+			if (!split)
+				return (NULL);
+			beg = end + 1;
+		}
+		++end;
+	}
+	if (s[end - 1] != c)
+		split = allocate_and_copy(split, s + beg, end - beg + 1, &row);
 	if (!split)
 		return (NULL);
-	ft_bzero(i, sizeof(size_t) * 2);
-	flag = -1;
-	while (i[1] < how_many(s, c))
-	{
-		if (*(s + i[0]) != c && flag < 0)
-			flag = i[0];
-		if (flag >= 0 && (*(s + i[0]) == c || !*(s + i[0])))
-		{
-			*(split + i[1]) = stringify(s, flag, i[0], split);
-			if (!*(split + i[1]++))
-				return (NULL);
-			flag = -1;
-		}
-		++i[0];
-	}
-	return (split);
+	return (ft_realloc_split(split, row));
 }

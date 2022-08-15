@@ -25,5 +25,6 @@ int		because_i_said_so(const char *str, va_list arg, char *base);
 void	you_re_holding_it_upside_down(char *str, int num);
 char	*i_dont_like_it_change_it(const char *str, char before, char after);
 int		what_do_you_mean_ex_assistant(const char *str, va_list arg, char *base);
+int		miss_me(va_list arg);
 
 #endif
