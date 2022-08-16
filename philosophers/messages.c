@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 19:05:09 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/14 21:09:21 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/15 10:51:49 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,3 +18,5 @@ int	mistake(char *advice)
 			" don't beat yourself up too much about it.\n%s\n", advice);
 	return (-1);
 }
+
+/* philosophers tend to talk a bit much... */

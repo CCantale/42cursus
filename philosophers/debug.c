@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/14 14:35:39 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/15 14:47:10 by ccantale         ###   ########.fr       */
+/*   Created: 2022/08/15 14:24:25 by ccantale          #+#    #+#             */
+/*   Updated: 2022/08/15 14:32:21 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/main.h"
+#include <stdio.h>
 
-int	main(int argc, char **argv)
+void	debug(char *msg)
 {
-	t_ime	relativity;
-
-	if (argc < 5 || argc > 6)
-		return (mistake(" We're only allowed 5 or 6 arguments in life,"
-					" that's all.\n Come on, try again.\"\n"));
-	if (inform(&relativity, argv, argc))
-		return (1);
-	free(relativity.forks);
-	return (0);
+	printf("\n\nCome disse un giorno un saggio,\n\n"
+			"      \"Il segreto per una vita sana e felice è %s.\"\n\n", msg);
 }
-

@@ -6,11 +6,35 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 20:30:42 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/14 23:44:04 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/15 14:48:08 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/utilitarianism.h"
+#include <stdio.h>
+
+void	*phi_calloc(size_t count, size_t size)
+{
+	size_t	i;
+	void	*map;
+
+	map = (void *)malloc(count * size);
+	if (!map)
+	{
+		mistake(" There are times when even a simple allocation goes\n wrong"
+				" and there's not much you can do to prevent it.\n Be wise,"
+				" look ahead and always smile at the future.\n"
+				" It will smile back, that's for sure.\"");
+		return (NULL);
+	}
+	i = 0;
+	while (i < size * count)
+	{
+		*((char *)map + i) = 0;
+		++i;
+	}
+	return (map);
+}
 
 int	phi_atoi(char *info)
 {
@@ -40,3 +64,5 @@ int	phi_atoi(char *info)
 					" try and keep your arguments smaller.\"\n"));
 	return ((int)result);
 }
+
+/* a normal atoi, but it gives you advices in case there's something wrong */

@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 20:03:43 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/14 21:22:00 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/15 11:31:13 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "common_knowledge.h"
 
-int	phi_atoi(char *info);
+void	*phi_calloc(size_t count, size_t size);
+int		phi_atoi(char *info);
 
 #endif
