@@ -6,13 +6,15 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 19:59:18 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/16 16:32:28 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/16 18:17:41 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/inform.h"
 
-int	inform_philosophers(t_ime *relativity)
+int
+
+int	set_table(t_ime *relativity)
 {
 	int	i;
 
@@ -33,6 +35,11 @@ int	inform_philosophers(t_ime *relativity)
 		relativity->sophos[i].relativity = relativity;
 		++i;
 	}
+	relativity->forks = phi_calloc(relativity->how_many_men_make_a_crowd,
+			sizeof(int));
+	if (!relativity->forks)
+		return (mistake(" This time it's really not your fault.\n Not all forks"
+					" come out with a malloc."));
 	return(0);
 }
 
@@ -53,13 +60,10 @@ int	inform(t_ime *relativity, char **info, int argc)
 		relativity->how_much_is_enough = -1;
 	if (argc == 6 && relativity->how_much_is_enough == -1)
 		return (1);
-	relativity->forks = phi_calloc(relativity->how_many_men_make_a_crowd,
-			sizeof(int));
-	if (!relativity->forks)
-		return (mistake(" This time it's really not your fault.\n Not all forks"
-					" come out with a malloc."));
-	if (inform_philosophers(relativity))
+	if (set_table(relativity))
 		return(1);
+	if	(inform_mutexes(relativity)
+			return (1);
 	return (0);
 }
 
