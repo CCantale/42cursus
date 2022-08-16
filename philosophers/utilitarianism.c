@@ -6,12 +6,11 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 20:30:42 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/15 14:48:08 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/16 15:25:26 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/utilitarianism.h"
-#include <stdio.h>
 
 void	*phi_calloc(size_t count, size_t size)
 {
@@ -24,7 +23,7 @@ void	*phi_calloc(size_t count, size_t size)
 		mistake(" There are times when even a simple allocation goes\n wrong"
 				" and there's not much you can do to prevent it.\n Be wise,"
 				" look ahead and always smile at the future.\n"
-				" It will smile back, that's for sure.\"");
+				" It will smile back, that's for sure.");
 		return (NULL);
 	}
 	i = 0;
@@ -46,7 +45,7 @@ int	phi_atoi(char *info)
 	if (info[i] == '-')
 		return (mistake(" I think that you're being a bit too negative."
 					" Ok, listen,\n from now on, I want ALL your arguments"
-					" to be positive.\n Trust me, it's life changing!\"\n"));
+					" to be positive.\n Trust me, it's life changing!"));
 	while (info[i])
 	{
 		if (info[i] >= '0' && info[i] <= '9')
@@ -57,11 +56,11 @@ int	phi_atoi(char *info)
 		else
 			return(mistake(" Words are important, but not this time, I'm afra"
 						"id.\n Remember that all reality is made of nothing bu"
-						"t numbers.\n And so should be your arguments.\"\n"));
+						"t numbers.\n And so should be your arguments."));
 	}
 	if (result > 2147483647)
 		return (mistake(" It's good to dream big, but this time here\n"
-					" try and keep your arguments smaller.\"\n"));
+					" try and keep your arguments smaller."));
 	return ((int)result);
 }
 
