@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 20:03:43 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/15 11:31:13 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/16 15:53:13 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,6 @@
 
 void	*phi_calloc(size_t count, size_t size);
 int		phi_atoi(char *info);
+int		mistake(char *advice);
 
 #endif

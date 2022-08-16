@@ -6,18 +6,36 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 19:59:18 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/16 15:20:44 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/16 16:32:28 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/inform.h"
 
-/*int	inform_philosophers(t_ime *relativity)
+int	inform_philosophers(t_ime *relativity)
 {
-	// write your code here...
+	int	i;
+
+	relativity->sophos = phi_calloc(relativity->how_many_men_make_a_crowd,
+			sizeof(t_philo));
+	if (!relativity->sophos)
+		return (mistake(" This time it's really not your fault.\n Not all of"
+					" us will answer when you calloc them."));
+	i = 0;
+	while (i < relativity->how_many_men_make_a_crowd)
+	{
+		relativity->sophos[i].seat_nbr = i;
+		relativity->sophos[i].left_fork = i;
+		relativity->sophos[i].right_fork =
+			(i + 1) % relativity->how_many_men_make_a_crowd;
+		relativity->sophos[i].is_eating = 0;
+		relativity->sophos[i].meals = 0;
+		relativity->sophos[i].relativity = relativity;
+		++i;
+	}
 	return(0);
 }
-*/
+
 int	inform(t_ime *relativity, char **info, int argc)
 {
 	relativity->how_many_men_make_a_crowd = phi_atoi(info[1]);
@@ -37,7 +55,11 @@ int	inform(t_ime *relativity, char **info, int argc)
 		return (1);
 	relativity->forks = phi_calloc(relativity->how_many_men_make_a_crowd,
 			sizeof(int));
-	//relativity->sophos = inform_philosophers(relativity);
+	if (!relativity->forks)
+		return (mistake(" This time it's really not your fault.\n Not all forks"
+					" come out with a malloc."));
+	if (inform_philosophers(relativity))
+		return(1);
 	return (0);
 }
 

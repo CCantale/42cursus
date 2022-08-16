@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 14:35:39 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/16 15:27:07 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/16 16:19:23 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ int	main(int argc, char **argv)
 					" that's all.\n Come on, try again."));
 	if (inform(&relativity, argv, argc))
 		return (1);
+	printf("\n\n\033[0;36mEND OF CODE\033[0m\n\n\n");
 	free(relativity.forks);
+	free(relativity.sophos);
 	return (0);
 }
 

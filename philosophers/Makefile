@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/14 19:14:21 by ccantale          #+#    #+#              #
-#    Updated: 2022/08/15 14:31:12 by ccantale         ###   ########.fr        #
+#    Updated: 2022/08/16 16:14:50 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ $(NAME): $(OBJ)
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.c
-	$(CC) $(FLAGS) -c $(FILES)
+	$(CC) $(FLAGS) -g -c $(FILES)
 
 clean:
 	rm $(OBJ)
@@ -43,4 +43,12 @@ re: $(NAME) fclean
 	rm *.o
 	make
 
-.PHONY: all clean fclean re
+go:
+	make
+	./philo 2 2 2 2
+
+l:
+	make
+	leaks --atExit -- ./philo 2 2 2 2
+
+.PHONY: all clean fclean re go l

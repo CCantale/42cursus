@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 18:15:27 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/14 21:28:38 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/16 16:32:06 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,16 @@ typedef struct		s_pace
 	int				is_life_a_dream;
 	int				how_much_is_enough;
 	int				*forks;
-	struct sophos	*sophos;
+	struct s_ophos	*sophos;
 }					t_ime;
 
 typedef struct		s_ophos
 {
+	int				seat_nbr;
+	int				left_fork;
+	int				right_fork;
+	int				is_eating;
+	int				meals;
 	t_ime			*relativity;
 }					t_philo;
 
