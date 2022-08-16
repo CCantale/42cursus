@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 14:45:10 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/08 14:45:12 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/16 11:00:52 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ typedef struct game
 }	t_game;
 
 char	**ft_check_map(t_game *game, char *path);
+int		check_name(char *path, char *ending);
+int		check_letters(char *str);
 int		quit(t_game *game);
 void	*error_msg(char *msg);
 int		error_int(char *msg);

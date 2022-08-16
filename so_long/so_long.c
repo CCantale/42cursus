@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 16:42:38 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/08 14:44:49 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:29:07 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char **argv)
 		game.win = mlx_new_window(game.init, game.map_x * 64,
 				game.map_y * 64 + 8 + 30, GAME_NAME);
 	else
-		return (0);
+		exit(0);
 	if (!game.win)
 	{
 		quit(&game);

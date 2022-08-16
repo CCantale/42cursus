@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 16:42:17 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/08 14:37:47 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:16:47 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ static char	*ft_read_map(int fd)
 		map = ft_join(map, buffer, len);
 		len = read(fd, buffer, 2048);
 	}
+	if (!map)
+		map = ft_calloc(1, sizeof(char));
 	return (map);
 }
 
@@ -97,12 +99,14 @@ char	**ft_check_map(t_game *game, char *path)
 	char	*str;
 	int		fd;
 
-	if (!ft_strnstr(path, ".ber", ft_strlen(path)))
+	if (!check_name(path, ".ber"))
 		return (error_msg("File extention need be .ber"));
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		return (error_msg("Couldn't open file"));
 	str = ft_read_map(fd);
+	if (!check_letters(str))
+		return (error_msg("Only availeable characters: C, E, P, N, 0 and 1"));
 	if (!ft_strchr(str, 'C') || !ft_strchr(str, 'E') || !ft_strchr(str, 'P'))
 	{
 		free(str);

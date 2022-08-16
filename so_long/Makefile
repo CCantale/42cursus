@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 15:39:12 by ccantale          #+#    #+#              #
-#    Updated: 2022/08/15 02:00:51 by ccantale         ###   ########.fr        #
+#    Updated: 2022/08/16 14:42:30 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ NAME		=	so_long
 FILES		=	so_long.c \
 				split_nl.c \
 			 	ft_check_map.c \
+				check_name.c \
+				check_letters.c \
 		 		quit.c \
 		  		error.c \
 		  		loop.c \
@@ -43,10 +45,10 @@ $(LIBFT):
 	make clean -C libft 
 
 $(NAME): $(OBJ)
-	$(CC) -g $(OBJ) -o $(NAME) -lmlx -framework openGL -framework AppKit $(LIBFT)
+	$(CC) $(OBJ) -o $(NAME) -lmlx -framework openGL -framework AppKit $(LIBFT)
 
 %.o: %.c
-	$(CC) $(FLAGS) -c $(FILES)
+	$(CC) $(FLAGS) -g -c $(FILES)
 
 go: $(LIBFT) $(MINI) $(NAME)
 	./$(NAME) test_map.ber
@@ -61,7 +63,7 @@ re: fclean
 	make
 
 norminette:
-	norminette $(FILES) so_long.h
+	@norminette $(FILES) so_long.h
 
 .PHONY: all clean fclean re norminette
 
