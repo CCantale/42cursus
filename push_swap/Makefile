@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/11 16:24:46 by ccantale          #+#    #+#              #
-#    Updated: 2022/08/11 23:50:26 by ccantale         ###   ########.fr        #
+#    Updated: 2022/08/16 14:49:12 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,4 +58,7 @@ fclean:
 re: clean
 	make
 
-.PHONY: all clean fclean re
+n:
+	norminette
+
+.PHONY: all clean fclean re n
