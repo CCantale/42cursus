@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quit.c                                             :+:      :+:    :+:   */
+/*   dinner.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/17 15:48:43 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/17 19:39:39 by ccantale         ###   ########.fr       */
+/*   Created: 2022/08/17 19:25:18 by ccantale          #+#    #+#             */
+/*   Updated: 2022/08/17 19:37:46 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/quit.h"
+#include "dinner.h"
 
-void	wait_why_dont_we_use_one_fork_each(t_ime *relativity)
+int	invite_friend(t_ime *relativity)
 {
-	int	i;
+	pthread_t t;
+
+	if (pthread_create(&t, NULL, &routine, relativity) != 0)
+		return (1);
+	pthread_detouch(t);
+	return (0);
+}
+
+int	dinner(t_ime *relativity)
+{
+	int i;
 
 	i = 0;
 	while (i < relativity->how_many_men_make_a_crowd)
 	{
-		pthread_mutex_destroy(relativity->aut_aut + i);
+		if (invite_friend(relativity) != 0)
+		{
+			quit(relativity);
+			return (1);
+		}
 		++i;
 	}
-	free(relativity->aut_aut);
-	free(relativity->forks);
-	free(relativity->sophos);
+	return (0);
 }

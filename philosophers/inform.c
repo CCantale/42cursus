@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 19:59:18 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/17 16:14:09 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/17 17:50:08 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	inform_mutexes(t_ime *relativity)
 {
 	int i;
 
-	relativity->aut_aut = malloc(sizeof(int)
+	relativity->aut_aut = malloc(sizeof(pthread_mutex_t)
 			* relativity->how_many_men_make_a_crowd);
 	if (!relativity->aut_aut)
 		return (mistake(" This time it's really not your fault.\n"
