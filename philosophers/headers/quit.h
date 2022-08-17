@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   quit.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/14 14:35:39 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/17 16:16:37 by ccantale         ###   ########.fr       */
+/*   Created: 2022/08/17 16:07:37 by ccantale          #+#    #+#             */
+/*   Updated: 2022/08/17 16:15:28 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/main.h"
+#ifndef QUIT_H
+# define QUIT_H
 
-int	main(int argc, char **argv)
-{
-	t_ime	relativity;
+# include "common_knowledge.h"
+# include <stdlib.h>
 
-	if (argc < 5 || argc > 6)
-		return (mistake(" We're only allowed 4 or 5 arguments in life,"
-					" that's all.\n Come on, try again."));
-	if (inform(&relativity, argv, argc))
-		return (1);
-	wait_why_dont_we_use_one_fork_each(&relativity);
-	printf("\n\n\033[0;36mEND OF CODE\033[0m\n\n\n");
-	return (0);
-}
-
+#endif

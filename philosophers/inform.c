@@ -6,13 +6,29 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 19:59:18 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/16 18:17:41 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/17 16:14:09 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/inform.h"
 
-int
+int	inform_mutexes(t_ime *relativity)
+{
+	int i;
+
+	relativity->aut_aut = malloc(sizeof(int)
+			* relativity->how_many_men_make_a_crowd);
+	if (!relativity->aut_aut)
+		return (mistake(" This time it's really not your fault.\n"
+					" Not all mutexes come out with a malloc."));
+	i = 0;
+	while (i < relativity->how_many_men_make_a_crowd)
+	{
+		pthread_mutex_init(relativity->aut_aut + i, NULL);
+		++i;
+	}
+	return (0);
+}
 
 int	set_table(t_ime *relativity)
 {
@@ -62,7 +78,7 @@ int	inform(t_ime *relativity, char **info, int argc)
 		return (1);
 	if (set_table(relativity))
 		return(1);
-	if	(inform_mutexes(relativity)
+	if	(inform_mutexes(relativity))
 			return (1);
 	return (0);
 }

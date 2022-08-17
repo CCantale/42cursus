@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   quit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/14 14:35:39 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/17 16:16:37 by ccantale         ###   ########.fr       */
+/*   Created: 2022/08/17 15:48:43 by ccantale          #+#    #+#             */
+/*   Updated: 2022/08/17 16:15:41 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "headers/main.h"
+#include "headers/quit.h"
 
-int	main(int argc, char **argv)
+void	wait_why_dont_we_use_one_fork_each(t_ime *relativity)
 {
-	t_ime	relativity;
+	int	i;
 
-	if (argc < 5 || argc > 6)
-		return (mistake(" We're only allowed 4 or 5 arguments in life,"
-					" that's all.\n Come on, try again."));
-	if (inform(&relativity, argv, argc))
-		return (1);
-	wait_why_dont_we_use_one_fork_each(&relativity);
-	printf("\n\n\033[0;36mEND OF CODE\033[0m\n\n\n");
-	return (0);
+	i = 0;
+	while (i < relativity->how_many_men_make_a_crowd)
+	{
+		pthread_mutex_destroy(relativity->aut_aut + i);
+		++i;
+	}
+	free(relativity->forks);
+	free(relativity->sophos);
 }
-

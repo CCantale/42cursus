@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/14 19:14:21 by ccantale          #+#    #+#              #
-#    Updated: 2022/08/16 16:14:50 by ccantale         ###   ########.fr        #
+#    Updated: 2022/08/17 16:09:11 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ FILES	=		main.c \
 				messages.c \
 				inform.c \
 				utilitarianism.c \
-				debug.c
+				debug.c \
+				quit.c
 
 OBJ		=		$(FILES:.c=.o)
 
