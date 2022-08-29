@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/14 19:14:21 by ccantale          #+#    #+#              #
-#    Updated: 2022/08/17 19:40:11 by ccantale         ###   ########.fr        #
+#    Updated: 2022/08/29 15:31:34 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,5 +52,9 @@ go:
 l:
 	make
 	leaks --atExit -- ./philo 2 2 2 2
+	
+seg:
+	make
+	lldb ./philo -- 2 2 2 2
 
-.PHONY: all clean fclean re go l
+.PHONY: all clean fclean re go l seg

@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:48:43 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/19 19:31:03 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/29 15:39:01 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	wait_why_dont_we_use_one_fork_each(t_ime *relativity)
 		pthread_mutex_destroy(relativity->aut_aut + i);
 		++i;
 	}
+	free(relativity->who_am_I_really);
 	free(relativity->aut_aut);
 	free(relativity->forks);
 	free(relativity->sophos);

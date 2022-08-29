@@ -6,12 +6,12 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 19:25:18 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/19 19:44:37 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/08/29 15:35:44 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/dinner.h"
-																	#include <stdio.h>
+																									#include <stdio.h>
 
 void	*routine(struct s_ophos *sophos)
 {
@@ -34,6 +34,8 @@ int	dinner(t_ime *relativity)
 {
 	int i;
 
+	relativity->who_am_I_really = malloc(sizeof(pthread_t)
+			* relativity->how_many_men_make_a_crowd);
 	i = 0;
 	while (i < relativity->how_many_men_make_a_crowd)
 	{
