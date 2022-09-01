@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:34:25 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/29 22:47:56 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/01 14:36:33 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ size_t	phi_time(void)
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-void	phi_sleep(int be_right_back)
+void	phi_sleep(size_t be_right_back)
 {
 	size_t	end;
 

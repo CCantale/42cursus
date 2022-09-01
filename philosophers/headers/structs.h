@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 18:15:27 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/29 23:53:47 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/01 17:49:45 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,12 @@ struct s_ophos;
 
 typedef enum		e_action
 {
-	ACTION
+	TAKEN,
+	EATING,
+	SLEEPING,
+	THINKING,
+	DIED,
+	FULL
 }					t_action;
 
 typedef struct		s_pace
@@ -37,8 +42,8 @@ typedef struct		s_ophos
 	int				seat_nbr;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-	int				is_eating;
 	int				meals;
+	pthread_mutex_t		pen;
 	t_ime			*relativity;
 }					t_philo;
 

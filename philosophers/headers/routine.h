@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   common_knowledge.h                                 :+:      :+:    :+:   */
+/*   routine.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/14 21:19:45 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/01 17:50:10 by ccantale         ###   ########.fr       */
+/*   Created: 2022/09/01 14:09:00 by ccantale          #+#    #+#             */
+/*   Updated: 2022/09/01 14:43:36 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	COMMON_KNOWLEDGE_H
-# define COMMON_KNOWLEDGE_H
+#ifndef ROUTINE_H
+# define ROUTINE_H
 
-# include <stdlib.h>
-# include <pthread.h>
-# include "structs.h"
+# include "common_knowledge.h"
 
-void	debug(char *msg);
-void	wait_why_dont_we_use_one_fork_each(t_ime *relativity);
-void	phi_sleep(size_t be_right_back);
+void	msg(struct s_ophos *sophos, int	action);
 
 #endif
