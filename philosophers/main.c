@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "headers/main.h"
+																								#include <unistd.h>
 
 int	main(int argc, char **argv)
 {
@@ -23,6 +24,7 @@ int	main(int argc, char **argv)
 		return (1);
 	dinner(&relativity);
 	wait_why_dont_we_use_one_fork_each(&relativity);
+	sleep(1);
 	printf("\n\n\033[0;36mEND OF CODE\033[0m\n\n\n");
 	return (0);
 }

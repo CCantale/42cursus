@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 22:51:35 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/01 17:08:09 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/02 18:55:07 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ int	take_forks(struct s_ophos *sophos)
 
 void	*routine(struct s_ophos *sophos)
 {
-														//printf("Hello, I'm number %d!\n", sophos->seat_nbr);
 	while (1)
 	{
 		if (take_forks(sophos) || eat(sophos) || sleep_think(sophos))
 			break ;
 	}
+														//printf("Hello, I'm number %d!\n", sophos->seat_nbr);
 	return (NULL);
 }

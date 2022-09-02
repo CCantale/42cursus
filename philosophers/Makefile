@@ -11,7 +11,8 @@
 # **************************************************************************** #
 
 CC		=		gcc
-FLAGS	=		-Wall -Wextra -Werror
+FLAGS	=		-Wall -Wextra -Werror #-fsanitize=address -g3
+
 
 NAME	=		philo
 
@@ -48,14 +49,14 @@ re: $(NAME) fclean
 
 go:
 	make
-	./philo 2 2 2 2
+	./philo 4 420 2 2
 
 l:
 	make
-	leaks --atExit -- ./philo 2 2 2 2
+	leaks --atExit -- ./philo 4 420 2 2
 	
 seg:
 	make
-	lldb ./philo -- 2 2 2 2
+	lldb ./philo -- 4 420 2 2
 
 .PHONY: all clean fclean re go l seg

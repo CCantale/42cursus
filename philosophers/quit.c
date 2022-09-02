@@ -6,12 +6,11 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:48:43 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/01 14:03:45 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/02 18:14:18 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/quit.h"
-
 void	join(t_ime *relativity)
 {
 	int	i;

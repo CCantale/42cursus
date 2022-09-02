@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 19:59:18 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/01 17:54:50 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/02 18:37:47 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	set_table(t_ime *relativity)
 	i = 0;
 	while (i < relativity->how_many_men_make_a_crowd)
 	{
-		relativity->sophos[i].seat_nbr = i + 1;
+		relativity->sophos[i].seat_nbr = i;
 		relativity->sophos[i].left_fork = relativity->forks + i;
 		if (i < relativity->how_many_men_make_a_crowd)
 			relativity->sophos[i].right_fork = relativity->forks + i + 1;

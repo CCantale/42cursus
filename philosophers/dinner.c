@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 19:25:18 by ccantale          #+#    #+#             */
-/*   Updated: 2022/08/29 23:23:11 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/02 18:10:22 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 																									#include <stdio.h>
 int	invite_friend(t_ime *relativity, int i)
 {
-	pthread_t t;
-
-	if (pthread_create(&t, NULL, (void *)(*routine), (void *)&relativity->sophos[i]) != 0)
-		return (1);
-	pthread_detach(t);
-	relativity->who_am_I_really[i] = t;
+	if (pthread_create(&relativity->who_am_I_really[i], NULL,
+				(void *)(*routine), (void *)&relativity->sophos[i]) != 0)
+		{
+			printf("CULO\n");																		// QUI C'e'un culo -Dan
+			return (1);
+		}
+	pthread_detach(relativity->who_am_I_really[i]);
 	return (0);
 }
 
