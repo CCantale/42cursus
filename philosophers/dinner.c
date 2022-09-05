@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 19:25:18 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/02 18:10:22 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/05 17:04:52 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int	invite_friend(t_ime *relativity, int i)
 	if (pthread_create(&relativity->who_am_I_really[i], NULL,
 				(void *)(*routine), (void *)&relativity->sophos[i]) != 0)
 		{
-			printf("CULO\n");																		// QUI C'e'un culo -Dan
+			printf("CULO\n");																		// QUI C'è un culo -Dan
 			return (1);
 		}
-	pthread_detach(relativity->who_am_I_really[i]);
+//	pthread_detach(relativity->who_am_I_really[i]);
 	return (0);
 }
 

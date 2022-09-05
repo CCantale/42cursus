@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 18:15:27 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/01 17:49:45 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/05 16:42:19 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct		s_ophos
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	int				meals;
-	pthread_mutex_t		pen;
+	pthread_mutex_t	pen;
 	t_ime			*relativity;
 }					t_philo;
 

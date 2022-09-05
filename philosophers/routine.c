@@ -6,12 +6,11 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 22:51:35 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/02 18:55:07 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/05 17:30:51 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/routine.h"
-																						#include <stdio.h>
 
 int	sleep_think(struct s_ophos *sophos)
 {
@@ -32,8 +31,7 @@ int	eat(struct s_ophos *sophos)
 	phi_sleep(sophos->relativity->we_are_what_we_eat);
 	sophos->meals++;
 	pthread_mutex_unlock(sophos->left_fork);
-	if (sophos->relativity->how_many_men_make_a_crowd > 1)
-		pthread_mutex_unlock(sophos->right_fork);
+	pthread_mutex_unlock(sophos->right_fork);
 	if (sophos->relativity->how_much_is_enough >= 0
 			&& sophos->meals == sophos->relativity->how_much_is_enough)
 	{
@@ -49,11 +47,13 @@ int	take_forks(struct s_ophos *sophos)
 {
 	//if (check_dead)
 	//	return (1);
-	pthread_mutex_lock(sophos->left_fork);
+	if (sophos->seat_nbr % 2 == 0)
+		pthread_mutex_lock(sophos->left_fork);
 	msg(sophos, TAKEN);
 	//check_dead
-	if (sophos->relativity->how_many_men_make_a_crowd > 1)
-		pthread_mutex_lock(sophos->right_fork);
+	pthread_mutex_lock(sophos->right_fork);
+	if (sophos->seat_nbr % 2 != 0)
+		pthread_mutex_lock(sophos->left_fork);
 	msg(sophos, TAKEN);
 	return (0);
 }
