@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 19:32:33 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/02 17:36:21 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/06 19:08:10 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,7 @@
 # include "common_knowledge.h"
 
 void	*routine(struct s_ophos *sophos);
+size_t	phi_time(t_ime *relativity);
+void	msg(struct s_ophos *sophos, int	action);
 
 #endif

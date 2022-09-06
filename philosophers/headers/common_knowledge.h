@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:19:45 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/06 18:02:10 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/06 18:55:35 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@
 
 void	debug(char *msg);
 void	wait_why_dont_we_use_one_fork_each(t_ime *relativity);
-void	phi_sleep(size_t be_right_back);
+void	phi_sleep(t_ime *relativity, size_t be_right_back);
 
 #endif

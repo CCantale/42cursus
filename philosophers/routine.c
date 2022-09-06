@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 22:51:35 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/05 17:30:51 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/06 18:56:15 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,25 @@
 
 int	sleep_think(struct s_ophos *sophos)
 {
-	//check_dead
+	if (sophos->relativity->death == 1)
+		return (1);
 	msg(sophos, SLEEPING);
-	//check_dead
-	phi_sleep(sophos->relativity->is_life_a_dream);
-	//check_dead
+	if (sophos->relativity->death == 1)
+		return (1);
+	phi_sleep(sophos->relativity, sophos->relativity->is_life_a_dream);
+	if (sophos->relativity->death == 1)
+		return (1);
 	msg(sophos, THINKING);
 	return (0);
 }
 
 int	eat(struct s_ophos *sophos)
 {
-	//check_dead
-	//piglia il tempo
+	if (sophos->relativity->death == 1)
+		return (1);
 	msg(sophos, EATING);
-	phi_sleep(sophos->relativity->we_are_what_we_eat);
+	phi_sleep(sophos->relativity, sophos->relativity->we_are_what_we_eat);
+	sophos->last_meal = phi_time(sophos->relativity);
 	sophos->meals++;
 	pthread_mutex_unlock(sophos->left_fork);
 	pthread_mutex_unlock(sophos->right_fork);
@@ -45,12 +49,13 @@ int	eat(struct s_ophos *sophos)
 
 int	take_forks(struct s_ophos *sophos)
 {
-	//if (check_dead)
-	//	return (1);
+	if (sophos->relativity->death == 1)
+		return (1);
 	if (sophos->seat_nbr % 2 == 0)
 		pthread_mutex_lock(sophos->left_fork);
 	msg(sophos, TAKEN);
-	//check_dead
+	if (sophos->relativity->death == 1)
+		return (1);
 	pthread_mutex_lock(sophos->right_fork);
 	if (sophos->seat_nbr % 2 != 0)
 		pthread_mutex_lock(sophos->left_fork);
@@ -66,6 +71,5 @@ void	*routine(struct s_ophos *sophos)
 		if (take_forks(sophos) || eat(sophos) || sleep_think(sophos))
 			break ;
 	}
-														//printf("Hello, I'm number %d!\n", sophos->seat_nbr);
 	return (NULL);
 }

@@ -6,26 +6,26 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:34:25 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/02 17:55:52 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/06 18:59:36 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/utilitarianism.h"
 
-size_t	phi_time(void)
+size_t	phi_time(t_ime *relativity)
 {
 	static struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
-	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+	return ((tv.tv_sec * 1000 + tv.tv_usec / 1000) - relativity->start);
 }
 
-void	phi_sleep(size_t be_right_back)
+void	phi_sleep(t_ime *relativity, size_t be_right_back)
 {
 	size_t	end;
 
-	end = phi_time() + be_right_back;
-	while (phi_time() < end)
+	end = phi_time(relativity) + be_right_back;
+	while (phi_time(relativity) < end)
 		usleep(be_right_back / 1000);
 }
 
