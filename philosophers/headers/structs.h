@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 18:15:27 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/05 16:42:19 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/06 12:55:40 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct		s_pace
 	int				how_much_is_enough;
 	pthread_mutex_t	*forks;
 	struct s_ophos	*sophos;
-	pthread_t		*who_am_I_really;
 }					t_ime;
 
 typedef struct		s_ophos
@@ -44,6 +43,7 @@ typedef struct		s_ophos
 	pthread_mutex_t	*right_fork;
 	int				meals;
 	pthread_mutex_t	pen;
+	pthread_t		who_am_I_really;
 	t_ime			*relativity;
 }					t_philo;
 
