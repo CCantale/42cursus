@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 18:15:27 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/06 12:55:40 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/06 17:58:41 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct		s_pace
 	int				we_are_what_we_eat;
 	int				is_life_a_dream;
 	int				how_much_is_enough;
+	size_t			start;
 	pthread_mutex_t	*forks;
 	struct s_ophos	*sophos;
 }					t_ime;

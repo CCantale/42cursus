@@ -6,12 +6,11 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 14:35:39 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/06 17:32:09 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/06 17:59:33 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/main.h"
-																								#include <unistd.h>
 
 int	main(int argc, char **argv)
 {
@@ -22,6 +21,7 @@ int	main(int argc, char **argv)
 					" that's all.\n Come on, try again."));
 	if (inform(&relativity, argv, argc))
 		return (1);
+	relativity.start = phi_time();
 	dinner(&relativity);
 	wait_why_dont_we_use_one_fork_each(&relativity);
 	printf("\n\n\033[0;36mEND OF CODE\033[0m\n\n\n");
