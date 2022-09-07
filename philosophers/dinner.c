@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 19:25:18 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/06 19:13:11 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:43:59 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ void	zio_maurizio(t_ime *relativity)
 	i = 0;
 	while (1)
 	{
-		//printf("time! %lu\n\n", phi_time(relativity) - relativity->sophos[i].last_meal);
+																	//printf("time! %lu\n\n", phi_time(relativity) - relativity->sophos[i].last_meal);
 		if (phi_time(relativity) - relativity->sophos[i].last_meal >= relativity->what_is_death)
 		{
-			relativity->death = 1;
+			pthread_mutex_lock(&relativity->death_mutex);
+			relativity->someone_died = 1;
+			pthread_mutex_unlock(&relativity->death_mutex);
 			msg(relativity->sophos + i, DIED);
 			break ;
 		}

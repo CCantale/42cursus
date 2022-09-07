@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 19:05:09 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/06 18:52:26 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:43:43 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	msg(struct s_ophos *sophos, int	action)
 {
 	size_t time;
 
-	pthread_mutex_lock(&sophos->pen);
-	time = phi_time(sophos->relativity) - sophos->relativity->start;
+	pthread_mutex_lock(&sophos->relativity->pen);
+	time = phi_time(sophos->relativity);
 	if (action == TAKEN)
 		printf("%zu	%d has taken a fork\n", time, sophos->seat_nbr);
 	if (action == EATING)
@@ -30,7 +30,7 @@ void	msg(struct s_ophos *sophos, int	action)
 		printf("%zu	%d died\n", time, sophos->seat_nbr);
 	if (action == FULL)
 		printf("%zu	%d is full\n", time, sophos->seat_nbr);
-	pthread_mutex_unlock(&sophos->pen);
+	pthread_mutex_unlock(&sophos->relativity->pen);
 }
 
 int	mistake(char *advice)

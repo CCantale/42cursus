@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:48:43 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/06 17:53:54 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:41:33 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,11 @@ void	wait_why_dont_we_use_one_fork_each(t_ime *relativity)
 	i = 0;
 	while (i < relativity->how_many_men_make_a_crowd)
 	{
-		pthread_mutex_unlock(relativity->forks + i);
 		pthread_mutex_destroy(relativity->forks + i);
 		++i;
 	}
+	pthread_mutex_destroy(&relativity->pen);
+	pthread_mutex_destroy(&relativity->death_mutex);
 	free(relativity->forks);
 	free(relativity->sophos);
 }

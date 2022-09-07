@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 14:35:39 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/06 18:48:48 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/07 15:51:58 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(int argc, char **argv)
 					" that's all.\n Come on, try again."));
 	if (inform(&relativity, argv, argc))
 		return (1);
+	relativity.start = 0;
 	relativity.start = phi_time(&relativity);
 	dinner(&relativity);
 	wait_why_dont_we_use_one_fork_each(&relativity);

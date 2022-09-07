@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 18:15:27 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/06 18:36:48 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:43:14 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ typedef struct		s_pace
 	int				is_life_a_dream;
 	int				how_much_is_enough;
 	size_t			start;
-	size_t			death;
+	pthread_mutex_t	death_mutex;
+	int				someone_died;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	pen;
 	struct s_ophos	*sophos;
 }					t_ime;
 
@@ -45,7 +47,6 @@ typedef struct		s_ophos
 	pthread_mutex_t	*right_fork;
 	int				meals;
 	size_t			last_meal;
-	pthread_mutex_t	pen;
 	pthread_t		who_am_I_really;
 	t_ime			*relativity;
 }					t_philo;

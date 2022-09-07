@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 19:59:18 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/06 19:02:02 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:42:28 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ int	inform(t_ime *relativity, char **info, int argc)
 		relativity->how_much_is_enough = -1;
 	if (argc == 6 && relativity->how_much_is_enough == -1)
 		return (1);
-	relativity->death = 0;
+	pthread_mutex_init(&relativity->death_mutex, NULL);
+	relativity->someone_died = 0;
 	if	(inform_forks(relativity))
 			return (1);
 	if (set_table(relativity))
