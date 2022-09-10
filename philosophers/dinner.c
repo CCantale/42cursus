@@ -26,7 +26,7 @@ void	zio_maurizio(t_ime *relativity)
 			relativity->someone_died = 1;
 			pthread_mutex_unlock(&relativity->death_mutex);
 			msg(relativity->sophos + i, DIED);
-			break ;
+			return ;
 		}
 		++i;
 		if (i == relativity->how_many_men_make_a_crowd)
@@ -56,10 +56,7 @@ int	dinner(t_ime *relativity)
 	while (i < relativity->how_many_men_make_a_crowd)
 	{
 		if (invite_friend(relativity->sophos + i) != 0)
-		{
-			wait_why_dont_we_use_one_fork_each(relativity);
 			return (1);
-		}
 		++i;
 	}
 	zio_maurizio(relativity);

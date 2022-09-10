@@ -25,8 +25,9 @@ void	phi_sleep(t_ime *relativity, size_t be_right_back)
 	size_t	end;
 
 	end = phi_time(relativity) + be_right_back;
+	usleep(be_right_back * 1000 - 20000);
 	while (phi_time(relativity) < end)
-		usleep(be_right_back / 1000);
+		continue ;
 }
 
 void	*phi_calloc(size_t count, size_t size)

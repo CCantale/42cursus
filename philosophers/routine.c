@@ -19,9 +19,7 @@ int	check_death(t_ime *relativity)
 	pthread_mutex_lock(&relativity->death_mutex);
 	death = relativity->someone_died;
 	pthread_mutex_unlock(&relativity->death_mutex);
-	if (death == 1)
-		return (1);
-	return (0);
+	return (death);
 }
 
 int	sleep_think(struct s_ophos *sophos)
@@ -64,6 +62,8 @@ int	take_forks(struct s_ophos *sophos)
 	if (sophos->seat_nbr % 2 == 0)
 		pthread_mutex_lock(sophos->left_fork);
 	msg(sophos, TAKEN);
+	if (sophos->relativity->how_many_men_make_a_crowd ==1)
+		return (1) ;
 	if (check_death(sophos->relativity))
 		return (1);
 	pthread_mutex_lock(sophos->right_fork);

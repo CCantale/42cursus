@@ -30,11 +30,14 @@ void	wait_why_dont_we_use_one_fork_each(t_ime *relativity)
 
 	join(relativity);
 	i = 0;
-	while (i < relativity->how_many_men_make_a_crowd)
-	{
-		pthread_mutex_destroy(relativity->forks + i);
-		++i;
-	}
+	// while (i < relativity->how_many_men_make_a_crowd)
+	// {
+	// 	pthread_mutex_destroy(relativity->forks + i);
+	// 	++i;
+	// }
+//	pthread_mutex_destroy(relativity->forks);
+	pthread_mutex_destroy(relativity->forks + 1);
+	printf("\n    %p    %p", relativity->forks, relativity->forks + 1);
 	pthread_mutex_destroy(&relativity->pen);
 	pthread_mutex_destroy(&relativity->death_mutex);
 	free(relativity->forks);

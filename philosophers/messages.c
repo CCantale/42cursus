@@ -19,17 +19,17 @@ void	msg(struct s_ophos *sophos, int	action)
 	pthread_mutex_lock(&sophos->relativity->pen);
 	time = phi_time(sophos->relativity);
 	if (action == TAKEN)
-		printf("%zu	%d has taken a fork\n", time, sophos->seat_nbr);
+		printf("%zu	%d has taken a fork\n", time, sophos->seat_nbr + 1);
 	if (action == EATING)
-		printf("%zu	%d is eating\n", time, sophos->seat_nbr);
+		printf("%zu	%d is eating\n", time, sophos->seat_nbr + 1);
 	if (action == SLEEPING)
-		printf("%zu	%d is sleeping\n", time, sophos->seat_nbr);
+		printf("%zu	%d is sleeping\n", time, sophos->seat_nbr + 1);
 	if (action == THINKING)
-		printf("%zu	%d is thinking\n", time, sophos->seat_nbr);
+		printf("%zu	%d is thinking\n", time, sophos->seat_nbr + 1);
 	if (action == DIED)
-		printf("%zu	%d died\n", time, sophos->seat_nbr);
+		printf("%zu	%d died\n", time, sophos->seat_nbr + 1);
 	if (action == FULL)
-		printf("%zu	%d is full\n", time, sophos->seat_nbr);
+		printf("%zu	%d is full\n", time, sophos->seat_nbr + 1);
 	pthread_mutex_unlock(&sophos->relativity->pen);
 }
 

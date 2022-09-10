@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 19:59:18 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/07 16:42:28 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/10 21:52:14 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	inform_forks(t_ime *relativity)
 {
 	int i;
 
-	relativity->forks = malloc(sizeof(pthread_mutex_t)
+	relativity->forks = (pthread_mutex_t *) malloc(sizeof(pthread_mutex_t)
 			* relativity->how_many_men_make_a_crowd);
 	if (!relativity->forks)
 		return (mistake(" This time it's really not your fault.\n"
@@ -78,6 +78,7 @@ int	inform(t_ime *relativity, char **info, int argc)
 	if (argc == 6 && relativity->how_much_is_enough == -1)
 		return (1);
 	pthread_mutex_init(&relativity->death_mutex, NULL);
+	pthread_mutex_init(&relativity->pen, NULL);
 	relativity->someone_died = 0;
 	if	(inform_forks(relativity))
 			return (1);
