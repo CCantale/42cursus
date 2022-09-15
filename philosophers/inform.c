@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 19:59:18 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/15 16:18:35 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/16 01:13:38 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	inform_forks(t_ime *relativity)
 {
-	int i;
+	int	i;
 
 	relativity->forks = (pthread_mutex_t *) malloc(sizeof(pthread_mutex_t)
 			* relativity->how_many_men_make_a_crowd);
 	if (!relativity->forks)
 		return (mistake(" This time it's really not your fault.\n"
-					" Not all mutexes come out with a malloc."));
+				" Not all mutexes come out with a malloc."));
 	i = 0;
 	while (i < relativity->how_many_men_make_a_crowd)
 	{
@@ -38,7 +38,7 @@ int	set_table(t_ime *relativity)
 			sizeof(t_philo));
 	if (!relativity->sophos)
 		return (mistake(" This time it's really not your fault.\n Not all of"
-					" us will answer when you calloc them."));
+				" us will answer when you calloc them."));
 	i = 0;
 	while (i < relativity->how_many_men_make_a_crowd)
 	{
@@ -52,7 +52,7 @@ int	set_table(t_ime *relativity)
 		++i;
 	}
 	relativity->full_stomacs = 0;
-	return(0);
+	return (0);
 }
 
 int	inform(t_ime *relativity, char **info, int argc)
@@ -62,8 +62,8 @@ int	inform(t_ime *relativity, char **info, int argc)
 	relativity->we_are_what_we_eat = phi_atoi(info[3]);
 	relativity->is_life_a_dream = phi_atoi(info[4]);
 	if (relativity->how_many_men_make_a_crowd == -1
-			|| relativity->we_are_what_we_eat == -1
-			|| relativity->is_life_a_dream == -1)
+		|| relativity->we_are_what_we_eat == -1
+		|| relativity->is_life_a_dream == -1)
 		return (1);
 	if (relativity->is_life_a_dream == -1)
 		return (1);
@@ -77,10 +77,10 @@ int	inform(t_ime *relativity, char **info, int argc)
 	pthread_mutex_init(&relativity->pen, NULL);
 	pthread_mutex_init(&relativity->full_mutex, NULL);
 	relativity->someone_died = 0;
-	if	(inform_forks(relativity))
-			return (1);
+	if (inform_forks(relativity))
+		return (1);
 	if (set_table(relativity))
-		return(1);
+		return (1);
 	return (0);
 }
 

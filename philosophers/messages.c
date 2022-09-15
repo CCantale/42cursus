@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 19:05:09 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/16 00:30:48 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/16 01:18:08 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,17 @@
 void	actions(struct s_ophos *sophos, int action, size_t time)
 {
 	if (action == TAKEN)
-		printf("\033[0;32m%zu\033[0m	%d has taken a fork\n", time, sophos->seat_nbr + 1);
+		printf("\033[0;32m%zu\033[0m	%d has taken a fork\n",
+			time, sophos->seat_nbr + 1);
 	else if (action == EATING)
-		printf("\033[0;35m%zu\033[0m	%d is eating\n", time, sophos->seat_nbr + 1);
+		printf("\033[0;35m%zu\033[0m	%d is eating\n",
+			time, sophos->seat_nbr + 1);
 	else if (action == SLEEPING)
-		printf("\033[0;36m%zu\033[0m	%d is sleeping\n", time, sophos->seat_nbr + 1);
+		printf("\033[0;36m%zu\033[0m	%d is sleeping\n",
+			time, sophos->seat_nbr + 1);
 	else if (action == THINKING)
-		printf("\033[0;33m%zu\033[0m	%d is thinking\n", time, sophos->seat_nbr + 1);
+		printf("\033[0;33m%zu\033[0m	%d is thinking\n",
+			time, sophos->seat_nbr + 1);
 	else if (action == DIED)
 	{
 		phi_sleep(sophos->relativity, 10);
@@ -29,9 +33,9 @@ void	actions(struct s_ophos *sophos, int action, size_t time)
 	}
 }
 
-void	msg(struct s_ophos *sophos, int	action)
+void	msg(struct s_ophos *sophos, int action)
 {
-	size_t time;
+	size_t	time;
 
 	pthread_mutex_lock(&sophos->relativity->pen);
 	time = phi_time(sophos->relativity);
@@ -55,7 +59,7 @@ void	msg(struct s_ophos *sophos, int	action)
 int	mistake(char *advice)
 {
 	printf("\n\"It looks like something's wrong here, am I right?\n It's ok,"
-			" don't beat yourself up too much about it.\n%s\"\n\n", advice);
+		" don't beat yourself up too much about it.\n%s\"\n\n", advice);
 	return (-1);
 }
 

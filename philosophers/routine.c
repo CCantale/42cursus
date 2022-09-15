@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 22:51:35 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/16 00:21:34 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/16 01:20:37 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int	eat(struct s_ophos *sophos)
 	sophos->meals++;
 	pthread_mutex_unlock(sophos->left_fork);
 	pthread_mutex_unlock(sophos->right_fork);
-	if (sophos->relativity->how_much_is_enough != -1 
-			&& sophos->meals == sophos->relativity->how_much_is_enough)
+	if (sophos->relativity->how_much_is_enough != -1
+		&& sophos->meals == sophos->relativity->how_much_is_enough)
 	{
 		pthread_mutex_lock(&sophos->relativity->full_mutex);
 		sophos->relativity->full_stomacs++;
@@ -65,18 +65,15 @@ int	take_forks(struct s_ophos *sophos)
 		pthread_mutex_lock(sophos->left_fork);
 	msg(sophos, TAKEN);
 	if (sophos->relativity->how_many_men_make_a_crowd == 1)
-		return (1) ;
-	if (check_death(sophos->relativity))
-	{
 		return (1);
-	}
+	if (check_death(sophos->relativity))
+		return (1);
 	pthread_mutex_lock(sophos->right_fork);
 	if (sophos->seat_nbr % 2 != 0)
 		pthread_mutex_lock(sophos->left_fork);
 	msg(sophos, TAKEN);
 	return (0);
 }
-
 
 void	*routine(struct s_ophos *sophos)
 {

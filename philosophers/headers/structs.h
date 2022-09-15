@@ -6,16 +6,16 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 18:15:27 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/15 16:34:28 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/16 01:28:58 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-struct s_ophos;
+struct	s_ophos;
 
-typedef enum		e_action
+typedef enum e_action
 {
 	TAKEN,
 	EATING,
@@ -23,9 +23,9 @@ typedef enum		e_action
 	THINKING,
 	DIED,
 	FULL
-}					t_action;
+}	t_action;
 
-typedef struct		s_pace
+typedef struct s_pace
 {
 	int				how_many_men_make_a_crowd;
 	size_t			what_is_death;
@@ -42,14 +42,14 @@ typedef struct		s_pace
 	struct s_ophos	*sophos;
 }					t_ime;
 
-typedef struct		s_ophos
+typedef struct s_ophos
 {
 	int				seat_nbr;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	int				meals;
 	size_t			last_meal;
-	pthread_t		who_am_I_really;
+	pthread_t		who_am_i_really;
 	t_ime			*relativity;
 }					t_philo;
 

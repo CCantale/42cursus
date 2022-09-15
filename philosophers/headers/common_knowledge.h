@@ -6,11 +6,11 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 21:19:45 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/06 18:55:35 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/16 01:24:31 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	COMMON_KNOWLEDGE_H
+#ifndef COMMON_KNOWLEDGE_H
 # define COMMON_KNOWLEDGE_H
 
 # include <stdio.h>

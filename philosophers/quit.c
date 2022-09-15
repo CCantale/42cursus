@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:48:43 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/15 16:25:07 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/16 01:30:33 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	join(t_ime *relativity)
 	i = 0;
 	while (i < relativity->how_many_men_make_a_crowd)
 	{
-		pthread_join(relativity->sophos[i].who_am_I_really, NULL);
+		pthread_join(relativity->sophos[i].who_am_i_really, NULL);
 		++i;
 	}
 }
