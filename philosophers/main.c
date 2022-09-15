@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 14:35:39 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/07 15:51:58 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/16 00:42:22 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	main(int argc, char **argv)
 	relativity.start = phi_time(&relativity);
 	dinner(&relativity);
 	wait_why_dont_we_use_one_fork_each(&relativity);
-	printf("\n\n\033[0;36mEND OF CODE\033[0m\n\n\n");
 	return (0);
 }
 

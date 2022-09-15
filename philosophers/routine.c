@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 22:51:35 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/15 16:27:25 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/16 00:21:34 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,14 @@ int	sleep_think(struct s_ophos *sophos)
 int	eat(struct s_ophos *sophos)
 {
 	if (check_death(sophos->relativity))
-	{
 		return (1);
-	}
 	msg(sophos, EATING);
 	sophos->last_meal = phi_time(sophos->relativity);
 	phi_sleep(sophos->relativity, sophos->relativity->we_are_what_we_eat);
 	sophos->meals++;
 	pthread_mutex_unlock(sophos->left_fork);
 	pthread_mutex_unlock(sophos->right_fork);
-	if (sophos->relativity->how_much_is_enough >= 0
+	if (sophos->relativity->how_much_is_enough != -1 
 			&& sophos->meals == sophos->relativity->how_much_is_enough)
 	{
 		pthread_mutex_lock(&sophos->relativity->full_mutex);
