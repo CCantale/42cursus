@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 19:05:09 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/07 16:43:43 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/11 23:21:47 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ void	msg(struct s_ophos *sophos, int	action)
 	if (action == THINKING)
 		printf("%zu	%d is thinking\n", time, sophos->seat_nbr + 1);
 	if (action == DIED)
+	{
+		phi_sleep(sophos->relativity, 10);
 		printf("%zu	%d died\n", time, sophos->seat_nbr + 1);
+	}
 	if (action == FULL)
 		printf("%zu	%d is full\n", time, sophos->seat_nbr + 1);
 	pthread_mutex_unlock(&sophos->relativity->pen);

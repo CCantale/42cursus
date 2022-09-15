@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:34:25 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/06 18:59:36 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/15 14:46:28 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	phi_sleep(t_ime *relativity, size_t be_right_back)
 	size_t	end;
 
 	end = phi_time(relativity) + be_right_back;
-	usleep(be_right_back * 1000 - 20000);
+	usleep(be_right_back * 1000 - 10000);
 	while (phi_time(relativity) < end)
 		continue ;
 }
