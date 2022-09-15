@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 22:51:35 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/15 14:48:38 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/15 16:27:25 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ int	eat(struct s_ophos *sophos)
 {
 	if (check_death(sophos->relativity))
 	{
-		//pthread_mutex_unlock(sophos->left_fork);
-		//pthread_mutex_unlock(sophos->right_fork);
 		return (1);
 	}
 	msg(sophos, EATING);
@@ -53,7 +51,9 @@ int	eat(struct s_ophos *sophos)
 	if (sophos->relativity->how_much_is_enough >= 0
 			&& sophos->meals == sophos->relativity->how_much_is_enough)
 	{
+		pthread_mutex_lock(&sophos->relativity->full_mutex);
 		sophos->relativity->full_stomacs++;
+		pthread_mutex_unlock(&sophos->relativity->full_mutex);
 		msg(sophos, FULL);
 	}
 	return (0);
@@ -70,8 +70,6 @@ int	take_forks(struct s_ophos *sophos)
 		return (1) ;
 	if (check_death(sophos->relativity))
 	{
-		//if (sophos->seat_nbr % 2 == 0)
-		//	pthread_mutex_unlock(sophos->left_fork);
 		return (1);
 	}
 	pthread_mutex_lock(sophos->right_fork);

@@ -6,11 +6,19 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 19:25:18 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/11 19:58:32 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/15 16:26:58 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/dinner.h"
+
+void	full_procedure(t_ime *relativity)
+{
+	pthread_mutex_lock(&relativity->death_mutex);
+	relativity->someone_died = 1;
+	pthread_mutex_unlock(&relativity->death_mutex);
+	pthread_mutex_unlock(&relativity->full_mutex);
+}
 
 void	zio_maurizio(t_ime *relativity)
 {
@@ -27,14 +35,14 @@ void	zio_maurizio(t_ime *relativity)
 			msg(relativity->sophos + i, DIED);
 			break ;
 		}
+		pthread_mutex_lock(&relativity->full_mutex);
 		if (relativity->how_much_is_enough != -1
-				&& relativity->full_stomacs >= relativity->how_much_is_enough)
+				&& relativity->full_stomacs >= relativity->how_many_men_make_a_crowd)
 		{
-			pthread_mutex_lock(&relativity->death_mutex);
-			relativity->someone_died = 1;
-			pthread_mutex_unlock(&relativity->death_mutex);
+			full_procedure(relativity);
 			break ;
 		}
+		pthread_mutex_unlock(&relativity->full_mutex);
 		++i;
 		if (i == relativity->how_many_men_make_a_crowd)
 			i = 0;

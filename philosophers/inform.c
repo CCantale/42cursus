@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 19:59:18 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/11 19:55:54 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/15 16:18:35 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,7 @@ int	set_table(t_ime *relativity)
 		relativity->sophos[i].relativity = relativity;
 		++i;
 	}
-	relativity->forks = phi_calloc(relativity->how_many_men_make_a_crowd,
-			sizeof(int));
-	if (!relativity->forks)
-		return (mistake(" This time it's really not your fault.\n Not all forks"
-					" come out with a malloc."));
+	relativity->full_stomacs = 0;
 	return(0);
 }
 
@@ -79,8 +75,8 @@ int	inform(t_ime *relativity, char **info, int argc)
 		return (1);
 	pthread_mutex_init(&relativity->death_mutex, NULL);
 	pthread_mutex_init(&relativity->pen, NULL);
+	pthread_mutex_init(&relativity->full_mutex, NULL);
 	relativity->someone_died = 0;
-	relativity->full_stomacs = 0;
 	if	(inform_forks(relativity))
 			return (1);
 	if (set_table(relativity))
