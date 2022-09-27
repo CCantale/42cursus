@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 17:57:00 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/16 17:57:46 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/27 23:44:39 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 # define MAIN_H
 
 # include "common.h"
+
+int	set_struct(t_info *info, char **argv, int argc);
 
 #endif

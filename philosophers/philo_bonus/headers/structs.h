@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/16 17:52:01 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/27 23:44:44 by ccantale         ###   ########.fr       */
+/*   Created: 2022/09/28 01:25:55 by ccantale          #+#    #+#             */
+/*   Updated: 2022/09/28 01:44:01 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/main.h"
+#ifndef STRUCTS_H
+# define STTRUCTS_H
 
-int	main(int argc, char **argv)
+typedef struct	s_info
 {
-	t_info	info;
-
-	if (argc < 5 || argc > 6)
-	{
-		printf("Five or six arguments only, sir, if you please.\n");
-		return (1);
-	}
-	if (set_struct(&info, argv, argc))
-		return (1);
-	printf("                \033[0;36mEND OF CODE\033[0m\n");
-	return (0);
-}
+	int				nbr_of_philo;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				meals_per_philo;
+	int				meals_eaten;
+	unsigned int	start_timestamp;
+	sem_t			fork;
+	sem_t			death;
+	sem_t			messages;
+}					t_info;

@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/16 17:52:01 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/27 23:44:44 by ccantale         ###   ########.fr       */
+/*   Created: 2022/09/27 23:55:47 by ccantale          #+#    #+#             */
+/*   Updated: 2022/09/27 23:55:56 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/main.h"
+#ifndef UTILS_H
+# define UTILS_H
 
-int	main(int argc, char **argv)
-{
-	t_info	info;
+# include "common.h"
+# include <sys/time.h>
+# include <unistd.h>
 
-	if (argc < 5 || argc > 6)
-	{
-		printf("Five or six arguments only, sir, if you please.\n");
-		return (1);
-	}
-	if (set_struct(&info, argv, argc))
-		return (1);
-	printf("                \033[0;36mEND OF CODE\033[0m\n");
-	return (0);
-}
+int	mistake(char *advice);
+
+#endif

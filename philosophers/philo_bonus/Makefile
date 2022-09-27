@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/14 19:14:21 by ccantale          #+#    #+#              #
-#    Updated: 2022/09/16 17:59:11 by ccantale         ###   ########.fr        #
+#    Updated: 2022/09/27 18:43:59 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ $(NAME): $(OBJ)
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 
 $(OBJ): $(OBJDIR)/%.o: $(SRCDIR)/%.c
-	mkdir -p obj
+	mkdir -p $(OBJDIR)
 	$(CC) $(FLAGS) -g -c $< -o $@
 
 clean:

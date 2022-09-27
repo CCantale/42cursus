@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   messages.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/16 17:52:01 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/27 23:44:44 by ccantale         ###   ########.fr       */
+/*   Created: 2022/08/14 19:12:32 by ccantale          #+#    #+#             */
+/*   Updated: 2022/09/27 23:53:14 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/main.h"
+#ifndef MESSAGES_H
+# define MESSAGES_H
 
-int	main(int argc, char **argv)
-{
-	t_info	info;
+# include "common.h"
+# include <stdio.h>
 
-	if (argc < 5 || argc > 6)
-	{
-		printf("Five or six arguments only, sir, if you please.\n");
-		return (1);
-	}
-	if (set_struct(&info, argv, argc))
-		return (1);
-	printf("                \033[0;36mEND OF CODE\033[0m\n");
-	return (0);
-}
+int		phi_atoi(char *info);
+size_t	phi_time(t_ime *relativity);
+void	phi_sleep(t_ime *relativity, size_t be_right_back);
+
+#endif

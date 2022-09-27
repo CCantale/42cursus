@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   set_struct.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/16 17:52:01 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/27 23:44:44 by ccantale         ###   ########.fr       */
+/*   Created: 2022/09/27 23:55:30 by ccantale          #+#    #+#             */
+/*   Updated: 2022/09/27 23:55:35 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/main.h"
+#ifndef SET_STRUCT_H
+# define SET_STRTUCT_H
 
-int	main(int argc, char **argv)
-{
-	t_info	info;
+# include "common.h"
 
-	if (argc < 5 || argc > 6)
-	{
-		printf("Five or six arguments only, sir, if you please.\n");
-		return (1);
-	}
-	if (set_struct(&info, argv, argc))
-		return (1);
-	printf("                \033[0;36mEND OF CODE\033[0m\n");
-	return (0);
-}
+void	*phi_calloc(size_t count, size_t size);
+int		phi_atoi(char *info);
+int		mistake(char *advice);
+
+#endif
