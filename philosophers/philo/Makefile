@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/14 19:14:21 by ccantale          #+#    #+#              #
-#    Updated: 2022/09/27 18:09:37 by ccantale         ###   ########.fr        #
+#    Updated: 2022/09/27 19:22:35 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ FILES	=		main.c \
 				quit.c \
 				dinner.c \
 				routine.c \
-				wait_for_k.c
+				fork_actions.c
 
 OBJDIR	=		obj
 SRCDIR	=		src

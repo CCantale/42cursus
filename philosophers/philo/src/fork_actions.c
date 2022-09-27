@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wait_for_k.c                                       :+:      :+:    :+:   */
+/*   fork_actions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 18:04:44 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/27 18:05:58 by ccantale         ###   ########.fr       */
+/*   Created: 2022/09/27 19:21:36 by ccantale          #+#    #+#             */
+/*   Updated: 2022/09/27 19:22:50 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <pthread.h>
+#include "../headers/fork_actions.h"
 
 void	wait_for_k(pthread_mutex_t *fork_mutex, int *fork)
 {
@@ -25,4 +25,14 @@ void	wait_for_k(pthread_mutex_t *fork_mutex, int *fork)
 		}
 		pthread_mutex_unlock(fork_mutex);
 	}
+}
+
+void	put_forks_down(struct s_ophos *sophos)
+{
+	pthread_mutex_lock(sophos->left_mutex);
+	*sophos->left_fork = 0;
+	pthread_mutex_unlock(sophos->left_mutex);
+	pthread_mutex_lock(sophos->right_mutex);
+	*sophos->right_fork = 0;
+	pthread_mutex_unlock(sophos->right_mutex);
 }
