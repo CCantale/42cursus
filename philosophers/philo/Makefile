@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/14 19:14:21 by ccantale          #+#    #+#              #
-#    Updated: 2022/09/16 12:52:48 by ccantale         ###   ########.fr        #
+#    Updated: 2022/09/27 18:09:37 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ FILES	=		main.c \
 				debug.c \
 				quit.c \
 				dinner.c \
-				routine.c
+				routine.c \
+				wait_for_k.c
 
 OBJDIR	=		obj
 SRCDIR	=		src
@@ -64,3 +65,4 @@ seg:
 	lldb ./philo -- 4 420 200 200
 
 .PHONY: all clean fclean re go l seg
+

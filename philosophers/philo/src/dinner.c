@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 19:25:18 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/16 12:16:15 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/27 18:01:54 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	zio_maurizio(t_ime *relativity)
 	}
 }
 
-/* my uncle's a doctor, so I thoght I would have him check
+/* my uncle's a doctor, so I thought I would have him check
 ** for the death of my friends here */
 
 int	invite_friend(struct s_ophos *sophos)

@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 22:51:35 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/16 12:17:17 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/27 18:06:08 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,12 @@ int	eat(struct s_ophos *sophos)
 	sophos->last_meal = phi_time(sophos->relativity);
 	phi_sleep(sophos->relativity, sophos->relativity->we_are_what_we_eat);
 	sophos->meals++;
-	pthread_mutex_unlock(sophos->left_fork);
-	pthread_mutex_unlock(sophos->right_fork);
+	pthread_mutex_lock(sophos->left_mutex);
+	*sophos->left_fork = 0;
+	pthread_mutex_unlock(sophos->left_mutex);
+	pthread_mutex_lock(sophos->right_mutex);
+	*sophos->right_fork = 0;
+	pthread_mutex_unlock(sophos->right_mutex);
 	if (sophos->relativity->how_much_is_enough != -1
 		&& sophos->meals == sophos->relativity->how_much_is_enough)
 	{
@@ -62,15 +66,15 @@ int	take_forks(struct s_ophos *sophos)
 	if (check_death(sophos->relativity))
 		return (1);
 	if (sophos->seat_nbr % 2 == 0)
-		pthread_mutex_lock(sophos->left_fork);
+		wait_for_k(sophos->left_mutex, sophos->left_fork);
 	msg(sophos, TAKEN);
 	if (sophos->relativity->how_many_men_make_a_crowd == 1)
 		return (1);
 	if (check_death(sophos->relativity))
 		return (1);
-	pthread_mutex_lock(sophos->right_fork);
+	wait_for_k(sophos->right_mutex, sophos->right_fork);
 	if (sophos->seat_nbr % 2 != 0)
-		pthread_mutex_lock(sophos->left_fork);
+		wait_for_k(sophos->left_mutex, sophos->left_fork);
 	msg(sophos, TAKEN);
 	return (0);
 }

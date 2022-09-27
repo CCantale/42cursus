@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine.h                                          :+:      :+:    :+:   */
+/*   wait_for_k.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 14:09:00 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/27 18:05:57 by ccantale         ###   ########.fr       */
+/*   Created: 2022/09/27 18:04:44 by ccantale          #+#    #+#             */
+/*   Updated: 2022/09/27 18:05:58 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROUTINE_H
-# define ROUTINE_H
+#include <pthread.h>
 
-# include "common_knowledge.h"
-
-void	msg(struct s_ophos *sophos, int action);
-size_t	phi_time(t_ime *relativity);
-void	wait_for_k(pthread_mutex_t *fork_mutex, int *fork);
-
-#endif
+void	wait_for_k(pthread_mutex_t *fork_mutex, int *fork)
+{
+	while (1)
+	{
+		pthread_mutex_lock(fork_mutex);
+		if (*fork == 0)
+		{
+			*fork = 1;
+			pthread_mutex_unlock(fork_mutex);
+			break ;
+		}
+		pthread_mutex_unlock(fork_mutex);
+	}
+}

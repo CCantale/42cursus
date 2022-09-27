@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 18:15:27 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/16 01:28:58 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/27 17:33:02 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ typedef struct s_pace
 	size_t			start;
 	int				someone_died;
 	int				full_stomacs;
-	pthread_mutex_t	*forks;
+	int				*forks;
+	pthread_mutex_t	*fork_mutex;
 	pthread_mutex_t	death_mutex;
 	pthread_mutex_t	full_mutex;
 	pthread_mutex_t	pen;
@@ -45,8 +46,10 @@ typedef struct s_pace
 typedef struct s_ophos
 {
 	int				seat_nbr;
-	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	*right_fork;
+	int				*left_fork;
+	int				*right_fork;
+	pthread_mutex_t	*left_mutex;
+	pthread_mutex_t	*right_mutex;
 	int				meals;
 	size_t			last_meal;
 	pthread_t		who_am_i_really;
