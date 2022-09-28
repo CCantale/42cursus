@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 23:57:04 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/28 01:15:23 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/28 09:58:11 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,34 @@ int	set_struct(t_info *info, char **argv, int argc)
 		info->meals_per_philo = -1;
 	if (argc == 6 && info->meals_per_philo == -1)
 		return (1);
-	pthread_mutex_init(&info->death_mutex, NULL);
-	pthread_mutex_init(&info->pen, NULL);
-	pthread_mutex_init(&info->full_mutex, NULL);
+	set_maphores(info);
 	info->someone_died = 0;
 	if (inform_forks(info))
 		return (1);
 	if (set_table(info))
 		return (1);
 	return (0);
+}
+
+void	set_maphores(t_info *info)
+{
+	sem_unlink("forks");
+	sem_unlink("death");
+	sem_unlink("messages");
+	if (sem_open("death", O_CREAT | O_EXCL, 0600, 1) == SEM_FAILED)
+		return (1);
+	if (sem_open("messages", O_CREAT | O_EXCL, 0600, 1) == SEM_FAILED)
+	{
+		sem_close("death");
+		return (1);
+	}
+	if (sem_open("forks",
+			O_CREAT | O_EXCL, 0600, info->nbr_of_philo) == SEM_FAILED)
+	{
+		sem_close("death");
+		sem_close("messages");
+		return (1);
+	}
 }
 
 int	inform_forks(t_ime *info)

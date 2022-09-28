@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 17:57:59 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/16 17:58:30 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/28 08:54:03 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 # define COMMON_H
 
 # include <stdio.h>
+# include <semaphore.h>
 
 #endif
