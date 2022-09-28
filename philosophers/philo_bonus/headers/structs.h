@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 01:25:55 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/28 09:58:13 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/28 17:20:38 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct	s_info
 	int				meals_per_philo;
 	int				meals_eaten;
 	unsigned int	start_timestamp;
-	sem_t			fork;
+	sem_t			forks;
 	sem_t			death;
 	sem_t			messages;
 }					t_info;

@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 23:57:04 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/28 09:58:11 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/28 18:06:42 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,52 +30,36 @@ int	set_struct(t_info *info, char **argv, int argc)
 		info->meals_per_philo = -1;
 	if (argc == 6 && info->meals_per_philo == -1)
 		return (1);
-	set_maphores(info);
-	info->someone_died = 0;
+	if (set_maphores(info))
+		return (1);
+	/*info->someone_died = 0;
 	if (inform_forks(info))
 		return (1);
 	if (set_table(info))
-		return (1);
+		return (1);*/
 	return (0);
 }
 
-void	set_maphores(t_info *info)
+int	set_maphores(t_info *info)
 {
 	sem_unlink("forks");
 	sem_unlink("death");
 	sem_unlink("messages");
-	if (sem_open("death", O_CREAT | O_EXCL, 0600, 1) == SEM_FAILED)
+	info->death = sem_open("death", O_CREAT | O_EXCL, 0600, 1);
+	if (info->death == SEM_FAILED)
 		return (1);
-	if (sem_open("messages", O_CREAT | O_EXCL, 0600, 1) == SEM_FAILED)
+	info->messages = sem_open("messages", O_CREAT | O_EXCL, 0600, 1);
+	if (info->messages == SEM_FAILED)
 	{
-		sem_close("death");
-		return (1);
-	}
-	if (sem_open("forks",
-			O_CREAT | O_EXCL, 0600, info->nbr_of_philo) == SEM_FAILED)
-	{
-		sem_close("death");
-		sem_close("messages");
+		sem_close(info->death);
 		return (1);
 	}
-}
-
-int	inform_forks(t_ime *info)
-{
-	int	i;
-
-	info->forks = phi_calloc(info->nbr_of_philo,
-			sizeof(int));
-	info->fork_mutex = (pthread_mutex_t *) malloc(sizeof(pthread_mutex_t)
-			* info->nbr_of_philo);
-	if (!info->fork_mutex)
-		return (mistake(" This time it's really not your fault.\n"
-				" Not all mutexes come out with a malloc."));
-	i = 0;
-	while (i < info->nbr_of_philo)
+	info->forks = sem_open("forks",
+			O_CREAT | O_EXCL, 0600, info->nbr_of_philo);
 	{
-		pthread_mutex_init(info->fork_mutex + i, NULL);
-		++i;
+		sem_close(info->death);
+		sem_close(info->messages);
+		return (1);
 	}
 	return (0);
 }
