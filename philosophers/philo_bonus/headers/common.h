@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 17:57:59 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/28 08:54:03 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/29 15:57:13 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,7 @@
 
 # include <stdio.h>
 # include <semaphore.h>
+
+# include "structs.h"
 
 #endif

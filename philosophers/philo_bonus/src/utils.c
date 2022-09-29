@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 23:56:38 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/28 01:24:26 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/29 16:16:43 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	phi_sleep(t_info *info, size_t be_right_back)
 void	*phi_calloc(size_t count, size_t size)
 {
 	size_t	i;
-	void	*map;
+	char	*map;
 
 	map = malloc(count * size);
 	if (!map)
@@ -47,10 +47,10 @@ void	*phi_calloc(size_t count, size_t size)
 	i = 0;
 	while (i < size * count)
 	{
-		(char *)map[i] = 0;
+		map[i] = 0;
 		++i;
 	}
-	return (map);
+	return ((void *)map);
 }
 
 int	phi_atoi(char *info)

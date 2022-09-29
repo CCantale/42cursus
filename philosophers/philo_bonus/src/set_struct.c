@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 23:57:04 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/28 18:06:42 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/29 15:53:32 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,34 +61,5 @@ int	set_maphores(t_info *info)
 		sem_close(info->messages);
 		return (1);
 	}
-	return (0);
-}
-
-int	set_table(t_ime *info)
-{
-	int	i;
-
-	info->sophos = phi_calloc(info->nbr_of_philo,
-			sizeof(t_philo));
-	if (!info->sophos)
-		return (mistake(" This time it's really not your fault.\n Not all of"
-				" us will answer when you calloc them."));
-	i = -1;
-	while (++i < info->nbr_of_philo)
-	{
-		info->sophos[i].seat_nbr = i;
-		info->sophos[i].left_fork = info->forks + i;
-		info->sophos[i].right_fork = info->forks + i + 1;
-		info->sophos[i].left_mutex = info->fork_mutex + i;
-		info->sophos[i].right_mutex = info->fork_mutex + i + 1;
-		if (i == info->nbr_of_philo - 1)
-		{
-			info->sophos[i].right_fork = info->forks;
-			info->sophos[i].right_mutex = info->fork_mutex;
-		}
-		info->sophos[i].meals = 0;
-		info->sophos[i].info = info;
-	}
-	info->full_stomacs = 0;
 	return (0);
 }

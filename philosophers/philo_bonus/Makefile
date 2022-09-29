@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/14 19:14:21 by ccantale          #+#    #+#              #
-#    Updated: 2022/09/27 18:43:59 by ccantale         ###   ########.fr        #
+#    Updated: 2022/09/29 16:13:06 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,10 @@ FLAGS	=		-Wall -Wextra -Werror #-fsanitize=address -g3
 
 NAME	=		philo
 
-FILES	=		main.c
+FILES	=		main.c \
+				utils.c \
+				set_struct.c \
+				quit.c
 
 OBJDIR	=		obj
 SRCDIR	=		src
