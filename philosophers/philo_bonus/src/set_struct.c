@@ -6,13 +6,13 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 23:57:04 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/29 15:53:32 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/29 19:14:18 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/set_struct.h"
 
-int	set_struct(t_info *info, char **argv, int argc)
+int	set_struct(t_info *info, t_philo *philo, char **argv, int argc)
 {
 	info->nbr_of_philo = phi_atoi(argv[1]);
 	info->time_to_die = phi_atoi(argv[2]);
@@ -32,6 +32,7 @@ int	set_struct(t_info *info, char **argv, int argc)
 		return (1);
 	if (set_maphores(info))
 		return (1);
+	set_philo(philo, info);
 	/*info->someone_died = 0;
 	if (inform_forks(info))
 		return (1);
@@ -56,10 +57,19 @@ int	set_maphores(t_info *info)
 	}
 	info->forks = sem_open("forks",
 			O_CREAT | O_EXCL, 0600, info->nbr_of_philo);
+	if (info->forks == SEM_FAILED)
 	{
 		sem_close(info->death);
 		sem_close(info->messages);
 		return (1);
 	}
 	return (0);
+}
+
+void set_philo(t_philo *philo, t_info *info)
+{
+	philo->philo_nbr = 0;
+	philo->is_dead = NO;
+	philo->meals = 0;
+	philo->info = info;
 }

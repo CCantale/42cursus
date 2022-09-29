@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 17:52:01 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/27 23:44:44 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/29 19:07:13 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,17 @@
 int	main(int argc, char **argv)
 {
 	t_info	info;
+	t_philo	philo;
 
 	if (argc < 5 || argc > 6)
 	{
 		printf("Five or six arguments only, sir, if you please.\n");
 		return (1);
 	}
-	if (set_struct(&info, argv, argc))
+	if (set_struct(&info, &philo, argv, argc))
 		return (1);
-	printf("                \033[0;36mEND OF CODE\033[0m\n");
+//	start(&info);
+	quit(&info);
+	printf("\n\n                \033[0;36mEND OF CODE\033[0m\n\n");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 23:56:38 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/29 16:16:43 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/29 16:54:08 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@ void	phi_sleep(t_info *info, size_t be_right_back)
 	usleep(be_right_back * 1000 - 10000);
 	while (phi_time(info) < end)
 		continue ;
+}
+
+int	mistake(char *advice)
+{
+	printf("\n\"It looks like something's wrong here, am I right?\n It's ok,"
+		" don't beat yourself up too much about it.\n%s\"\n\n", advice);
+	return (-1);
 }
 
 void	*phi_calloc(size_t count, size_t size)
