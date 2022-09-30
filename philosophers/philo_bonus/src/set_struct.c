@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 23:57:04 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/29 19:14:18 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/30 17:52:25 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,17 @@ int	set_struct(t_info *info, t_philo *philo, char **argv, int argc)
 		info->meals_per_philo = -1;
 	if (argc == 6 && info->meals_per_philo == -1)
 		return (1);
-	if (set_maphores(info))
+	if (set_maphores(info) || set_maforks(info))
 		return (1);
 	set_philo(philo, info);
-	/*info->someone_died = 0;
-	if (inform_forks(info))
-		return (1);
-	if (set_table(info))
-		return (1);*/
 	return (0);
 }
 
 int	set_maphores(t_info *info)
 {
-	sem_unlink("forks");
 	sem_unlink("death");
 	sem_unlink("messages");
+	sem_unlink("stop");
 	info->death = sem_open("death", O_CREAT | O_EXCL, 0600, 1);
 	if (info->death == SEM_FAILED)
 		return (1);
@@ -55,9 +50,8 @@ int	set_maphores(t_info *info)
 		sem_close(info->death);
 		return (1);
 	}
-	info->forks = sem_open("forks",
-			O_CREAT | O_EXCL, 0600, info->nbr_of_philo);
-	if (info->forks == SEM_FAILED)
+	info->stop = sem_open("stop", O_CREAT | O_EXCL, 0600, 0);
+	if (info->stop == SEM_FAILED)
 	{
 		sem_close(info->death);
 		sem_close(info->messages);
@@ -66,9 +60,24 @@ int	set_maphores(t_info *info)
 	return (0);
 }
 
+int	set_maforks(t_info *info)
+{
+	sem_unlink("forks");
+	info->forks = sem_open("forks",
+			O_CREAT | O_EXCL, 0600, info->nbr_of_philo);
+	if (info->forks == SEM_FAILED)
+	{
+		sem_close(info->death);
+		sem_close(info->messages);
+		sem_close(info->stop);
+		return (1);
+	}
+	return (0);
+}
+
 void set_philo(t_philo *philo, t_info *info)
 {
-	philo->philo_nbr = 0;
+	philo->index = 0;
 	philo->is_dead = NO;
 	philo->meals = 0;
 	philo->info = info;

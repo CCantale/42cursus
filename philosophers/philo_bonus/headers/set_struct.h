@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 23:55:30 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/29 19:15:41 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:10:43 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int		phi_atoi(char *info);
 int		mistake(char *advice);
 
 int		set_maphores(t_info *info);
+int		set_maforks(t_info *info);
 void 	set_philo(t_philo *philo, t_info *info);
 
 #endif

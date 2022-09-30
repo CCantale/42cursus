@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 01:25:55 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/29 19:13:30 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:23:12 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,18 @@ typedef struct	s_info
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				meals_per_philo;
+	pid_t			*sons;
 	unsigned int	start_timestamp;
 	sem_t			*forks;
 	sem_t			*death;
 	sem_t			*messages;
+	sem_t			*stop;
 	t_philo			*philo;
 }					t_info;
 
 struct	s_philo
 {
-	int		philo_nbr;
+	int		index;
 	int		is_dead;
 	int		meals;
 	pid_t	pid;

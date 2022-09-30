@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/14 19:14:21 by ccantale          #+#    #+#              #
-#    Updated: 2022/09/29 16:13:06 by ccantale         ###   ########.fr        #
+#    Updated: 2022/09/30 16:54:12 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ NAME	=		philo
 FILES	=		main.c \
 				utils.c \
 				set_struct.c \
+				start.c \
+				routine.c \
 				quit.c
 
 OBJDIR	=		obj

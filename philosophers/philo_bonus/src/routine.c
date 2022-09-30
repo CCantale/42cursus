@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/16 17:57:00 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/30 16:57:29 by ccantale         ###   ########.fr       */
+/*   Created: 2022/09/30 16:35:33 by ccantale          #+#    #+#             */
+/*   Updated: 2022/09/30 16:58:16 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
+#include "../headers/routine.h"
 
-# include <stdlib.h>
-# include "common.h"
+void	routine(t_philo *philo)
+{
+	int	i;
 
-int	set_sons(t_info *info);
-
-int	set_struct(t_info *info, t_philo *philo, char **argv, int argc);
-int	start(t_info *info);
-
-#endif
+	i = 0;
+	while (i < 5)
+	{
+		printf("Hello World! I'm philosopher nbr %d :)\n", philo->index);
+		usleep(1000);
+	}
+//	while (take_forks(philo) && eat(philo) && sleep_think(philo))
+//		continue ;
+}

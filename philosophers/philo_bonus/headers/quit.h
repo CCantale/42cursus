@@ -6,13 +6,15 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:54:14 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/29 15:54:57 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:58:56 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef QUIT_H
 # define QUIT_H
 
+# include <signal.h>
+# include <stdlib.h>
 # include "common.h"
 
 #endif
