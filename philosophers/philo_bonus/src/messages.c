@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 19:05:09 by ccantale          #+#    #+#             */
-/*   Updated: 2022/10/02 14:45:34 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/10/02 23:54:20 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	actions(t_philo *philo, int action, size_t time)
 			time, philo->index);
 	else if (action == FULL)
 		printf("\033[0;37m%zu\033[0m	%d is full\n",
-				time, info->philo->index);
+				time, philo->index);
 	else if (action == DIED)
 		printf("%zu	%d died\n", time, philo->index);
 }
@@ -39,6 +39,6 @@ void	msg(t_info *info, int action)
 
 	sem_wait(info->messages);
 	time = phi_time(info);
-	actions(sophos, action, time);
+	actions(info->philo, action, time);
 	sem_post(info->messages);
 }

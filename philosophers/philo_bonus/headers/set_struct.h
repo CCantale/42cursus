@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 23:55:30 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/30 16:10:43 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/10/02 22:53:32 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 void	*phi_calloc(size_t count, size_t size);
 int		phi_atoi(char *info);
+size_t	phi_time(t_info *info);
 int		mistake(char *advice);
 
 int		set_maphores(t_info *info);
