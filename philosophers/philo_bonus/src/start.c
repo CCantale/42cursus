@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:52:43 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/30 17:56:45 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/10/02 12:39:57 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ int	start(t_info *info)
 		{
 			routine(info->philo);
 			break ;
-		}
+		}		
 		else
-			info->sons[i - 1] = info->philo->pid;
+			info->sons[i] = info->philo->pid;
 		++i;
 		usleep(90);
 	}
 	//sem_wait(info->stop);
-	sleep(10);
+	sleep(2);
 	return (0);
 }

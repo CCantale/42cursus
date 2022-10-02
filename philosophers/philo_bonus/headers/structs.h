@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 01:25:55 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/30 16:23:12 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/10/02 13:02:31 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,13 @@ typedef struct	s_info
 
 struct	s_philo
 {
-	int		index;
-	int		is_dead;
-	int		meals;
-	pid_t	pid;
-	t_info	*info;
+	int				index;
+	int				someone_died;
+	int				meals;
+	pid_t			pid;
+	pthread_t		thread;
+	pthread_mutex_t	death_mutex;
+	t_info			*info;
 };
 
 #endif
