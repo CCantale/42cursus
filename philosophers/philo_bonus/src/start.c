@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:52:43 by ccantale          #+#    #+#             */
-/*   Updated: 2022/10/02 12:39:57 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/10/02 14:51:21 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	start(t_info *info)
 {
 	int	i;
 
+	info->start_timestamp = phi_time(info);
 	i = 0;
 	while (i < info->nbr_of_philo)
 	{

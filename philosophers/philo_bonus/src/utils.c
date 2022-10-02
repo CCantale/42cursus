@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 23:56:38 by ccantale          #+#    #+#             */
-/*   Updated: 2022/09/29 16:54:08 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/10/02 14:52:07 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ size_t	phi_time(t_info *info)
 	return ((tv.tv_sec * 1000 + tv.tv_usec / 1000) - info->start_timestamp);
 }
 
-void	phi_sleep(t_info *info, size_t be_right_back)
+/*void	phi_sleep(t_info *info, size_t be_right_back)
 {
 	size_t	end;
 
@@ -28,7 +28,7 @@ void	phi_sleep(t_info *info, size_t be_right_back)
 	usleep(be_right_back * 1000 - 10000);
 	while (phi_time(info) < end)
 		continue ;
-}
+}*/
 
 int	mistake(char *advice)
 {

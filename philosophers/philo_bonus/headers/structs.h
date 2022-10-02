@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 01:25:55 by ccantale          #+#    #+#             */
-/*   Updated: 2022/10/02 13:02:31 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/10/02 14:48:18 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ struct	s_philo
 	int				index;
 	int				someone_died;
 	int				meals;
+	int				last_meal;
 	pid_t			pid;
 	pthread_t		thread;
 	pthread_mutex_t	death_mutex;

@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/14 19:14:21 by ccantale          #+#    #+#              #
-#    Updated: 2022/09/30 16:54:12 by ccantale         ###   ########.fr        #
+#    Updated: 2022/10/02 14:28:50 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ FILES	=		main.c \
 				set_struct.c \
 				start.c \
 				routine.c \
+				messages.c \
 				quit.c
 
 OBJDIR	=		obj

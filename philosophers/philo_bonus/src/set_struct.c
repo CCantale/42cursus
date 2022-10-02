@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 23:57:04 by ccantale          #+#    #+#             */
-/*   Updated: 2022/10/02 12:48:44 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/10/02 14:52:40 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	set_struct(t_info *info, t_philo *philo, char **argv, int argc)
 		return (1);
 	if (set_maphores(info) || set_maforks(info))
 		return (1);
+	info->start_timestamp = 0;
 	info->philo = philo;
 	set_philo(philo, info);
 	return (0);
@@ -81,5 +82,6 @@ void set_philo(t_philo *philo, t_info *info)
 	philo->index = 0;
 	philo->someone_died = NO;
 	philo->meals = 0;
+	philo->last_meal = philo->info->start_timestamp;	
 	philo->info = info;
 }
