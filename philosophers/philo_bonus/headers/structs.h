@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 01:25:55 by ccantale          #+#    #+#             */
-/*   Updated: 2022/10/02 22:48:37 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:37:45 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ enum
 	SLEEPING,
 	THINKING,
 	DIED,
-	FULL	
+	FULL,
+	NO_PRINT
 };
 
 typedef struct	s_info
@@ -50,7 +51,7 @@ struct	s_philo
 	size_t			last_meal;
 	pid_t			pid;
 	pthread_t		thread;
-	pthread_mutex_t	*death_mutex;
+	pthread_mutex_t	death_mutex;
 	t_info			*info;
 };
 

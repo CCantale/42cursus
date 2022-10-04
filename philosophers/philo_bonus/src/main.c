@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 17:52:01 by ccantale          #+#    #+#             */
-/*   Updated: 2022/10/02 23:04:57 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:41:04 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,5 @@ int	main(int argc, char **argv)
 	start(&info);
 	if (philo.pid)
 		quit(&info);
-	printf("\n\n                \033[0;36mEND OF CODE\033[0m\n\n");
 	return (0);
 }

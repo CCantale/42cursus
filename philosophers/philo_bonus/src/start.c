@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:52:43 by ccantale          #+#    #+#             */
-/*   Updated: 2022/10/03 00:06:29 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:42:17 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,19 @@ int	start(t_info *info)
 			return (i);
 		if (info->philo->pid == 0)
 		{
-			routine(info->philo);
+			routine_init(info->philo);
 			break ;
 		}		
 		++i;
-		usleep(100);
 	}
-			routine(info->philo);
-	sem_wait(info->stop);
-	sleep(2);
+	if (info->philo->pid)
+	{
+		i = 0;
+		while (i < info->nbr_of_philo)
+		{
+			sem_wait(info->stop);
+			++i;
+		}
+	}
 	return (0);
 }

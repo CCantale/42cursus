@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 23:57:04 by ccantale          #+#    #+#             */
-/*   Updated: 2022/10/02 23:23:54 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:41:08 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ int	set_struct(t_info *info, t_philo *philo, char **argv, int argc)
 		info->meals_per_philo = -1;
 	if (argc == 6 && info->meals_per_philo == -1)
 		return (1);
+	info->death = NULL;
+	info->messages = NULL;
+	info->stop = NULL;
+	info->forks = NULL;
 	if (set_maphores(info) || set_maforks(info))
 		return (1);
 	info->start_timestamp = 0;
@@ -42,7 +46,7 @@ int	set_maphores(t_info *info)
 	sem_unlink("death");
 	sem_unlink("messages");
 	sem_unlink("stop");
-	info->death = sem_open("death", O_CREAT, 0600, 1);
+	info->death = sem_open("death", O_CREAT, 0600, 0);
 	if (info->death == SEM_FAILED)
 		return (1);
 	info->messages = sem_open("messages", O_CREAT, 0600, 1);
@@ -52,6 +56,7 @@ int	set_maphores(t_info *info)
 		return (1);
 	}
 	info->stop = sem_open("stop", O_CREAT, 0600, 0);
+
 	if (info->stop == SEM_FAILED)
 	{
 		sem_close(info->death);
@@ -81,6 +86,6 @@ void set_philo(t_philo *philo, t_info *info)
 	philo->index = 0;
 	philo->someone_died = NO;
 	philo->meals = 0;
-	philo->last_meal = phi_time(philo->info);
+	philo->last_meal = 0;
 	philo->info = info;
 }

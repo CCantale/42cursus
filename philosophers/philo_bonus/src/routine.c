@@ -6,60 +6,62 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 16:35:33 by ccantale          #+#    #+#             */
-/*   Updated: 2022/10/03 00:02:03 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:38:58 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/routine.h"
 
+void	routine_init(t_philo *philo)
+{
+	pthread_mutex_init(&philo->death_mutex, NULL);
+	init_thread(philo);
+	philo->last_meal = phi_time(philo->info);
+	routine(philo);
+	sem_post(philo->info->forks);
+	sem_post(philo->info->forks);
+	pthread_join(philo->thread, NULL);
+	pthread_mutex_destroy(&philo->death_mutex);
+	sem_post(philo->info->stop);
+}
+
 void	routine(t_philo *philo)
 {
-	init_thread(philo);
-	//usleep(100);
 	while (1)
 	{
 		sem_wait(philo->info->forks);
-		if (check_death(philo))
+		if (msg(philo->info, TAKEN))
 			break ;
-		msg(philo->info, TAKEN);
 		sem_wait(philo->info->forks);
-		if (check_death(philo))
+		if (msg(philo->info, TAKEN))
 			break ;
-		msg(philo->info, TAKEN);
-		if (check_death(philo))
+		if (msg(philo->info, EATING))
 			break ;
-		msg(philo->info, EATING);
-		usleep(philo->info->time_to_eat);
+		phi_sleep(philo->info, philo->info->time_to_eat);
 		philo->meals++;
-		if (philo->meals == philo->info->meals_per_philo)
-		{
-			if (check_death(philo))	//mettere 'stammerda denttro a msg() e vaffanculo
-				break ;
-			msg(philo->info, FULL);
-		}
+		if (philo->meals == philo->info->meals_per_philo
+				&& msg(philo->info, FULL))
+			break ;
+		if (msg(philo->info, NO_PRINT))
+			break;
 		philo->last_meal = phi_time(philo->info);
 		sem_post(philo->info->forks);
 		sem_post(philo->info->forks);
-		if (check_death(philo))
+		if (msg(philo->info, SLEEPING))
 			break ;
-		msg(philo->info, SLEEPING);
-		usleep(philo->info->time_to_sleep);
-		if (check_death(philo))
+		phi_sleep(philo->info, philo->info->time_to_sleep);
+		if (msg(philo->info, THINKING))
 			break ;
-		msg(philo->info, THINKING);
 	}
-	sem_post(philo->info->stop);
-	pthread_join(philo->thread, NULL);
 }
 
 void	*monitor(t_philo *philo)
 {
-	pthread_mutex_init(philo->death_mutex, NULL);
 	sem_wait(philo->info->death);
-	pthread_mutex_lock(philo->death_mutex);
+	sem_post(philo->info->death);
+	pthread_mutex_lock(&philo->death_mutex);
 	philo->someone_died = YES;
-	pthread_mutex_unlock(philo->death_mutex);
-	pthread_mutex_destroy(philo->death_mutex);
+	pthread_mutex_unlock(&philo->death_mutex);
 	return (NULL);
 }
 
@@ -70,22 +72,5 @@ int	init_thread(t_philo *philo)
 	{
 		return (1);
 	}
-	return (0);
-}
-
-int	check_death(t_philo *philo)
-{
-	if (phi_time(philo->info) - philo->last_meal < philo->info->time_to_die)
-	{
-		sem_post(philo->info->death);
-		return (1);
-	}
-	pthread_mutex_lock(philo->death_mutex);
-	if (philo->someone_died == YES)
-	{
-		pthread_mutex_unlock(philo->death_mutex);
-		return (1);
-	}
-	pthread_mutex_unlock(philo->death_mutex);
 	return (0);
 }
