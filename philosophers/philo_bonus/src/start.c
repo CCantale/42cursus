@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:52:43 by ccantale          #+#    #+#             */
-/*   Updated: 2022/10/04 19:42:17 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/10/05 17:21:41 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,10 @@ int	start(t_info *info)
 		i = 0;
 		while (i < info->nbr_of_philo)
 		{
-			sem_wait(info->stop);
+			sem_wait(info->full);
 			++i;
 		}
+		sem_post(info->death);
 	}
 	return (0);
 }

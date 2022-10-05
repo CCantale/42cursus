@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 23:57:04 by ccantale          #+#    #+#             */
-/*   Updated: 2022/10/04 19:41:08 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/10/05 17:29:35 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,9 @@ int	set_struct(t_info *info, t_philo *philo, char **argv, int argc)
 		info->meals_per_philo = -1;
 	if (argc == 6 && info->meals_per_philo == -1)
 		return (1);
-	info->death = NULL;
-	info->messages = NULL;
-	info->stop = NULL;
-	info->forks = NULL;
+	sem_unlink("death");
+	sem_unlink("full");
+	sem_unlink("messages");
 	if (set_maphores(info) || set_maforks(info))
 		return (1);
 	info->start_timestamp = 0;
@@ -41,26 +40,38 @@ int	set_struct(t_info *info, t_philo *philo, char **argv, int argc)
 	return (0);
 }
 
+void	close_maphores(t_info *info, int n)
+{
+	int	i;
+
+	i = 0;
+	while (i < n)
+	{
+		if (i == 0)
+			sem_close(info->death);
+		if (i == 1)
+			sem_close(info->full);
+		if (i == 2)
+			sem_close(info->messages);
+		++i;
+	}
+}
+
 int	set_maphores(t_info *info)
 {
-	sem_unlink("death");
-	sem_unlink("messages");
-	sem_unlink("stop");
 	info->death = sem_open("death", O_CREAT, 0600, 0);
 	if (info->death == SEM_FAILED)
 		return (1);
+	info->full = sem_open("full", O_CREAT, 0600, 0);
+	if (info->full == SEM_FAILED)
+	{
+		close_maphores(info, 1);
+		return (1);
+	}
 	info->messages = sem_open("messages", O_CREAT, 0600, 1);
 	if (info->messages == SEM_FAILED)
 	{
-		sem_close(info->death);
-		return (1);
-	}
-	info->stop = sem_open("stop", O_CREAT, 0600, 0);
-
-	if (info->stop == SEM_FAILED)
-	{
-		sem_close(info->death);
-		sem_close(info->messages);
+		close_maphores(info, 2);
 		return (1);
 	}
 	return (0);
@@ -73,9 +84,7 @@ int	set_maforks(t_info *info)
 			O_CREAT, 0600, info->nbr_of_philo);
 	if (info->forks == SEM_FAILED)
 	{
-		sem_close(info->death);
-		sem_close(info->messages);
-		sem_close(info->stop);
+		close_maphores(info, 3);
 		return (1);
 	}
 	return (0);

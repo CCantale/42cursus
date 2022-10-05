@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 01:25:55 by ccantale          #+#    #+#             */
-/*   Updated: 2022/10/04 19:37:45 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/10/05 17:29:45 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ typedef struct	s_info
 	size_t			start_timestamp;
 	sem_t			*forks;
 	sem_t			*death;
+	sem_t			*full;
 	sem_t			*messages;
-	sem_t			*stop;
 	t_philo			*philo;
 }					t_info;
 

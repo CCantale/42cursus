@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 19:05:09 by ccantale          #+#    #+#             */
-/*   Updated: 2022/10/04 19:42:53 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:13:55 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	msg(t_info *info, int action)
 		sem_post(info->messages);
 		return (1);
 	}
-		actions(info->philo, action, time);
+	actions(info->philo, action, time);
 	sem_post(info->messages);
 	return (0);
 }
@@ -52,8 +52,12 @@ void	actions(t_philo *philo, int action, size_t time)
 		printf("\033[0;33m%zu\033[0m	%d is thinking\n",
 			time, philo->index);
 	else if (action == FULL)
+	{
+		sem_post(philo->info->full);
+		//phi_sleep(philo->info, 10);
 		printf("\033[0;37m%zu\033[0m	%d is full\n",
 				time, philo->index);
+	}
 	else if (action == DIED)
 		printf("%zu	%d died\n", time, philo->index);
 }

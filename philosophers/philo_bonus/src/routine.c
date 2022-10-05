@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 16:35:33 by ccantale          #+#    #+#             */
-/*   Updated: 2022/10/04 19:38:58 by ccantale         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:13:18 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	routine_init(t_philo *philo)
 	sem_post(philo->info->forks);
 	pthread_join(philo->thread, NULL);
 	pthread_mutex_destroy(&philo->death_mutex);
-	sem_post(philo->info->stop);
+	sem_post(philo->info->full);
 }
 
 void	routine(t_philo *philo)
