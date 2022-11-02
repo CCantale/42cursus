@@ -45,17 +45,27 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
+void	check_null(char **s1, char **s2)
+{
+	if (!*s1)
+	{
+		*s1 = ft_malloc(sizeof(char));
+		**s1 = 0;
+	}
+	if (!*s2)
+	{
+		*s2 = ft_malloc(sizeof(char));
+		**s2 = 0;
+	}
+}
+
 char	*ft_strjoin(char *s1, char *s2, int free1, int free2)
 {
 	int	i;
 	int	j;
 	char	*join;
 	
-	if (!s1)
-	{
-		s1 = ft_malloc(sizeof(char));
-		*s1 = 0;
-	}
+	check_null(&s1, &s2);
 	join = (char *)ft_malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	i = 0;
 	while (s1[i])
@@ -78,6 +88,7 @@ char	*ft_strjoin(char *s1, char *s2, int free1, int free2)
 	return (join);
 }
 
+// joins together the 5 parts of the cmd: part1 + word + part2 + word + part3
 char	*ft_cmd_join(char *part1, char *part2, char *part3, char *word)
 {
 	int	i;
@@ -87,9 +98,27 @@ char	*ft_cmd_join(char *part1, char *part2, char *part3, char *word)
 		return (NULL);
 	join = (char *)ft_malloc(sizeof(char) * (ft_strlen(part1) + ft_strlen(part2) + ft_strlen(part3) + ft_strlen(word) + 1));
 	i = 0;
-	return (ft_strjoin(ft_strjoin(ft_strjoin(ft_strjoin(part1, word, e_DONT_FREE, e_DONT_FREE), part2, e_FREE, e_DONT_FREE), word, e_FREE, e_DONT_FREE), part3, e_FREE, e_DONT_FREE));
+	return	(ft_strjoin(
+				ft_strjoin(
+						ft_strjoin(
+								ft_strjoin(
+										part1,
+										word,
+										e_DONT_FREE, e_DONT_FREE),
+								part2,
+								e_FREE, e_DONT_FREE),
+						word,
+						e_FREE, e_DONT_FREE),
+				part3,
+				e_FREE, e_DONT_FREE)
+		);
 }
 
+/* lounches following cmd:
+** (find . -name \"*.c\" -exec cat {} \\; | grep -E '\\.c  |", INPUT_FROM_USER') | ./find
+** && (echo \"//////////////////////// HEADER FILES ////////////////////////\")
+** && (find . -name \"*.h\" -exec cat {} \\; | grep -E '\\.h  |", INPUT_FROM_USER') | ./find
+*/
 void	ft_build_cmd(char *word)
 {
 	char	*cmd;
@@ -120,6 +149,7 @@ int	ft_strncmp(char *s1, char *s2, size_t len)
 	return (1);
 }
 
+//gets next line from std input, which is supposed to be a pipe
 char	*next_line(void)
 {
 	char	buff[2];
