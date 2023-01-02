@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 15:13:09 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/01 19:32:40 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/01/02 17:46:55 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,7 @@
 # include "PhoneBook.hpp"
 # include "colors.hpp"
 
-enum
-{
-	e_FIRST_NAME,
-	e_LAST_NAME,
-	e_NICKNAME,
-	e_PHONE_NUMBER,
-	e_DARKEST_SECRET
-};
-
-void	add_contact(void);
-void	add_info(std::string info, std::string prompt);
+void	add_contact(PhoneBook *phonebook);
+void	add_info(std::string *info, std::string prompt);
 
 #endif

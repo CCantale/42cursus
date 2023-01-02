@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 17:44:08 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/01 19:25:02 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/01/02 17:30:07 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,11 @@ class PhoneBook
 {
 	private:
 		Contact _contact[8];
-		void	_display(std::string name);
 		int		_counter;
 	public:
-		PhoneBook(void);
-		~PhoneBook(void);
-		void	add(void);
+				PhoneBook(void);
+				~PhoneBook(void);
+		void	add(std::string *info);
 		void	search(void);
 		void	exit_phonebook(void);
 };

@@ -6,24 +6,24 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/01 19:11:19 by ccantale          #+#    #+#              #
-#    Updated: 2023/01/01 19:22:13 by ccantale         ###   ########.fr        #
+#    Updated: 2023/01/02 16:13:41 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		=		c++
-FLAGS	=		-Wall -Wextra -Werror
+FLAGS	=		-Wall -Wextra -Werror -std=c++98
 
 NAME	=		phonebook
 
 SRC		=		Contact.cpp PhoneBook.cpp main.cpp
-OBJ		=		$(SRC:.c=.o)
+OBJ		=		$(SRC:.cpp=.o)
 
 all: $(NAME)
 	
 $(NAME): $(OBJ)
 	$(CC) $(FLAGS) $^ -o $@
 
-%.o: %.c
+%.o: %.cpp
 	$(CC) $(FLAGS) -c $^
 
 clean:
