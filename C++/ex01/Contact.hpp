@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 13:59:22 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/02 17:52:31 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/01/03 15:13:49 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ class Contact
 						Contact(void);
 						Contact(std::string *info);
 						~Contact(void);
-		void			display(void);
+		void			display_for_search(void);
+		void			display_contact_info(void);
 };
 
 #endif

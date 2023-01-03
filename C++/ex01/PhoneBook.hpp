@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 17:44:08 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/02 17:30:07 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/01/03 17:44:12 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ class PhoneBook
 				~PhoneBook(void);
 		void	add(std::string *info);
 		void	search(void);
+		void	single_contact_prompt(void);
+		void	search_prompt(void);
 		void	exit_phonebook(void);
 };
 
