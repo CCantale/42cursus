@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 15:12:56 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/03 17:54:28 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:26:25 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,40 +21,54 @@ int		main(void)
 	counter = 0;
 	std::cout << CYAN << "Welcome!\n\nInsert command: " << RESET;
 	std::getline(std::cin, command);
+	if (std::cin.eof())
+		return (0);
 	for (unsigned long i = 0; i < command.size(); ++i)
 		command[i] = (char)std::toupper(command[i]);
 	while (command.empty() || command.compare("EXIT") != 0)
 	{
-		if (!command.compare("SEARCH"))
-		{
-			phonebook.search();
-			counter = 1;
-		}
-		else if (!command.compare("ADD"))
-		{
-			add_contact(&phonebook);
-			counter = 1;
-		}
-		else
-		{
-			 if (!command.empty() && command.compare("HELP"))
-				std::cout << RED << "Error: " << command << ": Invalid command" << CYAN << std::endl;
-			 if (counter == 0 || !(command.compare("HELP")))
-			 	std::cout << BLUE << "\nCommands list:\n\n"
-									<< "SEARCH	=	Browse contacts\n"
-									<< "ADD	=	Add a contact\n"
-									<< "HELP	=	Show commands list\n"
-									<< "EXIT	=	Exit program\n" << std::endl;
-			 ++counter;
-			 if (counter == 10)
-				 counter = 0;
-		}
+		execute_command(command, &phonebook, &counter);
+		if (std::cin.eof())
+			break ;
 		std::cout << CYAN << "Insert command: " << RESET;
 		std::getline(std::cin, command);
+		if (std::cin.eof())
+			break ;
 		for (unsigned long i = 0; i < command.size(); ++i)
 			command[i] = (char)std::toupper(command[i]);
 	}
 	return (0);
+}
+
+void	execute_command(std::string command, PhoneBook *phonebook_ptr, int *counter)
+{
+	PhoneBook phonebook;
+
+	phonebook = *phonebook_ptr;
+	if (!command.compare("SEARCH"))
+	{
+		phonebook.search();
+		*counter = 1;
+	}
+	else if (!command.compare("ADD"))
+	{
+		add_contact(phonebook_ptr);
+		*counter = 1;
+	}
+	else
+	{
+		 if (!command.empty() && command.compare("HELP"))
+			std::cout << RED << "Error: " << command << ": Invalid command" << CYAN << std::endl;
+		 if (*counter == 0 || !(command.compare("HELP")))
+		 	std::cout << BLUE << "\nCommands list:\n\n"
+								<< "SEARCH	=	Browse contacts\n"
+								<< "ADD	=	Add a contact\n"
+								<< "HELP	=	Show commands list\n"
+								<< "EXIT	=	Exit program\n" << std::endl;
+		 *counter += 1;
+		 if (*counter == 10)
+			 counter = 0;
+	}
 }
 
 void	add_contact(PhoneBook *phonebook)
@@ -76,9 +90,13 @@ void	add_info(std::string *info, std::string prompt)
 {
 	while (info->empty())
 	{
+		if (std::cin.eof())
+			return ;
 		std::cout << prompt << RESET;
 		std::getline(std::cin, *info);
 		std::cout << YELLOW;
+		if (std::cin.eof())
+			return ;
 	}
 }
 	

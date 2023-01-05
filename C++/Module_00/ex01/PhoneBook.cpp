@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 15:35:53 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/03 17:32:55 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:05:21 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void	PhoneBook::search_prompt(void)
 	{
 		std::cout << "Insert index: " << RESET;
 		std::getline(std::cin, index);
+		if (std::cin.eof())
+			return ;
 		for (unsigned long i = 0; i < index.size(); ++i)
 			index[i] = (char)std::toupper(index[i]);
 		if (index[0] >= '1' && index[0] <= counter + 48 && index[1] == '\0')
@@ -98,6 +100,8 @@ void	PhoneBook::single_contact_prompt(void)
 	{
 		std::cout << "Display contact? " << RESET;
 		std::getline(std::cin, answer);
+		if (std::cin.eof())
+			return ;
 		for (unsigned long i = 0; i < answer.size(); ++i)
 			answer[i] = (char)std::toupper(answer[i]);
 		if (answer.compare("YES") == 0 || answer.compare("Y") == 0)
