@@ -13,7 +13,7 @@
 #ifndef ZOMBIE_HPP
 # define ZOMBIE_HPP
 
-#include <iostream>
+# include <iostream>
 
 class	Zombie
 {
@@ -25,6 +25,7 @@ class	Zombie
 				Zombie(std::string name);
 				~Zombie(void);
 		void	announce(void);
+		void	my_name_is(std::string name);
 };
 
 #endif

@@ -24,7 +24,7 @@ $(NAME): $(OBJS)
 	$(CC) $(FLAGS) $^ -o $@
 
 %.o: %.cpp
-	$(CC) $(FLAGS) -c $^ -o $@
+	$(CC) $(FLAGS) -c $(SRC)
 
 clean:
 	rm *.o

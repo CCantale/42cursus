@@ -33,3 +33,8 @@ void	Zombie::announce(void)
 {
 	std::cout<< this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
+
+void	Zombie::my_name_is(std::string name)
+{
+	this->_name = name;
+}
