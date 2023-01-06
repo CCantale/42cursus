@@ -25,8 +25,8 @@ int	main(void)
 	std::getline(std::cin, name);
 	if (std::cin.eof())
 		name = "Zombie";
-	std::cout << "Good. And How many are they?\nNumber of zombie friends: "
-	std::getline(std::cin, N);
+	std::cout << "Good. And How many are they?\nNumber of zombie friends: ";
+	std::cin >> N;
 	if (std::cin.eof())
 		N = 0;
 	if (N < 1)
