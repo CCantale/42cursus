@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 22:55:18 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/06 00:11:14 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/01/07 15:49:15 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	main(void)
 				<< " Can you tell what their name is?\n\nName: ";
 	std::getline(std::cin, name);
 	if (std::cin.eof())
+		return (0);
+	if (name.empty())
 		name = "Zombie";
 	std::cout << "Good. And How many are they?\nNumber of zombie friends: ";
 	std::cin >> N;
@@ -37,6 +39,6 @@ int	main(void)
 	zombie = zombieHorde(N, name);
 	for (int i = 0; i < N; ++i)
 		zombie[i].announce();
-	delete(zombie);
+	delete [] zombie;
 	return (0);
 }
