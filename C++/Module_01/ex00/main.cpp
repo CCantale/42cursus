@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 22:55:18 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/06 00:11:14 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/01/12 11:38:11 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	main(void)
 	std::string	name;
 
 	std::cout << "My zombie pet, Gwarpzz, has a friend now."
-				<< " Can you tell what his name is?\n\nName: ";
+				<< " Can you tell what their name is?\n\nName: ";
 	std::getline(std::cin, name);
-	if (std::cin.eof())
+	if (std::cin.eof() || name.empty())
 		name = "Zombie";
 	zombie = newZombie(name);
 	zombie->announce();
