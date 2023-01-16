@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:24:33 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/16 16:08:25 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:45:18 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ClapTrap::takeDamage(unsigned int damage)
 	if (this->_hp < 0)
 		this->_hp = 0;
 	std::cout << RED << this->_name << " takes " << damage << " damage. It has "
-					<< this->_hp << " HP left" << RESET << std::endl;
+					<< this->_hp << " HP left." << RESET << std::endl;
 }
 
 void	ClapTrap::beRepaired(unsigned int amount)
