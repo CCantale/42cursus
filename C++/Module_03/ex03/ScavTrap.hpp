@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 12:54:04 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/17 11:37:27 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/01/17 18:25:32 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_HPP
-# define CLAPTRAP_HPP
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
 
-# include <iostream>
+# include "ClapTrap.hpp"
 
-class	ClapTrap
+class	ScavTrap : virtual public ClapTrap
 {
 	public:
-					ClapTrap(void);
-					ClapTrap(ClapTrap &to_copy);
-					ClapTrap(std::string name);
-					~ClapTrap(void);
-		ClapTrap	&operator=(ClapTrap &to_copy);
-		std::string	getName(void);
-		void		attack(const std::string &target);
-		void		takeDamage(unsigned int damage);
-		void		beRepaired(unsigned int amount);
+						ScavTrap(void);
+						ScavTrap(ScavTrap &to_copy);
+						ScavTrap(std::string name);
+						~ScavTrap(void);
+		ScavTrap		&operator=(ScavTrap &to_copy);
+		virtual void	attack(ClapTrap &target);
+		void			guardGate(void);
 
-	protected:
-		std::string	_name;
-		int			_hp;
-		int			_energy;
-		int			_atk;
-	
 	private:
 		// empty
 };

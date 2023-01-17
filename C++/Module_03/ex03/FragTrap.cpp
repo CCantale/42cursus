@@ -1,47 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
+/*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:24:33 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/17 15:13:06 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:28:39 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 #include "colors.hpp"
 
-ScavTrap::ScavTrap(void) :ClapTrap()
+FragTrap::FragTrap(void) :ClapTrap()
 {
-	this->_name = "ScavTrap";
+	this->_name = "FragTrap";
 	this->_hp = 100;
-	this->_energy = 50;
-	this->_atk = 20;
-	std::cout << GREEN << "ScavTrap def constructor called" << RESET << std::endl;
+	this->_energy = 100;
+	this->_atk = 30;
+	std::cout << GREEN << "FragTrap def constructor called" << RESET << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name) :ClapTrap(name)
+FragTrap::FragTrap(std::string name) :ClapTrap(name)
 {
 	this->_hp = 100;
-	this->_energy = 50;
-	this->_atk = 20;
-	std::cout << CYAN << "ScavTrap name constructor called" << RESET << std::endl;
+	this->_energy = 100;
+	this->_atk = 30;
+	std::cout << CYAN << "FragTrap name constructor called" << RESET << std::endl;
 }
 
-ScavTrap::ScavTrap(ScavTrap &to_copy)
+FragTrap::FragTrap(FragTrap &to_copy)
 {
-	std::cout << CYAN << "ScavTrap copy constructor called" << RESET << std::endl;
+	std::cout << CYAN << "FragTrap copy constructor called" << RESET << std::endl;
 	*this = to_copy;
 }
 
-ScavTrap::~ScavTrap(void)
+FragTrap::~FragTrap(void)
 {
-	std::cout << MAGENTA << "ScavTrap destructor called" << RESET << std::endl;
+	std::cout << MAGENTA << "FragTrap destructor called" << RESET << std::endl;
 }
 
-ScavTrap	&ScavTrap::operator=(ScavTrap &to_copy)
+FragTrap	&FragTrap::operator=(FragTrap &to_copy)
 {
 	this->_name = to_copy._name;
 	this->_hp = to_copy._hp;
@@ -50,14 +50,14 @@ ScavTrap	&ScavTrap::operator=(ScavTrap &to_copy)
 	return (*this);
 }
 
-void	ScavTrap::attack(ClapTrap &target)
+void	FragTrap::attack(ClapTrap &target)
 {
 	std::cout << YELLOW << this->_name << " attacks " << target.getName()
-				<< ", dealing " << this->_atk << " damage." << std::endl;
+				<< ", dealing freakin' " << this->_atk << " damage." << std::endl;
 	target.takeDamage(this->_atk);
 }
 
-void	ScavTrap::guardGate(void)
+void	FragTrap::highFiveGuys(void)
 {
-	std::cout << this->_name << " is in Gate Keeper mode now." << std::endl;
+	std::cout << this->_name << " says: \"High five, guys!!\"" << std::endl;
 }

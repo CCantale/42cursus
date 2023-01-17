@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 12:54:04 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/17 11:37:27 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:28:57 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_HPP
-# define CLAPTRAP_HPP
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
 
-# include <iostream>
+# include "ClapTrap.hpp"
 
-class	ClapTrap
+class	FragTrap : public ClapTrap
 {
 	public:
-					ClapTrap(void);
-					ClapTrap(ClapTrap &to_copy);
-					ClapTrap(std::string name);
-					~ClapTrap(void);
-		ClapTrap	&operator=(ClapTrap &to_copy);
-		std::string	getName(void);
-		void		attack(const std::string &target);
-		void		takeDamage(unsigned int damage);
-		void		beRepaired(unsigned int amount);
+					FragTrap(void);
+					FragTrap(FragTrap &to_copy);
+					FragTrap(std::string name);
+					~FragTrap(void);
+		FragTrap	&operator=(FragTrap &to_copy);
+		void		attack(ClapTrap &target);
+		void		highFiveGuys(void);
 
-	protected:
-		std::string	_name;
-		int			_hp;
-		int			_energy;
-		int			_atk;
-	
 	private:
 		// empty
 };
