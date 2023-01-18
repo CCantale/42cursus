@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/16 15:52:47 by ccantale          #+#    #+#              #
-#    Updated: 2023/01/17 18:17:32 by ccantale         ###   ########.fr        #
+#    Updated: 2023/01/18 12:53:51 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ clean:
 fclean:
 	rm $(NAME)
 
-re: clean fclean
+re: kill
 	make
 
 kill: clean fclean

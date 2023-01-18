@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 12:54:04 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/17 18:25:32 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/01/18 17:55:10 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class	ScavTrap : virtual public ClapTrap
 						ScavTrap(std::string name);
 						~ScavTrap(void);
 		ScavTrap		&operator=(ScavTrap &to_copy);
-		virtual void	attack(ClapTrap &target);
+		void			attack(ClapTrap &target);
 		void			guardGate(void);
 
 	private:

@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 12:54:04 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/17 18:20:42 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/01/18 17:55:56 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@ class	DiamondTrap : public ScavTrap, public FragTrap
 					DiamondTrap(std::string name);
 					~DiamondTrap(void);
 		DiamondTrap	&operator=(DiamondTrap &to_copy);
-		void		attack(ClapTrap &target);
-		void		whoAmI(void);
 		using		ScavTrap::attack;
+		void		whoAmI(void);
 
 	private:
 		std::string	_name;

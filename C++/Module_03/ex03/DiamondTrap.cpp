@@ -6,28 +6,29 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:24:33 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/17 18:26:24 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/01/18 17:51:46 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 #include "colors.hpp"
 
-DiamondTrap::DiamondTrap(void) :ClapTrap(), ScavTrap(), FragTrap()
+DiamondTrap::DiamondTrap(void) :ScavTrap(), FragTrap()
 {
 	this->_name = "DiamondTrap";
-	this->_hp = FragTrap::_hp;
-	this->_energy = ScavTrap::_energy;
-	this->_atk = FragTrap::_atk;
+	this->_hp = 100;
+	this->_energy = 50;
+	this->_atk = 30;
 	std::cout << GREEN << "DiamondTrap def constructor called" << RESET << std::endl;
 }
 
-DiamondTrap::DiamondTrap(std::string name) :ClapTrap(name + "_clap_name"), ScavTrap(), FragTrap()
+DiamondTrap::DiamondTrap(std::string name) :ScavTrap(), FragTrap()
 {
 	this->_name = name;
-	this->_hp = FragTrap::_hp;
-	this->_energy = ScavTrap::_energy;
-	this->_atk = FragTrap::_atk;
+	this->ClapTrap::_name = name + "_clap_name";
+	this->_hp = 100;
+	this->_energy = 50;
+	this->_atk = 30;
 	std::cout << CYAN << "DiamondTrap name constructor called" << RESET << std::endl;
 }
 
@@ -56,3 +57,4 @@ void	DiamondTrap::whoAmI(void)
 	std::cout << "Who am I? Am I " << this->ClapTrap::_name << "? Am I " << this->_name
 				<< "? What is my purpose, what is the meaning of myself?..." << std::endl;
 }
+

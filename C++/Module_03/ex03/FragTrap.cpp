@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:24:33 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/17 16:28:39 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/01/18 17:59:13 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ FragTrap::FragTrap(void) :ClapTrap()
 	this->_hp = 100;
 	this->_energy = 100;
 	this->_atk = 30;
-	std::cout << GREEN << "FragTrap def constructor called" << RESET << std::endl;
+	std::cout << CYAN << "FragTrap def constructor called" << RESET << std::endl;
 }
 
 FragTrap::FragTrap(std::string name) :ClapTrap(name)

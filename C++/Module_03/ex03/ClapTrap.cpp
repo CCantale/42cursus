@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:24:33 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/17 15:19:54 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/01/18 17:59:44 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 ClapTrap::ClapTrap(void) :_name("ClapTrap"), _hp(10), _energy(10), _atk(0)
 {
-	std::cout << GREEN << "ClapTrap def constructor called" << RESET << std::endl;
+	std::cout << CYAN << "ClapTrap def constructor called" << RESET << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name) :_name(name), _hp(10), _energy(10), _atk(0)

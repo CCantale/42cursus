@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 13:24:33 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/17 15:13:06 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/01/18 18:00:01 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ ScavTrap::ScavTrap(void) :ClapTrap()
 	this->_hp = 100;
 	this->_energy = 50;
 	this->_atk = 20;
-	std::cout << GREEN << "ScavTrap def constructor called" << RESET << std::endl;
+	std::cout << CYAN << "ScavTrap def constructor called" << RESET << std::endl;
 }
 
 ScavTrap::ScavTrap(std::string name) :ClapTrap(name)
