@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 17:17:06 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/22 01:07:25 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/01/22 23:56:15 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ Cat::Cat(const Cat &to_copy)
 
 Cat::~Cat(void)
 {
-	delete (_brain);
+	delete (this->_brain);
 	std::cout << "Cat deconstructor called" << std::endl;
 }
 

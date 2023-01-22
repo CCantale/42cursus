@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 17:17:14 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/22 01:09:21 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/01/22 23:56:08 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ Dog::Dog(const Dog &to_copy)
 
 Dog::~Dog(void)
 {
+	delete (this->_brain);
 	std::cout << "Dog deconstructor called" << std::endl;
 }
 

@@ -6,24 +6,24 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/20 17:22:19 by ccantale          #+#    #+#              #
-#    Updated: 2023/01/22 01:06:24 by ccantale         ###   ########.fr        #
+#    Updated: 2023/01/23 00:05:11 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=		g++
 FLAGS		=		-Wall -Wextra -Werror -std=c++98
 
-NAME		=		right_or_wrong
+NAME		=		brainz?
 
-SRC		=		main.cpp \
-				Animal.cpp \
-				Cat.cpp \
-				Dog.cpp \
-				Brain.cpp \
-				WrongAnimal.cpp \
-				WrongCat.cpp
+SRC			=		main.cpp \
+					Animal.cpp \
+					Cat.cpp \
+					Dog.cpp \
+					Brain.cpp \
+					WrongAnimal.cpp \
+					WrongCat.cpp
 
-OBJ		=		$(SRC:.cpp=.o)
+OBJ			=		$(SRC:.cpp=.o)
 
 all: $(NAME)
 
