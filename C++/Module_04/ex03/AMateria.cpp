@@ -6,11 +6,11 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 17:57:51 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/23 18:07:35 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/01/24 20:30:43 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "common.hpp"
+#include <iostream>
 #include "AMateria.hpp"
 
 AMateria::AMateria(void) : _type("none")
