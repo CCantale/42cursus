@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cure.hpp                                            :+:      :+:    :+:  */
+/*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/24 20:16:06 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/24 23:57:16 by ccantale         ###   ########.fr       */
+/*   Created: 2023/01/24 22:41:56 by ccantale          #+#    #+#             */
+/*   Updated: 2023/01/25 00:57:57 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CURE_HPP
-# define CURE_HPP
+#ifndef MAIN_H
+# define MAIN_H
 
-# include "AMateria.hpp"
-
-class Cure : public AMateria
-{
-	public:
-					Cure(void);
-					Cure(Cure const &to_copy);
-					~Cure(void);
-		Cure const	&operator=(Cure const &to_copy);
-		AMateria	*clone(void) const;
-		void		use(ICharacter &target);
-
-	private:
-		// empty
-};
+# include <iostream>
+# include "Ice.hpp"
+# include "Cure.hpp"
+# include "Character.hpp"
+# include "MateriaSource.hpp" 
 
 #endif

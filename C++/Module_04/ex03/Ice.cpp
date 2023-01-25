@@ -6,19 +6,19 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 20:20:08 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/24 20:37:32 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/01/24 23:56:14 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Ice.hpp"
 
-Ice::Ice(void) : _type("ice")
+Ice::Ice(void) : AMateria("ice")
 {
 	;
 }
 
-Ice::Ice(Ice const &to_copy) : _type(to_copy._type)
+Ice::Ice(Ice &to_copy) : AMateria(to_copy._type)
 {
 	;
 }
@@ -28,17 +28,18 @@ Ice::~Ice(void)
 	;
 }
 
-Ice const	&Ice::operator=(Ice const &to_copy) const
+Ice const	&Ice::operator=(Ice const &to_copy)
 {
-	this->_type = to_copy_type;
+	this->_type = to_copy._type;
+	return (*this);
 }
 
-AMateria	*Ice::clone(void)
+AMateria	*Ice::clone(void) const
 {
 	return (new Ice());
 }
 
-void	Ice::use(Icharacter &target)
+void	Ice::use(ICharacter &target)
 {
 	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }

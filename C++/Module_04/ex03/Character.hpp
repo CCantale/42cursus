@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 18:19:00 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/24 20:49:48 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/01/24 23:49:48 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,22 @@
 class	Character : public ICharacter
 {
 	public:
-									Charcter(void);
-									Character(std::string const name);
-									Character(Character const &to_copy) const;
-									~Character(void);
-		Character					&operator=(Character const &to_copy) const;
-		virtual std::string const 	&getName(void) const;
-		virtual void 				equip(AMateria *m);
-		virtual void 				unequip(int idx);
-		virtual void 				use(int idx, ICharacter& target);
+							Character(void);
+							Character(std::string name);
+							Character(Character &to_copy);
+							~Character(void);
+		Character			&operator=(Character const &to_copy);
+		void				drop(AMateria *to_drop);
+		void				clean(void);
+		std::string const 	&getName(void) const;
+		void 				equip(AMateria *m);
+		void 				unequip(int idx);
+		void 				use(int idx, ICharacter& target);
 
 	private:
-		std::string const			_name;
-		AMateria[4]					_slots;
+		std::string			_name;
+		AMateria			*_slots[4];
+		AMateria			*_droppedMateria;
 };
 
 #endif
