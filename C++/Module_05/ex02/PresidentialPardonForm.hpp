@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                         	:+:      :+:    :+:   */
+/*   PresidentialPardonForm.hpp                          	:+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 16:54:32 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/29 02:08:37 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/01/29 01:59:31 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHRUBBERYCREATIONFORM_HPP
-# define SHRUBBERYCREATIONFORM_HPP
+#ifndef PRESIDENTIALPARDONFORM_HPP
+# define PRESIDENTIALPARDONFORM_HPP
 
-# include <fstream>
 # include "Form.hpp"
 
 class Form;
 
-class ShrubberyCreationForm : public Form
+class PresidentialPardonForm : public Form
 {
 	public:
-								ShrubberyCreationForm(void);
-								ShrubberyCreationForm(std::string const target);
-								ShrubberyCreationForm(ShrubberyCreationForm const &to_copy);
-								~ShrubberyCreationForm(void);
-		ShrubberyCreationForm	&operator=(ShrubberyCreationForm const &to_copy);
-		void					creation(void) const;
+								PresidentialPardonForm(void);
+								PresidentialPardonForm(std::string const target);
+								PresidentialPardonForm(PresidentialPardonForm const &to_copy);
+								~PresidentialPardonForm(void);
+		PresidentialPardonForm	&operator=(PresidentialPardonForm const &to_copy);
 		int						execute(Bureaucrat const &executor) const;
 
 	private:

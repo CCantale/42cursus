@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/26 01:00:55 by ccantale          #+#    #+#              #
-#    Updated: 2023/01/28 21:18:56 by ccantale         ###   ########.fr        #
+#    Updated: 2023/01/29 01:52:02 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,9 @@ FLAGS		=		-Wall -Wextra -Werror -std=c++98 -g
 
 NAME		=		bureaucrat
 
-SRC			=		main.cpp Bureaucrat.cpp Form.cpp ShrubberyCreationForm.cpp
+SRC			=		main.cpp Bureaucrat.cpp Form.cpp \
+					ShrubberyCreationForm.cpp RobotomyRequestForm.cpp \
+					PresidentialPardonForm.cpp
 
 OBJ			=		$(SRC:.cpp=.o)
 

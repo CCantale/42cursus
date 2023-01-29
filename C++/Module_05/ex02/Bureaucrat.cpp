@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 00:26:24 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/28 21:16:36 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/01/29 01:35:21 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,10 +142,7 @@ void	Bureaucrat::executeForm(Form const &form)
 {
 	if (!this->good())
 		return ;
-	if (form.execute(*this))
-		std::cout << this->_name << " executed " << form.getName() << std::endl;
-	else
-		std::cout << this->_name << " cound not execute " << form.getName() << std::endl;
+	form.execute(*this);
 }
 
 std::ostream	&operator<<(std::ostream &out, Bureaucrat const &to_stream)

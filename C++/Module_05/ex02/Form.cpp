@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 00:26:24 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/28 21:17:39 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/01/29 01:36:51 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,10 @@ int	Form::checkGrade(Bureaucrat const &bur) const
 int	Form::execute(Bureaucrat const &executor) const
 {
 	if (this->_signed == false)
+	{
+		std::cout << "Form not executed. Reason: unsigned" << std::endl;
 		return (NOT_OK);
+	}
 	try
 	{
 		if (!this->checkGrade(executor))
@@ -147,10 +150,11 @@ int	Form::execute(Bureaucrat const &executor) const
 	}
 	catch (GradeTooLowException &e)
 	{
-		std::cout << e.what() << "Form cound not be executed by "
+		std::cout << e.what() << "Form could not be executed by "
 							<< executor.getName() << std::endl;
 		return (NOT_OK);
 	}
+	std::cout << executor.getName() << " executed " << this->_name << std::endl;
 	return (OK);
 }
 

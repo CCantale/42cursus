@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                         	:+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                          	:+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 16:54:32 by ccantale          #+#    #+#             */
-/*   Updated: 2023/01/29 02:08:37 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/01/29 02:05:53 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHRUBBERYCREATIONFORM_HPP
-# define SHRUBBERYCREATIONFORM_HPP
+#ifndef ROBOTOMYREQUESTFORM_HPP
+# define ROBOTOMYREQUESTFORM_HPP
 
-# include <fstream>
+# include <ctime>
 # include "Form.hpp"
 
 class Form;
 
-class ShrubberyCreationForm : public Form
+class RobotomyRequestForm : public Form
 {
 	public:
-								ShrubberyCreationForm(void);
-								ShrubberyCreationForm(std::string const target);
-								ShrubberyCreationForm(ShrubberyCreationForm const &to_copy);
-								~ShrubberyCreationForm(void);
-		ShrubberyCreationForm	&operator=(ShrubberyCreationForm const &to_copy);
-		void					creation(void) const;
+								RobotomyRequestForm(void);
+								RobotomyRequestForm(std::string const target);
+								RobotomyRequestForm(RobotomyRequestForm const &to_copy);
+								~RobotomyRequestForm(void);
+		RobotomyRequestForm		&operator=(RobotomyRequestForm const &to_copy);
+		void					robotomy(void) const;
 		int						execute(Bureaucrat const &executor) const;
 
 	private:
