@@ -6,12 +6,12 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 17:10:29 by ccantale          #+#    #+#              #
-#    Updated: 2023/02/01 17:10:34 by ccantale         ###   ########.fr        #
+#    Updated: 2023/02/05 19:08:17 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 all:
-	g++ -Wall -Wextra -Werror real_type.cpp -o real
+	g++ -Wall -Wextra -Werror -std=c++98 real_type.cpp -o real
 
 clean:
 	rm real
