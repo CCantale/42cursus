@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   common.h                                           :+:      :+:    :+:   */
+/*   cub_calloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 20:16:15 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/15 17:10:00 by ccantale         ###   ########.fr       */
+/*   Created: 2023/02/15 18:10:54 by ccantale          #+#    #+#             */
+/*   Updated: 2023/02/15 18:14:09 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMON_H
-# define COMMON_H
+#include <stdlib.h>
 
-# define OK		0
-# define NOT_OK	1
+void	*cub_calloc(size_t size)
+{
+	char	*ret;
+	size_t	i;
 
-# include <stdbool.h>
-
-#endif
+	ret = malloc(size);
+	if (!ret)
+		return (NULL);
+	i = 0;
+	while (i < size)
+	{
+		ret[i] = 0;
+		++i;
+	}
+	return ((void *)ret);
+}

@@ -6,14 +6,15 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:11:56 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/14 20:12:09 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/15 17:13:19 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "common.h"
 #include <stdio.h>
 
 int	error_msg(char *msg)
 {
 	printf("Error\n%s\n", msg);
-	return (EXIT_FAILURE);
+	return (NOT_OK);
 }

@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   common.h                                           :+:      :+:    :+:   */
+/*   string_utils.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 20:16:15 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/15 17:10:00 by ccantale         ###   ########.fr       */
+/*   Created: 2023/02/15 18:25:55 by ccantale          #+#    #+#             */
+/*   Updated: 2023/02/15 18:26:31 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMON_H
-# define COMMON_H
+#ifndef STRING_UTILS_H
+# define STRING_UTILS_H
 
-# define OK		0
-# define NOT_OK	1
+#include "common.h"
+#include <stdlib.h>
 
-# include <stdbool.h>
+void	*cub_calloc(size_t size);
+int		error_msg(char *msg);
 
 #endif

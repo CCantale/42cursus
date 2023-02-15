@@ -6,44 +6,41 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:18:33 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/14 21:45:40 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:27:04 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "common.h"
-#include <fcntl.h>
+#include "check_map.h"
 
 char	*open_and_read(char *path)
 {
 	int		fd;
 	int		read_check;
-	char	*buffer;
+	char	buffer[2];
 	char	*ret;
 
 	ret = NULL;
 	fd = open(path, O_RDONLY);
 	read_check = read(fd, buffer, 1);
-	while (read_check)
+	while (read_check == 1)
 	{
+		buffer[1] = 0;
 		ret = cub_join(ret, buffer, true, false);
 		read_check = read(fd, buffer, 1);
 	}
-	close(path);
+	close(fd);
 	return (ret);
 }
 
-int	check_map(char *path)
+int	check_map(char **map, char *path)
 {
-	char	*input;
 	
-	input = open_and_read(path);
-	if (!input)
-		return (NULL);
+	*map = open_and_read(path);
+	if (!map)
+		return (NOT_OK);
 
 	//read
 	//funcs
 	
-	//close
-	close(fd);
 	return (OK);
 }

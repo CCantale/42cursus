@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   common.h                                           :+:      :+:    :+:   */
+/*   check_map.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 20:16:15 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/15 17:10:00 by ccantale         ###   ########.fr       */
+/*   Created: 2023/02/15 17:16:23 by ccantale          #+#    #+#             */
+/*   Updated: 2023/02/15 17:17:16 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMON_H
-# define COMMON_H
+#ifndef CHECK_MAP_H
+# define CHECK_MAP_H
 
-# define OK		0
-# define NOT_OK	1
+#include "common.h"
+#include <unistd.h>
+#include <stdio.h>
+#include <fcntl.h>
 
-# include <stdbool.h>
+char	*cub_join(char *s1, char *s2, bool free1, bool free2);
 
 #endif
