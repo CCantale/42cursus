@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:18:33 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/17 18:22:52 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/19 22:37:43 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,42 +32,47 @@ char	*open_and_read(char *path)
 	return (ret);
 }
 
-int	check_textures(char *map)
+int	*check_type_identifier(char *str, int option)
 {
-	size_t	i;
-	short	cardinal_points[4];
+	static int	identifiers[5];
+	int			i;
 
 	i = 0;
-	while (i < 4)
-		cardinal_points[i++] = 0;
-	i = 0;
-	while (map[i])
+	if (option == e_INIT)
+		while (i < 5)
+			identifiers[i++] = 0;
+	else if (option == e_CHECK)
 	{
-		if (i != 0 & map[i] != ' ')
-			continue ;
-		if (cub_strncmp(map + i, " NO "))
-		{
-			if (cardinal_points[0] == 1)
-				return (NOT_OK);
-			cardinal_points[0] = 1;
-		}
-		// gli altri punto cardinali
-		++i;
+		if (cub_strcmp(str, "NO ") == 0)
+			++identifiers[e_NO];
+		else if (cub_strcmp(str, "SO ") == 0)
+			++identifiers[e_SO];
+		else if (cub_strcmp(str, "WE ") == 0)
+			++identifiers[e_WE];
+		else if (cub_strcmp(str, "EA ") == 0)
+			++identifiers[e_EA];
+		else if (cub_strcmp(str, "F ") == 0)
+			++identifiers[e_F];
+		else
+			identifiers[0] = 42;
 	}
-	i = 0;
-	while (i < 4)
-		if (cardinal_points[i++] == 0)
-			return (NOT_OK);
-	return (OK);
-	// checcazzo, è lunga in culooooooo
-	// bisogna trovare un altro sistema...
+	else if (option == GET_IDENTIFIERS)
+		return (identifiers);
+	return (NULL);
 }
-
-int	check_map(char **map, char *path)
-{
 	
-	*map = open_and_read(path);
-	if (!map || check_textures(*map) == NOT_OK || check_borders(*map) == NOT_OK)
+// get next line 
+
+int	check_map(char *path)
+{	
+	char	*map;
+	int		i;
+
+	map = open_and_read(path);
+	if (!map)
+		return (NOT_OK);
+	init_map(map);
+	if (check_borders(get_map()) == NOT_OK)
 		return (NOT_OK);
 	return (OK);
 }
