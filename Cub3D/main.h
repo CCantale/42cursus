@@ -14,6 +14,7 @@
 # define MAIN_H
 
 # include "common.h"
+# include "cantalloc/cantalloc.h"
 
 int	error_msg(char *msg);
 int	check_map(char *path);

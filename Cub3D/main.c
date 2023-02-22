@@ -20,5 +20,6 @@ int	main(int argc, char **argv)
 	if (check_map(argv[1]) == NOT_OK)
 		return (NOT_OK);
 	printf("%s\n", map);
+	cantalloc_clean();
 	return (0);
 }

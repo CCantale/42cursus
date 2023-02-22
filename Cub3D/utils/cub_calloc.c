@@ -12,16 +12,16 @@
 
 #include <stdlib.h>
 
-void	*cub_calloc(size_t size)
+void	*cub_calloc(size_t quantity, size_t size)
 {
 	char	*ret;
 	size_t	i;
 
-	ret = malloc(size);
+	ret = malloc(quantity * size);
 	if (!ret)
 		return (NULL);
 	i = 0;
-	while (i < size)
+	while (i < quantity * size)
 	{
 		ret[i] = 0;
 		++i;

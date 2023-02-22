@@ -26,6 +26,8 @@ char	*open_and_read(char *path)
 	{
 		buffer[1] = 0;
 		ret = cub_join(ret, buffer, true, false);
+		if (!ret)
+			return (NULL);
 		read_check = read(fd, buffer, 1);
 	}
 	close(fd);
@@ -61,17 +63,15 @@ int	*check_type_identifier(char *str, int option)
 	return (NULL);
 }
 	
-// get next line 
-
 int	check_map(char *path)
 {	
-	char	*map;
-	int		i;
+	char	*input;
+	int	i;
 
-	map = open_and_read(path);
-	if (!map)
+	input = open_and_read(path);
+	if (!input)
 		return (NOT_OK);
-	init_map(map);
+	init_map(cub_split(input));
 	if (check_borders(get_map()) == NOT_OK)
 		return (NOT_OK);
 	return (OK);
