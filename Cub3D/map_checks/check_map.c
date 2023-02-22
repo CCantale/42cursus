@@ -34,35 +34,6 @@ char	*open_and_read(char *path)
 	return (ret);
 }
 
-int	*check_type_identifier(char *str, int option)
-{
-	static int	identifiers[5];
-	int			i;
-
-	i = 0;
-	if (option == e_INIT)
-		while (i < 5)
-			identifiers[i++] = 0;
-	else if (option == e_CHECK)
-	{
-		if (cub_strcmp(str, "NO ") == 0)
-			++identifiers[e_NO];
-		else if (cub_strcmp(str, "SO ") == 0)
-			++identifiers[e_SO];
-		else if (cub_strcmp(str, "WE ") == 0)
-			++identifiers[e_WE];
-		else if (cub_strcmp(str, "EA ") == 0)
-			++identifiers[e_EA];
-		else if (cub_strcmp(str, "F ") == 0)
-			++identifiers[e_F];
-		else
-			identifiers[0] = 42;
-	}
-	else if (option == GET_IDENTIFIERS)
-		return (identifiers);
-	return (NULL);
-}
-	
 int	check_map(char *path)
 {	
 	char	*input;
@@ -71,7 +42,8 @@ int	check_map(char *path)
 	input = open_and_read(path);
 	if (!input)
 		return (NOT_OK);
-	init_map(cub_split(input));
+	if (init_handlers(cub_split(input)) == NOT_OK)
+		return (NOT_OK);
 	if (check_borders(get_map()) == NOT_OK)
 		return (NOT_OK);
 	return (OK);

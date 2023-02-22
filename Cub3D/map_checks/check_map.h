@@ -19,5 +19,6 @@
 #include <fcntl.h>
 
 char	*cub_join(char *s1, char *s2, bool free1, bool free2);
+char	**cub_split(char *str);
 
 #endif
