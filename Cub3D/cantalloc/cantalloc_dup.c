@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_null.c                                       :+:      :+:    :+:   */
+/*   cantalloc_dup.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 14:26:27 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/23 14:26:29 by ccantale         ###   ########.fr       */
+/*   Created: 2023/02/23 14:36:40 by ccantale          #+#    #+#             */
+/*   Updated: 2023/02/23 14:37:23 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+void	*cantalloc(size_t size);
+/* end of declarations */
 
-void	*error_null(char *msg)
+char	*cantalloc_dup(char *str)
 {
-	write(2, "Error : ", 8);
-	if (msg)
+	char	*dup;
+	size_t	i;
+
+	dup = cantalloc(sizeof(char) * (cub_strlen(str) + 1));
+	i = 0;
+	while (str[i])
 	{
-		while (*msg)
-			write(2, msg++, 1);
+		dup[i] = str[i];
+		++i;
 	}
-	write(2, "\n", 1);
-	return (NULL);
+	dup[i] = 0;
+	return (dup);
 }

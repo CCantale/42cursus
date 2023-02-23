@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_null.c                                       :+:      :+:    :+:   */
+/*   join.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 14:26:27 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/23 14:26:29 by ccantale         ###   ########.fr       */
+/*   Created: 2023/02/23 14:27:32 by ccantale          #+#    #+#             */
+/*   Updated: 2023/02/23 15:49:36 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#ifndef JOIN_H
+# define JOIN_H
 
-void	*error_null(char *msg)
-{
-	write(2, "Error : ", 8);
-	if (msg)
-	{
-		while (*msg)
-			write(2, msg++, 1);
-	}
-	write(2, "\n", 1);
-	return (NULL);
-}
+# include <stdlib.h>
+
+void	*error_null(char *msg);
+size_t	cub_strlen(char	*str);
+char	*cub_strdup(char *str);
+char	*cub_strncpy(char *dest, char *src, size_t bytes);
+
+#endif

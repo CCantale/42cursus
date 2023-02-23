@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_null.c                                       :+:      :+:    :+:   */
+/*   map_handler.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 14:26:27 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/23 14:26:29 by ccantale         ###   ########.fr       */
+/*   Created: 2023/02/23 14:26:16 by ccantale          #+#    #+#             */
+/*   Updated: 2023/02/23 15:38:16 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#ifndef MAP_HANDLER_H
+# define MAP_HANDLER_H
 
-void	*error_null(char *msg)
+# include "../cantalloc/cantalloc.h"
+
+enum
 {
-	write(2, "Error : ", 8);
-	if (msg)
-	{
-		while (*msg)
-			write(2, msg++, 1);
-	}
-	write(2, "\n", 1);
-	return (NULL);
-}
+	m_UPDATE_MAP,
+	m_GET_MAP
+};
+
+#endif

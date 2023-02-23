@@ -26,4 +26,7 @@ void	*ccantalloc(size_t size, size_t count);
 /* Frees all the memory previously allocated by cantalloc and ccantalloc. */
 void	cantalloc_clean(void);
 
+/* strdup(), but allocates the duplicate using cantalloc() */
+char	*cantalloc_dup(char *str);
+
 #endif

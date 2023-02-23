@@ -1,9 +1,16 @@
-void	*error_null(char *msg);
-size_t	cub_strlen(char	*str);
-char	*cub_strdup(char *str);
-char	*cub_strncpy(char *dest, char *src, size_t bytes);
-/* end of declarations */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub_join.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/23 14:26:42 by ccantale          #+#    #+#             */
+/*   Updated: 2023/02/23 14:28:28 by ccantale         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "join.h"
 
 char	*cub_join(char *s1, char *s2, bool free1, bool free2)
 {

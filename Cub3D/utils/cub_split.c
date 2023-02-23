@@ -1,9 +1,4 @@
-#include <stdlib.h>
-#include "../cantalloc/cantalloc.h"
-
-void	*error_null(char *msg);
-char	*cub_substr(char *str, size_t start, size_t end);
-/* end of declarations */
+#include "split.h"
 
 static char	*make_next_chunk(char *str, char **str_ptr)
 {

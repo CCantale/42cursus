@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_handler.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/23 14:23:34 by ccantale          #+#    #+#             */
+/*   Updated: 2023/02/23 15:25:10 by ccantale         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "map_handler.h"
 
 static char	**map_handler(char **new_map, int option)
@@ -6,7 +18,8 @@ static char	**map_handler(char **new_map, int option)
 
 	if (option == m_UPDATE_MAP)
 	{
-		map = mapcpy(map, new_map); //da fare
+		map = mapcpy(new_map);
+		return (map);
 	}
 	else if (option == m_GET_MAP)
 	{
@@ -15,14 +28,42 @@ static char	**map_handler(char **new_map, int option)
 	return (NULL);
 }
 
-void	update_map(char **new_map)
+static char	**mapcpy(char **new_map)
 {
-	map_handler(new_map, m_UPDATE_MAP);
+	char	**copy;
+	size_t	size;
+	size_t	i;
+
+	size = 0;
+	while (new_map[size])
+		++size;
+	copy = ccantalloc(size + 1, sizeof(char *));
+	if (!copy)
+		return (NULL);
+	i = 0;
+	while (i < size)
+	{
+		copy[i] = cantalloc_dup(new_map[i]);
+		if (!copy[i])
+		{
+			cantalloc_clean();
+			return (error_null("cantalloc_dup() error in mapcpy()"));
+		}
+		++i;
+	}
+	return (copy);
+}
+
+int	update_map(char **new_map)
+{
+	if (!new_map || map_handler(new_map, m_UPDATE_MAP) == NULL)
+		return (NOT_OK);
+	return (OK);
 }
 
 char	**get_map(void)
 {
-	map_handler(NULL, m_GET_MAP);
+	return (map_handler(NULL, m_GET_MAP));
 }
 
 void	edit_map(int x, int y, char edit)
@@ -30,4 +71,3 @@ void	edit_map(int x, int y, char edit)
 	if (edit == '0' || edit == '1')
 		get_map()[y][x] = edit;
 }
-	

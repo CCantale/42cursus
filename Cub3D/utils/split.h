@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_null.c                                       :+:      :+:    :+:   */
+/*   split.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 14:26:27 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/23 14:26:29 by ccantale         ###   ########.fr       */
+/*   Created: 2023/02/23 14:28:53 by ccantale          #+#    #+#             */
+/*   Updated: 2023/02/23 14:30:40 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#ifndef SPLIT_H
+# define SPLIT_H
 
-void	*error_null(char *msg)
-{
-	write(2, "Error : ", 8);
-	if (msg)
-	{
-		while (*msg)
-			write(2, msg++, 1);
-	}
-	write(2, "\n", 1);
-	return (NULL);
-}
+#include <stdlib.h>
+#include "../cantalloc/cantalloc.h"
+
+void	*error_null(char *msg);
+char	*cub_substr(char *str, size_t start, size_t end);
+
+#endif

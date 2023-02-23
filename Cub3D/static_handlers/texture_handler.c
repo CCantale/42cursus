@@ -1,8 +1,16 @@
-#include "../common.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   texture_handler.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/23 14:23:43 by ccantale          #+#    #+#             */
+/*   Updated: 2023/02/23 15:42:30 by ccantale         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-static void	update_textures(char **new_set, static void *textures[6]);
-static void	free_textures(static void *textures[6]);
-/* end of declarations */
+#include "texture_handler.h"
 
 /*
 ** textures[0] = north

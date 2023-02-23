@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_null.c                                       :+:      :+:    :+:   */
+/*   texture_handler.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 14:26:27 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/23 14:26:29 by ccantale         ###   ########.fr       */
+/*   Created: 2023/02/23 15:40:53 by ccantale          #+#    #+#             */
+/*   Updated: 2023/02/23 15:43:44 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#ifndef TEXTURE_HANDLER_H
+# define TEXTURE_HANDLER_H
 
-void	*error_null(char *msg)
-{
-	write(2, "Error : ", 8);
-	if (msg)
-	{
-		while (*msg)
-			write(2, msg++, 1);
-	}
-	write(2, "\n", 1);
-	return (NULL);
-}
+#include "common.h"
+
+#define tex_GET_NORTH	0
+#define tex_GET_SOUTH	1
+#define tex_GET_WEST	2
+#define tex_GET_EAST	3
+#define tex_GET_FLOOR	4
+#define tex_UPDATE		5
+#define tex_ERROR		6
+
+static void	update_textures(char **new_set, static void *textures[6]);
+static void	free_textures(static void *textures[6]);
+
+#endif

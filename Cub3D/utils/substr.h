@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_null.c                                       :+:      :+:    :+:   */
+/*   substr.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 14:26:27 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/23 14:26:29 by ccantale         ###   ########.fr       */
+/*   Created: 2023/02/23 14:33:58 by ccantale          #+#    #+#             */
+/*   Updated: 2023/02/23 14:34:35 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#ifndef SUBSTR_H
+# define SUBSTR_H
 
-void	*error_null(char *msg)
-{
-	write(2, "Error : ", 8);
-	if (msg)
-	{
-		while (*msg)
-			write(2, msg++, 1);
-	}
-	write(2, "\n", 1);
-	return (NULL);
-}
+#include <stdlib.h>
+#include "../cantalloc/cantalloc.h"
+
+void	*error_null(char *msg);
+
+#endif
