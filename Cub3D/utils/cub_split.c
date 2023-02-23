@@ -55,7 +55,7 @@ char	**cub_split(char *str)
 	i = 0;
 	while (i < chunks_nbr - 1)
 	{
-		split[i] = make_chunk(str, &str);
+		split[i] = make_next_chunk(str, &str);
 		if (!split[i])
 		{
 			cantalloc_clean();

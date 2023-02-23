@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:16:15 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/15 17:10:00 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/23 16:01:43 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,6 @@
 # define NOT_OK	1
 
 # include <stdbool.h>
+# include <stdlib.h>
 
 #endif

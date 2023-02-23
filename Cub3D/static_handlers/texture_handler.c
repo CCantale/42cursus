@@ -6,11 +6,16 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:23:43 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/23 15:42:30 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/23 17:05:09 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "texture_handler.h"
+
+static int	define_which(char **line_from_set);
+static int	update_textures(char **new_set, void *textures[6]);
+static void	free_textures(void *textures[6]);
+/* end of declarations */
 
 /*
 ** textures[0] = north
@@ -36,7 +41,7 @@ void	*texture_handler(char **new_set, int option)
 	if (option == tex_UPDATE)
 	{
 		if (!new_set || update_textures(new_set, textures) == NOT_OK)
-			return (&option);
+			return (*new_set);
 	}
 	else
 	{
@@ -45,7 +50,7 @@ void	*texture_handler(char **new_set, int option)
 	return (NULL);
 }
 
-static int	update_textures(char **new_set, static void *textures[6])
+static int	update_textures(char **new_set, void *textures[6])
 {
 	size_t	i;
 	int	which_one;
@@ -64,7 +69,7 @@ static int	update_textures(char **new_set, static void *textures[6])
 			free_textures(textures);
 			return (error_msg("Syntax error. Parameter repeted."));
 		}
-		textures[which_one] = // funzione che fa le texture
+		textures[which_one] = *new_set; // funzione che fa le texture
 		++i;
 	}
 	return (OK);
@@ -80,7 +85,7 @@ static int	define_which(char **line_from_set)
 	int which_one;
 
 	while (**line_from_set == ' ')
-		*line_from_set++;
+		*line_from_set += 1;
 	if (cub_strcmp(*line_from_set, "NO ") == 0)
 		which_one = tex_GET_NORTH;
 	else if (cub_strcmp(*line_from_set, "SO ") == 0)
@@ -94,12 +99,12 @@ static int	define_which(char **line_from_set)
 	else
 		which_one = tex_ERROR;
 	while (**line_from_set != ' ')
-		*line_from_set++;
+		*line_from_set += 1;
 	return (which_one);
 }
 
 
-static void	free_textures(static void *textures[6])
+static void	free_textures(void *textures[6])
 {
 	int	i;
 

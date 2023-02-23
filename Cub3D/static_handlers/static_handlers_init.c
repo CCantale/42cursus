@@ -6,10 +6,11 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:41:45 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/23 15:27:35 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/23 16:02:11 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../common.h"
 #include "map.h"
 #include "texture.h"
 

@@ -6,11 +6,14 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:32:02 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/23 14:32:06 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:57:43 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+
+size_t	cub_strlen(char	*str);
+/* end of declarations */
 
 char	*cub_strdup(char *str)
 {

@@ -6,11 +6,14 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:23:34 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/23 15:25:10 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/23 16:03:30 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_handler.h"
+
+static char	**mapcpy(char **new_map);
+/* end of declarations */
 
 static char	**map_handler(char **new_map, int option)
 {
