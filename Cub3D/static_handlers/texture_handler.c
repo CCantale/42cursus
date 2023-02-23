@@ -73,15 +73,15 @@ static int	define_which(char **line_from_set)
 
 	while (**line_from_set == ' ')
 		*line_from_set++;
-	if (cub_strcmp(line_from_set, "NO ") == 0)
+	if (cub_strcmp(*line_from_set, "NO ") == 0)
 		which_one = tex_GET_NORTH;
-	else if (cub_strcmp(line_from_set, "SO ") == 0)
+	else if (cub_strcmp(*line_from_set, "SO ") == 0)
 		which_one = tex_GET_SOUTH;
-	else if (cub_strcmp(line_from_set, "WE ") == 0)
+	else if (cub_strcmp(*line_from_set, "WE ") == 0)
 		which_one = tex_GET_WEST;
-	else if (cub_strcmp(line_from_set, "EA ") == 0)
+	else if (cub_strcmp(*line_from_set, "EA ") == 0)
 		which_one = tex_GET_EAST;
-	else if (cub_strcmp(line_from_set, "F ") == 0)
+	else if (cub_strcmp(*line_from_set, "F ") == 0)
 		which_one = tex_GET_FLOOR;
 	else
 		which_one = tex_ERROR;
