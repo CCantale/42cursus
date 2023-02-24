@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:23:43 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/24 23:51:34 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/25 00:39:14 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	update_textures(char **new_set, void *textures[5])
 		if (which_one == tex_ERROR)
 		{
 			free_textures(textures);
-			return (error_msg("Syntax error. Wrong parameter."));
+			return (error_msg("Syntax error. Wrong or missing parameter."));
 		}
 		if (textures[which_one] != NULL || which_one == tex_COLOR_REPEATED)
 		{

@@ -6,13 +6,11 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:41:45 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/23 16:02:11 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/25 00:38:04 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../common.h"
-#include "map.h"
-#include "texture.h"
+#include "static_handlers_init.h"
 
 static int	is_map_start(char *current_line)
 {
@@ -39,6 +37,8 @@ int	static_handlers_init(char **input)
 	i = 0;
 	while (is_map_start(input[i]) == NOT_OK)
 			++i;
+	if (i > 6)
+		return (error_msg("Too many parameters."));
 	if (update_map(input + i) == NOT_OK)
 		return (NOT_OK);
 	return (OK);
