@@ -6,15 +6,15 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:23:43 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/23 17:05:09 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/24 19:01:57 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "texture_handler.h"
 
-static int	define_which(char **line_from_set);
-static int	update_textures(char **new_set, void *textures[5]);
-static void	free_textures(void *textures[5]);
+static t_texture	define_which(char **line_from_set);
+static int			update_textures(char **new_set, void *textures[5]);
+static void			free_textures(void *textures[5]);
 /* end of declarations */
 
 /*
@@ -24,19 +24,10 @@ static void	free_textures(void *textures[5]);
 ** textures[3] = east
 ** textures[4] = 0
 */
-void	*texture_handler(char **new_set, int option)
+void	*texture_handler(char **new_set, t_texture option)
 {
-	static void	*textures[5];
-	static short	init_var;
+	static void	*textures[5] = { NULL, NULL, NULL, NULL, NULL };
 
-	if (init_var == 0)
-	{
-		while (init_var < 5)
-		{
-			textures[init_var] = NULL;
-			++init_var;
-		}
-	}
 	if (option == tex_UPDATE)
 	{
 		if (!new_set || update_textures(new_set, textures) == NOT_OK)
@@ -52,7 +43,7 @@ void	*texture_handler(char **new_set, int option)
 static int	update_textures(char **new_set, void *textures[5])
 {
 	size_t	i;
-	int	which_one;
+	int		which_one;
 
 	i = 0;
 	while (i < 5)
@@ -68,7 +59,8 @@ static int	update_textures(char **new_set, void *textures[5])
 			free_textures(textures);
 			return (error_msg("Syntax error. Parameter repeted."));
 		}
-		textures[which_one] = *new_set; // funzione che fa le texture
+		if (which_one != tex_COLOR)
+			textures[which_one] = *new_set; // funzione che fa le texture
 		++i;
 	}
 	return (OK);
@@ -79,7 +71,7 @@ static int	update_textures(char **new_set, void *textures[5])
 ** the string has been allocated with the cantalloc() function, so it will
 ** automatically be freed by cantalloc_clean() at the end of the code or
 ** in emergency_exit() in case anything goes wrong */
-static int	define_which(char **line_from_set)
+static t_texture	define_which(char **line_from_set)
 {
 	int which_one;
 
@@ -95,7 +87,7 @@ static int	define_which(char **line_from_set)
 		which_one = tex_GET_EAST;
 	else if (cub_strcmp(*line_from_set, "F ") == 0
 		|| cub_strcmp(*line_from_set, "C ") == 0)
-		// EMBE'?
+		which_one = get_color(*line_from_set);
 	else
 		which_one = tex_ERROR;
 	while (**line_from_set != ' ')

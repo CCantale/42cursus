@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   texture_handler.h                                  :+:      :+:    :+:   */
+/*   color_handler.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 15:40:53 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/24 18:46:46 by ccantale         ###   ########.fr       */
+/*   Created: 2023/02/24 18:34:49 by ccantale          #+#    #+#             */
+/*   Updated: 2023/02/24 18:41:45 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEXTURE_HANDLER_H
-# define TEXTURE_HANDLER_H
+#ifndef COLOR_HANDLER_H
+# define COLOR_HANDLER_H
 
-#include "../common.h"
+# include "../common.h"
+# include "../cantalloc/cantalloc.h"
+# include "texture_handler.h"
 
-typedef enum e_texture
+typedef enum e_color
 {
-	tex_GET_NORTH,
-	tex_GET_SOUTH,
-	tex_GET_WEST,
-	tex_GET_EAST,
-	tex_UPDATE,
-	tex_COLOR,
-	tex_ERROR
-} 	t_texture;
+	c_MAKE_FLOOR,
+	c_MAKE_CEILING,
+	c_GET_FLOOR,
+	c_GET_CEILING
+}	t_color;
 
-int	error_msg(char *msg);
 int	cub_strcmp(char *s1, char *s2);
 
 #endif

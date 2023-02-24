@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:38:53 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/23 15:43:33 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/24 18:20:08 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,4 @@ void	*get_west_texture(void)
 void	*get_east_texture(void)
 {
 	return (texture_handler(NULL, tex_GET_EAST));
-}
-
-void	*get_floor_texture(void)
-{
-	return (texture_handler(NULL, tex_GET_FLOOR));
 }
