@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 17:01:39 by ccantale          #+#    #+#              #
-#    Updated: 2023/02/24 23:29:22 by ccantale         ###   ########.fr        #
+#    Updated: 2023/02/25 00:50:13 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC			=		main.c \
 					utils/cub_substr.c utils/cub_strcmp.c \
 					utils/cub_atoi.c \
 					cantalloc/cantalloc.c cantalloc/cantalloc_dup.c \
+					cantalloc/ccantalloc.c \
 					static_handlers/static_handlers_init.c \
 					static_handlers/map_handler.c \
 					static_handlers/texture_handler.c \

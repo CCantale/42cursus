@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_handler.h                                    :+:      :+:    :+:   */
+/*   ccantalloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/24 18:34:49 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/25 00:44:55 by ccantale         ###   ########.fr       */
+/*   Created: 2023/02/25 00:47:54 by ccantale          #+#    #+#             */
+/*   Updated: 2023/02/25 00:50:49 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLOR_HANDLER_H
-# define COLOR_HANDLER_H
+#include "cantalloc.h"
 
-# include "../common.h"
-# include "../cantalloc/cantalloc.h"
-# include "texture_handler.h"
-
-typedef enum e_color
+void	*ccantalloc(size_t size, size_t count)
 {
-	c_GET_FLOOR,
-	c_GET_CEILING
-}	t_color;
+	char	*new_ptr;
+	size_t	i;
 
-int			cub_strcmp(char *s1, char *s2);
-int			cub_atoi(char *str);
-t_texture	error_tex(char *msg);
-
-#endif
+	new_ptr = cantalloc(size * count);
+	if (!new_ptr)
+		return (NULL);
+	i = 0;
+	while (i < size * count)
+	{
+		new_ptr[i] = 0;
+		++i;
+	}
+	return ((void *)new_ptr);
+}

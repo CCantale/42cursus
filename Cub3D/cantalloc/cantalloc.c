@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cantalloc.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/25 00:46:03 by ccantale          #+#    #+#             */
+/*   Updated: 2023/02/25 00:47:43 by ccantale         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cantalloc.h"
 
 static t_alloc	*new_node(void	*ptr)
@@ -48,9 +60,7 @@ static void	*cantalloc_handler(size_t size, int mode)
 		return (new_ptr);
 	}
 	else if (mode == CLEAN)
-	{
 		clean_garbage_list(garbage_head);
-	}
 	return (NULL);
 }
 
@@ -59,22 +69,6 @@ void	*cantalloc(size_t size)
 	return (cantalloc_handler(size, NEW));
 }
 
-void	*ccantalloc(size_t size, size_t count)
-{
-	char	*new_ptr;
-	size_t	i;
-
-	new_ptr = cantalloc_handler(size * count, NEW);
-	if (!new_ptr)
-		return (NULL);
-	i = 0;
-	while (i < size * count)
-	{
-		new_ptr[i] = 0;
-		++i;
-	}
-	return ((void *)new_ptr);
-}
 
 void	cantalloc_clean(void)
 {
