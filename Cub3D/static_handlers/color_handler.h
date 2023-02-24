@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 18:34:49 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/24 23:28:18 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/25 00:43:30 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 
 typedef enum e_color
 {
-	c_MAKE_FLOOR,
-	c_MAKE_CEILING,
 	c_GET_FLOOR,
 	c_GET_CEILING
 }	t_color;

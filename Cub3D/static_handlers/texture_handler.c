@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:23:43 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/25 00:39:14 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/25 00:43:15 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,7 @@ static int	update_textures(char **new_set, void *textures[5])
 /* defines the which_one variable and scrolls the new_set[i] string to the
 ** beginning of the texture path. we can lose the original ptr because
 ** the string has been allocated with the cantalloc() function, so it will
-** automatically be freed by cantalloc_clean() at the end of the code or
-** in emergency_exit() in case anything goes wrong */
+** automatically be freed by cantalloc_clean() at the end of the code */
 static t_texture	define_which(char **line_from_set)
 {
 	int which_one;
