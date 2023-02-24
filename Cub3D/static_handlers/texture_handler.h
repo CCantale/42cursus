@@ -24,5 +24,6 @@
 #define tex_ERROR		6
 
 int	error_msg(char *msg);
+int	cub_strcmp(char *s1, char *s2);
 
 #endif

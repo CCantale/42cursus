@@ -13,8 +13,8 @@
 #include "texture_handler.h"
 
 static int	define_which(char **line_from_set);
-static int	update_textures(char **new_set, void *textures[6]);
-static void	free_textures(void *textures[6]);
+static int	update_textures(char **new_set, void *textures[5]);
+static void	free_textures(void *textures[5]);
 /* end of declarations */
 
 /*
@@ -22,17 +22,16 @@ static void	free_textures(void *textures[6]);
 ** textures[1] = south
 ** textures[2] = west
 ** textures[3] = east
-** textures[4] = floor
-** textures[5] = 0
+** textures[4] = 0
 */
 void	*texture_handler(char **new_set, int option)
 {
-	static void	*textures[6];
+	static void	*textures[5];
 	static short	init_var;
 
 	if (init_var == 0)
 	{
-		while (init_var < 6)
+		while (init_var < 5)
 		{
 			textures[init_var] = NULL;
 			++init_var;
@@ -50,7 +49,7 @@ void	*texture_handler(char **new_set, int option)
 	return (NULL);
 }
 
-static int	update_textures(char **new_set, void *textures[6])
+static int	update_textures(char **new_set, void *textures[5])
 {
 	size_t	i;
 	int	which_one;
@@ -94,8 +93,9 @@ static int	define_which(char **line_from_set)
 		which_one = tex_GET_WEST;
 	else if (cub_strcmp(*line_from_set, "EA ") == 0)
 		which_one = tex_GET_EAST;
-	else if (cub_strcmp(*line_from_set, "F ") == 0)
-		which_one = tex_GET_FLOOR;
+	else if (cub_strcmp(*line_from_set, "F ") == 0
+		|| cub_strcmp(*line_from_set, "C ") == 0)
+		// EMBE'?
 	else
 		which_one = tex_ERROR;
 	while (**line_from_set != ' ')
@@ -104,7 +104,7 @@ static int	define_which(char **line_from_set)
 }
 
 
-static void	free_textures(void *textures[6])
+static void	free_textures(void *textures[5])
 {
 	int	i;
 

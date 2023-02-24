@@ -21,7 +21,7 @@ SRC			=		main.c \
 					utils/cub_calloc.c utils/cub_join.c \
 					utils/cub_split.c utils/cub_strdup.c \
 					utils/cub_strlen.c utils/cub_strncpy.c \
-					utils/cub_substr.c \
+					utils/cub_substr.c utils/cub_strcmp.c \
 					cantalloc/cantalloc.c cantalloc/cantalloc_dup.c \
 					static_handlers/static_handlers_init.c \
 					static_handlers/map_handler.c \
