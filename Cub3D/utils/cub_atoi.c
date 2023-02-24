@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_msg.c                                        :+:      :+:    :+:   */
+/*   cub_atoi.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 20:11:56 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/24 23:28:58 by ccantale         ###   ########.fr       */
+/*   Created: 2023/02/24 21:20:31 by ccantale          #+#    #+#             */
+/*   Updated: 2023/02/24 23:08:51 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "../common.h"
-
-int	error_msg(char *msg)
+int	cub_atoi(char *str)
 {
-	write(2, "Error : ", 8);
-	if (msg)
+	int	ret;
+
+	ret = 0;
+	while (*str && *str >= '0' && *str <= '9')
 	{
-		while (*msg)
-			write(2, msg++, 1);
+		ret *= 10;
+		ret += *str - '0';
+		++str;
 	}
-	write(2, "\n", 1);
-	return (NOT_OK);
+	return (ret);
 }

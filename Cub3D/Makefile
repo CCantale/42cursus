@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 17:01:39 by ccantale          #+#    #+#              #
-#    Updated: 2023/02/23 15:35:42 by ccantale         ###   ########.fr        #
+#    Updated: 2023/02/24 23:29:22 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,31 +17,36 @@ NAME		=		cub3D
 
 SRC			=		main.c \
 					error/error_msg.c error/error_null.c \
+					error/error_tex.c \
 					map_checks/check_map.c \
 					utils/cub_calloc.c utils/cub_join.c \
 					utils/cub_split.c utils/cub_strdup.c \
 					utils/cub_strlen.c utils/cub_strncpy.c \
 					utils/cub_substr.c utils/cub_strcmp.c \
+					utils/cub_atoi.c \
 					cantalloc/cantalloc.c cantalloc/cantalloc_dup.c \
 					static_handlers/static_handlers_init.c \
 					static_handlers/map_handler.c \
 					static_handlers/texture_handler.c \
-					static_handlers/get_texture.c
+					static_handlers/get_texture.c \
+					static_handlers/color_handler.c
 
-OBJ			=		$(SRC:.c=.o)
+OBJDIR		=		obj
+OBJ			=		$(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 
 
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $@
+	$(CC) $^ -o $@
 
-%.o: %.c
-	$(CC) $(FLAGS) -c $< -o $(<:.c=.o)
+$(OBJ): $(OBJDIR)/%.o: %.c
+	mkdir -p $(@D)
+	$(CC) $(FLAGS) -c $< -o $(addprefix $(OBJDIR)/, $(<:.c=.o))
 
 clean:
-	rm $(OBJ)
+	rm -rf $(OBJDIR)
 
 fclean:
 	rm $(NAME)

@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:23:43 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/24 19:01:57 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/24 23:51:34 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,20 @@ static int	update_textures(char **new_set, void *textures[5])
 	int		which_one;
 
 	i = 0;
-	while (i < 5)
+	while (i < 6)
 	{
 		which_one = define_which(&new_set[i]);
 		if (which_one == tex_ERROR)
 		{
 			free_textures(textures);
-			return (error_msg("Syntax error. Unknown parameter."));
+			return (error_msg("Syntax error. Wrong parameter."));
 		}
-		if (textures[which_one] != NULL)
+		if (textures[which_one] != NULL || which_one == tex_COLOR_REPEATED)
 		{
 			free_textures(textures);
 			return (error_msg("Syntax error. Parameter repeted."));
 		}
-		if (which_one != tex_COLOR)
+		if (which_one != tex_COLOR_OK)
 			textures[which_one] = *new_set; // funzione che fa le texture
 		++i;
 	}
@@ -98,12 +98,12 @@ static t_texture	define_which(char **line_from_set)
 
 static void	free_textures(void *textures[5])
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (textures[i])
+	while (i < 4)
 	{
-		free(textures[i]); // or destroy_something_something ?
+		//free(textures[i]); // or destroy_something_something ?
 		textures[i] = 0;
 		++i;
 	}

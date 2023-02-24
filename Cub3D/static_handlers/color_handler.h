@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 18:34:49 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/24 18:41:45 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/24 23:28:18 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ typedef enum e_color
 }	t_color;
 
 int	cub_strcmp(char *s1, char *s2);
+int	cub_atoi(char *str);
+t_texture	error_tex(char *msg);
 
 #endif
