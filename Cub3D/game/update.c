@@ -6,12 +6,12 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 01:27:34 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/25 03:51:02 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/25 06:49:41 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include <stdio.h>
-# include <sys/time.h>
+# include <sys/time.h> // ricorda che tutta 'sta roba è illegale
 # include <unistd.h>
 
 
@@ -25,17 +25,20 @@ size_t	get_time(void)
 
 int	update(void)
 {
-	static size_t	frame_time = 1000000/60;
+	static size_t	frame_time = 1000000 / 60;
 	size_t			start;
-	size_t			delta;
+	size_t			end;
 
 	start = get_time();
 	// update
-	delta = get_time();
-	while (delta - start < frame_time)
+	static size_t	count = 0;
+	printf("%lu\n", count);
+	++count;
+	end = get_time();
+	while (end - start < frame_time)
 	{
-		usleep(100);
-		delta = get_time();
+		usleep(1000);
+		end = get_time();
 	}
 	return (0);
 }
