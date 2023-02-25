@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:18:33 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/25 06:32:23 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/25 16:52:29 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,6 @@ int	check_map(char *path)
 	if (check_valid_char() == NOT_OK || check_borders() == NOT_OK
 		|| check_multiple_players())
 		return (NOT_OK);
+	init_player();
 	return (OK);
 }

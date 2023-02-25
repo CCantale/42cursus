@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 17:01:39 by ccantale          #+#    #+#              #
-#    Updated: 2023/02/25 05:12:26 by ccantale         ###   ########.fr        #
+#    Updated: 2023/02/25 17:08:51 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ SRC			=		main.c \
 					static_handlers/get_texture.c \
 					static_handlers/color_handler.c \
 					static_handlers/game_handler.c \
+					static_handlers/player_handler.c \
+					static_handlers/get_player.c \
 					game/update.c game/render_background.c \
 					game/event.c
 

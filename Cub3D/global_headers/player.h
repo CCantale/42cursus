@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.h                                        :+:      :+:    :+:   */
+/*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/15 17:16:23 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/25 16:54:21 by ccantale         ###   ########.fr       */
+/*   Created: 2023/02/25 16:47:08 by ccantale          #+#    #+#             */
+/*   Updated: 2023/02/25 17:10:25 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECK_MAP_H
-# define CHECK_MAP_H
+#ifndef PLAYER_H
+# define PLAYER_H
 
-# include <unistd.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include "../global_headers/common.h"
-# include "../global_headers/map.h"
-# include "../global_headers/player.h"
-
-char	*cub_join(char *s1, char *s2, bool free1, bool free2);
-char	**cub_split(char *str);
-int		static_handlers_init(char **input);
-int		error_msg(char *msg);
+void		init_player(void);
+void		update_player_pos(double x, double y);
+void		update_player_dir(double x, double y);
+double		get_player_x(void);
+double		get_player_y(void);
+double		get_player_dirx(void);
+double		get_player_diry(void);
 
 #endif

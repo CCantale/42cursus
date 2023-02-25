@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 01:27:34 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/25 06:49:41 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/25 17:19:14 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int	update(void)
 
 	start = get_time();
 	// update
-	static size_t	count = 0;
+/*	static size_t	count = 0;
 	printf("%lu\n", count);
-	++count;
+	++count; */
 	end = get_time();
 	while (end - start < frame_time)
 	{

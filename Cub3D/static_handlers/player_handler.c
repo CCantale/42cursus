@@ -6,25 +6,25 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 07:12:15 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/25 13:07:00 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/25 17:10:02 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "player_handler.h"
 
-int	player_handler(int x, int y, t_player option)
+double	player_handler(double x, double y, t_player option)
 {
-	static int	pos_x;
-	static int	pos_y;
-	static int	dir_x;
-	static int	dir_y;
+	static double	pos_x;
+	static double	pos_y;
+	static double	dir_x;
+	static double	dir_y;
 
-	if (option == p_EDIT_POS)
+	if (option == p_UPDATE_POS)
 	{
 		pos_x = x;
 		pos_y = y;
 	}
-	else if (option == p_EDIT_DIR)
+	else if (option == p_UPDATE_DIR)
 	{
 		dir_x = x;
 		dir_y = y;
@@ -40,14 +40,50 @@ int	player_handler(int x, int y, t_player option)
 	return (OK);
 }
 
-int	get_player_x(void)
+static void	set_direction_at_start(char direction)
 {
-	player_handler(0, 0, p_GET_POSX);
+	if (direction == 'N')
+		update_player_dir(0, -1);
+	else if (direction == 'S')
+		update_player_dir(0, 1);
+	else if (direction == 'W')
+		update_player_dir(-1, 0);
+	else if (direction == 'E')
+		update_player_dir(1, 0);
 }
 
-int	get_player_y(void)
+void	init_player(void)
 {
-	player_handler(0, 0, p_GET_POSY);
+	char const	**map = get_map();
+	size_t	x;
+	size_t	y;
+	
+	y = 0;
+	while (map[y])
+	{
+		x = 0;
+		while (map[y][x])
+		{
+			if (map[y][x] == 'N' || map[y][x] == 'S'
+				|| map[y][x] == 'W' || map[y][x] == 'E')
+			{
+				update_player_pos(x, y);
+				set_direction_at_start(map[y][x]);
+				break ;
+			}
+			++x;
+		}
+		++y;
+	}
 }
 
-int	get_player_dir
+void	update_player_pos(double x, double y)
+{
+	player_handler(x, y, p_UPDATE_POS);
+}
+
+void	update_player_dir(double x, double y)
+{
+	player_handler(x, y, p_UPDATE_DIR);
+}
+

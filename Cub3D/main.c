@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:04:34 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/25 05:28:39 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/25 17:21:11 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static int	quit(void)
 
 static int	game_loop(void)
 {
-
 	game_init(mlx_init());
 	if (!get_game_init())
 		return (error_msg("Game doesn't init."));
