@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 17:01:39 by ccantale          #+#    #+#              #
-#    Updated: 2023/02/25 00:50:13 by ccantale         ###   ########.fr        #
+#    Updated: 2023/02/25 03:51:26 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,17 +30,26 @@ SRC			=		main.c \
 					static_handlers/map_handler.c \
 					static_handlers/texture_handler.c \
 					static_handlers/get_texture.c \
-					static_handlers/color_handler.c
+					static_handlers/color_handler.c \
+					static_handlers/game_handler.c \
+					game/update.c game/render_background.c \
+					game/event.c
 
 OBJDIR		=		obj
 OBJ			=		$(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 
+MINIDIR		=		minilibX
+MINI		=		$(MINIDIR)/libmlx.a
 
 
-all: $(NAME)
+
+all: $(MINI) $(NAME)
+
+$(MINI):
+	make -C $(MINIDIR)
 
 $(NAME): $(OBJ)
-	$(CC) $^ -o $@
+	$(CC) $^ -o $@ -lmlx -framework openGL -framework AppKit
 
 $(OBJ): $(OBJDIR)/%.o: %.c
 	mkdir -p $(@D)

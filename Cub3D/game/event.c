@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_strdup.c                                       :+:      :+:    :+:   */
+/*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 14:32:02 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/25 04:04:02 by ccantale         ###   ########.fr       */
+/*   Created: 2023/02/25 03:48:09 by ccantale          #+#    #+#             */
+/*   Updated: 2023/02/25 03:52:18 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "../keycodes.h"
+#include "../cantalloc/cantalloc.h"
 
-size_t	cub_strlen(char	*str);
+void	render_background(void);
 /* end of declarations */
 
-char	*cub_strdup(char *str)
+void	event(int key)
 {
-	char	*dup;
-	size_t	i;
-
-	dup = malloc(sizeof(char) * (cub_strlen(str) + 1));
-	if (!dup)
-		return (NULL);
-	i = 0;
-	while (str[i])
+	if (key == ESC_KEY)
 	{
-		dup[i] = str[i];
-		++i;
+		cantalloc_clean();
+		exit(0);
 	}
-	dup[i] = 0;
-	return (dup);
+	else
+	{
+		render_background();
+	}
 }

@@ -6,14 +6,14 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 23:30:44 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/24 23:59:46 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/25 03:30:50 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COLOR_H
 # define COLOR_H
 
-int	*get_floor_color(void);
-int	*get_ceiling_color(void);
+int	get_floor_color(void);
+int	get_ceiling_color(void);
 
 #endif

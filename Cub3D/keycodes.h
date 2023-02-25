@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_strdup.c                                       :+:      :+:    :+:   */
+/*   keycodes.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 14:32:02 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/25 04:04:02 by ccantale         ###   ########.fr       */
+/*   Created: 2023/02/25 02:26:27 by ccantale          #+#    #+#             */
+/*   Updated: 2023/02/25 02:45:04 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#ifndef KEYCODES_H
+# define KEYCODES_H
 
-size_t	cub_strlen(char	*str);
-/* end of declarations */
+# define W_KEY		13
+# define A_KEY		0
+# define S_KEY		1
+# define D_KEY		2
+# define LEFT_KEY	123
+# define RIGHT_KEY	124
+# define ESC_KEY	53
 
-char	*cub_strdup(char *str)
-{
-	char	*dup;
-	size_t	i;
-
-	dup = malloc(sizeof(char) * (cub_strlen(str) + 1));
-	if (!dup)
-		return (NULL);
-	i = 0;
-	while (str[i])
-	{
-		dup[i] = str[i];
-		++i;
-	}
-	dup[i] = 0;
-	return (dup);
-}
+#endif

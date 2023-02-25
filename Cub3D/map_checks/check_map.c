@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:18:33 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/23 15:47:14 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/25 03:58:02 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	check_map(char *path)
 		return (NOT_OK);
 	if (static_handlers_init(cub_split(input)) == NOT_OK)
 		return (NOT_OK);
+	free(input);
 	//if (check_borders(get_map()) == NOT_OK)
 	//	return (NOT_OK);
 	return (OK);

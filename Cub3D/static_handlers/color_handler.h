@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 18:34:49 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/25 00:44:55 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/25 03:28:23 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 typedef enum e_color
 {
+	c_GET_FLOOR_ARRAY,
+	c_GET_CEILING_ARRAY,
 	c_GET_FLOOR,
 	c_GET_CEILING
 }	t_color;

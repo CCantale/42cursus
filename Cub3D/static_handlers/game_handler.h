@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_strdup.c                                       :+:      :+:    :+:   */
+/*   game_handler.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 14:32:02 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/25 04:04:02 by ccantale         ###   ########.fr       */
+/*   Created: 2023/02/25 03:15:22 by ccantale          #+#    #+#             */
+/*   Updated: 2023/02/25 03:34:35 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#ifndef GAME_HANDLER_H
+# define GAME_HANDLER_H
 
-size_t	cub_strlen(char	*str);
-/* end of declarations */
+# include "../common.h"
 
-char	*cub_strdup(char *str)
+typedef enum	e_game
 {
-	char	*dup;
-	size_t	i;
+	g_INIT,
+	g_WINDOW,
+	g_GET_INIT,
+	g_GET_WINDOW
+}	t_game;
 
-	dup = malloc(sizeof(char) * (cub_strlen(str) + 1));
-	if (!dup)
-		return (NULL);
-	i = 0;
-	while (str[i])
-	{
-		dup[i] = str[i];
-		++i;
-	}
-	dup[i] = 0;
-	return (dup);
-}
+#endif
