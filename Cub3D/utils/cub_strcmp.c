@@ -6,11 +6,11 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 00:45:50 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/25 00:45:53 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/25 05:14:34 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../common.h"
+#include "../global_headers/common.h"
 
 int	cub_strcmp(char *s1, char *s2)
 {

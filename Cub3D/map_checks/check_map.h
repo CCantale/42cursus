@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:16:23 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/23 15:46:50 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/25 05:14:12 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <fcntl.h>
-# include "../common.h"
-# include "../static_handlers/map.h"
+# include "../global_headers/common.h"
+# include "../global_headers/map.h"
 
 char	*cub_join(char *s1, char *s2, bool free1, bool free2);
 char	**cub_split(char *str);

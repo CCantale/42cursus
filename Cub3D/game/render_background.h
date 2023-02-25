@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 04:08:36 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/25 04:09:43 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/25 05:17:57 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define RENDER_BACKGROUND_H
 
 # include <stdlib.h>
-# include "../game_info.h"
-# include "../static_handlers/color.h"
-# include "../static_handlers/game.h"
+# include "../global_headers/game_info.h"
+# include "../global_headers/color.h"
+# include "../global_headers/game.h"
 # include "../minilibX/mlx.h"
 
 #endif

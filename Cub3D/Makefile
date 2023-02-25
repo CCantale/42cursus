@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 17:01:39 by ccantale          #+#    #+#              #
-#    Updated: 2023/02/25 03:51:26 by ccantale         ###   ########.fr        #
+#    Updated: 2023/02/25 05:12:26 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ NAME		=		cub3D
 
 SRC			=		main.c \
 					error/error_msg.c error/error_null.c \
-					error/error_tex.c \
 					map_checks/check_map.c \
 					utils/cub_calloc.c utils/cub_join.c \
 					utils/cub_split.c utils/cub_strdup.c \
