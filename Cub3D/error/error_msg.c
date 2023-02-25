@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:11:56 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/25 05:11:54 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/25 06:09:09 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	error_msg(char *msg)
 {
-	write(2, "Error : ", 8);
+	write(2, "Error\n", 6);
 	if (msg)
 	{
 		while (*msg)

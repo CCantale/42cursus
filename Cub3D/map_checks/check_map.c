@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:18:33 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/25 05:59:38 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/25 06:32:23 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,40 @@ static int	check_borders(void)
 		while (map[y][x])
 		{
 			if (map[y][x] != '1' && map[y][x] != ' '
-					&& ((y != 0 && map[y - 1][x] == ' ')
-					|| (map[y + 1] && map[y + 1][x] == ' ')
-					|| (x != 0 && map[y][x - 1] == ' ')
-					|| map[y][x + 1] == ' '))
+					&& (y == 0 || x == 0 || !map[y][x + 1] || map[y + 1] == NULL
+					|| map[y - 1][x] == ' ' || map[y + 1][x] == ' '
+					|| map[y][x - 1] == ' ' || map[y][x + 1] == ' '))
 			{
-				write(1, *(map + y) + x, 1);
-				write(1, "AAA\n", 4);
 				return (error_msg("Map should be surrounded by walls."));
+			}
+			++x;
+		}
+		++y;
+	}
+	return (OK);
+}
+
+static int	check_multiple_players(void)
+{
+	char const	**map = get_map();
+	size_t	x;
+	size_t	y;
+	short	flag;
+	
+	flag = 0;
+	y = 0;
+	while (map[y])
+	{
+		x = 0;
+		while (map[y][x])
+		{
+			if (map[y][x] == 'N' ||  map[y][x] == 'S'
+				|| map[y][x] == 'E' || map[y][x] == 'W')
+			{
+				if (flag == 0)
+					flag = 1;
+				else
+					return (error_msg("This is not a multiplayer game."));
 			}
 			++x;
 		}
@@ -98,7 +124,8 @@ int	check_map(char *path)
 	if (static_handlers_init(cub_split(input)) == NOT_OK)
 		return (NOT_OK);
 	free(input);
-	if (check_valid_char() == NOT_OK || check_borders() == NOT_OK)
+	if (check_valid_char() == NOT_OK || check_borders() == NOT_OK
+		|| check_multiple_players())
 		return (NOT_OK);
 	return (OK);
 }
