@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:23:34 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/24 19:03:31 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/25 05:54:12 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 static char	**mapcpy(char **new_map);
 /* end of declarations */
 
-static char	**map_handler(char **new_map, int option)
+static char	const **map_handler(char **new_map, int option)
 {
 	static char	**map;
 
 	if (option == m_UPDATE_MAP)
 	{
 		map = mapcpy(new_map);
-		return (map);
+		return ((char const **)map);
 	}
 	else if (option == m_GET_MAP)
 	{
-		return (map);
+		return ((char const **)map);
 	}
 	return (NULL);
 }
@@ -64,13 +64,7 @@ int	update_map(char **new_map)
 	return (OK);
 }
 
-char	**get_map(void)
+char const	**get_map(void)
 {
 	return (map_handler(NULL, m_GET_MAP));
-}
-
-void	edit_map(int x, int y, char edit)
-{
-	if (edit == '0' || edit == '1')
-		get_map()[y][x] = edit;
 }

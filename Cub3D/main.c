@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:04:34 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/25 04:08:05 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/25 05:28:39 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ int	main(int argc, char **argv)
 {
 	if (argc != 2)
 		return (error_msg("One map required"));
-	if (check_map(argv[1]) == NOT_OK)
-		return (NOT_OK);
-	if (game_loop() == NOT_OK)
-		return (NOT_OK);
+	if (check_map(argv[1]) == NOT_OK || game_loop() == NOT_OK)
+	{
+		cantalloc_clean();
+		return (1);
+	}
 	cantalloc_clean();
 	return (0);
 }
