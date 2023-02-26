@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 17:01:39 by ccantale          #+#    #+#              #
-#    Updated: 2023/02/25 17:08:51 by ccantale         ###   ########.fr        #
+#    Updated: 2023/02/26 18:20:02 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,8 +33,12 @@ SRC			=		main.c \
 					static_handlers/game_handler.c \
 					static_handlers/player_handler.c \
 					static_handlers/get_player.c \
-					game/update.c game/render_background.c \
-					game/event.c
+					static_handlers/camera_handler.c \
+					game/update.c \
+					game/event.c \
+					raycasting/get_walls.c \
+ 					renderer/render_background.c \
+					renderer/render.c
 
 OBJDIR		=		obj
 OBJ			=		$(addprefix $(OBJDIR)/, $(SRC:.c=.o))

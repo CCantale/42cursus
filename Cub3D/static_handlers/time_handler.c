@@ -1,33 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update.c                                           :+:      :+:    :+:   */
+/*   time_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/25 01:27:34 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/26 19:23:47 by ccantale         ###   ########.fr       */
+/*   Created: 2023/02/26 19:20:15 by ccantale          #+#    #+#             */
+/*   Updated: 2023/02/26 19:28:07 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../global_headers/common.h"
-# include <stdio.h>
-# include <sys/time.h> // ricorda che tutta 'sta roba è illegale
-# include <unistd.h>
-							#include "../global_headers/game_info.h"
-							#include "../global_headers/player.h"
-							double	*get_walls(void);
-							double	start_raycasting(size_t ray_nbr);
+#include "time_handler.h"
 
+static size_t	get_time(void)
+{
+	static struct timeval	tv;
 
-int	update(void)
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000000 + tv.tv_usec);
+}
+
+static size_t	time_handler(t_time option)
 {
 	static size_t	frame_rate = 1000000 / 60;
-	size_t			start;
-	size_t			end;
+	static size_t	start;
 
-	start = get_time();
-	// update
-	end = get_time();
+	if (option == t_START)
+	{
+		start = get_time();
+	}
+	if (option == t_END)
+	{
+		return (get_time() - start);
+	}
 	return (0);
 }
+
+void	time_start(void)
+{
+	time_handler(t_START);
+}
+
+size_t	get_ticks(void)
+{
+	return (time_handler(t_END));
+}
+

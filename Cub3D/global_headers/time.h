@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camera_handler.h                                   :+:      :+:    :+:   */
+/*   time.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 02:30:17 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/26 16:41:44 by ccantale         ###   ########.fr       */
+/*   Created: 2023/02/26 19:29:37 by ccantale          #+#    #+#             */
+/*   Updated: 2023/02/26 19:30:16 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAMERA_HANDLER_H
-# define CAMERA_HANDLER_H
+#ifndef TIME_H
+# define TIME_H
 
-# include "../global_headers/player.h"
-
-typedef enum e_camera
-{
-	cam_UPDATE,
-	cam_GET_X,
-	cam_GET_Y
-}	t_camera;
+void	time_start(void);
+size_t	get_ticks(void);
 
 #endif

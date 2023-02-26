@@ -1,25 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camera_handler.h                                   :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 02:30:17 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/26 16:41:44 by ccantale         ###   ########.fr       */
+/*   Created: 2023/02/26 19:33:11 by ccantale          #+#    #+#             */
+/*   Updated: 2023/02/26 19:43:06 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAMERA_HANDLER_H
-# define CAMERA_HANDLER_H
-
-# include "../global_headers/player.h"
-
-typedef enum e_camera
+void	rotate(t_rotation direction)
 {
-	cam_UPDATE,
-	cam_GET_X,
-	cam_GET_Y
-}	t_camera;
-
-#endif
+	double	new_x;
+	double	new_y;
