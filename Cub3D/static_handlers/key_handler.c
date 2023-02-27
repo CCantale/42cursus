@@ -6,22 +6,24 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 08:00:16 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/27 11:07:28 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/27 12:39:37 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "key_handler.h"
+												#include <stdio.h>
 
 static bool	key_handler(t_key key, t_key option)
 {
 	static bool	keys[6] = { false, false, false, false, false, false };
 
-	if (option == k_SWITCH)
+	if (option == k_PRESS)
 	{
-		if (keys[key] == false)
-			keys[key] = true;
-		else
-			keys[key] = false;
+		keys[key] = true;
+	}
+	if (option == k_RELEASE)
+	{
+		keys[key] = false;
 	}
 	else if (option == k_GET)
 	{
@@ -30,9 +32,14 @@ static bool	key_handler(t_key key, t_key option)
 	return (true);
 }
 
-void	switch_key(t_key key)
+void	press_key(t_key key)
 {
-	key_handler(key, k_SWITCH);
+	key_handler(key, k_PRESS);
+}
+
+void	release_key(t_key key)
+{
+	key_handler(key, k_RELEASE);
 }
 
 bool	get_key(t_key key)

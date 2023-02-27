@@ -6,12 +6,13 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 01:27:34 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/27 11:00:37 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/27 17:04:00 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "update.h"
-								#include <stdio.h>
+
+void	move_up(void);
 
 int	update(void)
 {
@@ -20,12 +21,14 @@ int	update(void)
 	do_nothing = false;
 	if (get_key(k_LEFT) == true)
 		rotate(r_LEFT);
-	else if(get_key(k_RIGHT) == true)
+	else if (get_key(k_RIGHT) == true)
 		rotate(r_RIGHT);
+	else if (get_key(k_W) == true)
+		move_up();
 	else
 		do_nothing = true;
+	time_start();
 	if (do_nothing == false)
 		render();
-	time_start();
 	return (0);
 }

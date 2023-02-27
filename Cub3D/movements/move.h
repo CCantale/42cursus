@@ -1,35 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key.h                                              :+:      :+:    :+:   */
+/*   move.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 08:10:21 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/27 12:37:29 by ccantale         ###   ########.fr       */
+/*   Created: 2023/02/27 15:46:49 by ccantale          #+#    #+#             */
+/*   Updated: 2023/02/27 15:48:37 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KEY_H
-# define KEY_H
+#ifndef MOVE_H
+# define MOVE_H
 
-# include <stdbool.h>
-
-typedef enum	e_key
-{
-	k_W,
-	k_A,
-	k_S,
-	k_D,
-	k_LEFT,
-	k_RIGHT,
-	k_PRESS,
-	k_RELEASE,
-	k_GET
-}	t_key;
-
-void	press_key(t_key key);
-void	release_key(t_key key);
-bool	get_key(t_key key);
+# include "../global_headers/map.h"
+# include "../global_headers/player.h"
+# include "../global_headers/time.h"
 
 #endif

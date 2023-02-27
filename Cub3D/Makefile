@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 17:01:39 by ccantale          #+#    #+#              #
-#    Updated: 2023/02/27 08:32:12 by ccantale         ###   ########.fr        #
+#    Updated: 2023/02/27 15:46:26 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,8 +42,8 @@ SRC			=		main.c \
 					raycasting/get_walls.c \
  					renderer/render_background.c \
 					renderer/render.c \
-					movements/rotate.c
-					
+					movements/rotate.c \
+					movements/move.c
 
 OBJDIR		=		obj
 OBJ			=		$(addprefix $(OBJDIR)/, $(SRC:.c=.o))
@@ -79,4 +79,4 @@ re: kill
 play: $(MINI) $(NAME)
 	./cub3D tests/map.cub
 
-.PHONY: all clean fclean kill re
+.PHONY: all clean fclean kill re play

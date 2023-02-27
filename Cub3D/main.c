@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:04:34 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/27 09:50:20 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/27 12:37:14 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ static int	game_loop(void)
 		return (error_msg("Window doesn't init."));
 	}
 	render();
-	mlx_loop_hook(get_game_init(), update, NULL);
-	mlx_hook(get_window(), 2, 1L << 0, press_any_key, NULL);
-	mlx_hook(get_window(), 3, 1L << 1, press_any_key, NULL);
+	mlx_hook(get_window(), 2, 1L << 0, push, NULL);
+	mlx_hook(get_window(), 3, 1L << 1, pull, NULL);
 	mlx_hook(get_window(), 17, 1L << 17, quit, NULL);
+	mlx_loop_hook(get_game_init(), update, NULL);
 	mlx_loop(get_game_init());
 	return (OK);
 }
