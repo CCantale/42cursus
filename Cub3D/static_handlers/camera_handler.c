@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 02:19:05 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/26 16:40:24 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/27 07:13:35 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static double	camera_handler(double x, double y, t_camera option)
 	}
 	return (0);
 }
-
 void	init_camera_plan(void)
 {
 	if (get_player_dirx() == 0 && get_player_diry() == -1)

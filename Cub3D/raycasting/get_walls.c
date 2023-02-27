@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 01:45:05 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/27 03:40:20 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/27 07:19:53 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,16 @@ static double	start_raycasting(size_t ray_nbr)
 	double	ray_step_length[2];
 
 	ray_val = 2 * ray_nbr / (double)WINDOW_WIDTH - 1;
-	ray_direction[X] = get_player_x() + get_camera_x() * ray_val;
-	ray_direction[Y] = get_player_y() + get_camera_y() * ray_val;
+	ray_direction[X] = get_player_dirx() + get_camera_x() * ray_val;
+	ray_direction[Y] = get_player_diry() + get_camera_y() * ray_val;
 	closest_border_to_player[X] = (int)get_player_x();
 	closest_border_to_player[Y] = (int)get_player_y();
 	ray_step_length[X] = get_step_length(ray_direction[X]);
 	ray_step_length[Y] = get_step_length(ray_direction[Y]);
+	printf("ret %f %f\n", ray_direction[X], ray_direction[Y]);
+	printf("player %f %f\n", get_player_x(), get_player_y());
+	printf("camera %f %f\n", get_camera_x(), get_camera_y());
+	printf("val %f\n", ray_val);
 	return (cast_ray_get_wall_height(
 										ray_direction,
 										closest_border_to_player,
@@ -127,8 +131,7 @@ static double	raycasting_algorithm(
 		}
 		if (map[closest_border_to_player[Y]][closest_border_to_player[X]] == '1')
 		{
-			printf("%d %d\n", closest_border_to_player[X], closest_border_to_player[Y]);
-			//printf("%d %d ", closest_border_to_player[X], closest_border_to_player[Y]);
+			//printf("%d %d\n", closest_border_to_player[X], closest_border_to_player[Y]);
 			hit = true;
 		}
 	}
