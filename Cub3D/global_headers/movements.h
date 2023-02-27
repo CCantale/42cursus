@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update.c                                           :+:      :+:    :+:   */
+/*   movements.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/25 01:27:34 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/27 08:42:23 by ccantale         ###   ########.fr       */
+/*   Created: 2023/02/27 08:27:25 by ccantale          #+#    #+#             */
+/*   Updated: 2023/02/27 08:28:12 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "update.h"
+#ifndef MOVEMENTS_H
+# define MOVEMENTS_H
 
-int	update(void)
+typedef enum e_rotation
 {
-	bool	do_nothing;
+	r_LEFT,
+	r_RIGHT
+}	t_rotation;
 
-	time_start();
-	do_nothing = false;
-	if (get_key(k_LEFT) == true)
-		rotate(r_LEFT);
-	else if(get_key(k_RIGHT) == true)
-		rotate(r_RIGHT);
-	else
-		do_nothing = true;
-	if (do_nothing == false)
-		render();
-	return (0);
-}
+void	rotate(t_rotation direction);
+
+#endif

@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update.c                                           :+:      :+:    :+:   */
+/*   key.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/25 01:27:34 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/27 08:42:23 by ccantale         ###   ########.fr       */
+/*   Created: 2023/02/27 08:10:21 by ccantale          #+#    #+#             */
+/*   Updated: 2023/02/27 08:32:40 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "update.h"
+#ifndef KEY_H
+# define KEY_H
 
-int	update(void)
+# include <stdbool.h>
+
+typedef enum	e_key
 {
-	bool	do_nothing;
+	k_W,
+	k_A,
+	k_S,
+	k_D,
+	k_LEFT,
+	k_RIGHT,
+	k_SWITCH,
+	k_GET
+}	t_key;
 
-	time_start();
-	do_nothing = false;
-	if (get_key(k_LEFT) == true)
-		rotate(r_LEFT);
-	else if(get_key(k_RIGHT) == true)
-		rotate(r_RIGHT);
-	else
-		do_nothing = true;
-	if (do_nothing == false)
-		render();
-	return (0);
-}
+void	switch_key(t_key key);
+bool	get_key(t_key key);
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:12:21 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/26 22:31:26 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/27 08:36:13 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@
 
 int		error_msg(char *msg);
 int		check_map(char *path);
-void	render_background(void);
 void	render(void);
 int		update(void);
-int		event(int key);
+int		press_any_key(int key);
 
 #endif
 

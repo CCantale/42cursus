@@ -6,22 +6,19 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:33:11 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/27 07:34:33 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/27 08:43:19 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rotate.h"
-															#include <stdio.h>
 
 void	rotate(t_rotation direction)
 {
 	double 	speed;
 	
-	//speed = ((double)get_delta_time() / 1000.0) * ROTATION_SPEED;
-	speed = 0.1;
+	speed = ((double)get_delta_time() / 100.0) * ROTATION_SPEED;
 	if (direction == r_LEFT)
 		speed *= -1;
-									//printf("player rot %f %f\n", get_player_dirx(), get_player_diry());
 	update_player_dir(
 			get_player_dirx() * cos(speed) - get_player_diry() * sin(speed),
 			get_player_dirx() * sin(speed) + get_player_diry() * cos(speed));

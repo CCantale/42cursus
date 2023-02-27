@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 01:45:05 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/27 07:19:53 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/27 07:55:18 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,6 @@ static double	start_raycasting(size_t ray_nbr)
 	closest_border_to_player[Y] = (int)get_player_y();
 	ray_step_length[X] = get_step_length(ray_direction[X]);
 	ray_step_length[Y] = get_step_length(ray_direction[Y]);
-	printf("ret %f %f\n", ray_direction[X], ray_direction[Y]);
-	printf("player %f %f\n", get_player_x(), get_player_y());
-	printf("camera %f %f\n", get_camera_x(), get_camera_y());
-	printf("val %f\n", ray_val);
 	return (cast_ray_get_wall_height(
 										ray_direction,
 										closest_border_to_player,
@@ -105,7 +101,6 @@ static double	cast_ray_get_wall_height(
 				closest_border_to_player));
 }
 	
-#include <stdio.h>
 static double	raycasting_algorithm(
 	double closest_border_to_ray[2], short step_on_map[2],
 	double step_length[2], int closest_border_to_player[2])
@@ -131,7 +126,6 @@ static double	raycasting_algorithm(
 		}
 		if (map[closest_border_to_player[Y]][closest_border_to_player[X]] == '1')
 		{
-			//printf("%d %d\n", closest_border_to_player[X], closest_border_to_player[Y]);
 			hit = true;
 		}
 	}

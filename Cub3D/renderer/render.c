@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:25:11 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/27 07:52:01 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/27 07:54:42 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	render(void)
 		if (y < 0)
 			y = 0;
 		vertical_line_end = y + vertical_line_length;
-		//printf("line length %d\nx %d - y %d\nend %d\n", vertical_line_length, x, y, vertical_line_end);
 		while (y < WINDOW_HEIGHT && y < vertical_line_end)
 		{
 			if (get_side()[x] == X)
