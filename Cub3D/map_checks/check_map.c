@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:18:33 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/26 02:35:39 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/27 00:33:48 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ static char	*open_and_read(char *path)
 
 	ret = NULL;
 	fd = open(path, O_RDONLY);
-	read_check = read(fd, buffer, 1);
+	read_check = 1;
 	while (read_check == 1)
 	{
+		read_check = read(fd, buffer, 1);
 		buffer[1] = 0;
 		ret = cub_join(ret, buffer, true, false);
 		if (!ret)
 			return (NULL);
-		read_check = read(fd, buffer, 1);
 	}
 	close(fd);
 	return (ret);

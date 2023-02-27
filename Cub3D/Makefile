@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 17:01:39 by ccantale          #+#    #+#              #
-#    Updated: 2023/02/26 21:06:37 by ccantale         ###   ########.fr        #
+#    Updated: 2023/02/27 02:35:46 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRC			=		main.c \
 					static_handlers/get_player.c \
 					static_handlers/camera_handler.c \
 					static_handlers/time_handler.c \
+					static_handlers/side_handler.c \
 					game/update.c \
 					game/event.c \
 					raycasting/get_walls.c \
@@ -73,5 +74,8 @@ kill: clean fclean
 
 re: kill
 	make
+
+play: $(MINI) $(NAME)
+	./cub3D tests/map.cub
 
 .PHONY: all clean fclean kill re

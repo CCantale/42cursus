@@ -6,12 +6,14 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 01:45:05 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/26 17:23:44 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/27 03:40:20 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_walls.h"
+													#include <stdio.h>
 
+void			add_side(int option);
 static double	start_raycasting(size_t ray_nbr);
 static double	cast_ray_get_wall_height(
 		double direction[2], int closest_border_to_player[2], double step[2]);
@@ -28,12 +30,12 @@ double	*get_walls(void)
 
 	walls = malloc(sizeof(double) * WINDOW_WIDTH);
 	if (!walls)
-		return (NULL); /////ricorda di freeare e di proteggere
+		return (NULL);
 	i = 0;
 	while (i < WINDOW_WIDTH)
 	{
 		walls[i] = start_raycasting(i);
-			++i;
+		++i;
 	}
 	return (walls);
 }
@@ -99,6 +101,7 @@ static double	cast_ray_get_wall_height(
 				closest_border_to_player));
 }
 	
+#include <stdio.h>
 static double	raycasting_algorithm(
 	double closest_border_to_ray[2], short step_on_map[2],
 	double step_length[2], int closest_border_to_player[2])
@@ -123,8 +126,13 @@ static double	raycasting_algorithm(
 			axis_hit = Y;
 		}
 		if (map[closest_border_to_player[Y]][closest_border_to_player[X]] == '1')
+		{
+			printf("%d %d\n", closest_border_to_player[X], closest_border_to_player[Y]);
+			//printf("%d %d ", closest_border_to_player[X], closest_border_to_player[Y]);
 			hit = true;
+		}
 	}
+	add_side(axis_hit);
 	return (closest_border_to_ray[axis_hit] - step_length[axis_hit]);
 }
 

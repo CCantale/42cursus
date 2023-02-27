@@ -6,12 +6,13 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:25:11 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/26 21:03:21 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/27 03:09:43 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 											#include <stdio.h>
+											int	*get_side(void);
 
 void	render(void)
 {
@@ -23,8 +24,9 @@ void	render(void)
 
 	if (!walls)
 		return ;
+	render_background();
 	x = 0;
-	while (x < WINDOW_WIDTH - 1)
+	while (x < WINDOW_WIDTH)
 	{
 		vertical_line_length = (int)(WINDOW_HEIGHT * 11 * walls[x]);
 		y = (WINDOW_HEIGHT - vertical_line_length) / 2;
@@ -34,7 +36,10 @@ void	render(void)
 		//printf("line length %d\nx %d - y %d\nend %d\n", vertical_line_length, x, y, vertical_line_end);
 		while (y < WINDOW_HEIGHT && y < vertical_line_length)
 		{
-			mlx_pixel_put(get_game_init(), get_window(), x, y, 0xFFFFFF);
+			if (get_side()[x] == X)
+				mlx_pixel_put(get_game_init(), get_window(), x, y, 0xFFFFFF);
+			else
+				mlx_pixel_put(get_game_init(), get_window(), x, y, 0xFFFFFF / 3 + 50);
 			++y;
 		}
 		++x;
