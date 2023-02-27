@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:33:11 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/27 08:43:19 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/27 09:39:37 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	rotate(t_rotation direction)
 {
 	double 	speed;
 	
-	speed = ((double)get_delta_time() / 100.0) * ROTATION_SPEED;
+	speed = (get_delta_time() / 1000.0) * ROTATION_SPEED;
 	if (direction == r_LEFT)
 		speed *= -1;
 	update_player_dir(

@@ -6,12 +6,11 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 01:45:05 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/27 07:55:18 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/27 09:27:17 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_walls.h"
-													#include <stdio.h>
 
 void			add_side(int option);
 static double	start_raycasting(size_t ray_nbr);
@@ -125,9 +124,7 @@ static double	raycasting_algorithm(
 			axis_hit = Y;
 		}
 		if (map[closest_border_to_player[Y]][closest_border_to_player[X]] == '1')
-		{
 			hit = true;
-		}
 	}
 	add_side(axis_hit);
 	return (closest_border_to_ray[axis_hit] - step_length[axis_hit]);
