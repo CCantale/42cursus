@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 03:48:09 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/27 15:51:12 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/02/28 19:38:52 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ void	pull(int key)
 	if (key == RIGHT_KEY)
 		release_key(k_RIGHT);
 	if (key == W_KEY)
-		press_key(k_W);
+		release_key(k_W);
 }
