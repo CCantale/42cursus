@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_walls.h                                        :+:      :+:    :+:   */
+/*   simplify.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 02:11:53 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/01 16:42:57 by ccantale         ###   ########.fr       */
+/*   Created: 2023/03/01 16:41:21 by ccantale          #+#    #+#             */
+/*   Updated: 2023/03/01 17:10:03 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_WALLS_H
-# define GET_WALLS_H
+#include <math.h>
 
-# include <math.h>
-# include "../global_headers/common.h"
-# include "../global_headers/game_info.h"
-# include "../global_headers/player.h"
-# include "../global_headers/map.h"
-
-# define X	0
-# define Y	1
-
-double	sy(double nbr);
-
-#endif
+/* truncaes a double at the third decimal digit */
+double	sy(double nbr)
+{
+	return (trunc(nbr * 1000) / 1000);
+}

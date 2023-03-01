@@ -6,11 +6,12 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 01:45:05 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/27 17:12:13 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/01 17:50:43 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_walls.h"
+													#include <stdio.h>
 
 void			add_side(int option);
 static double	start_raycasting(size_t ray_nbr);
@@ -42,9 +43,9 @@ double	*get_walls(void)
 static double	get_step_length(double ray_direction)
 {
 	if (ray_direction != 0)
-		return (fabs(1 / ray_direction));
+		return (sy(fabs(1 / ray_direction)));
 	else
-		return (10000);
+		return (1e30);
 }
 
 static double	start_raycasting(size_t ray_nbr)
@@ -55,8 +56,10 @@ static double	start_raycasting(size_t ray_nbr)
 	double	ray_step_length[2];
 
 	ray_val = 2 * ray_nbr / (double)WINDOW_WIDTH - 1;
-	ray_direction[X] = get_player_dirx() + get_camera_x() * ray_val;
-	ray_direction[Y] = get_player_diry() + get_camera_y() * ray_val;
+	ray_direction[X] = get_player_dirx() + get_camera_x() * sy(ray_val);
+	ray_direction[Y] = get_player_diry() + get_camera_y() * sy(ray_val);
+	ray_direction[X] = sy(ray_direction[X]);
+	ray_direction[Y] = sy(ray_direction[Y]);
 	closest_border_to_player[X] = (int)get_player_x();
 	closest_border_to_player[Y] = (int)get_player_y();
 	ray_step_length[X] = get_step_length(ray_direction[X]);
@@ -84,16 +87,16 @@ static double	cast_ray_get_wall_height(
 		step_on_map[Y] = -1;
 	if (direction[X] < 0)
 		closest_border_to_ray[X] =
-			(closest_border_to_player[X] - get_player_x()) * step[X];
+			sy((get_player_x() - closest_border_to_player[X]) * step[X]);
 	else
 		closest_border_to_ray[X] =
-			(get_player_x() + 1.0 - closest_border_to_player[X]) * step[X];
+			sy((closest_border_to_player[X] + 1.0 - get_player_x()) * step[X]);
 	if (direction[Y] < 0)
 		closest_border_to_ray[Y] =
-			(closest_border_to_player[Y] - get_player_y()) * step[Y];
+			sy((get_player_y() - closest_border_to_player[Y]) * step[Y]);
 	else
 		closest_border_to_ray[Y] =
-			(get_player_y() + 1.0 - closest_border_to_player[Y]) * step[Y];
+			sy((closest_border_to_player[Y] + 1.0 - get_player_y()) * step[Y]);
 	return(raycasting_algorithm(
 				closest_border_to_ray,
 				step_on_map, step,
@@ -113,14 +116,14 @@ static double	raycasting_algorithm(
 	{
 		if (closest_border_to_ray[X] < closest_border_to_ray[Y])
 		{
-			closest_border_to_ray[X] += step_length[X];
-			closest_border_to_player[X] += step_on_map[X];
+			closest_border_to_ray[X] += sy(step_length[X]);
+			closest_border_to_player[X] += sy(step_on_map[X]);
 			axis_hit = X;
 		}
 		else
 		{
-			closest_border_to_ray[Y] += step_length[Y];
-			closest_border_to_player[Y] += step_on_map[Y];
+			closest_border_to_ray[Y] += sy(step_length[Y]);
+			closest_border_to_player[Y] += sy(step_on_map[Y]);
 			axis_hit = Y;
 		}
 		if (map[closest_border_to_player[Y]][closest_border_to_player[X]] == '1')
