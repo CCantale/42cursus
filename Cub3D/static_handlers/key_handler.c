@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 08:00:16 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/27 12:39:37 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/02 19:18:32 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@ static bool	key_handler(t_key key, t_key option)
 
 	if (option == k_PRESS)
 	{
+		printf("true\n");
 		keys[key] = true;
 	}
 	if (option == k_RELEASE)
 	{
+		printf("false\n");
 		keys[key] = false;
 	}
-	else if (option == k_GET)
+	if (option == k_GET)
 	{
 		return (keys[key]);
 	}

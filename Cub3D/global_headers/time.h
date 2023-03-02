@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:29:37 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/26 21:05:41 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/02 18:46:56 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 # include <stdlib.h>
 
 void	time_start(void);
-size_t	get_delta_time(void);
+double	get_delta_time(void);
 
 #endif

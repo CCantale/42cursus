@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 16:47:08 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/01 17:31:23 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/02 20:04:39 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define FOV_SIZE			0.66
 
 # define SPEED				2.0
-# define ROTATION_SPEED		0.5
+# define ROTATION_SPEED		3.0
 
 void		init_player(void);
 void		init_camera_plan(void);

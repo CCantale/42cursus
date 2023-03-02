@@ -6,11 +6,13 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 01:27:34 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/27 17:04:00 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/02 20:06:41 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "update.h"
+											#include <unistd.h>
+											#include <stdio.h>
 
 void	move_up(void);
 
@@ -27,8 +29,11 @@ int	update(void)
 		move_up();
 	else
 		do_nothing = true;
-	time_start();
 	if (do_nothing == false)
+	{
+		printf("renderer\n");
 		render();
+	}
+	usleep(100000);
 	return (0);
 }

@@ -6,24 +6,25 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:20:15 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/27 09:39:04 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/02 20:03:40 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "time_handler.h"
+#include <stdio.h>
 
-static size_t	get_time(void)
+static double	get_time(void)
 {
 	static struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
-	return (tv.tv_sec * 1000000 + tv.tv_usec);
+	return ((double)tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-static size_t	time_handler(t_time option)
+static double	time_handler(t_time option)
 {
-	//static size_t	frame_rate = 1000000 / 60;
-	static size_t	start;
+	//static size_t	frame_rate = 1000000 / 12;
+	static double	start;
 
 	if (option == t_START)
 	{
@@ -31,6 +32,7 @@ static size_t	time_handler(t_time option)
 	}
 	if (option == t_DELTA)
 	{
+		printf("START %f\nTIME %f\n", start, get_time());
 		return (get_time() - start);
 	}
 	return (0);
@@ -41,7 +43,7 @@ void	time_start(void)
 	time_handler(t_START);
 }
 
-size_t	get_delta_time(void)
+double	get_delta_time(void)
 {
 	return (time_handler(t_DELTA));
 }

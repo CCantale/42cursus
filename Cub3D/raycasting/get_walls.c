@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 01:45:05 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/01 17:50:43 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/02 17:10:04 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ static double	start_raycasting(size_t ray_nbr)
 	double	ray_step_length[2];
 
 	ray_val = 2 * ray_nbr / (double)WINDOW_WIDTH - 1;
-	ray_direction[X] = get_player_dirx() + get_camera_x() * sy(ray_val);
-	ray_direction[Y] = get_player_diry() + get_camera_y() * sy(ray_val);
+	ray_direction[X] = get_player_dirx() + get_camera_x() * ray_val;
+	ray_direction[Y] = get_player_diry() + get_camera_y() * ray_val;
 	ray_direction[X] = sy(ray_direction[X]);
 	ray_direction[Y] = sy(ray_direction[Y]);
 	closest_border_to_player[X] = (int)get_player_x();
@@ -130,7 +130,7 @@ static double	raycasting_algorithm(
 			hit = true;
 	}
 	add_side(axis_hit);
-	return (closest_border_to_ray[axis_hit] - step_length[axis_hit]);
+	return (sy(closest_border_to_ray[axis_hit] - step_length[axis_hit]));
 }
 
 
