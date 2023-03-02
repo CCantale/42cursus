@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:18:33 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/01 16:09:21 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/02 12:36:01 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static char	*open_and_read(char *path)
 
 	ret = NULL;
 	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		return (error_null("File not found"));
 	read_check = 1;
 	while (read_check == 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 02:37:05 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/26 02:37:06 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/02 12:37:25 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ char	**cub_split(char *str)
 	size_t	chunks_nbr;
 	char	**split;
 
+	if (!str)
+		return (NULL);
 	while(*str == '\n')
 		++str;
 	chunks_nbr = get_chunks_nbr(str);
