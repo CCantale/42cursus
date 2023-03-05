@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movements.h                                        :+:      :+:    :+:   */
+/*   raycasting_handler.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 08:27:25 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/04 20:27:03 by ccantale         ###   ########.fr       */
+/*   Created: 2023/03/05 10:09:39 by ccantale          #+#    #+#             */
+/*   Updated: 2023/03/05 20:24:39 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MOVEMENTS_H
-# define MOVEMENTS_H
+#include "raycasting_handler.h"
 
-typedef enum e_rotation
+static double const	*raycasting_handler(t_raycasting option)
 {
-	r_LEFT,
-	r_RIGHT
-}	t_rotation;
+	static double	walls[WINDOW_WIDTH];
+	size_t			i;
 
-void	rotate(t_rotation direction);
+	if (option == ray_GET_WALLS)
+	{
+		i = 0;
+		while (i < WINDOW_WIDTH)
+		{
+			walls[i] = raycasting(i);
+			++i;
+		}
+		return ((double const *)walls);
+	}
+	return (0);
+}
 
-#endif
+double const	*get_walls(void)
+{
+	return (raycasting_handler(ray_GET_WALLS));
+}

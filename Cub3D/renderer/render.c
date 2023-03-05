@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:25:11 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/02 16:23:12 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/05 20:01:38 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	render(void)
 	int				x;
 	int				y;
 
-	if (!walls)
-		return ;
 	render_background();
 	x = 0;
 	while (x < WINDOW_WIDTH)
@@ -43,5 +41,4 @@ void	render(void)
 		}
 		++x;
 	}
-	free((void *)walls);
 }

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_walls.h                                        :+:      :+:    :+:   */
+/*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 02:11:53 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/01 16:42:57 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/05 20:07:56 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_WALLS_H
-# define GET_WALLS_H
+#ifndef RAYCASTING_H
+# define RAYCASTING_H
 
 # include <math.h>
 # include "../global_headers/common.h"

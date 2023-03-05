@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:33:11 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/02 19:58:46 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/05 21:18:20 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,17 @@
 
 void	rotate(t_rotation direction)
 {
-	double 	speed;
+	size_t 	speed;
 	double	new_dirx;
 	double	new_diry;
 	double	new_camx;
 	double	new_camy;
 	
-	speed = (get_delta_time() / 1000) * ROTATION_SPEED;
+	//speed = ROTATION_SPEED / 3;
+	speed = get_delta_time() * ROTATION_SPEED / 100000;
+	//if (speed > 0.2 * ROTATION_SPEED || speed == 0)
+		//speed = 0.2 * ROTATION_SPEED;
+	printf("speeeeeeeeeeeeeeeeeeeeeeeeeeeeed %lu\n%lu\n", speed, get_delta_time());
 	if (direction == r_LEFT)
 		speed *= -1;
 	new_dirx = get_player_dirx() * cos(speed) - get_player_diry() * sin(speed);
@@ -31,5 +35,5 @@ void	rotate(t_rotation direction)
 	new_camy = get_camera_x() * sin(speed) + get_camera_y() * cos(speed);
 	update_player_dir(new_dirx, new_diry);
 	update_camera_plan(new_camx, new_camy);
-	printf("%f %f %f %f\n", get_player_dirx(), get_player_diry(), get_camera_x(), get_camera_y()); 
+	//printf("%f %f %f %f\n", get_player_dirx(), get_player_diry(), get_camera_x(), get_camera_y()); 
 }

@@ -6,12 +6,12 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 17:01:39 by ccantale          #+#    #+#              #
-#    Updated: 2023/03/01 16:43:52 by ccantale         ###   ########.fr        #
+#    Updated: 2023/03/05 20:22:32 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=		gcc
-FLAGS		=		-Wall -Wextra -Werror -g
+FLAGS		=		-Wall -Wextra -Werror -g -O3
 
 NAME		=		cub3D
 
@@ -37,9 +37,10 @@ SRC			=		main.c \
 					static_handlers/time_handler.c \
 					static_handlers/side_handler.c \
 					static_handlers/key_handler.c \
+					static_handlers/raycasting_handler.c \
 					game/update.c \
 					game/event.c \
-					raycasting/get_walls.c \
+					raycasting/raycasting.c \
 					raycasting/simplify.c \
  					renderer/render_background.c \
 					renderer/render.c \

@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 18:10:38 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/26 22:48:55 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/05 20:21:08 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "../global_headers/game.h"
 # include "../minilibX/mlx.h"
 
-void	render_background(void);
-double	*get_walls(void);
+void			render_background(void);
+double const	*get_walls(void);
 
 #endif

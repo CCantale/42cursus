@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movements.h                                        :+:      :+:    :+:   */
+/*   raycasting_handler.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 08:27:25 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/04 20:27:03 by ccantale         ###   ########.fr       */
+/*   Created: 2023/03/05 20:14:10 by ccantale          #+#    #+#             */
+/*   Updated: 2023/03/05 20:23:29 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MOVEMENTS_H
-# define MOVEMENTS_H
+#ifndef RAYCASTING_HANDLER_H
+# define RAYCASTING_HANDLER_H
 
-typedef enum e_rotation
+# include "../global_headers/common.h"
+# include "../global_headers/game_info.h"
+
+double	raycasting(size_t ray_nbr);
+
+typedef enum	e_raycasting
 {
-	r_LEFT,
-	r_RIGHT
-}	t_rotation;
-
-void	rotate(t_rotation direction);
+	ray_GET_WALLS
+}	t_raycasting;
 
 #endif

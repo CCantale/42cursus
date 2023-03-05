@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_walls.c                                        :+:      :+:    :+:   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 01:45:05 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/02 17:10:04 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/05 20:21:35 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_walls.h"
+#include "raycasting.h"
 													#include <stdio.h>
+													void			add_side(int option);
 
-void			add_side(int option);
-static double	start_raycasting(size_t ray_nbr);
+static double	get_step_length(double ray_direction);
 static double	cast_ray_get_wall_height(
 		double direction[2], int closest_border_to_player[2], double step[2]);
 static double	raycasting_algorithm(
@@ -22,33 +22,8 @@ static double	raycasting_algorithm(
 					double step_length[2], int closest_border_to_player[2]);
 /* end of declarations */
 
-/* this function is called by the renderer */
-double	*get_walls(void)
-{
-	size_t	i;
-	double		*walls;
-
-	walls = malloc(sizeof(double) * WINDOW_WIDTH);
-	if (!walls)
-		return (NULL);
-	i = 0;
-	while (i < WINDOW_WIDTH)
-	{
-		walls[i] = start_raycasting(i);
-		++i;
-	}
-	return (walls);
-}
-
-static double	get_step_length(double ray_direction)
-{
-	if (ray_direction != 0)
-		return (sy(fabs(1 / ray_direction)));
-	else
-		return (1e30);
-}
-
-static double	start_raycasting(size_t ray_nbr)
+/* this function is called by the raycasting_handler */
+double	raycasting(size_t ray_nbr)
 {
 	double	ray_val;
 	double	ray_direction[2];
@@ -69,6 +44,14 @@ static double	start_raycasting(size_t ray_nbr)
 										closest_border_to_player,
 										ray_step_length
 									));
+}
+
+static double	get_step_length(double ray_direction)
+{
+	if (ray_direction != 0)
+		return (sy(fabs(1 / ray_direction)));
+	else
+		return (1e30);
 }
 
 /* If not specified, all names here are referring to the ray
