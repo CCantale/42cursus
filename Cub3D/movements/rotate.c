@@ -6,27 +6,26 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:33:11 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/05 21:18:20 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/06 18:12:32 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rotate.h"
 									#include <stdio.h>
 									#include "../global_headers/key.h"
+									#include <math.h>
 
 void	rotate(t_rotation direction)
 {
-	size_t 	speed;
+	double 	speed;
 	double	new_dirx;
 	double	new_diry;
 	double	new_camx;
 	double	new_camy;
 	
 	//speed = ROTATION_SPEED / 3;
-	speed = get_delta_time() * ROTATION_SPEED / 100000;
-	//if (speed > 0.2 * ROTATION_SPEED || speed == 0)
-		//speed = 0.2 * ROTATION_SPEED;
-	printf("speeeeeeeeeeeeeeeeeeeeeeeeeeeeed %lu\n%lu\n", speed, get_delta_time());
+	speed = (double)(get_delta_time() / 10000) / 100000 * ROTATION_SPEED;
+	printf("speeeeeeeeeeeeeeeeeeeeeeeeeeeeed %f\n%lu\n", speed, get_delta_time());
 	if (direction == r_LEFT)
 		speed *= -1;
 	new_dirx = get_player_dirx() * cos(speed) - get_player_diry() * sin(speed);

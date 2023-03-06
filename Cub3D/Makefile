@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 17:01:39 by ccantale          #+#    #+#              #
-#    Updated: 2023/03/05 20:22:32 by ccantale         ###   ########.fr        #
+#    Updated: 2023/03/06 18:27:09 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ $(MINI):
 	make -C $(MINIDIR)
 
 $(NAME): $(OBJ)
-	$(CC) $^ -o $@ -lmlx -framework openGL -framework AppKit
+	$(CC) -O3 $^ -o $@ -lmlx -framework openGL -framework AppKit
 
 $(OBJ): $(OBJDIR)/%.o: %.c
 	mkdir -p $(@D)

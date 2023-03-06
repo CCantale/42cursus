@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 01:45:05 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/05 20:21:35 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/06 18:19:11 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ double	raycasting(size_t ray_nbr)
 static double	get_step_length(double ray_direction)
 {
 	if (ray_direction != 0)
-		return (sy(fabs(1 / ray_direction)));
+		return (fabs(1 / ray_direction));
 	else
 		return (1e30);
 }
@@ -70,16 +70,16 @@ static double	cast_ray_get_wall_height(
 		step_on_map[Y] = -1;
 	if (direction[X] < 0)
 		closest_border_to_ray[X] =
-			sy((get_player_x() - closest_border_to_player[X]) * step[X]);
+			(get_player_x() - closest_border_to_player[X]) * step[X];
 	else
 		closest_border_to_ray[X] =
-			sy((closest_border_to_player[X] + 1.0 - get_player_x()) * step[X]);
+			(closest_border_to_player[X] + 1.0 - get_player_x()) * step[X];
 	if (direction[Y] < 0)
 		closest_border_to_ray[Y] =
-			sy((get_player_y() - closest_border_to_player[Y]) * step[Y]);
+			(get_player_y() - closest_border_to_player[Y]) * step[Y];
 	else
 		closest_border_to_ray[Y] =
-			sy((closest_border_to_player[Y] + 1.0 - get_player_y()) * step[Y]);
+			(closest_border_to_player[Y] + 1.0 - get_player_y()) * step[Y];
 	return(raycasting_algorithm(
 				closest_border_to_ray,
 				step_on_map, step,
@@ -99,21 +99,21 @@ static double	raycasting_algorithm(
 	{
 		if (closest_border_to_ray[X] < closest_border_to_ray[Y])
 		{
-			closest_border_to_ray[X] += sy(step_length[X]);
-			closest_border_to_player[X] += sy(step_on_map[X]);
+			closest_border_to_ray[X] += step_length[X];
+			closest_border_to_player[X] += step_on_map[X];
 			axis_hit = X;
 		}
 		else
 		{
-			closest_border_to_ray[Y] += sy(step_length[Y]);
-			closest_border_to_player[Y] += sy(step_on_map[Y]);
+			closest_border_to_ray[Y] += step_length[Y];
+			closest_border_to_player[Y] += step_on_map[Y];
 			axis_hit = Y;
 		}
 		if (map[closest_border_to_player[Y]][closest_border_to_player[X]] == '1')
 			hit = true;
 	}
 	add_side(axis_hit);
-	return (sy(closest_border_to_ray[axis_hit] - step_length[axis_hit]));
+	return (closest_border_to_ray[axis_hit] - step_length[axis_hit]);
 }
 
 
