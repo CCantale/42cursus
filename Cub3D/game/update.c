@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 01:27:34 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/05 20:29:16 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/07 19:02:15 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ int		pull(int key);
 
 int	update(void)
 {
-	static int	clocks;
+	//static int	clocks;
 	int	something_happened;
 
 	something_happened = 1;
-	if (clocks % 170 == 0)
-	{
+	//if (clocks % 170 == 0)
+	//{
 	if (get_key(k_LEFT) == true)
 		rotate(r_LEFT);
 	else if (get_key(k_RIGHT) == true)
@@ -36,10 +36,10 @@ int	update(void)
 		move_up();
 	else
 		something_happened = 0;
-	if (something_happened == 1)
+	//if (something_happened == 1)
 		render();
-	}
-	clocks++;
+	//}
+	//clocks++;
 	time_start();
 
 	return (0);

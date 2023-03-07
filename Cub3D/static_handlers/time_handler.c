@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:20:15 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/05 21:13:35 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/07 18:57:10 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 #include <stdio.h>
 #include <unistd.h>
 
-static size_t	get_time(void)
+static unsigned long	get_time(void)
 {
 	static struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
-	return (tv.tv_usec * 1000000 + tv.tv_usec);
+	return (tv.tv_usec * 1000 + tv.tv_usec / 1000);
 }
 
 static double	time_handler(t_time option)
 {
-	static size_t	start;
-	size_t			time_from_start;
+	static unsigned long	start;
+	unsigned long			time_from_start;
 
 	if (option == t_START)
 	{
@@ -35,7 +35,7 @@ static double	time_handler(t_time option)
 	{
 		time_from_start = get_time() - start;
 		printf("START %lu\nNOW %lu\nFROM_START %lu\n", start, get_time(), time_from_start);
-		return (get_time() - start);
+		return ((double)(get_time() - start));
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:33:11 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/06 18:12:32 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/07 18:55:27 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	rotate(t_rotation direction)
 	double	new_camy;
 	
 	//speed = ROTATION_SPEED / 3;
-	speed = (double)(get_delta_time() / 10000) / 100000 * ROTATION_SPEED;
+	speed = (double)(get_delta_time() / 100000) / 100000 * ROTATION_SPEED;
 	printf("speeeeeeeeeeeeeeeeeeeeeeeeeeeeed %f\n%lu\n", speed, get_delta_time());
 	if (direction == r_LEFT)
 		speed *= -1;
