@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:25:11 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/05 20:01:38 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:39:27 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	render(void)
 		while (y < WINDOW_HEIGHT && y < vertical_line_end)
 		{
 			if (get_side()[x] == X)
-				mlx_pixel_put(get_game_init(), get_window(), x, y, 0xFFFFFF);
+				mlx_pixel_put(get_game_init(), get_window(), x, y, 0xFFFFFF / 3 + 300);
 			else
 				mlx_pixel_put(get_game_init(), get_window(), x, y, 0xFFFFFF / 3 + 100);
 			++y;

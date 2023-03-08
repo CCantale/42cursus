@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:35:06 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/06 18:15:23 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:17:18 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	move_up(void)
 	y = get_player_y();
 	dirx = get_player_dirx();
 	diry = get_player_diry();
-	speed = (double)(get_delta_time() / 10000) / 100000 * SPEED;
+	speed = (double)get_delta_time() / 1000 * SPEED;
 	if (map[(int)(y)][(int)(x + dirx * speed)] == '0'
 			&& map[(int)(y + diry * speed)][(int)(x)] == '0')
 	{

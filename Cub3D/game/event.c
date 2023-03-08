@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 03:48:09 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/04 19:44:38 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:56:52 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,17 @@
 #include "../global_headers/key.h"
 #include "../cantalloc/cantalloc.h"
 #include "../global_headers/movements.h"
-#include <stdio.h>
-/*void	move_up(void);
-void	render(void);
-#include "../global_headers/time.h"
+#include <unistd.h>
 
 void	push(int key)
 {
-	printf("PUSH\n");
-	if (key == ESC_KEY)
+	static int	wait;
+
+	if (wait == 0)
 	{
-		cantalloc_clean();
-		exit(0);
+		usleep(100);
+		wait = 42;
 	}
-	if (key == LEFT_KEY)
-		rotate(r_LEFT);
-	if (key == RIGHT_KEY)
-		rotate(r_RIGHT);
-	if (key == W_KEY)
-		move_up();
-	render();
-	time_start();
-}
-*/
-
-void	push(int key)
-{
-	printf("PUSH\n");
 	if (key == ESC_KEY)
 	{
 		cantalloc_clean();

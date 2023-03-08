@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:20:15 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/07 18:57:10 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/08 17:02:26 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static unsigned long	get_time(void)
 	static struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
-	return (tv.tv_usec * 1000 + tv.tv_usec / 1000);
+	return (tv.tv_usec);
 }
 
 static double	time_handler(t_time option)
@@ -34,7 +34,7 @@ static double	time_handler(t_time option)
 	if (option == t_DELTA)
 	{
 		time_from_start = get_time() - start;
-		printf("START %lu\nNOW %lu\nFROM_START %lu\n", start, get_time(), time_from_start);
+		//printf("START %lu\nNOW %lu\nFROM_START %lu\n", start, get_time(), time_from_start);
 		return ((double)(get_time() - start));
 	}
 	return (0);

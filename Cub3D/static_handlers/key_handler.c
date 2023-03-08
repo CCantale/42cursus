@@ -6,12 +6,11 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 08:00:16 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/02 19:18:32 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/08 17:03:04 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "key_handler.h"
-												#include <stdio.h>
 
 static bool	key_handler(t_key key, t_key option)
 {
@@ -19,12 +18,10 @@ static bool	key_handler(t_key key, t_key option)
 
 	if (option == k_PRESS)
 	{
-		printf("true\n");
 		keys[key] = true;
 	}
 	if (option == k_RELEASE)
 	{
-		printf("false\n");
 		keys[key] = false;
 	}
 	if (option == k_GET)
