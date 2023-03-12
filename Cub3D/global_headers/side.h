@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update.h                                           :+:      :+:    :+:   */
+/*   side.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 08:24:29 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/12 18:58:39 by ccantale         ###   ########.fr       */
+/*   Created: 2023/03/12 18:19:52 by ccantale          #+#    #+#             */
+/*   Updated: 2023/03/12 19:20:54 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UPDATE_H
-# define UPDATE_H
+#ifndef SIDE_H
+# define SIDE_H
 
-# include "../global_headers/common.h"
-# include "../global_headers/time.h"
-# include "../global_headers/key.h"
-# include "../global_headers/movements.h"
-# include "../minilibX/mlx.h"
-# include "../global_headers/game.h"
-# include "../global_headers/keycodes.h"
+typedef enum e_side
+{
+	s_ADD_SIDE,
+	s_GET_SIDE,
+	s_NORTH,
+	s_SOUTH,
+	s_EAST,
+	s_WEST
+}	t_side;
 
-void	move_up(void);
-int		push(int key);
-int		pull(int key);
-void	render(void);
+void	add_ray_side(int axis_hit, int position);
+t_side	*get_side(void);
 
 #endif

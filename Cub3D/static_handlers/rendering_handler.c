@@ -6,25 +6,73 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 19:52:16 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/09 20:02:50 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/12 13:52:16 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rendering_handler.h"
 
-static void	rendering_handler(t_render option/*vediamo che metterci*/)
+static void	cub_pixel_put(t_image *img, int x, int y, unsigned int color)
 {
-	static t_image	image_one;
-	static t_image	image_two;
-	static			switch_var;
+	const char	*dst =
+		img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}
 
-	if (option == ren_PIXEL_PUT)
+static void	init_image(t_image *image)
+{
+	if (!image->image)
 	{
-		cub_puxel_put(/*le cose che gli passo*/);
+		image->image =
+			mlx_new_image(get_game_init(), WINDOW_WIDTH, WINDOW_HEIGHT);
+		image->addr =
+			mlx_get_data_addr(
+					(void *)image->image,
+					&image->bits_per_pixel,
+					&image->line_length,
+					&image->endian);
 	}
-	if (oprion == ren_RENDER)
+}
+
+static void	rendering_handler(int x, int y, int color, t_render option)
+{
+	static t_image	image_one; 
+	static t_image	image_two;
+	static short	switch_var;
+	t_image			*buffer_img;
+
+	if (switch_var == 0)
+		buffer_img = &image_one;
+	if (switch_var == 1)
+		buffer_img = &image_two;
+	init_image(&image_one);
+	init_image(&image_two);
+	if (option == ren_PIXEL_PUT)
+		cub_pixel_put(buffer_img, x, y, color);
+	if (option == ren_RENDER)
 	{
-		if (switch_var == 0)
-			render(image_one);
-		if (switch_var == 1)
-			render(image_two);
+		mlx_put_image_to_window(get_game_init(), get_window(),
+				(void *)buffer_img->image, 0, 0);
+		switch_var = (switch_var - 1) * -1;
+	}
+	if (option == ren_DESTROY)
+	{
+			mlx_destroy_image(get_game_init(), (void *)image_one.image);
+			mlx_destroy_image(get_game_init(), (void *)image_two.image);
+	}
+}
+
+void	draw_pixel(int x, int y, int color)
+{
+	rendering_handler(x, y, color, ren_PIXEL_PUT);
+}
+
+void	render_static(void)
+{
+	rendering_handler(0, 0, 0, ren_RENDER);
+}
+
+void	destroy_images(void)
+{
+	rendering_handler(0, 0, 0, ren_DESTROY);
+}

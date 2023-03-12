@@ -6,17 +6,19 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 02:54:19 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/08 16:48:56 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/12 18:22:57 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render_background.h"
+void	draw_pixel(int x, int y, int color);
+void	render_static();
 
 static void	render(int color)
 {
-	size_t	endpoint;
-	size_t	x;
-	size_t	y;
+	int	endpoint;
+	int	x;
+	int	y;
 
 	if (color == get_ceiling_color())
 	{
@@ -33,8 +35,7 @@ static void	render(int color)
 		x = 0;
 		while (x < WINDOW_WIDTH)
 		{
-			mlx_pixel_put(get_game_init(), get_window(),
-					x, y, color);
+			draw_pixel(x, y, color);
 			++x;
 		}
 		++y;

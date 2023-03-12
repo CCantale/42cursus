@@ -6,19 +6,11 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 01:27:34 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/08 16:23:50 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/12 18:59:02 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "update.h"
-
-# include "../minilibX/mlx.h"
-# include "../global_headers/game.h"
-# include "../global_headers/keycodes.h"
-void	move_up(void);
-int		push(int key);
-int		pull(int key);
-# include "../global_headers/key.h"
 
 int	update(void)
 {

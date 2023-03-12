@@ -6,11 +6,12 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:23:43 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/25 00:43:15 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/12 16:02:48 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "texture_handler.h"
+																#include <stdio.h>
 
 static t_texture	define_which(char **line_from_set);
 static int			update_textures(char **new_set, void *textures[5]);
@@ -60,7 +61,10 @@ static int	update_textures(char **new_set, void *textures[5])
 			return (error_msg("Syntax error. Parameter repeted."));
 		}
 		if (which_one != tex_COLOR_OK)
+		{
 			textures[which_one] = *new_set; // funzione che fa le texture
+			printf("%s\n", new_set[which_one]);
+		}
 		++i;
 	}
 	return (OK);

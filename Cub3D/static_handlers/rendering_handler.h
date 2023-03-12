@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update.h                                           :+:      :+:    :+:   */
+/*   rendering_handler.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 08:24:29 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/12 18:58:39 by ccantale         ###   ########.fr       */
+/*   Created: 2023/03/12 12:19:52 by ccantale          #+#    #+#             */
+/*   Updated: 2023/03/12 13:32:04 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UPDATE_H
-# define UPDATE_H
+#ifndef RENDERING_HANDLER_H
+# define RENDERING_HANDLER_H
 
 # include "../global_headers/common.h"
-# include "../global_headers/time.h"
-# include "../global_headers/key.h"
-# include "../global_headers/movements.h"
-# include "../minilibX/mlx.h"
+# include "../global_headers/game_info.h"
 # include "../global_headers/game.h"
-# include "../global_headers/keycodes.h"
+# include "../minilibX/mlx.h"
 
-void	move_up(void);
-int		push(int key);
-int		pull(int key);
-void	render(void);
+typedef enum e_render
+{
+	ren_PIXEL_PUT,
+	ren_RENDER,
+	ren_DESTROY
+}	t_render;
+
+typedef struct s_image
+{
+	void const	*image;
+	char const	*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}				t_image;
 
 #endif

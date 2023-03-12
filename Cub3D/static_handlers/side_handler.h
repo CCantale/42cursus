@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simplify.c                                         :+:      :+:    :+:   */
+/*   side_handler.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/01 16:41:21 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/02 17:13:26 by ccantale         ###   ########.fr       */
+/*   Created: 2023/03/12 18:18:36 by ccantale          #+#    #+#             */
+/*   Updated: 2023/03/12 18:21:25 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
+#ifndef SIDE_HANDLER_H
+# define SIDE_HANDLER_H
 
-/* truncaes a double at the third decimal digit */
-double	sy(double nbr)
-{
-	return (trunc(nbr * 1000) / 1000);
-}
+# include "../global_headers/common.h"
+# include "../global_headers/game_info.h"
+# include "../global_headers/player.h"
+# include "../global_headers/side.h"
+
+#endif

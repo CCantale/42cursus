@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:04:34 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/08 16:57:17 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/12 13:56:15 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(int argc, char **argv)
 static int	quit(void)
 {
 	cantalloc_clean();
+	//destroy images
 	exit(0);
 	return (0);
 }

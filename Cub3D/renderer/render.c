@@ -6,13 +6,14 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:25:11 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/08 16:39:27 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/12 18:53:38 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 											#include <stdio.h>
-											int	*get_side(void);
+											void	draw_pixel(int x, int y, int color);
+											void	render_static();
 
 void	render(void)
 {
@@ -33,12 +34,17 @@ void	render(void)
 		vertical_line_end = y + vertical_line_length;
 		while (y < WINDOW_HEIGHT && y < vertical_line_end)
 		{
-			if (get_side()[x] == X)
-				mlx_pixel_put(get_game_init(), get_window(), x, y, 0xFFFFFF / 3 + 300);
+			if (get_side()[x] == s_NORTH)
+				draw_pixel(x, y, 0xFFFFFF);
+			else if (get_side()[x] == s_SOUTH)
+				draw_pixel(x, y, 0x000000);
+			else if (get_side()[x] == s_EAST)
+				draw_pixel(x, y, 0xFFFFFF / 3 + 100);
 			else
-				mlx_pixel_put(get_game_init(), get_window(), x, y, 0xFFFFFF / 3 + 100);
+				draw_pixel(x, y, 0xFFFFFF / 3 + 300);
 			++y;
 		}
 		++x;
 	}
+	render_static();
 }

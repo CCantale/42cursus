@@ -6,35 +6,49 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 23:20:48 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/27 03:06:53 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/12 19:28:18 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../global_headers/common.h"
-# include "../global_headers/game_info.h"
+#include "side_handler.h"
+														#include <stdio.h>
 
-static int	*side_handler(int option)
+static t_side	*side_handler(int axis_hit, int wall_position, t_side option)
 {
-	static int	side[WINDOW_WIDTH];
-	static int	i;
-
-	if (option == X)
-		side[i++] = X;
-	else if (option == Y)
-		side[i++] = Y;
-	else if (option == 3)
+	static t_side	side[WINDOW_WIDTH];
+	static int		i;
+	
+	if (option == s_ADD_SIDE && axis_hit == X)
+	{
+		if ((int)get_player_x() - wall_position > 0)
+			side[i++] = s_EAST;
+		else
+			side[i++] = s_WEST;
+	}
+	if (option == s_ADD_SIDE && axis_hit == Y)
+	{
+		//printf("player %d - wall %d\n", (int)get_player_y(), wall_position);
+		if ((int)get_player_y() - wall_position > 0)
+			side[i++] = s_SOUTH;
+		else
+			side[i++] = s_NORTH;
+	}
+	else if (option == s_GET_SIDE)
+	{
 		return (side);
+	}
 	if (i >= WINDOW_WIDTH)
 		i = 0;
-	return (NULL);
+	return (0);
 }
 
-void	add_side(int option)
+void	add_ray_side(int axis_hit, int position)
 {
-	side_handler(option);
+	//printf("%d %d\n", axis_hit, position);
+	side_handler(axis_hit, position, s_ADD_SIDE);
 }
 
-int	*get_side(void)
+t_side	*get_side(void)
 {
-	return (side_handler(3));
+	return (side_handler(0, 0, s_GET_SIDE));
 }

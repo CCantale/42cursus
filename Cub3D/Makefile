@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 17:01:39 by ccantale          #+#    #+#              #
-#    Updated: 2023/03/06 18:27:09 by ccantale         ###   ########.fr        #
+#    Updated: 2023/03/12 12:56:58 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRC			=		main.c \
 					static_handlers/side_handler.c \
 					static_handlers/key_handler.c \
 					static_handlers/raycasting_handler.c \
+					static_handlers/rendering_handler.c \
 					game/update.c \
 					game/event.c \
 					raycasting/raycasting.c \
