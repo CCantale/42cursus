@@ -6,14 +6,16 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:40:53 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/25 05:16:10 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/12 19:55:17 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TEXTURE_HANDLER_H
 # define TEXTURE_HANDLER_H
 
-#include "../global_headers/common.h"
+# include "../global_headers/common.h"
+# include "../global_headers/game.h"
+# include "../minilibX/mlx.h"
 
 typedef enum e_texture
 {

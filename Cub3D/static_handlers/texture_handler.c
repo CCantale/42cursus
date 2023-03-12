@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:23:43 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/12 16:02:48 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/12 20:15:49 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ static int	update_textures(char **new_set, void *textures[5])
 		}
 		if (which_one != tex_COLOR_OK)
 		{
-			textures[which_one] = *new_set; // funzione che fa le texture
-			printf("%s\n", new_set[which_one]);
+			textures[which_one] = mlx_xpm_file_to_image(
+					get_game_init(), new_set[which_one], NULL, NULL);
 		}
 		++i;
 	}

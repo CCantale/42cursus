@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 17:01:39 by ccantale          #+#    #+#              #
-#    Updated: 2023/03/12 12:56:58 by ccantale         ###   ########.fr        #
+#    Updated: 2023/03/12 19:51:21 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,6 @@ SRC			=		main.c \
 					game/update.c \
 					game/event.c \
 					raycasting/raycasting.c \
-					raycasting/simplify.c \
  					renderer/render_background.c \
 					renderer/render.c \
 					movements/rotate.c \
