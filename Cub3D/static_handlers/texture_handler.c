@@ -6,18 +6,14 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:23:43 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/13 05:37:04 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/13 07:11:39 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "texture_handler.h"
-																#include <stdio.h>
-																#include <fcntl.h>
-																#include <unistd.h>
-																#include <sys/mman.h>
 
 static t_texture	define_which(char **line_from_set);
-static int			update_textures(char **new_set, void *textures[5]);
+static int			update_textures(char **new_set, void *textures[5], int tmp);
 static void			destroy_textures(void *textures[5]);
 /* end of declarations */
 
@@ -33,22 +29,20 @@ char	*texture_handler(char **new_set, t_texture option)
 	static void	*textures[5] = { NULL, NULL, NULL, NULL, NULL };
 	static char	*addr[5] = { NULL, NULL, NULL, NULL, NULL };
 	int			i;
+	int			tmp;
 
 	if (option == tex_UPDATE)
 	{
+		tmp = 0;
 		destroy_textures(textures);
-		if (!new_set || update_textures(new_set, textures) == NOT_OK)
+		if (!new_set || update_textures(new_set, textures, tmp) == NOT_OK)
 			return (*new_set);
 		i = 0;
 		while (i < 4)
 		{
-			addr[i] = mlx_get_data_addr(textures[i], NULL, NULL, NULL);
+			addr[i] = mlx_get_data_addr(textures[i], &tmp, &tmp, &tmp);
 			++i;
 		}
-	}
-	else if (option == tex_DESTROY)
-	{
-		destroy_textures(textures);
 	}
 	else
 	{
@@ -57,7 +51,7 @@ char	*texture_handler(char **new_set, t_texture option)
 	return (NULL);
 }
 
-static int	update_textures(char **new_set, void *textures[5])
+static int	update_textures(char **new_set, void *textures[5], int tmp)
 {
 	size_t	i;
 	int		which_one;
@@ -78,22 +72,8 @@ static int	update_textures(char **new_set, void *textures[5])
 		}
 		if (which_one != tex_COLOR_OK)
 		{
-			/*int fd, size;
-			char	*ptr;
-			fd = open(new_set[which_one], O_RDONLY);
-			size = lseek(fd,0,SEEK_END);
-			ptr = mmap(0,size,PROT_WRITE|PROT_READ,MAP_PRIVATE,fd,0);
-			printf("%d %d %p\n", fd, size, ptr);
-			close(fd);
-  			munmap(ptr,size);*/
-			void	*image;
-			int	*w = NULL;
-			int	*h = NULL;
-			printf("%p %d %s %p\n",
-					get_game_init(), which_one, new_set[which_one], textures[which_one]);
-			image = mlx_xpm_file_to_image(get_game_init(), new_set[which_one], w, h);
-			//textures[which_one] = mlx_xpm_file_to_image(
-					//get_game_init(), new_set[which_one], w, h);
+			textures[which_one] = mlx_xpm_file_to_image(
+					get_game_init(), new_set[which_one], &tmp, &tmp);
 		}
 		++i;
 	}
