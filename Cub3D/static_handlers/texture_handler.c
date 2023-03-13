@@ -6,11 +6,13 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:23:43 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/13 07:11:39 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/13 15:23:52 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "texture_handler.h"
+																#include <unistd.h>
+																#include <stdio.h>
 
 static t_texture	define_which(char **line_from_set);
 static int			update_textures(char **new_set, void *textures[5], int tmp);

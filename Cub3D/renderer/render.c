@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:25:11 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/13 07:45:17 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/13 15:42:24 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,11 @@ static void	draw_single_line(int line_length, int x, int y, int texture_x)
 	double	step;
 	double  starting_pos_on_texture;
 
-	step = 64 / line_length;
+	(void)texture_x;
+	step = 64.0 / line_length;
 	line_end = y + line_length;
+	if (line_end >= WINDOW_HEIGHT)
+		line_end = WINDOW_HEIGHT - 1;
 	starting_pos_on_texture = (y - WINDOW_HEIGHT / 2 + line_length / 2) * step;
 	while (y < WINDOW_HEIGHT && y < line_end)
 	{
@@ -61,6 +64,10 @@ static void	draw_single_line(int line_length, int x, int y, int texture_x)
 			draw_pixel(x, y, get_east_texture()[64 * texture_y + texture_x]);
 		else if (side[x] == s_WEST)
 			draw_pixel(x, y, get_west_texture()[64 * texture_y + texture_x]);
+		//for (int i = 0; i < WINDOW_WIDTH; ++i)
+			//printf("%d ", get_north_texture()[i]);
+
+		//printf("%d ", 64 * texture_y + texture_x);
 		++y;
 	}
 }
@@ -72,11 +79,6 @@ void	render(void) // da cambiare in una cosa tipo "draw_walls()"
 	int				texture_x;
 	int				x;
 	int				y;
-
-	//printf("CULOOO %d\n%d\n%d\n%d\n", get_north_texture()[0], get_south_texture()[0], get_east_texture()[0], get_west_texture()[0]);
-	/*t_side const	*side = get_side();
-	for(int i = 0; i < WINDOW_WIDTH; ++i)
-		printf("%d - %d\n", i, side[i]);*/
 
 	render_background();
 	x = 0;
