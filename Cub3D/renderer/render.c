@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:25:11 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/13 03:35:38 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/13 07:45:17 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static int	get_texture_x(int x, double wall_value)
 	ray_direction[X] = get_player_dirx() + get_camera_x() * ray_val;
 	ray_direction[Y] = get_player_diry() + get_camera_y() * ray_val;
 	if (side[x] == s_EAST || side[x] == s_WEST)
-		wall_hit_point = wall_value * ray_direction[Y] + get_player_y();
+		wall_hit_point =  get_player_y() + wall_value * ray_direction[Y];
 	else
-		wall_hit_point = wall_value * ray_direction[X] + get_player_x();
+		wall_hit_point = get_player_x() + wall_value * ray_direction[X];
 	wall_hit_point -= floor(wall_hit_point);
 	texture_x = (int)(wall_hit_point * 64.0);
 	if (((side[x] == s_EAST || side[x] == s_WEST) && ray_direction[X] > 0)
@@ -55,11 +55,11 @@ static void	draw_single_line(int line_length, int x, int y, int texture_x)
 		starting_pos_on_texture += step;
 		if (side[x] == s_NORTH)
 			draw_pixel(x, y, get_north_texture()[64 * texture_y + texture_x]);
-		if (side[x] == s_SOUTH)
+		else if (side[x] == s_SOUTH)
 			draw_pixel(x, y, get_south_texture()[64 * texture_y + texture_x]);
-		if (side[x] == s_EAST)
+		else if (side[x] == s_EAST)
 			draw_pixel(x, y, get_east_texture()[64 * texture_y + texture_x]);
-		if (side[x] == s_WEST)
+		else if (side[x] == s_WEST)
 			draw_pixel(x, y, get_west_texture()[64 * texture_y + texture_x]);
 		++y;
 	}
@@ -72,6 +72,11 @@ void	render(void) // da cambiare in una cosa tipo "draw_walls()"
 	int				texture_x;
 	int				x;
 	int				y;
+
+	//printf("CULOOO %d\n%d\n%d\n%d\n", get_north_texture()[0], get_south_texture()[0], get_east_texture()[0], get_west_texture()[0]);
+	/*t_side const	*side = get_side();
+	for(int i = 0; i < WINDOW_WIDTH; ++i)
+		printf("%d - %d\n", i, side[i]);*/
 
 	render_background();
 	x = 0;
