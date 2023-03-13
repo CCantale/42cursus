@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 23:20:48 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/12 19:28:18 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/13 00:22:10 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static t_side	*side_handler(int axis_hit, int wall_position, t_side option)
 	}
 	if (option == s_ADD_SIDE && axis_hit == Y)
 	{
-		//printf("player %d - wall %d\n", (int)get_player_y(), wall_position);
 		if ((int)get_player_y() - wall_position > 0)
 			side[i++] = s_SOUTH;
 		else
@@ -44,7 +43,6 @@ static t_side	*side_handler(int axis_hit, int wall_position, t_side option)
 
 void	add_ray_side(int axis_hit, int position)
 {
-	//printf("%d %d\n", axis_hit, position);
 	side_handler(axis_hit, position, s_ADD_SIDE);
 }
 

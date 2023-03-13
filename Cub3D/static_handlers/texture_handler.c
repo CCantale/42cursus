@@ -6,16 +6,19 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:23:43 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/12 20:15:49 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/13 05:37:04 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "texture_handler.h"
 																#include <stdio.h>
+																#include <fcntl.h>
+																#include <unistd.h>
+																#include <sys/mman.h>
 
 static t_texture	define_which(char **line_from_set);
 static int			update_textures(char **new_set, void *textures[5]);
-static void			free_textures(void *textures[5]);
+static void			destroy_textures(void *textures[5]);
 /* end of declarations */
 
 /*
@@ -25,18 +28,31 @@ static void			free_textures(void *textures[5]);
 ** textures[3] = east
 ** textures[4] = 0
 */
-void	*texture_handler(char **new_set, t_texture option)
+char	*texture_handler(char **new_set, t_texture option)
 {
 	static void	*textures[5] = { NULL, NULL, NULL, NULL, NULL };
+	static char	*addr[5] = { NULL, NULL, NULL, NULL, NULL };
+	int			i;
 
 	if (option == tex_UPDATE)
 	{
+		destroy_textures(textures);
 		if (!new_set || update_textures(new_set, textures) == NOT_OK)
 			return (*new_set);
+		i = 0;
+		while (i < 4)
+		{
+			addr[i] = mlx_get_data_addr(textures[i], NULL, NULL, NULL);
+			++i;
+		}
+	}
+	else if (option == tex_DESTROY)
+	{
+		destroy_textures(textures);
 	}
 	else
 	{
-		return (textures[option]);
+		return (addr[option]);
 	}
 	return (NULL);
 }
@@ -52,18 +68,32 @@ static int	update_textures(char **new_set, void *textures[5])
 		which_one = define_which(&new_set[i]);
 		if (which_one == tex_ERROR)
 		{
-			free_textures(textures);
+			destroy_textures(textures);
 			return (error_msg("Syntax error. Wrong or missing parameter."));
 		}
 		if (textures[which_one] != NULL || which_one == tex_COLOR_REPEATED)
 		{
-			free_textures(textures);
+			destroy_textures(textures);
 			return (error_msg("Syntax error. Parameter repeted."));
 		}
 		if (which_one != tex_COLOR_OK)
 		{
-			textures[which_one] = mlx_xpm_file_to_image(
-					get_game_init(), new_set[which_one], NULL, NULL);
+			/*int fd, size;
+			char	*ptr;
+			fd = open(new_set[which_one], O_RDONLY);
+			size = lseek(fd,0,SEEK_END);
+			ptr = mmap(0,size,PROT_WRITE|PROT_READ,MAP_PRIVATE,fd,0);
+			printf("%d %d %p\n", fd, size, ptr);
+			close(fd);
+  			munmap(ptr,size);*/
+			void	*image;
+			int	*w = NULL;
+			int	*h = NULL;
+			printf("%p %d %s %p\n",
+					get_game_init(), which_one, new_set[which_one], textures[which_one]);
+			image = mlx_xpm_file_to_image(get_game_init(), new_set[which_one], w, h);
+			//textures[which_one] = mlx_xpm_file_to_image(
+					//get_game_init(), new_set[which_one], w, h);
 		}
 		++i;
 	}
@@ -95,19 +125,21 @@ static t_texture	define_which(char **line_from_set)
 		which_one = tex_ERROR;
 	while (**line_from_set != ' ')
 		*line_from_set += 1;
+	while (**line_from_set == ' ')
+		*line_from_set += 1;
 	return (which_one);
 }
 
 
-static void	free_textures(void *textures[5])
+static void	destroy_textures(void *textures[5])
 {
 	size_t	i;
 
 	i = 0;
-	while (i < 4)
+	while (textures[i])
 	{
-		//free(textures[i]); // or destroy_something_something ?
-		textures[i] = 0;
+		mlx_destroy_image(get_game_init(), textures[i]);
+		textures[i] = NULL;
 		++i;
 	}
 }
@@ -118,4 +150,3 @@ int	new_textures(char **new_set)
 		return (NOT_OK);
 	return (OK);
 }
-

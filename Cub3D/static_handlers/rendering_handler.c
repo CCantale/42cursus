@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 19:52:16 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/12 13:52:16 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/12 22:01:49 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static void	rendering_handler(int x, int y, int color, t_render option)
 				(void *)buffer_img->image, 0, 0);
 		switch_var = (switch_var - 1) * -1;
 	}
+	// se i leaks non ci sono, questa parte si può anche eliminare, così sono 5 funzioni
 	if (option == ren_DESTROY)
 	{
 			mlx_destroy_image(get_game_init(), (void *)image_one.image);

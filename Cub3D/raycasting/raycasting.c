@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 01:45:05 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/12 19:30:25 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/13 00:19:51 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ static double	raycasting_algorithm(
 			hit = true;
 	}
 	add_ray_side(axis_hit, closest_border_to_player[axis_hit]);
-	//printf("closest to player %d\n", closest_border_to_player[axis_hit]);
 	return (closest_border_to_ray[axis_hit] - step_length[axis_hit]);
 }
 

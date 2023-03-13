@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:40:53 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/12 19:55:17 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/13 03:21:56 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ typedef enum e_texture
 	tex_UPDATE,
 	tex_ERROR,
 	tex_COLOR_OK,
-	tex_COLOR_REPEATED
+	tex_COLOR_REPEATED,
+	tex_DESTROY
 } 	t_texture;
 
 int			error_msg(char *msg);

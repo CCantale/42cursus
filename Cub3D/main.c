@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:04:34 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/12 13:56:15 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/13 05:25:07 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ int	main(int argc, char **argv)
 {
 	if (argc != 2)
 		return (error_msg("One map required"));
+	game_init(mlx_init());
+	if (!get_game_init())
+		return (error_msg("Game doesn't init."));
 	if (check_map(argv[1]) == NOT_OK || game_loop() == NOT_OK)
 	{
 		cantalloc_clean();
@@ -38,9 +41,6 @@ static int	quit(void)
 
 static int	game_loop(void)
 {
-	game_init(mlx_init());
-	if (!get_game_init())
-		return (error_msg("Game doesn't init."));
 	window_init(mlx_new_window(get_game_init(),
 				WINDOW_WIDTH, WINDOW_HEIGHT, GAME_NAME));
 	if (!get_window())
