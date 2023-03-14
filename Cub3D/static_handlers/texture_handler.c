@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_handler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ccantale <marvin@TEX_NUMBER2.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 14:23:43 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/13 15:23:52 by ccantale         ###   ########.fr       */
+/*   Created: 2023/02/23 1TEX_NUMBER:23:TEX_NUMBER3 by ccantale          #+#    #+#             */
+/*   Updated: 2023/03/14 19:53:35 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 																#include <stdio.h>
 
 static t_texture	define_which(char **line_from_set);
-static int			update_textures(char **new_set, void *textures[5], int tmp);
-static void			destroy_textures(void *textures[5]);
+static int			update_textures(
+		char **new_set, t_image textures[TEX_NUMBER]);
+static void			destroy_textures(t_image textures[TEX_NUMBER]);
 /* end of declarations */
 
 /*
@@ -24,36 +25,35 @@ static void			destroy_textures(void *textures[5]);
 ** textures[1] = south
 ** textures[2] = west
 ** textures[3] = east
-** textures[4] = 0
+** textures[TEX_NUMBER] = 0
 */
-char	*texture_handler(char **new_set, t_texture option)
+t_image	*texture_handler(char **new_set, t_texture option)
 {
-	static void	*textures[5] = { NULL, NULL, NULL, NULL, NULL };
-	static char	*addr[5] = { NULL, NULL, NULL, NULL, NULL };
+	static t_image	textures[TEX_NUMBER];
 	int			i;
-	int			tmp;
 
 	if (option == tex_UPDATE)
 	{
-		tmp = 0;
 		destroy_textures(textures);
-		if (!new_set || update_textures(new_set, textures, tmp) == NOT_OK)
-			return (*new_set);
+		if (!new_set || update_textures(new_set, textures) == NOT_OK)
+			return (textures);
 		i = 0;
-		while (i < 4)
+		while (i < TEX_NUMBER)
 		{
-			addr[i] = mlx_get_data_addr(textures[i], &tmp, &tmp, &tmp);
+			textures[i].addr = mlx_get_data_addr(textures[i].image,
+					&textures[i].bits_per_pixel, &textures[i].line_size,
+					&textures[i].endian);
 			++i;
 		}
 	}
 	else
 	{
-		return (addr[option]);
+		return (&textures[option]);
 	}
 	return (NULL);
 }
 
-static int	update_textures(char **new_set, void *textures[5], int tmp)
+static int	update_textures(char **new_set, t_image textures[TEX_NUMBER])
 {
 	size_t	i;
 	int		which_one;
@@ -74,8 +74,9 @@ static int	update_textures(char **new_set, void *textures[5], int tmp)
 		}
 		if (which_one != tex_COLOR_OK)
 		{
-			textures[which_one] = mlx_xpm_file_to_image(
-					get_game_init(), new_set[which_one], &tmp, &tmp);
+			textures[which_one].image = mlx_xpm_file_to_image(get_game_init(),
+					new_set[which_one], &textures[which_one].width,
+					&textures[which_one].height);
 		}
 		++i;
 	}
@@ -113,15 +114,15 @@ static t_texture	define_which(char **line_from_set)
 }
 
 
-static void	destroy_textures(void *textures[5])
+static void	destroy_textures(t_image textures[TEX_NUMBER])
 {
 	size_t	i;
 
 	i = 0;
-	while (textures[i])
+	while (i < TEX_NUMBER)
 	{
-		mlx_destroy_image(get_game_init(), textures[i]);
-		textures[i] = NULL;
+		if (textures[i].image)
+			mlx_destroy_image(get_game_init(), textures[i].image);
 		++i;
 	}
 }

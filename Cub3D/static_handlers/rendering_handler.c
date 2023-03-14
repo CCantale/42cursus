@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 19:52:16 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/13 14:34:19 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/14 19:15:38 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	cub_pixel_put(t_image *img, int x, int y, unsigned int color)
 {
 	const char	*dst =
-		img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+		img->addr + (y * img->line_size + x * (img->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
 
@@ -27,9 +27,9 @@ static void	init_image(t_image *image)
 			mlx_new_image(get_game_init(), WINDOW_WIDTH, WINDOW_HEIGHT);
 		image->addr =
 			mlx_get_data_addr(
-					(void *)image->image,
+					image->image,
 					&image->bits_per_pixel,
-					&image->line_length,
+					&image->line_size,
 					&image->endian);
 	}
 }
@@ -52,14 +52,14 @@ static void	rendering_handler(int x, int y, int color, t_render option)
 	if (option == ren_RENDER)
 	{
 		mlx_put_image_to_window(get_game_init(), get_window(),
-				(void *)buffer_img->image, 0, 0);
+				buffer_img->image, 0, 0);
 		switch_var = (switch_var - 1) * -1;
 	}
 	// se i leaks non ci sono, questa parte si può anche eliminare, così sono 5 funzioni
 	if (option == ren_DESTROY)
 	{
-			mlx_destroy_image(get_game_init(), (void *)image_one.image);
-			mlx_destroy_image(get_game_init(), (void *)image_two.image);
+			mlx_destroy_image(get_game_init(), image_one.image);
+			mlx_destroy_image(get_game_init(), image_two.image);
 	}
 }
 

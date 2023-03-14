@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:04:34 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/13 15:25:56 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/14 19:19:10 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,6 @@ int	main(int argc, char **argv)
 	game_init(mlx_init());
 	if (!get_game_init())
 		return (error_msg("Game doesn't init."));
-	window_init(mlx_new_window(get_game_init(),
-				WINDOW_WIDTH, WINDOW_HEIGHT, GAME_NAME));
-	if (!get_window())
-	{
-		return (error_msg("Window doesn't init."));
-	}
 	if (check_map(argv[1]) == NOT_OK || game_loop() == NOT_OK)
 	{
 		cantalloc_clean();
@@ -47,6 +41,12 @@ static int	quit(void)
 
 static int	game_loop(void)
 {
+	window_init(mlx_new_window(get_game_init(),
+				WINDOW_WIDTH, WINDOW_HEIGHT, GAME_NAME));
+	if (!get_window())
+	{
+		return (error_msg("Window doesn't init."));
+	}
 	render();
 	mlx_hook(get_window(), 2, 1L << 0, push, NULL);
 	mlx_hook(get_window(), 3, 1L << 1, pull, NULL);
