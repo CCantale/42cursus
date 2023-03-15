@@ -6,12 +6,12 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 17:01:39 by ccantale          #+#    #+#              #
-#    Updated: 2023/03/12 19:51:21 by ccantale         ###   ########.fr        #
+#    Updated: 2023/03/15 07:25:45 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=		gcc
-FLAGS		=		-Wall -Wextra -Werror -g -O3
+FLAGS		=		-Wall -Wextra -Werror -g
 
 NAME		=		cub3D
 
@@ -61,7 +61,7 @@ $(MINI):
 	make -C $(MINIDIR)
 
 $(NAME): $(OBJ)
-	$(CC) -O3 $^ -o $@ -lmlx -framework openGL -framework AppKit
+	$(CC) $^ -o $@ -lmlx -framework openGL -framework AppKit
 
 $(OBJ): $(OBJDIR)/%.o: %.c
 	mkdir -p $(@D)

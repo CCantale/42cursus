@@ -3,42 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   texture_handler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccantale <marvin@TEX_NUMBER2.fr>                    +#+  +:+       +#+        */
+/*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 1TEX_NUMBER:23:TEX_NUMBER3 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/14 22:36:03 by ccantale         ###   ########.fr       */
+/*   Created: 2023/03/15 07:34:58 by ccantale          #+#    #+#             */
+/*   Updated: 2023/03/15 08:01:00 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "texture_handler.h"
-																#include <unistd.h>
-																#include <stdio.h>
+														#include <stdio.h>
 
-static t_texture	define_which(char **line_from_set);
+static int	define_which(char **line_from_set);
 static int			update_textures(
 		char **new_set, t_image textures[TEX_NUMBER]);
 static void			destroy_textures(t_image textures[TEX_NUMBER]);
 /* end of declarations */
 
-/*
-** textures[0] = north
-** textures[1] = south
-** textures[2] = west
-** textures[3] = east
-*/
-t_image	*texture_handler(char **new_set, t_texture option)
+t_image	*texture_handler(char **new_set, int option)
 {
 	static t_image	textures[TEX_NUMBER];
 	int			i;
 
 	if (option == tex_UPDATE)
 	{
-		destroy_textures(textures);
 		if (!new_set || update_textures(new_set, textures) == NOT_OK)
 			return (textures);
 		i = 0;
 		while (i < TEX_NUMBER)
 		{
+			printf("%d %p\n", i, textures[i].image);
 			textures[i].addr = mlx_get_data_addr(textures[i].image,
 					&textures[i].bits_per_pixel, &textures[i].line_size,
 					&textures[i].endian);
@@ -73,6 +66,7 @@ static int	update_textures(char **new_set, t_image textures[TEX_NUMBER])
 		}
 		if (which_one != tex_COLOR_OK)
 		{
+			printf("result %s\n", new_set[which_one]);
 			textures[which_one].image = mlx_xpm_file_to_image(get_game_init(),
 					new_set[which_one], &textures[which_one].width,
 					&textures[which_one].height);
@@ -86,29 +80,36 @@ static int	update_textures(char **new_set, t_image textures[TEX_NUMBER])
 ** beginning of the texture path. we can lose the original ptr because
 ** the string has been allocated with the cantalloc() function, so it will
 ** automatically be freed by cantalloc_clean() at the end of the code */
-static t_texture	define_which(char **line_from_set)
+static int	define_which(char **line_from_set)
 {
 	int which_one;
 
 	while (**line_from_set == ' ')
 		*line_from_set += 1;
 	if (cub_strcmp(*line_from_set, "NO ") == 0)
-		which_one = tex_GET_NORTH;
+		which_one = s_NORTH;
 	else if (cub_strcmp(*line_from_set, "SO ") == 0)
-		which_one = tex_GET_SOUTH;
+		which_one = s_SOUTH;
 	else if (cub_strcmp(*line_from_set, "WE ") == 0)
-		which_one = tex_GET_WEST;
+		which_one = s_WEST;
 	else if (cub_strcmp(*line_from_set, "EA ") == 0)
-		which_one = tex_GET_EAST;
+		which_one = s_EAST;
 	else if (cub_strcmp(*line_from_set, "F ") == 0
 		|| cub_strcmp(*line_from_set, "C ") == 0)
 		which_one = get_color(*line_from_set);
 	else
 		which_one = tex_ERROR;
 	while (**line_from_set != ' ')
+	{
+	printf("LINE %s\n", *line_from_set);
 		*line_from_set += 1;
+	}
+	printf("LINE %s\n", *line_from_set);
 	while (**line_from_set == ' ')
+	{
 		*line_from_set += 1;
+	printf("LINE %s\n", *line_from_set);
+	}
 	return (which_one);
 }
 

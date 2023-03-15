@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 18:10:38 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/13 03:26:07 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/15 07:07:57 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@
 
 void			render_background(void);
 double const	*get_walls(void);
+void			draw_pixel(int x, int y, int color);
+void			render_static();
 
 #endif

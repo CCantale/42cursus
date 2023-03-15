@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:40:53 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/14 19:35:36 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/15 07:30:37 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,17 @@
 
 # include "../global_headers/common.h"
 # include "../global_headers/game.h"
+# include "../global_headers/side.h"
+# include "../global_headers/texture.h"
 # include "../global_headers/image_struct.h"
 # include "../minilibX/mlx.h"
 
 typedef enum e_texture
 {
-	tex_GET_NORTH,
-	tex_GET_SOUTH,
-	tex_GET_WEST,
+	tex_NORTH,
+	tex_SOUTH,
 	tex_GET_EAST,
+	tex_GET_WEST,
 	tex_UPDATE,
 	tex_ERROR,
 	tex_COLOR_OK,

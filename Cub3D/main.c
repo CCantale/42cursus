@@ -6,11 +6,15 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:04:34 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/14 19:19:10 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/15 07:02:10 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+																#include "global_headers/texture.h"
+											void	draw_pixel(int x, int y, int color);
+											void	render_static();
+																#include <stdio.h>
 
 static int	game_loop(void);
 /* end of declarations */
