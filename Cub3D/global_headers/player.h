@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 16:47:08 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/12 18:53:23 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/15 05:31:35 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 /* Size of the field of vision. It's a value between 0.1 and 1 */
 # define FOV_SIZE			0.66
 
-# define SPEED				0.8
-# define ROTATION_SPEED		0.6
+# define SPEED				0.6
+# define ROTATION_SPEED		0.5
 
 void		init_player(void);
 void		init_camera_plan(void);

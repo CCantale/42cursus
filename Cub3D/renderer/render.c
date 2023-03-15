@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:25:11 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/14 19:12:01 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/15 06:00:06 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,13 @@ static int	get_texture_x(int x, double wall_value)
 	else
 		wall_hit_point = get_player_x() + wall_value * ray_direction[X];
 	wall_hit_point -= floor(wall_hit_point);
-	texture_x = (int)(wall_hit_point * 64.0);
+	printf("before %f\n", wall_hit_point);
+	texture_x = (int)(wall_hit_point * (double)get_north_texture()->width);
+	printf("after %d\n", texture_x);
 	if (((side[x] == s_EAST || side[x] == s_WEST) && ray_direction[X] > 0)
 		|| ((side[x] == s_NORTH || side[x] == s_SOUTH) && ray_direction[Y] < 0))
-		texture_x = 64 - texture_x - 1;
+		texture_x = get_north_texture()->width - texture_x - 1;
+	printf("very after %d\n", texture_x);
 	return (texture_x);
 }
 
@@ -53,17 +56,25 @@ static void	draw_single_line(int line_length, int x, int y, int texture_x)
 	starting_pos_on_texture = (y - WINDOW_HEIGHT / 2 + line_length / 2) * step;
 	while (y < WINDOW_HEIGHT && y < line_end)
 	{
-		texture_y = (int)starting_pos_on_texture & (line_length - 1);
+		texture_y = (int)starting_pos_on_texture;
 		starting_pos_on_texture += step;
 		if (side[x] == s_NORTH)
-			draw_pixel(x, y, get_north_texture()->addr[64 * texture_y + texture_x]);
+			draw_pixel(x, y, get_north_texture()->addr[get_north_texture()->line_size * texture_y + texture_x * (get_north_texture()->bits_per_pixel / 8)]);
 		else if (side[x] == s_SOUTH)
-			draw_pixel(x, y, get_south_texture()->addr[64 * texture_y + texture_x]);
+			draw_pixel(x, y, get_south_texture()->addr[get_south_texture()->line_size * texture_y + texture_x * (get_south_texture()->bits_per_pixel / 8)]);
 		else if (side[x] == s_EAST)
-			draw_pixel(x, y, get_east_texture()->addr[64 * texture_y + texture_x]);
+			draw_pixel(x, y, get_east_texture()->addr[get_east_texture()->line_size * texture_y + texture_x * (get_east_texture()->bits_per_pixel / 8)]);
 		else if (side[x] == s_WEST)
-			draw_pixel(x, y, get_west_texture()->addr[64 * texture_y + texture_x]);
-		//printf("%d ", 64 * texture_y + texture_x);
+			draw_pixel(x, y, get_west_texture()->addr[get_west_texture()->line_size * texture_y + texture_x * (get_west_texture()->bits_per_pixel / 8)]);
+		//printf("%d %d\n", texture_y, texture_x);
+		/*if (side[x] == s_NORTH)
+			draw_pixel(x, y, 0xFFFFFF - 100);
+		else if (side[x] == s_SOUTH)
+			draw_pixel(x, y, 0xFFFFFF + 10);
+		else if (side[x] == s_EAST)
+			draw_pixel(x, y, 0xFFFFFF + 100);
+		else if (side[x] == s_WEST)
+			draw_pixel(x, y, 0xFFFFFF - 10);*/
 		++y;
 	}
 }

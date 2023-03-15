@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@TEX_NUMBER2.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 1TEX_NUMBER:23:TEX_NUMBER3 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/14 19:53:35 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/14 22:36:03 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static void			destroy_textures(t_image textures[TEX_NUMBER]);
 ** textures[1] = south
 ** textures[2] = west
 ** textures[3] = east
-** textures[TEX_NUMBER] = 0
 */
 t_image	*texture_handler(char **new_set, t_texture option)
 {
@@ -67,7 +66,7 @@ static int	update_textures(char **new_set, t_image textures[TEX_NUMBER])
 			destroy_textures(textures);
 			return (error_msg("Syntax error. Wrong or missing parameter."));
 		}
-		if (textures[which_one] != NULL || which_one == tex_COLOR_REPEATED)
+		if (textures[which_one].image != NULL || which_one == tex_COLOR_REPEATED)
 		{
 			destroy_textures(textures);
 			return (error_msg("Syntax error. Parameter repeted."));
