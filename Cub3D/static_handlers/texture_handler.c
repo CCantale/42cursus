@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 07:34:58 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/15 08:01:00 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/15 10:10:24 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void			destroy_textures(t_image textures[TEX_NUMBER]);
 t_image	*texture_handler(char **new_set, int option)
 {
 	static t_image	textures[TEX_NUMBER];
-	int			i;
+	int				i;
 
 	if (option == tex_UPDATE)
 	{
@@ -31,7 +31,6 @@ t_image	*texture_handler(char **new_set, int option)
 		i = 0;
 		while (i < TEX_NUMBER)
 		{
-			printf("%d %p\n", i, textures[i].image);
 			textures[i].addr = mlx_get_data_addr(textures[i].image,
 					&textures[i].bits_per_pixel, &textures[i].line_size,
 					&textures[i].endian);
@@ -66,9 +65,8 @@ static int	update_textures(char **new_set, t_image textures[TEX_NUMBER])
 		}
 		if (which_one != tex_COLOR_OK)
 		{
-			printf("result %s\n", new_set[which_one]);
 			textures[which_one].image = mlx_xpm_file_to_image(get_game_init(),
-					new_set[which_one], &textures[which_one].width,
+					new_set[i], &textures[which_one].width,
 					&textures[which_one].height);
 		}
 		++i;
@@ -99,17 +97,11 @@ static int	define_which(char **line_from_set)
 		which_one = get_color(*line_from_set);
 	else
 		which_one = tex_ERROR;
+	printf("pointer %p\n", line_from_set);
 	while (**line_from_set != ' ')
-	{
-	printf("LINE %s\n", *line_from_set);
 		*line_from_set += 1;
-	}
-	printf("LINE %s\n", *line_from_set);
 	while (**line_from_set == ' ')
-	{
 		*line_from_set += 1;
-	printf("LINE %s\n", *line_from_set);
-	}
 	return (which_one);
 }
 
