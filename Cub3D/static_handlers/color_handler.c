@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 18:27:13 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/25 03:32:38 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/15 13:28:26 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static t_texture	make_color(char *input_line, t_color option)
 			++input_line;
 		}
 		color[i] = cub_atoi(input_line);
+		// controllare che sia tra 0 e 255
 		while (*input_line >= '0' && *input_line <= '9')
 			++input_line;
 		++i;
