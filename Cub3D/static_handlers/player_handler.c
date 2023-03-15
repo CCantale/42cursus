@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 07:12:15 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/25 17:10:02 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/15 12:55:23 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	init_player(void)
 			if (map[y][x] == 'N' || map[y][x] == 'S'
 				|| map[y][x] == 'W' || map[y][x] == 'E')
 			{
-				update_player_pos(x, y);
+				update_player_pos(x + 0.5, y + 0.5);
 				set_direction_at_start(map[y][x]);
 				break ;
 			}

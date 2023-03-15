@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 07:34:58 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/15 10:10:24 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/15 12:32:32 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,9 @@ static int	update_textures(char **new_set, t_image textures[TEX_NUMBER])
 			return (error_msg("Syntax error. Parameter repeted."));
 		}
 		if (which_one != tex_COLOR_OK)
-		{
 			textures[which_one].image = mlx_xpm_file_to_image(get_game_init(),
 					new_set[i], &textures[which_one].width,
 					&textures[which_one].height);
-		}
 		++i;
 	}
 	return (OK);
@@ -97,7 +95,6 @@ static int	define_which(char **line_from_set)
 		which_one = get_color(*line_from_set);
 	else
 		which_one = tex_ERROR;
-	printf("pointer %p\n", line_from_set);
 	while (**line_from_set != ' ')
 		*line_from_set += 1;
 	while (**line_from_set == ' ')

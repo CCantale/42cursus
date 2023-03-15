@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:25:11 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/15 07:07:24 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/15 12:31:58 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,20 @@ static int	get_texture_x(int x, double wall_value)
 static void	draw_single_line(int line_length, int x, int y, int texture_x) 
 {
 	t_side const	*side = get_side();
-	int		line_end;
-	int		texture_y;
-	double	step;
-	double  starting_pos_on_texture;
+	int				line_end;
+	int				texture_y;
+	double			step;
+	double 		 	starting_pos_on_texture;
 
-	step = 64.0 / line_length;
+	step = 1.0 * get_texture(side[x])->height / line_length;
 	line_end = y + line_length;
 	if (line_end >= WINDOW_HEIGHT)
 		line_end = WINDOW_HEIGHT - 1;
 	starting_pos_on_texture = (y - WINDOW_HEIGHT / 2 + line_length / 2) * step;
-		texture_y = (int)starting_pos_on_texture;
 	while (y < WINDOW_HEIGHT && y < line_end)
 	{
-		texture_y += step;
+		texture_y = (int)starting_pos_on_texture & (get_texture(side[x])->height - 1);
+		starting_pos_on_texture += step;
 		draw_pixel(x, y, *(int *)(get_texture(side[x])->addr
 				+ get_texture(side[x])->line_size * texture_y
 				+ texture_x * (get_texture(side[x])->bits_per_pixel / 8)));
