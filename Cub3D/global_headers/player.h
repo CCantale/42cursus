@@ -16,8 +16,8 @@
 /* Size of the field of vision. It's a value between 0.1 and 1 */
 # define FOV_SIZE			0.66
 
-# define SPEED				0.6
-# define ROTATION_SPEED		0.5
+# define SPEED				3
+# define ROTATION_SPEED		2
 
 void		init_player(void);
 void		init_camera_plan(void);

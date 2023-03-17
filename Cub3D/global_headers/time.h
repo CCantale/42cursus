@@ -16,7 +16,7 @@
 # include <stdlib.h>
 
 void	time_start(void);
-size_t	get_delta_time(void);
-void	time_delay(void);
+double	get_delta_time(void);
+void	calculate_delta_time(void);
 
 #endif

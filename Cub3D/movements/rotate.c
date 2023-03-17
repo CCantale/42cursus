@@ -23,8 +23,8 @@ void	rotate(t_rotation direction)
 	double	new_camx;
 	double	new_camy;
 	
-	speed = (double)get_delta_time() / 1000 * ROTATION_SPEED;
-	//printf("speeeeeeeeeeeeeeeeeeeeeeeeeeeeed %f\ndelta %lu\n", speed, get_delta_time());
+	speed = get_delta_time() * ROTATION_SPEED;
+	//printf("speeed %f\ndelta %f\n", speed, get_delta_time());
 	if (direction == r_LEFT)
 		speed *= -1;
 	new_dirx = get_player_dirx() * cos(speed) - get_player_diry() * sin(speed);

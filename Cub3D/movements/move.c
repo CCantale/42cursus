@@ -26,7 +26,8 @@ void	move_up(void)
 	y = get_player_y();
 	dirx = get_player_dirx();
 	diry = get_player_diry();
-	speed = (double)get_delta_time() / 1000 * SPEED;
+	speed = (double)get_delta_time() * SPEED;
+	//printf("speed %f\n", speed);
 	if (map[(int)(y)][(int)(x + dirx * speed)] == '0'
 			&& map[(int)(y + diry * speed)][(int)(x)] == '0')
 	{

@@ -14,6 +14,7 @@
 #include "../global_headers/key.h"
 #include "../cantalloc/cantalloc.h"
 #include "../global_headers/movements.h"
+#include "../global_headers/time.h"
 #include <unistd.h>
 
 void	push(int key)

@@ -12,30 +12,42 @@
 
 #include "time_handler.h"
 #include <stdio.h>
-#include <unistd.h>
 
-static unsigned long	get_time(void)
+static double	get_time(void)
 {
-	static struct timeval	tv;
+	struct timespec	tv;
 
-	gettimeofday(&tv, NULL);
-	return (tv.tv_usec);
+	clock_gettime(CLOCK_MONOTONIC, &tv);
+	return (((double)tv.tv_sec + (double)tv.tv_nsec / 1000000000));
 }
 
 static double	time_handler(t_time option)
 {
-	static unsigned long	start;
-	unsigned long			time_from_start;
+	static double	time_at_start;
+	static double	start;
+	static double 	delta;
+	double			time_right_now;
 
 	if (option == t_START)
 	{
-		start = get_time();
+		time_at_start = get_time();
+		start = time_at_start / 10000;
+		//printf("start %lu\n", start);
 	}
 	if (option == t_DELTA)
 	{
-		time_from_start = get_time() - start;
-		//printf("START %lu\nNOW %lu\nFROM_START %lu\n", start, get_time(), time_from_start);
-		return ((double)(get_time() - start));
+		//printf("start %f\n", start);
+		time_right_now = get_time() - time_at_start;
+		delta = time_right_now - start;
+		start = time_right_now;
+		//printf("nowrt %f\ndelta %f\n\n", time_right_now, delta);
+		//printf("nowrt %lu\n", get_time());
+		//printf("nowrt %f\n", time_right_now);
+	}
+	if (option == t_GET_DELTA)
+	{
+		//printf("delta %f\n", delta);
+		return (delta);
 	}
 	return (0);
 }
@@ -45,7 +57,12 @@ void	time_start(void)
 	time_handler(t_START);
 }
 
-size_t	get_delta_time(void)
+void	calculate_delta_time(void)
 {
-	return (time_handler(t_DELTA));
+	time_handler(t_DELTA);
+}
+
+double	get_delta_time(void)
+{
+	return (time_handler(t_GET_DELTA));
 }

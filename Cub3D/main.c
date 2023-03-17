@@ -12,6 +12,7 @@
 
 #include "main.h"
 																#include "global_headers/texture.h"
+																#include "global_headers/time.h"
 											void	draw_pixel(int x, int y, int color);
 											void	render_static();
 																#include <stdio.h>
@@ -51,7 +52,9 @@ static int	game_loop(void)
 	{
 		return (error_msg("Window doesn't init."));
 	}
+	time_start();
 	render();
+	//time_start();
 	mlx_hook(get_window(), 2, 1L << 0, push, NULL);
 	mlx_hook(get_window(), 3, 1L << 1, pull, NULL);
 	mlx_hook(get_window(), 17, 1L << 17, quit, NULL);

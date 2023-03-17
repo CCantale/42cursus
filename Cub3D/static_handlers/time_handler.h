@@ -13,12 +13,13 @@
 #ifndef TIME_HANDLER_H
 # define TIME_HANDLER_H
 
-# include <sys/time.h>
+# include <time.h>
 
 typedef enum	e_time
 {
 	t_START,
-	t_DELTA
+	t_DELTA,
+	t_GET_DELTA
 }	t_time;
 
 #endif

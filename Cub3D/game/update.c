@@ -14,11 +14,12 @@
 
 int	update(void)
 {
-	static int	clocks;
+	//static int	clocks;
 	int			something_happened;
 
-	if (clocks % 5 == 0)
-	{
+	//if (clocks % 5 == 0)
+	//{
+	calculate_delta_time();
 		something_happened = 1;
 		if (get_key(k_LEFT) == true)
 			rotate(r_LEFT);
@@ -30,9 +31,8 @@ int	update(void)
 			something_happened = 0;
 		if (something_happened == 1)
 			render();
-	}
-	clocks++;
-	time_start();
+	//}
+	//clocks++;
 
 	return (0);
 }
