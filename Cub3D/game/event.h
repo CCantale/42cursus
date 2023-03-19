@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ccantalloc.c                                       :+:      :+:    :+:   */
+/*   event.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/25 00:47:54 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/17 12:02:07 by ccantale         ###   ########.fr       */
+/*   Created: 2023/03/17 12:08:19 by ccantale          #+#    #+#             */
+/*   Updated: 2023/03/17 12:09:20 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cantalloc.h"
+#ifndef EVENT_H
+# define EVENT_H
 
-void	*ccantalloc(size_t size, size_t count)
-{
-	char	*new_ptr;
-	size_t	i;
+# include <unistd.h>
+# include "../global_headers/keycodes.h"
+# include "../global_headers/key.h"
+# include "../cantalloc/cantalloc.h"
+# include "../global_headers/movements.h"
+# include "../global_headers/time.h"
 
-	new_ptr = cantalloc(size * count);
-	if (!new_ptr)
-		return (NULL);
-	i = 0;
-	while (i < size * count)
-	{
-		new_ptr[i] = 0;
-		++i;
-	}
-	return ((void *)new_ptr);
-}
+#endif

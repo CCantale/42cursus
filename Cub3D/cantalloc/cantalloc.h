@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 00:46:15 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/25 00:46:18 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/17 12:00:41 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 /* garbage collector node */
 typedef struct s_alloc
 {
-	void		*ptr;
+	void			*ptr;
 	struct s_alloc	*next;
 }	t_alloc;
 

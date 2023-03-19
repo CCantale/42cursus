@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:18:33 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/02 12:36:01 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/17 12:13:21 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,16 @@ static char	*open_and_read(char *path)
 static int	check_valid_char(void)
 {
 	char const	**map = get_map();
-	size_t	x;
-	size_t	y;
-	
+	size_t		x;
+	size_t		y;
+
 	y = 0;
 	while (map[y])
 	{
 		x = 0;
 		while (map[y][x])
 		{
-			if (map[y][x] != '0' && map[y][x] != '1' && map[y][x] != 'N' 
+			if (map[y][x] != '0' && map[y][x] != '1' && map[y][x] != 'N'
 					&& map[y][x] != 'S' && map[y][x] != 'E' && map[y][x] != 'W'
 					&& map[y][x] != ' ')
 			{
@@ -64,9 +64,9 @@ static int	check_valid_char(void)
 static int	check_borders(void)
 {
 	char const	**map = get_map();
-	size_t	x;
-	size_t	y;
-	
+	size_t		x;
+	size_t		y;
+
 	y = 0;
 	while (map[y])
 	{
@@ -90,10 +90,10 @@ static int	check_borders(void)
 static int	check_multiple_players(void)
 {
 	char const	**map = get_map();
-	size_t	x;
-	size_t	y;
-	short	flag;
-	
+	size_t		x;
+	size_t		y;
+	short		flag;
+
 	flag = 0;
 	y = 0;
 	while (map[y])
@@ -101,7 +101,7 @@ static int	check_multiple_players(void)
 		x = 0;
 		while (map[y][x])
 		{
-			if (map[y][x] == 'N' ||  map[y][x] == 'S'
+			if (map[y][x] == 'N' || map[y][x] == 'S'
 				|| map[y][x] == 'E' || map[y][x] == 'W')
 			{
 				if (flag == 0)

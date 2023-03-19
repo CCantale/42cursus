@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 08:24:29 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/12 18:58:39 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/19 01:08:02 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include "../global_headers/game.h"
 # include "../global_headers/keycodes.h"
 
-void	move_up(void);
 int		push(int key);
 int		pull(int key);
 void	render(void);

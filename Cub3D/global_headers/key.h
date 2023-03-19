@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 08:10:21 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/27 12:37:29 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/17 12:11:20 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdbool.h>
 
-typedef enum	e_key
+typedef enum e_key
 {
 	k_W,
 	k_A,

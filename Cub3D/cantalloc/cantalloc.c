@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 00:46:03 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/25 00:47:43 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/17 12:00:13 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	*cantalloc_handler(size_t size, int mode)
 {
 	static t_alloc	*garbage_head;
 	static t_alloc	*garbage_tail;
-	void		*new_ptr;
+	void			*new_ptr;
 
 	if (mode == NEW)
 	{
@@ -68,7 +68,6 @@ void	*cantalloc(size_t size)
 {
 	return (cantalloc_handler(size, NEW));
 }
-
 
 void	cantalloc_clean(void)
 {

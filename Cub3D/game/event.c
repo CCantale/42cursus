@@ -6,26 +6,14 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 03:48:09 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/08 17:29:29 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/19 01:31:43 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../global_headers/keycodes.h"
-#include "../global_headers/key.h"
-#include "../cantalloc/cantalloc.h"
-#include "../global_headers/movements.h"
-#include "../global_headers/time.h"
-#include <unistd.h>
+#include "event.h"
 
 void	push(int key)
 {
-	static int	wait;
-
-	if (wait == 0)
-	{
-		usleep(300);
-		wait = 42;
-	}
 	if (key == ESC_KEY)
 	{
 		cantalloc_clean();
@@ -37,8 +25,14 @@ void	push(int key)
 		press_key(k_RIGHT);
 	if (key == W_KEY)
 		press_key(k_W);
+	if (key == S_KEY)
+		press_key(k_S);
+	if (key == A_KEY)
+		press_key(k_A);
+	if (key == D_KEY)
+		press_key(k_D);
 }
-	
+
 void	pull(int key)
 {
 	if (key == LEFT_KEY)
@@ -47,4 +41,10 @@ void	pull(int key)
 		release_key(k_RIGHT);
 	if (key == W_KEY)
 		release_key(k_W);
+	if (key == S_KEY)
+		release_key(k_S);
+	if (key == A_KEY)
+		release_key(k_A);
+	if (key == D_KEY)
+		release_key(k_D);
 }

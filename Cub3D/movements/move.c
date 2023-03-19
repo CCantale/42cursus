@@ -6,31 +6,88 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:35:06 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/15 13:22:47 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/19 01:31:33 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "move.h"
-									#include <stdio.h>
 
-void	move_up(void)
+void	move_forward(void)
 {
 	char const	**map = get_map();
 	double		x;
 	double		y;
-	double		dirx;
-	double		diry;
+	double		dir[2];
 	double		speed;
 
 	x = get_player_x();
 	y = get_player_y();
-	dirx = get_player_dirx();
-	diry = get_player_diry();
+	dir[X] = get_player_dirx();
+	dir[Y] = get_player_diry();
 	speed = (double)get_delta_time() * SPEED;
-	//printf("speed %f\n", speed);
-	if (map[(int)(y)][(int)(x + dirx * speed)] == '0'
-			&& map[(int)(y + diry * speed)][(int)(x)] == '0')
+	if (map[(int)(y)][(int)(x + dir[X] * speed)] == '0'
+			&& map[(int)(y + dir[Y] * speed)][(int)(x)] == '0')
 	{
-		update_player_pos(x + dirx * speed, y + diry * speed);
+		update_player_pos(x + dir[X] * speed, y + dir[Y] * speed);
+	}
+}
+
+void	move_back(void)
+{
+	char const	**map = get_map();
+	double		x;
+	double		y;
+	double		dir[2];
+	double		speed;
+
+	x = get_player_x();
+	y = get_player_y();
+	dir[X] = get_player_dirx();
+	dir[Y] = get_player_diry();
+	speed = (double)get_delta_time() * SPEED;
+	if (map[(int)(y)][(int)(x - dir[X] * speed)] == '0'
+			&& map[(int)(y - dir[Y] * speed)][(int)(x)] == '0')
+	{
+		update_player_pos(x - dir[X] * speed, y - dir[Y] * speed);
+	}
+}
+
+void	move_left(void)
+{
+	char const	**map = get_map();
+	double		x;
+	double		y;
+	double		dir[2];
+	double		speed;
+
+	x = get_player_x();
+	y = get_player_y();
+	dir[X] = get_player_diry();
+	dir[Y] = get_player_dirx() * -1;
+	speed = (double)get_delta_time() * SPEED;
+	if (map[(int)(y)][(int)(x + dir[X] * speed)] == '0'
+			&& map[(int)(y + dir[Y] * speed)][(int)(x)] == '0')
+	{
+		update_player_pos(x + dir[X] * speed, y + dir[Y] * speed);
+	}
+}
+
+void	move_right(void)
+{
+	char const	**map = get_map();
+	double		x;
+	double		y;
+	double		dir[2];
+	double		speed;
+
+	x = get_player_x();
+	y = get_player_y();
+	dir[X] = get_player_diry() * -1;
+	dir[Y] = get_player_dirx();
+	speed = (double)get_delta_time() * SPEED;
+	if (map[(int)(y)][(int)(x + dir[X] * speed)] == '0'
+			&& map[(int)(y + dir[Y] * speed)][(int)(x)] == '0')
+	{
+		update_player_pos(x + dir[X] * speed, y + dir[Y] * speed);
 	}
 }

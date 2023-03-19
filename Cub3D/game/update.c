@@ -1,12 +1,12 @@
-
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/25 01:27:34 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/12 18:59:02 by ccantale         ###   ########.fr       */
+/*   Created: 2023/03/17 12:05:51 by ccantale          #+#    #+#             */
+/*   Updated: 2023/03/19 01:42:48 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,21 @@
 
 int	update(void)
 {
-	//static int	clocks;
-	int			something_happened;
-
-	//if (clocks % 5 == 0)
-	//{
 	calculate_delta_time();
-		something_happened = 1;
-		if (get_key(k_LEFT) == true)
-			rotate(r_LEFT);
-		else if (get_key(k_RIGHT) == true)
-			rotate(r_RIGHT);
-		else if (get_key(k_W) == true)
-			move_up();
-		else
-			something_happened = 0;
-		if (something_happened == 1)
-			render();
-	//}
-	//clocks++;
-
+	if (get_key(k_LEFT) == true)
+		rotate(r_LEFT);
+	else if (get_key(k_RIGHT) == true)
+		rotate(r_RIGHT);
+	if (get_key(k_W) == true)
+		move_forward();
+	else if (get_key(k_S) == true)
+		move_back();
+	else if (get_key(k_A) == true)
+		move_left();
+	else if (get_key(k_D) == true)
+		move_right();
+	if (get_key(k_LEFT) || get_key(k_RIGHT)
+			|| get_key(k_W) || get_key(k_S) || get_key(k_A) || get_key(k_D))
+		render();
 	return (0);
 }
