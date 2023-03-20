@@ -6,16 +6,15 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 01:45:05 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/13 00:19:51 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/20 16:52:39 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
-													#include <stdio.h>
 
 static double	get_step_length(double ray_direction);
-static double	cast_ray_get_wall_height(
-		double direction[2], int closest_border_to_player[2], double step[2]);
+static double	cast_ray_get_wall_height(double direction[2],
+					int closest_border_to_player[2], double step[2]);
 static double	raycasting_algorithm(
 					double closest_border_to_ray[2], short step_on_map[2],
 					double step_length[2], int closest_border_to_player[2]);
@@ -37,10 +36,10 @@ double	raycasting(size_t ray_nbr)
 	ray_step_length[X] = get_step_length(ray_direction[X]);
 	ray_step_length[Y] = get_step_length(ray_direction[Y]);
 	return (cast_ray_get_wall_height(
-										ray_direction,
-										closest_border_to_player,
-										ray_step_length
-									));
+			ray_direction,
+			closest_border_to_player,
+			ray_step_length
+		));
 }
 
 static double	get_step_length(double ray_direction)
@@ -66,23 +65,23 @@ static double	cast_ray_get_wall_height(
 	if (direction[Y] < 0)
 		step_on_map[Y] = -1;
 	if (direction[X] < 0)
-		closest_border_to_ray[X] =
-			(get_player_x() - closest_border_to_player[X]) * step[X];
+		closest_border_to_ray[X] = (get_player_x()
+				- closest_border_to_player[X]) * step[X];
 	else
-		closest_border_to_ray[X] =
-			(closest_border_to_player[X] + 1.0 - get_player_x()) * step[X];
+		closest_border_to_ray[X] = (closest_border_to_player[X]
+				+ 1.0 - get_player_x()) * step[X];
 	if (direction[Y] < 0)
-		closest_border_to_ray[Y] =
-			(get_player_y() - closest_border_to_player[Y]) * step[Y];
+		closest_border_to_ray[Y] = (get_player_y()
+				- closest_border_to_player[Y]) * step[Y];
 	else
-		closest_border_to_ray[Y] =
-			(closest_border_to_player[Y] + 1.0 - get_player_y()) * step[Y];
-	return(raycasting_algorithm(
-				closest_border_to_ray,
-				step_on_map, step,
-				closest_border_to_player));
+		closest_border_to_ray[Y] = (closest_border_to_player[Y]
+				+ 1.0 - get_player_y()) * step[Y];
+	return (raycasting_algorithm(
+			closest_border_to_ray,
+			step_on_map, step,
+			closest_border_to_player));
 }
-	
+
 static double	raycasting_algorithm(
 	double closest_border_to_ray[2], short step_on_map[2],
 	double step_length[2], int closest_border_to_player[2])
@@ -106,13 +105,10 @@ static double	raycasting_algorithm(
 			closest_border_to_player[Y] += step_on_map[Y];
 			axis_hit = Y;
 		}
-		if (map[closest_border_to_player[Y]][closest_border_to_player[X]] == '1')
+		if (map[closest_border_to_player[Y]][closest_border_to_player[X]]
+				== '1')
 			hit = true;
 	}
 	add_ray_side(axis_hit, closest_border_to_player[axis_hit]);
 	return (closest_border_to_ray[axis_hit] - step_length[axis_hit]);
 }
-
-
-
-

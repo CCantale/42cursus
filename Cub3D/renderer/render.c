@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:25:11 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/15 12:31:58 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/20 16:43:21 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,6 @@ static int	get_texture_x(int x, double wall_value)
 		wall_hit_point = get_player_x() + wall_value * ray_direction[X];
 	wall_hit_point -= floor(wall_hit_point);
 	texture_x = (int)(wall_hit_point * (double)get_texture(side[x])->width);
-	if (((side[x] == s_EAST || side[x] == s_WEST) && ray_direction[X] > 0)
-		|| ((side[x] == s_NORTH || side[x] == s_SOUTH) && ray_direction[Y] < 0))
-		texture_x = get_texture(side[x])->width - texture_x - 1;
 	return (texture_x);
 }
 
