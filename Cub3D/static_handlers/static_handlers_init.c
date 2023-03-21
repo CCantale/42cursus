@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:41:45 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/25 00:38:04 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/21 20:14:25 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,3 @@ int	static_handlers_init(char **input)
 		return (NOT_OK);
 	return (OK);
 }
-
-	
-
-

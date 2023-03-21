@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:25:11 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/21 17:01:32 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/21 20:04:59 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	get_texture_x(int x, double wall_value)
 	ray_direction[X] = get_player_dirx() + get_camera_x() * ray_val;
 	ray_direction[Y] = get_player_diry() + get_camera_y() * ray_val;
 	if (side[x] == s_EAST || side[x] == s_WEST)
-		wall_hit_point =  get_player_y() + wall_value * ray_direction[Y];
+		wall_hit_point = get_player_y() + wall_value * ray_direction[Y];
 	else
 		wall_hit_point = get_player_x() + wall_value * ray_direction[X];
 	wall_hit_point -= floor(wall_hit_point);
@@ -66,13 +66,13 @@ static int	get_texture_x(int x, double wall_value)
 	return (texture_x);
 }
 
-static void	draw_single_line(int line_length, int x, int y, int texture_x) 
+static void	draw_single_line(int line_length, int x, int y, int texture_x)
 {
 	t_side const	*side = get_side();
 	int				line_end;
 	int				texture_y;
 	double			step;
-	double 		 	starting_pos_on_texture;
+	double			starting_pos_on_texture;
 
 	step = 1.0 * get_texture(side[x])->height / line_length;
 	line_end = y + line_length;

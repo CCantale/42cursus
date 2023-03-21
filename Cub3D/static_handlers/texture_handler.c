@@ -6,17 +6,15 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 07:34:58 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/15 12:32:32 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/21 20:10:17 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "texture_handler.h"
-														#include <stdio.h>
 
 static int	define_which(char **line_from_set);
-static int			update_textures(
-		char **new_set, t_image textures[TEX_NUMBER]);
-static void			destroy_textures(t_image textures[TEX_NUMBER]);
+static int	update_textures(char **new_set, t_image textures[TEX_NUMBER]);
+static void	destroy_textures(t_image textures[TEX_NUMBER]);
 /* end of declarations */
 
 t_image	*texture_handler(char **new_set, int option)
@@ -58,7 +56,8 @@ static int	update_textures(char **new_set, t_image textures[TEX_NUMBER])
 			destroy_textures(textures);
 			return (error_msg("Syntax error. Wrong or missing parameter."));
 		}
-		if (textures[which_one].image != NULL || which_one == tex_COLOR_REPEATED)
+		if (textures[which_one].image != NULL
+			|| which_one == tex_COLOR_REPEATED)
 		{
 			destroy_textures(textures);
 			return (error_msg("Syntax error. Parameter repeted."));
@@ -78,7 +77,7 @@ static int	update_textures(char **new_set, t_image textures[TEX_NUMBER])
 ** automatically be freed by cantalloc_clean() at the end of the code */
 static int	define_which(char **line_from_set)
 {
-	int which_one;
+	int	which_one;
 
 	while (**line_from_set == ' ')
 		*line_from_set += 1;
@@ -101,7 +100,6 @@ static int	define_which(char **line_from_set)
 		*line_from_set += 1;
 	return (which_one);
 }
-
 
 static void	destroy_textures(t_image textures[TEX_NUMBER])
 {

@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 16:44:46 by ccantale          #+#    #+#             */
-/*   Updated: 2023/02/25 17:12:49 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/21 20:20:14 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "../global_headers/common.h"
 # include "../global_headers/map.h"
 
-typedef enum	e_player
+typedef enum e_player
 {
 	p_UPDATE_POS,
 	p_UPDATE_DIR,

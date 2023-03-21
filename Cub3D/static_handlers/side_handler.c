@@ -6,18 +6,17 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 23:20:48 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/13 00:22:10 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/21 20:14:49 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "side_handler.h"
-														#include <stdio.h>
 
 static t_side	*side_handler(int axis_hit, int wall_position, t_side option)
 {
 	static t_side	side[WINDOW_WIDTH];
 	static int		i;
-	
+
 	if (option == s_ADD_SIDE && axis_hit == X)
 	{
 		if ((int)get_player_x() - wall_position > 0)

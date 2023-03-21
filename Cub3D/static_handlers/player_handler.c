@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 07:12:15 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/15 12:55:23 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/21 20:20:56 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ static void	set_direction_at_start(char direction)
 void	init_player(void)
 {
 	char const	**map = get_map();
-	size_t	x;
-	size_t	y;
-	
+	size_t		x;
+	size_t		y;
+
 	y = 0;
 	while (map[y])
 	{
@@ -86,4 +86,3 @@ void	update_player_dir(double x, double y)
 {
 	player_handler(x, y, p_UPDATE_DIR);
 }
-
