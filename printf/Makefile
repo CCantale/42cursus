@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/29 22:43:01 by ccantale          #+#    #+#              #
-#    Updated: 2023/03/21 10:00:48 by ccantale         ###   ########.fr        #
+#    Updated: 2023/03/21 10:18:20 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME = ft_printf
 FILES = ft_printf.c c_printf.c s_p_printf.c d_u_printf.c i_printf.c x_X_printf.c
 
 TEST = printest
-OBJ = $(FILES:.c=.o) $(NAME).o
+OBJ = $(FILES:.c=.o)
 
 all: $(NAME).a
 
@@ -41,14 +41,12 @@ re: fclean
 
 bonus: all
 
-test: printest.o
-
-printest.o: $(NAME).a
+test: $(TEST).c $(NAME).a
 	$(CC) -c $(TEST).c
-	$(CC) $(NAME).a $(TEST).o -o test
+	$(CC) $(TEST).o $(OBJ) -o test $(NAME).a
 	./test
 
 testclean: printest.o fclean
-	rm printest.o test
+	rm $(TEST).o test
 
 .PHONY: all clean fclean re test printest
