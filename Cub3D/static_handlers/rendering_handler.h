@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 12:19:52 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/14 19:03:23 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/21 16:55:12 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include "../global_headers/game.h"
 # include "../global_headers/image_struct.h"
 # include "../minilibX/mlx.h"
+
+void	draw_pixels(void);
 
 typedef enum e_render
 {

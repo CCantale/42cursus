@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 19:52:16 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/14 19:15:38 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/21 16:54:29 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,10 @@ static void	rendering_handler(int x, int y, int color, t_render option)
 		cub_pixel_put(buffer_img, x, y, color);
 	if (option == ren_RENDER)
 	{
+		draw_pixels();
 		mlx_put_image_to_window(get_game_init(), get_window(),
 				buffer_img->image, 0, 0);
 		switch_var = (switch_var - 1) * -1;
-	}
-	// se i leaks non ci sono, questa parte si può anche eliminare, così sono 5 funzioni
-	if (option == ren_DESTROY)
-	{
-			mlx_destroy_image(get_game_init(), image_one.image);
-			mlx_destroy_image(get_game_init(), image_two.image);
 	}
 }
 
@@ -68,12 +63,7 @@ void	draw_pixel(int x, int y, int color)
 	rendering_handler(x, y, color, ren_PIXEL_PUT);
 }
 
-void	render_static(void)
+void	render(void)
 {
 	rendering_handler(0, 0, 0, ren_RENDER);
-}
-
-void	destroy_images(void)
-{
-	rendering_handler(0, 0, 0, ren_DESTROY);
 }

@@ -6,12 +6,45 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:25:11 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/20 16:43:21 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/21 17:01:32 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render.h"
-											#include <stdio.h>
+#include "draw_pixels.h"
+
+static void	draw_single_color(int color)
+{
+	int	endpoint;
+	int	x;
+	int	y;
+
+	if (color == get_ceiling_color())
+	{
+		y = 0;
+		endpoint = WINDOW_HEIGHT / 2;
+	}
+	else
+	{
+		y = WINDOW_HEIGHT / 2;
+		endpoint = WINDOW_HEIGHT;
+	}
+	while (y < endpoint)
+	{
+		x = 0;
+		while (x < WINDOW_WIDTH)
+		{
+			draw_pixel(x, y, color);
+			++x;
+		}
+		++y;
+	}
+}
+
+static void	draw_background(void)
+{
+	draw_single_color(get_ceiling_color());
+	draw_single_color(get_floor_color());
+}
 
 static int	get_texture_x(int x, double wall_value)
 {
@@ -48,7 +81,7 @@ static void	draw_single_line(int line_length, int x, int y, int texture_x)
 	starting_pos_on_texture = (y - WINDOW_HEIGHT / 2 + line_length / 2) * step;
 	while (y < WINDOW_HEIGHT && y < line_end)
 	{
-		texture_y = (int)starting_pos_on_texture & (get_texture(side[x])->height - 1);
+		texture_y = (int)starting_pos_on_texture;
 		starting_pos_on_texture += step;
 		draw_pixel(x, y, *(int *)(get_texture(side[x])->addr
 				+ get_texture(side[x])->line_size * texture_y
@@ -57,7 +90,7 @@ static void	draw_single_line(int line_length, int x, int y, int texture_x)
 	}
 }
 
-void	render(void) // da cambiare in una cosa tipo "draw_walls()"
+void	draw_pixels(void)
 {
 	double const	*walls = get_walls();
 	int				vertical_line_length;
@@ -65,7 +98,7 @@ void	render(void) // da cambiare in una cosa tipo "draw_walls()"
 	int				x;
 	int				y;
 
-	render_background();
+	draw_background();
 	x = 0;
 	while (x < WINDOW_WIDTH)
 	{
@@ -77,5 +110,4 @@ void	render(void) // da cambiare in una cosa tipo "draw_walls()"
 		draw_single_line(vertical_line_length, x, y, texture_x);
 		++x;
 	}
-	render_static();
 }

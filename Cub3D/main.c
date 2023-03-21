@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:04:34 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/15 07:02:10 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/21 16:56:45 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	main(int argc, char **argv)
 static int	quit(void)
 {
 	cantalloc_clean();
-	//destroy images
 	exit(0);
 	return (0);
 }
@@ -54,7 +53,6 @@ static int	game_loop(void)
 	}
 	time_start();
 	render();
-	//time_start();
 	mlx_hook(get_window(), 2, 1L << 0, push, NULL);
 	mlx_hook(get_window(), 3, 1L << 1, pull, NULL);
 	mlx_hook(get_window(), 17, 1L << 17, quit, NULL);
