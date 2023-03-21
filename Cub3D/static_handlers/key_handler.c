@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 08:00:16 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/08 17:03:04 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/21 21:22:21 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static bool	key_handler(t_key key, t_key option)
 {
-	static bool	keys[6] = { false, false, false, false, false, false };
+	static bool	keys[6] = {false, false, false, false, false, false};
 
 	if (option == k_PRESS)
 	{

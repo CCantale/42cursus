@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_texture.c                                      :+:      :+:    :+:   */
+/*   get_texture.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 14:38:53 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/21 21:23:50 by ccantale         ###   ########.fr       */
+/*   Created: 2023/03/21 21:23:29 by ccantale          #+#    #+#             */
+/*   Updated: 2023/03/21 21:23:56 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_texture.h"
+#ifndef GET_TEXTURE_H
+# define GET_TEXTURE_H
 
-t_image	*texture_handler(char **new_set, int option);
-/* end of declarations */
+# include "../global_headers/common.h"
+# include "../global_headers/side.h"
+# include "../global_headers/image_struct.h"
 
-t_image	*get_texture(t_side side)
-{
-	return (texture_handler(NULL, side));
-}
+#endif

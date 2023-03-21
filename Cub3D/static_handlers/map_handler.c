@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:23:34 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/01 16:10:00 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/21 21:21:06 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,6 @@ char const	**get_map(void)
 
 void	edit_map(double x, double y, char edit)
 {
-	if (edit == '0'|| edit == '1')
+	if (edit == '0' || edit == '1')
 		map_handler(NULL, m_GET_MAP)[(int)(y)][(int)(x)] = edit;
 }

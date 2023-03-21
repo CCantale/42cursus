@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 18:27:13 by ccantale          #+#    #+#             */
-/*   Updated: 2023/03/15 13:28:26 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/03/21 21:35:44 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static t_texture	make_color(char *input_line, t_color option);
 
 static int	*color_handler(t_color option)
 {
-	static int	floor[3] = { -1, -1, -1 };
-	static int	ceiling[3] = { -1, -1, -1 };
+	static int	floor[3] = {-1, -1, -1};
+	static int	ceiling[3] = {-1, -1, -1};
 	static int	floor_int;
 	static int	ceiling_int;
-	
+
 	if (option == c_GET_FLOOR_ARRAY)
 		return (floor);
 	else if (option == c_GET_CEILING_ARRAY)
@@ -60,14 +60,14 @@ static t_texture	make_color(char *input_line, t_color option)
 			++input_line;
 		}
 		color[i] = cub_atoi(input_line);
-		// controllare che sia tra 0 e 255
+		//if (color[i] < 0 || color[i] > 255)
+		//	return (tex_ERROR);
 		while (*input_line >= '0' && *input_line <= '9')
 			++input_line;
 		++i;
 	}
 	return (tex_COLOR_OK);
 }
-
 
 t_texture	get_color(char *input_line)
 {
