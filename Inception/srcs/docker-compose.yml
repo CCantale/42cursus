@@ -1,0 +1,34 @@
+version 3.5
+
+volumes:
+    wordpress:
+        name: wordpress
+        driver: local
+        driver_opts:
+            device: /home/Desktop/Inception/volumes/mordpress
+            o: bind
+            type: none
+    mariadb:
+        name: mariadb
+        driver: local
+        driver_opts:
+            device: /home/Desktop/Inception/volumes/mariadb
+            o: bind
+            type: none
+
+networks:
+    inception:
+        name: inception
+
+services:
+    nginx:
+        container_name: nginx
+        build: ./requirements/nginx
+        image: nginx:42
+        ports:
+            - 443:443
+        volumes:
+            - wordpress: /var/www/html
+        restart: always
+        networks:
+            - inception
