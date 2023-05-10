@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/09 19:48:32 by ccantale          #+#    #+#              #
-#    Updated: 2023/05/09 20:12:49 by ccantale         ###   ########.fr        #
+#    Updated: 2023/05/10 12:03:54 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS		=		main.cpp \
 				RPN.cpp
 
 OBJDIR		=		obj
-OBJS		=		$(addprefix OBJDIR/, $(SRCS:.cpp=.o))
+OBJS		=		$(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
 
 all: $(NAME)
 
@@ -28,7 +28,7 @@ $(NAME): $(OBJS)
 
 $(OBJS): $(OBJDIR)/%.o: %.cpp
 	@mkdir -p $(@D)
-	$(CC) $(FLAGS) -c $< -o $(addprefix $(OBJDIR/, $(<:.cpp=.o)))
+	$(CC) $(FLAGS) -c $< -o $(addprefix $(OBJDIR)/, $(<:.cpp=.o))
 
 clean: 
 	rm -rf $(OBJDIR)

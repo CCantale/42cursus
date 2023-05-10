@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:24:47 by ccantale          #+#    #+#             */
-/*   Updated: 2023/05/09 19:40:51 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/05/10 12:24:22 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,18 @@ int	RPN::solve(std::string operation)
 
 
 	if (!check_operation(operation, 0, LESS_THAN_THREE))
-		throw();
+		throw std::exception();
 	if (!load_next_number(_temp.begin(), operation[0])
 		|| !load_next_number(_temp.begin() + 1, operation[1]))
-		throw();
+		throw std::exception();
 	i = 2;
 	while (operation[i])
 	{
 		if (!perform_next_operation(_temp, &_lastResult, operation[i]))
-			throw();
+			throw std::exception();
 		++i;
 		if (!load_next_number(&_temp.begin() + 1, operation[i]))
-			throw();
+			throw std::exception();
 		++i;
 	}
 	return (_lastResult);
