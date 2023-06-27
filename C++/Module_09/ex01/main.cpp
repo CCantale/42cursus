@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 19:40:57 by ccantale          #+#    #+#             */
-/*   Updated: 2023/05/10 12:48:17 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/05/10 15:25:49 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	std::string	operation(argv[1]);
-	int		result;
+	std::string	operation;
 	
 	if (argc != 2)
 	{
@@ -23,12 +22,13 @@ int	main(int argc, char **argv)
 				<< std::endl;
 		return (1);
 	}
+	operation = argv[1];
 	try
 	{
-		result = RPN::solve(operation);
-		std::cout << result << std::endl;
+		std::cout << RPN::solve(operation) << std::endl;
 	}
-	catch (std::exception &e) {
+	catch (RPN::IncorrectOperation &e) {
+		std::cerr << e.what() << std::endl;
 		return (1);
 	}
 	return (0);

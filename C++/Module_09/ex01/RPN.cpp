@@ -6,111 +6,69 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:24:47 by ccantale          #+#    #+#             */
-/*   Updated: 2023/05/10 12:24:22 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/05/10 15:56:44 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
-std::array<int, 2>	RPN::_temp;
-int			RPN::_lastResult;
+std::stack<int>	RPN::_temp;
+int				RPN::_lastResult;
 
-static bool	perform_next_operation(std::array,int, 2> _temp,
-						int *_lastResult, char operand);
-static bool	load_next_number(std::aray,int, 2>::iterator &it, char new_nbr);
-/* end of static declarations */ 
-
-int	RPN::solve(std::string operation)
+static void	atoi_and_push_to_stack(std::stack<int> &stack, char c)
 {
-	int	i;
-
-
-	if (!check_operation(operation, 0, LESS_THAN_THREE))
-		throw std::exception();
-	if (!load_next_number(_temp.begin(), operation[0])
-		|| !load_next_number(_temp.begin() + 1, operation[1]))
-		throw std::exception();
-	i = 2;
-	while (operation[i])
-	{
-		if (!perform_next_operation(_temp, &_lastResult, operation[i]))
-			throw std::exception();
-		++i;
-		if (!load_next_number(&_temp.begin() + 1, operation[i]))
-			throw std::exception();
-		++i;
-	}
-	return (_lastResult);
+			stack.push(static_cast<int>(c) - 48);
 }
 
-bool	RPN::checkOperation(std::string &operation, char character, t_check option)
+static bool	perform_operation_on_stack(std::stack<int> &stack, char operand)
 {
-	try
-	{
-		if ((option == LESS_THAN_THREE
-			&& operation.size() < 3)
-				||
-			(option == MISSING_OPERAND
-			&& character != '+' && character != '-'
-			&& character != '*' && character != '/')
-				||
-			(option == NOT_A_DIGIT && !std::isdigit(character)))
-		{
-			throw IncorrectOperation();
-		}
-
-	}
-	catch (IncorrectOperation &e)
-	{
-		std::cerr << e.what();
-		if (option == LESS_THAN_THREE)
-			std::cerr << "Less than 3 elements." << std::endl;
-		else if (option == MISSING_OPERAND)
-			std::cerr << "Expected operand, found something else." << std::endl;
-		else if (option == NOT_A_DIGIT)
-			std::cerr << "Expected digit, found something else." << std::endl;
+	int	lhs;
+	int	rhs;
+	
+	if (stack.size() != 2)
 		return (false);
-	}
+	rhs = stack.top();
+	stack.pop();
+	lhs = stack.top();
+	stack.pop();
+	if (operand == '+')
+		stack.push(lhs + rhs);
+	if (operand == '-')
+		stack.push(lhs - rhs);
+	if (operand == '*')
+		stack.push(lhs * rhs);
+	if (operand == '/')
+		stack.push(lhs / rhs);
+	std::cout << lhs << operand << rhs << std::endl;
 	return (true);
+}
+
+int	RPN::solve(std::string &operation)
+{
+	for (std::string::iterator it = operation.begin(); it != operation.end(); ++it)
+	{
+		if (std::isdigit(*it))
+		{
+			atoi_and_push_to_stack(_temp, *it);
+		}
+		else if (*it == '+' || *it == '-' || *it == '*' || *it == '/')
+		{
+			if (!perform_operation_on_stack(_temp, *it))
+				throw IncorrectOperation();
+		}
+		else if (*it == ' ')
+			continue ;
+		else
+			throw IncorrectOperation();
+	}
+	if (_temp.size() != 1)
+			throw IncorrectOperation();
+	_lastResult = _temp.top();
+	_temp.pop();
+	return (_lastResult);
 }
 
 int	&RPN::getLastResult(void)
 {
 	return (_lastResult);
 }
-
-static bool	perform_next_operation(std::array,int, 2> _temp,
-						int *_lastResult, char operand)
-{
-	if (!check_operation("", operand, MISSING_OPERAND)
-		return (false);
-	switch (operand)
-	{
-		case '+':
-			*_lastResult = _temp[0] + _temp[1];
-			break ;
-		case '-':
-			*_lastResult = _temp[0] - _temp[1];
-			break ;
-		case '*':
-			*_lastResult = _temp[0] * _temp[1];
-			break ;
-		case '/':
-			*_lastResult = _temp[0] / _temp[1];
-			break ;
-		default:
-			break ;
-	}
-	_temp[0] = _lastResult;
-	return (true);
-}
-
-static bool	load_next_number(std::aray,int, 2>::iterator &it, char new_nbr)
-{
-	if (!check_operation("", new_number, NOT_A_DIGIT))
-		return (false);
-	if (new_number)
-		*it = new_number + 48;
-	return (true);
-}
-
