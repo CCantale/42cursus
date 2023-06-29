@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 16:07:20 by ccantale          #+#    #+#             */
-/*   Updated: 2023/06/27 18:18:30 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:10:01 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ std::string Log::getTimeAndDate(void)
 
 std::ofstream	&Log::print(std::string color)
 {
-	logbook << color;
+	logbook << color << timestamp;
 	return (logbook);
 }
 

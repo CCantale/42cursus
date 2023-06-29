@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/27 16:11:17 by ccantale          #+#    #+#              #
-#    Updated: 2023/06/27 18:22:25 by ccantale         ###   ########.fr        #
+#    Updated: 2023/06/29 17:51:01 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,11 @@ FLAGS		=		-Wall -Wextra -Werror -std=c++98
 INCL		=		-I. -Iincludes
 LINK		=		-L.
 
-NAME		=		converter
+NAME		=		btc
 
 SRCS		=		srcs/main.cpp \
-				srcs/Log.cpp
+				srcs/Log.cpp \
+				srcs/BitcoinExchange.cpp
 
 OBJDIR		=		obj
 OBJS		=		$(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
