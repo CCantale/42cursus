@@ -6,13 +6,13 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:40:00 by ccantale          #+#    #+#             */
-/*   Updated: 2023/06/29 20:15:56 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/06/30 18:29:01 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-std::map<float, t_date>	BitcoinExchange::_data;
+std::map<int, float>	BitcoinExchange::_data;
 
 static std::string	readFile(void)
 {
@@ -36,7 +36,7 @@ static std::string	readFile(void)
 	return (ret);
 }
 
-static void	generateMap(std::string &input, std::map<float, t_date> &_data)
+static void	generateMap(std::string &input, std::map<int, float> &_data)
 {
 	float	value;
 	int	lineNbr;
@@ -52,7 +52,7 @@ static void	generateMap(std::string &input, std::map<float, t_date> &_data)
 						<< lineNbr << ": wrong format." << std::endl;
 			continue ;
 		}
-		_data.insert(std::pair<float, t_date>(value, date));
+		_data.insert(std::pair<int, float>(date.toInt(), value));
 	}
 }
 
