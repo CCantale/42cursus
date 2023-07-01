@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 19:17:41 by ccantale          #+#    #+#             */
-/*   Updated: 2023/07/02 00:26:23 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/07/02 00:42:40 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,7 @@ void	PmergeMe::sortVector(char **argv, int argc)
 	//printPairs(couples);
 	binarySearchAndInsert(input, _vec);
 	//test(input, _vec);
+	_vec.clear();
 }
 
 /////////////////////////////////////////////////////////////

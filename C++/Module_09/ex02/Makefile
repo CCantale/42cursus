@@ -6,7 +6,7 @@
 #    By: ccantale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/27 16:11:17 by ccantale          #+#    #+#              #
-#    Updated: 2023/07/01 20:43:44 by ccantale         ###   ########.fr        #
+#    Updated: 2023/07/02 00:39:43 by ccantale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ $(NAME): $(OBJS)
 
 $(OBJS): $(OBJDIR)/%.o: %.cpp
 	@mkdir -p $(@D)
-	@$(CC) $(INCL) -c $< -o $(addprefix $(OBJDIR)/, $(<:.cpp=.o))
+	@$(CC) $(INCL) -c -g $< -o $(addprefix $(OBJDIR)/, $(<:.cpp=.o))
 
 clean:
 	@rm -rf $(OBJDIR)
