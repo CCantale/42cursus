@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:40:00 by ccantale          #+#    #+#             */
-/*   Updated: 2023/06/30 18:29:01 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/07/01 13:09:34 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static void	generateMap(std::string &input, std::map<int, float> &_data)
 		}
 		_data.insert(std::pair<int, float>(date.toInt(), value));
 	}
+	Log::lout << "Created database" << std::endl;
 }
 
 void	BitcoinExchange::init(void)
@@ -66,5 +67,9 @@ void	BitcoinExchange::init(void)
 
 void	BitcoinExchange::performExchange(std::string &input)
 {
-	;
+	for (std::string::iterator it = input.begin(); it != input.end(); ++it)
+	{
+		;
+	}
+	Log::lout << "Performed exchange" << std::endl;
 }
