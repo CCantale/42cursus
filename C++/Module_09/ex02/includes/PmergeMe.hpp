@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 19:19:35 by ccantale          #+#    #+#             */
-/*   Updated: 2023/07/01 20:49:48 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/07/02 00:21:54 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@
 class PmergeMe
 {
 	public:
-		static void	sortVector(char **argv, int argc);
+		static void		sort(char **argv, int argc);
+		static void		sortVector(char **argv, int argc);
+		static void		sortDeque(char **argv, int argc);
+		static std::vector<int>	&getVec(void);
+		static std::deque<int>	&getDeq(void);
 
 	private:
 		static std::vector<int>	_vec;

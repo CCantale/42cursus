@@ -6,7 +6,7 @@
 /*   By: ccantale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 18:18:09 by ccantale          #+#    #+#             */
-/*   Updated: 2023/07/01 20:21:18 by ccantale         ###   ########.fr       */
+/*   Updated: 2023/07/02 00:27:39 by ccantale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,40 @@ static std::string getTimeAndDate(void)
 	return (beg + timeString + milliString + end);
 }
 
+static void	printBefore(char **argv, int argc)
+{
+	std::cout << "Before: ";
+	for (int i = 1; i < argc; ++i)
+		std::cout << argv[i] << " ";
+	std::cout << std::endl;
+}
+static void	printAfter(std::deque<int> &deq)
+{
+	std::cout << "After: ";
+	for (std::deque<int>::iterator it = deq.begin(); it != deq.end(); ++it)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+}
+
+static void	sort(char **argv, int argc)
+{
+	struct timeval	tv;
+	std::time_t	time;
+
+	std::cout << timestamp << "Starting vector test..." << std::endl;
+	gettimeofday(&tv, NULL);
+	time = tv.tv_usec;
+	PmergeMe::sortVector(argv, argc);
+	gettimeofday(&tv, NULL);
+	std::cout << timestamp << "End of vector test. Microseconds spent to sort " << argc - 1 << " elements: " << tv.tv_usec - time << std::endl;
+	std::cout << timestamp << "Starting deque test..." << std::endl;
+	gettimeofday(&tv, NULL);
+	time = tv.tv_usec;
+	PmergeMe::sortDeque(argv, argc);
+	gettimeofday(&tv, NULL);
+	std::cout << timestamp << "End of deque test. Microseconds spent to sort " << argc - 1 << " elements: " << tv.tv_usec - time << std::endl;
+}
+
 int	main(int argc, char **argv)
 {
 	if (argc < 3)
@@ -45,12 +79,8 @@ int	main(int argc, char **argv)
 		std::cerr << "Pass at least two numbers as arguments, please." << std::endl;
 		return (1);
 	}
-	std::cout << "Before : ";
-	for (int i = 0; i < argc; ++i)
-		std::cout << argv[i] << " ";
-	std::cout << std::endl;
-	std::cout << "After : ";
-	PmergeMe::sortVector(argv, argc);
-	std::cout << timestamp << std::endl;
+	printBefore(argv, argc);
+	sort(argv, argc);
+	printAfter(PmergeMe::getDeq());
 	return (0);
 }
