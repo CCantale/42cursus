@@ -1,34 +1,81 @@
-version 3.5
+version: '3.5'
+services:
 
-volumes:
-    wordpress:
-        name: wordpress
-        driver: local
-        driver_opts:
-            device: /home/Desktop/Inception/volumes/mordpress
-            o: bind
-            type: none
-    mariadb:
-        name: mariadb
-        driver: local
-        driver_opts:
-            device: /home/Desktop/Inception/volumes/mariadb
-            o: bind
-            type: none
+  nginx:
+    build: requirements/nginx/
+    image: nginx
+    container_name: nginx
+    ports: 
+      - "443:443"
+    volumes:
+      - wp_files:/var/www/html
+    depends_on:
+      - wordpress
+    networks:
+      - inception
+    restart: always
+
+  wordpress:
+    build: requirements/wordpress/
+    image: wordpress
+    container_name: wordpress
+    ports: 
+      - "9000:9000"
+    volumes:
+      - wp_files:/var/www/html
+    depends_on:
+      - mariadb
+    environment:
+      MYSQL_HOSTNAME:    ${MYSQL_HOSTNAME}
+      WP_DB_NAME:        ${WP_DB_NAME}
+      WP_DB_USER:        ${WP_DB_USER}
+      WP_DB_PASSWORD:    ${WP_DB_PASSWORD}
+      DOMAIN_NAME:       ${DOMAIN_NAME}
+      WP_ADMIN_USER:     ${WP_ADMIN_USER}
+      WP_ADMIN_PASSWORD: ${WP_ADMIN_PASSWORD}
+      WP_ADMIN_EMAIL:    ${WP_ADMIN_EMAIL}
+      WP_USER:           ${WP_USER}
+      WP_PASSWORD:       ${WP_PASSWORD}
+      WP_EMAIL:          ${WP_EMAIL}
+    networks:
+      - inception
+    restart: always
+
+  mariadb:
+    build: requirements/mariadb/
+    image: mariadb
+    container_name: mariadb
+    ports: 
+      - "3306:3306"
+    volumes:
+      - wp_db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD:  ${MYSQL_ROOT_PASSWORD}
+      WP_DB_NAME:           ${WP_DB_NAME}
+      WP_DB_USER:           ${WP_DB_USER}
+      WP_DB_PASSWORD:       ${WP_DB_PASSWORD}
+    networks:
+      - inception
+    restart: always
 
 networks:
-    inception:
-        name: inception
+  inception:
+    name: inception_nw
 
-services:
-    nginx:
-        container_name: nginx
-        build: ./requirements/nginx
-        image: nginx:42
-        ports:
-            - 443:443
-        volumes:
-            - wordpress: /var/www/html
-        restart: always
-        networks:
-            - inception
+volumes:
+
+  wp_db:
+    driver: local
+    name: wp_db
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/ccantale/data/wp_db
+
+  wp_files:
+    driver: local
+    name: wp_files
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/ccantale/data/wp_files
