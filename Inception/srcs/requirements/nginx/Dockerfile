@@ -12,7 +12,7 @@ RUN	openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
 
 COPY	./conf/nginx.conf /etc/nginx/conf.d/default.conf
 
-COPY	./www /var/www/html
+COPY	./www/index.html /var/www/index.html
 
 RUN	mkdir -p /run/nginx
 
