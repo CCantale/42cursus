@@ -1,16 +1,31 @@
 version: '3.5'
+volumes:
+
+  wp_db:
+    driver: local
+    name: wp_db
+    driver_opts:
+      type: none
+      o: bind
+      device: /Users/claudio.cantale/docker/wp_db
+
+  wp_files:
+    driver: local
+    name: wp_files
+    driver_opts:
+      type: none
+      o: bind
+      device: /Users/claudio.cantale/docker/wp_files
 services:
 
   nginx:
-    build: requirements/nginx/
+    build: ./requirements/nginx/
     image: nginx
     container_name: nginx
     ports: 
       - "443:443"
     volumes:
       - wp_files:/var/www/html
-    depends_on:
-      - wordpress
     networks:
       - inception
     restart: always
@@ -62,20 +77,3 @@ networks:
   inception:
     name: inception_nw
 
-volumes:
-
-  wp_db:
-    driver: local
-    name: wp_db
-    driver_opts:
-      type: none
-      o: bind
-      device: /home/ccantale/data/wp_db
-
-  wp_files:
-    driver: local
-    name: wp_files
-    driver_opts:
-      type: none
-      o: bind
-      device: /home/ccantale/data/wp_files
