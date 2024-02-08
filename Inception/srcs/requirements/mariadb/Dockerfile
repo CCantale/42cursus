@@ -1,13 +1,12 @@
-FROM	debian:buster
+FROM debian:buster
 
-RUN	apt update
 
-RUN	apt install -y mariadb-server mariadb-client
+RUN apt-get update -y && apt-get install mariadb-server -y
 
-EXPOSE		3306
+COPY ./tools/50-server.cnf /etc/mysql/mariadb.conf.d/
 
-COPY	tools/config.sh /tmp/
-COPY	conf/mariadb.conf /etc/mysql/conf.d/mysql.cnf
 
-CMD	["sh", "/tmp/config.sh"]
+COPY ./tools/script.sh /
 
+
+CMD ["/script.sh"]
