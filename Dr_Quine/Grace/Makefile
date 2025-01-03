@@ -26,6 +26,7 @@ clean:
 	@rm *.o
 
 fclean:
+	@rm Grace_kid.c
 	@rm $(NAME)
 
 re: fclean
