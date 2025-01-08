@@ -8,28 +8,20 @@ CC		=		gcc
 FLAGS		=		-Wall -Wextra -Werror
 
 SRCS		=		Sully.c
-OBJS		=		$(SRCS:.c=.o)
 
 
 all: $(NAME)
 
 
-$(NAME): $(OBJS)
-	@$(CC) $^ -o $(NAME)
-	@make clean
-	@echo SUlly compiled successfully!
-
-%.o: %.c
-	@$(CC) $(FLAGS) -c $^
+$(NAME): $(SRCS)
+	@$(CC) $(FLAGS) $^ -o $(NAME)
+	@echo Sully compiled successfully!
 
 clean:
-	@rm *.o
-
-fclean:
 	@rm Sully_*
 	@rm $(NAME)
 
-re: fclean
+re: clean
 	@make
 
 test: $(NAME)
