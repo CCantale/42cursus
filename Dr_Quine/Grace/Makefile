@@ -32,7 +32,7 @@ fclean:
 re: fclean
 	@make
 
-test:
+test: $(NAME)
 	@./$(NAME)
 	diff Grace.c Grace_kid.c
 

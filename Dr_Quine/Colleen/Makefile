@@ -34,7 +34,7 @@ fclean:
 re: fclean
 	@make
 
-test:
-	@./$(NAME) > $(TEST_FILE); diff $(SRCS) $(TEST_FILE); rm $(TEST_FILE)
+test: $(NAME)
+	./$(NAME) > $(TEST_FILE); diff $(SRCS) $(TEST_FILE); rm $(TEST_FILE)
 
 .PHONY: all clean fclean re
